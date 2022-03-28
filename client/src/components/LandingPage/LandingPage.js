@@ -1,11 +1,13 @@
 import React from "react";
-
+import {Link} from 'react-router-dom';
+import style from './inicio.module.css';
 
 function LandingPage() {
   return (
     
       <div >
-         hola
+        
+        <Link className={style.btnInicio} to="/home">BIENVENIDO</Link>
       </div>
   
   );
