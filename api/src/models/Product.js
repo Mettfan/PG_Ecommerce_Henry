@@ -4,11 +4,7 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Product', {
-    //creo que aquí faltó el id..  sino me disculpan que meta mano ="(
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: Datatypes.UUIDV4
-    },
+    
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -20,7 +16,7 @@ module.exports = (sequelize) => {
     },
     colors: {
       //type: DataTypes.ARRAY,
-      type: DataTypes.ARRAY(DataTypes.INTENGER),
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
       //no estoy seguro pero creo que así se usa el datatypes array les paso el link
       // https://sequelize.org/v5/manual/data-types.html#:~:text=Sequelize.ARRAY(Sequelize.TEXT)%20%20%20%20%20%20%20//%20Defines%20an%20array.%20PostgreSQL%20only.%0ASequelize.ARRAY(Sequelize.ENUM)%20%20%20%20%20%20%20//%20Defines%20an%20array%20of%20ENUM.%20PostgreSQL%20only.
       allowNull: false
