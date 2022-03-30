@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    colors: {
+    color: {
       //type: DataTypes.ARRAY,
       type: DataTypes.ARRAY(DataTypes.STRING),
       //no estoy seguro pero creo que así se usa el datatypes array les paso el link
