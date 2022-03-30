@@ -10,6 +10,10 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true // el producto debería tener un nombre único me parece mejor
     },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     size: {
       type: DataTypes.STRING,
       allowNull: false
