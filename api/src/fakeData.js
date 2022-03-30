@@ -1,5 +1,6 @@
 const data = [
 
+
     {
         name: 'Nike Sportswear oversize - Mujer',
         description: 'Combina tu estilo con esta amplia sudadera con capucha de tejido French terry. Las costuras sobrehiladas y elevadas, junto con las intensas combinaciones de colores, resaltan su estructura tipo patchwork para aportar un toque innovador a tus básicos para el día a día.',
@@ -279,4 +280,5 @@ const data = [
 
 ]
 
-module.exports = data;
+
+ module.exports = data;
