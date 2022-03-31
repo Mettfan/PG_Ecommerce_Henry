@@ -9,10 +9,28 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+
         gender: {
             type: DataTypes.STRING,
             allowNull: false,
         },
+
+        born: {
+            type: DataTypes.DATE,
+            allowNull: false,
+        },
+
+        dni: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+        },
+
         email: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -42,3 +60,4 @@ module.exports = (sequelize) => {
 
     });
 };
+

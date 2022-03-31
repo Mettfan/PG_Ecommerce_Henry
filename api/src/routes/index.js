@@ -6,7 +6,7 @@ const {getInfo} =require('./infoApi.js');
 
 
 const router = Router();
-
+const postUser = require('./user.js');
 
 
 // Configurar los routers
@@ -17,5 +17,7 @@ router.get('/productos', async(req,res)=>{
     const apiInfo= await getInfo();
     res.send(apiInfo);
     })
+
+router.use('/crearusuario', postUser);
 
 module.exports = router;
