@@ -4,14 +4,15 @@ const data = require( '../fakeData');
 
      function getInfo (){
          console.log('hola')
+         var id_generated = 0
     const apiInfo= data?.map(el=>{
         
         return {
-            id: el.id,
+            id:++id_generated,
             gender:el.gender,
             name:el.name,
             description:el.description,
-            size:el.size,
+            size:el.size.split('-'),
             color:el.color,
             stock:el.stock,
             price:el.price,
