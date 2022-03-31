@@ -7,6 +7,7 @@ const data = require( '../fakeData');
     const apiInfo= data?.map(el=>{
         
         return {
+            id: el.id,
             gender:el.gender,
             name:el.name,
             description:el.description,
@@ -15,7 +16,7 @@ const data = require( '../fakeData');
             stock:el.stock,
             price:el.price,
             category_name:el.category,
-            image:el.image
+            image:el.image,
            
         }
            

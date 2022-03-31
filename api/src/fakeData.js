@@ -298,7 +298,7 @@ function FormatData(data){
                 image: product.image,
                 category: product.category,
                 gender: product.gender,
-                // id: ++id_generated,
+                id: ++id_generated,
 
             }
 
