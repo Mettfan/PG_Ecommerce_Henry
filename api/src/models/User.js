@@ -55,7 +55,7 @@ module.exports = (sequelize) => {
         permission: {
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: 'user',
+            defaultValue: 'user'
         }
 
 
