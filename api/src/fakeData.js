@@ -282,36 +282,36 @@ var data = [
 //La siguiente función Le da formato a la data, 
 //Le agrega un id ficticio y convierte el size en array
 
-function FormatData(data){
+// function FormatData(data){
 
-    var id_generated = 0
-    let FormattedData = data.map( product => {
+//     var id_generated = 0
+//     let FormattedData = data.map( product => {
 
-        let FormattedProduct = {
+//         let FormattedProduct = {
                 
-                name: product.name,
-                description: product.description,
-                size: product.size.split('-'),
-                color: product.color,
-                stock: product.stock,
-                price: product.price,
-                image: product.image,
-                category: product.category,
-                gender: product.gender,
-                id: ++id_generated,
+//                 name: product.name,
+//                 description: product.description,
+//                 size: product.size.split('-'),
+//                 color: product.color,
+//                 stock: product.stock,
+//                 price: product.price,
+//                 image: product.image,
+//                 category: product.category,
+//                 gender: product.gender,
+//                 id: ++id_generated,
 
-            }
+//             }
 
-        return FormattedProduct
+//         return FormattedProduct
 
 
-    })
+//     })
     
-    return FormattedData
+//     return FormattedData
 
-}
+// }
 
-data = FormatData(data)
+// data = FormatData(data)
 
 
 module.exports = data;
