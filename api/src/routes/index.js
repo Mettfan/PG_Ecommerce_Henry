@@ -10,6 +10,7 @@ const getUsers = require('./user.js');
 const postUser = require('./user.js');
 const putUser = require('./user.js');
 const putUserPassword = require('./user.js');
+const deleteUser = require('./user.js');
 
 
 // Configurar los routers
@@ -19,6 +20,7 @@ router.use('/usuario', getUsers);
 router.use('/usuario', postUser);
 router.use('/usuario', putUser);
 router.use('/usuario', putUserPassword);
+router.use('/usuario', deleteUser);
 
 router.get('/productos', async(req,res)=>{
     const apiInfo= await getInfo();
