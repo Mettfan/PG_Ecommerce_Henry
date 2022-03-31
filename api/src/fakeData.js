@@ -1,4 +1,5 @@
-const data = [
+var data = [
+
 
     {
         name: 'Nike Sportswear oversize - Mujer',
@@ -124,7 +125,7 @@ const data = [
     {
         name: 'Jordan Dri-FIT Air',
         description: 'La sudadera con capucha de tejido Fleece Jordan Dri-FIT Air es ideal para cualquier ocasión. Su diseño, ideal dentro y fuera de la cancha, combina la funcionalidad y el look urbano con materiales de alto rendimiento y un ajuste a medida. Este producto se ha confeccionado con, al menos, un 50 % de fibras de poliéster reciclado.',
-        size: 'XS - XL',
+        size: 'XS-XL',
         color: 'Gym Red',
         stock: 150,
         price: 59.99,
@@ -135,7 +136,7 @@ const data = [
     {
         name: 'Nike Dri-FIT F.C. Libero',
         description: 'El pantalón F.C. Libero con capilarización del sudor ofrece el look de la equipación para antes del partido y una suavidad perfecta para el día a día. Cuenta con un ajuste holgado y ligeramente elástico para ofrecer libertad de movimiento durante todo el día',
-        size: 'S - XL',
+        size: 'S-XL',
         color: 'Black',
         stock: 3025,
         price: 59.99,
@@ -157,7 +158,7 @@ const data = [
     {
         name: 'Nike Air',
         description: 'El jogger Nike Air combina el estilo deportivo de los 90 con un look impecable para lucir las zapatillas. El suave tejido Fleece cepillado en la parte trasera ofrece calidez y comodidad a tu armario del día a día',
-        size: 'S - XL',
+        size: 'S-XL',
         color: ' Blanco/Football Grey/Vivid Sulfur',
         stock: 1258,
         price: 74.99,
@@ -168,7 +169,7 @@ const data = [
     {
         name: 'Nike Sportswear Club - Niño/a',
         description: 'Un diseño ideal para combinarlo con otras prendas o llevarlo solo durante los entrenamientos de los días más fríos.La sudadera con capucha Nike Sportswear está confeccionada con un cálido tejido Fleece cepillado en el interior para ofrecer una suavidad extraordinaria',
-        size: 'XS - M',
+        size: 'XS-M',
         color: 'rojo',
         stock: 1200,
         price: 39.99,
@@ -179,7 +180,7 @@ const data = [
     {
         name: 'Nike Sportswear French terry - Niño',
         description: 'La sudadera Nike Sportswear es suave y cómoda, por lo que es ideal para disfrutar de una capa de calidez adicional',
-        size: 'XS - M',
+        size: 'XS-M',
         color: ' Carbon Heather/Blanco',
         stock: 120,
         price: 34.99,
@@ -212,7 +213,7 @@ const data = [
     {
         name: 'Nike Sportswear - Jogger de tejido Fleece - Niño',
         description: 'Confeccionado con un cálido tejido Fleece cepillado, este jogger para el día a día ofrece la comodidad suave y agradable que tanto gusta a los más pequeños.',
-        size: 'XS - XL',
+        size: 'XS-XL',
         color: 'Team Red/Dark Smoke',
         stock: 1325,
         price: 44.99,
@@ -223,7 +224,7 @@ const data = [
     {
         name: 'Nike Sportswear Kids Pack - Unisex',
         description: 'Hay que seguir jugando y compitiendo en carreras. Sabemos que lo mejor es jugar sin pensar en nada, aunque a veces no se puede. Así hemos confeccionado nuestro pantalón. Los bolsillos de fácil acceso son perfectos para que nada salga volando al jugar, saltar o liderar el grupo.',
-        size: 'XS - M',
+        size: 'XS-M',
         color: 'Mint Foam',
         stock: 159,
         price: 64.99,
@@ -234,7 +235,7 @@ const data = [
     {
         name: 'Nike Sportswear Fleece - Niña',
         description: 'El pantalón Nike Sportswear está confeccionado con un tejido Fleece supersuave y cómodo. Además, cuentan con un ajuste entallado para ofrecer la máxima comodidad sin añadir un look abultado',
-        size: 'XS - L',
+        size: 'XS-L',
         color: 'Carbon Heather/Negro/Rush Pink',
         stock: 447,
         price: 37.99,
@@ -276,7 +277,41 @@ const data = [
         gender: 'Niño'
     },
 
-
 ]
+
+//La siguiente función Le da formato a la data, 
+//Le agrega un id ficticio y convierte el size en array
+
+function FormatData(data){
+
+    var id_generated = 0
+    let FormattedData = data.map( product => {
+
+        let FormattedProduct = {
+                
+                name: product.name,
+                description: product.description,
+                size: product.size.split('-'),
+                color: product.color,
+                stock: product.stock,
+                price: product.price,
+                image: product.image,
+                category: product.category,
+                gender: product.gender,
+                id: ++id_generated,
+
+            }
+
+        return FormattedProduct
+
+
+    })
+    
+    return FormattedData
+
+}
+
+data = FormatData(data)
+
 
 module.exports = data;
