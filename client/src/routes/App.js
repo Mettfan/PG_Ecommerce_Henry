@@ -4,7 +4,9 @@ import Home from '../components/Home/Home';
 import { Routes, Route } from 'react-router-dom';
 import { Register } from '../features/Register';
 import { Login } from '../features/Login';
+import { DetailProduct } from '../features/DetailProduct';
 import Promotions from '../components/Promotions/Promotions';
+
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/promotions" element={<Promotions/>} />
           
         <Route path="*" element={<NavBar/>} />
+
+        <Route path="/detail" element={<DetailProduct/>} />
 
       </Routes>
       
