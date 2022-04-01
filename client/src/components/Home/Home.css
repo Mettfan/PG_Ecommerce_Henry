@@ -373,3 +373,17 @@
     }
 
 }
+
+.scroll-top-button{
+    position: fixed;
+    
+    right: 5px;
+    bottom: 5px;
+    
+    height: 50px;
+    width: 50px;
+}
+
+.go-top-arrow{
+    width: 30px;
+}
