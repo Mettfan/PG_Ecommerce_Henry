@@ -1,0 +1,136 @@
+.main-container {
+  background-color: grey;
+}
+
+.detailProduct-container {
+  background-color: white;
+  padding: 5px 140px;
+}
+
+.detail-one {
+  display: flex;
+  width: 100%;
+  /* background-color: aqua; */
+  background-color: white;
+  padding: 5px;
+}
+
+/* .detail-three {
+  background-color: yellow;
+  padding: 5px;
+
+}
+
+.detail-four {
+  background-color: blue;
+  padding: 5px;
+} */
+
+.gender-category {
+  text-align: left;
+  padding-left: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.detail-size {
+  font-size: 12px;
+}
+
+.detail-one-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: calc(100% / 2 - 5px);
+  /* background-color: grey; */
+  background-color: white;
+  padding: 5px 10px;
+  justify-content: space-around;
+}
+
+.detail-one-right div {
+  padding-bottom: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.detail-one-left {
+  display: flex;
+  width: calc(100% / 2 - 5px);
+  /* background-color: red; */
+  background-color: white;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-img {
+  width: 300px;
+  height: 300;
+}
+
+.detail-arrow {
+  width: 10px;
+  background-color: red;
+}
+
+.detail-one-name-price {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.detail-one-sku {
+  font-size: 10px;
+}
+
+.detail-one-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;} 
+
+.detail-button-buy {
+  height: 100%;
+  width: 70%;
+  background-color:black;
+  color: white;
+  border-radius: 25px;
+  font-weight: 1000;
+  border: none;
+  font-size: 12px;
+}
+
+.detail-two {
+  /* background-color: green; */
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.description-left {
+  /* background-color:grey; */
+}
+
+.description-right {
+  /* background-color:red; */
+  padding-left: 10%;
+  text-align: left;
+}
+
+.description-right p {
+  font-size: 12px;
+  padding-bottom: 5px;
+}
+
+.description-top {
+  margin-bottom: 20px;
+}
+
+.description-bottom {
+  display: flex;
+  flex-direction: row;
+}
+
+.description-bottom-p {
+  width: calc(100% / 2  );
+}
