@@ -87,3 +87,14 @@ form .form-submit-login input {
 @media (max-width: 390px) {
 
 }
+
+.register-button{
+  height: 100%;
+  width: 40%;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border-radius: 25px;
+  font-weight: 1000;
+  border: none;
+  font-size: 12px;
+}

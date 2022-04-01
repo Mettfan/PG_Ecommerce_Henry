@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
+
+
 const formSchema = Yup.object().shape({
   email: Yup.string()
     .required ("Este campo es requerido")
@@ -18,12 +20,13 @@ const formSchema = Yup.object().shape({
 
 const formOptions = { resolver : yupResolver(formSchema) };
 
-const Login = () => { 
+const Login = (props) => { 
   const { register, formState: { errors }, handleSubmit } = useForm(formOptions);
 
   const onSubmit = (data) => {
     console.log('data', data)
   }
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -62,6 +65,7 @@ const Login = () => {
                 type="submit"
                 value="INGRESAR"
                 />
+            <button type='button' className='register-button'>Registrarse</button>
             </div>
           </div>
         </div>
