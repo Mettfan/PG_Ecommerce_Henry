@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import './Home.css'
 
@@ -26,26 +27,37 @@ function Home() {
       </div>
 
       <div className="home-ofertas">
+        <Link to="/promotions">
         <img
           className="home-ofertaitems"
           src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dwd16dc829/13dic/deal1ojotas.png"
           alt="boquita"
         />
+        </Link>
+
+        <Link to="/promotions">
         <img
           className="home-ofertaitems"
           src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw8c42a0bf/13dic/deal2botines.png"
           alt="boquita"
-        />
+          />
+          </Link>
+
+          <Link to="/promotions">
         <img
           className="home-ofertaitems"
           src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw3257527e/13dic/deal3mochilas.png"
           alt="boquita"
         />
+        </Link>
+
+        <Link to="/promotions">
         <img
           className="home-ofertaitems"
           src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw4345030f/07feb/deal4remeras.png"
           alt="boquita"
         />
+        </Link>
       </div>
 
 
@@ -53,21 +65,29 @@ function Home() {
 
 
       <div className="home-ofertas">
+        <Link to="/promotions">
         <img
           className="fotosofertas"
           src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dwde63764d/28mar/triplo1adidasbocariver.png"
           alt="boquita"
         />
+        </Link>
+
+        <Link to="/promotions">
         <img
           className="fotosofertas"
           src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw2eeffcaa/28mar/triplo2sale.png"
           alt="boquita"
         />
+        </Link>
+
+        <Link to="/promotions">
         <img
           className="fotosofertas"
           src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw09fb095c/28mar/triplo3reebokwhs.jpg"
           alt="boquita"
         />
+        </Link>
       </div>
 
       <div className="home-newsletter">

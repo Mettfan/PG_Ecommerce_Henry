@@ -2,7 +2,7 @@
 const data = require( '../fakeData');
 
 
-     function getInfo (){
+const getInfo= ()=>{
          console.log('hola')
          var id_generated = 0
     const apiInfo= data?.map(el=>{
@@ -28,4 +28,4 @@ const data = require( '../fakeData');
 
 
 
-module.exports={getInfo}
+module.exports=getInfo
