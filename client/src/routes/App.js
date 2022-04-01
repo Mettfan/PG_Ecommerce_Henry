@@ -4,6 +4,7 @@ import Home from '../components/Home/Home';
 import { Routes, Route } from 'react-router-dom';
 import { Register } from '../features/Register';
 import { Login } from '../features/Login';
+import Promotions from '../components/Promotions/Promotions';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         <Route path="/home" element={<Home/>} />
+
+        <Route path="/promotions" element={<Promotions/>} />
           
         <Route path="*" element={<NavBar/>} />
 
