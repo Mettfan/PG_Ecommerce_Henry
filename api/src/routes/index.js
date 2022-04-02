@@ -18,7 +18,6 @@ const productById = require('./product.js');
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.use('/crearusuario', postUser);
 router.use('/usuario', getUsers);
 router.use('/usuario', postUser);
 router.use('/usuario', putUser);
