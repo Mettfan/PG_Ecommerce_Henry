@@ -8,7 +8,7 @@ import Catalog from '../Product/Catalog/Catalog'
 function Home(props) {
 
   let [state, setState] = useState({
-    productsRendered: 1,
+    productsRendered: 4,
   })
   
   var productos = props.productos
@@ -16,7 +16,7 @@ function Home(props) {
     if(state.productsRendered!==productos.length){
       console.log(state.productsRendered)
       setState({
-        productsRendered: state.productsRendered + 1 
+        productsRendered: state.productsRendered + 4 
       })
 
     }
