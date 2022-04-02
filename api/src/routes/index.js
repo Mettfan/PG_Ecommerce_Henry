@@ -11,9 +11,9 @@ const postUser = require('./user.js');
 const putUser = require('./user.js');
 const putUserPassword = require('./user.js');
 const deleteUser = require('./user.js');
+const login = require('./user.js');
 const getProduct = require('./product.js');
 const productById = require('./product.js');
-
 
 
 // Configurar los routers
@@ -23,7 +23,7 @@ router.use('/usuario', postUser);
 router.use('/usuario', putUser);
 router.use('/usuario', putUserPassword);
 router.use('/usuario', deleteUser);
-
+router.use('/usuario', login);
 router.use('/productos', getProduct);
 router.use('/productos/:id', productById);
 
