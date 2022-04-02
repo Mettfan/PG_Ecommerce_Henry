@@ -4,7 +4,7 @@ function ProductCard(props){
     return(<>
 
         {/* {console.log(props)} */}
-        <div className='card'>
+        <div className='card-home'>
 
             <div>
                 {name}
