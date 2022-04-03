@@ -131,22 +131,8 @@ function Home(props) {
         </div>
       </div>
 
+        <Catalog productos = {productos.slice(0,state.productsRendered)}></Catalog>
 
-
-      <div className="home-bannersecundario">
-        <img
-            className="home-secBanner"
-            src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw41fee1b0/28mar/doble1uaprojectrock.jpg"
-            alt="boquita"
-            />
-      <img
-          className="home-secBanner"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw5937c74d/14mar/doble1topperbenito.png"
-          alt="boquita"
-          />
-    </div>
-
-    <Catalog productos = {productos.slice(0,state.productsRendered)}></Catalog>
 
     <button className='scroll-top-button' onClick={() => goTop()}> <img className='go-top-arrow' src='https://cdn2.iconfinder.com/data/icons/arrows-part-3-3/32/arrow-top-1-512.png' alt='GO TOP'></img> </button>
 

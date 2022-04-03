@@ -269,17 +269,6 @@ function Promotions() {
         {mockup.map((el) => {
             return (
 
-
-                //<div className="promotions-container">
-                //  <div className="promotions-subcontainer">
-            //      <fieldset className="promotions-fieldset">
-            //      <img src={el.image} alt="" className="promotions-image" />
-            //      <legend> {el.discount} </legend>
-            //      <h5 className="promotions-productname"> {el.name} </h5>
-            //      </fieldset>
-            //  </div>
-            //</div>
-
             <div>
                 <Card
                         key={el.id}

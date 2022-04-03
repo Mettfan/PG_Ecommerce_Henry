@@ -25,7 +25,7 @@ function Card(
                     <small>Precio final:</small>
                     <p>${price} </p>
                 </fieldset>
-                <Link to={`/discount/${id}`} style={{textDecoration: 'none', color: 'black'}}>
+                <Link to={`/productos/${id}`} style={{textDecoration: 'none', color: 'black'}}>
                     <button>Ver más</button>
                 </Link>
             </div>
