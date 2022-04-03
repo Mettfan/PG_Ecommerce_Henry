@@ -41,8 +41,8 @@ Product.belongsToMany(User, {through: 'user_product'});
 User.hasMany(Order);
 Order.belongsTo(User);
 
-Order.hasMany(Product);
-Product.belongsTo(Order);
+// Order.hasMany(Product);
+// Product.belongsTo(Order);
 
 Category.hasMany(Product);
 Product.belongsTo(Category);
