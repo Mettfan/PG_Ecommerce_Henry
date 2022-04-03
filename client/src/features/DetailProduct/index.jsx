@@ -3,6 +3,7 @@ import zapatilla from './NI_DC9402-001-1.jpeg'
 import { AiFillHeart } from 'react-icons/ai';
 import { BsHeart } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+
 const DetailProduct = () => {
 
   return (

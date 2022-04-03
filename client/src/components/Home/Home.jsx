@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
-import NavBar from '../NavBar/NavBar';
 import './Home.css'
 import { connect } from 'react-redux';
 import Catalog from '../Product/Catalog/Catalog'
@@ -39,8 +38,6 @@ function Home(props) {
   return (
     <>
       {console.log(productos)}
-      <NavBar/>
-
 
       <div className="category-container">
         <ul className="category-ul">

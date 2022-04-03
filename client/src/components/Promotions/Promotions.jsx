@@ -1,6 +1,5 @@
 import React from 'react'
 import Card from '../CardTemplate/Card'
-import NavBar from '../NavBar/NavBar'
 import './Promotions.css'
 
 const mockup = [
@@ -258,9 +257,6 @@ const mockup = [
 function Promotions() {
   return (
     <>
-
-    <NavBar/>
-
     <img src="https://www.moovbydexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Moov-Library/default/dw498d0dc7/01abr/full3pony.jpg?sw=1440&sfrm=png" alt="" width="100%" />
 
     <h1>Descuentos</h1>
