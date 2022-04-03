@@ -15,6 +15,7 @@ const login = require('./user.js');
 const getProduct = require('./product.js');
 const productById = require('./product.js');
 const productByGender = require('./product.js');
+const postProduct = require('./product.js');
 
 
 // Configurar los routers
@@ -29,7 +30,7 @@ router.use('/productos', getProduct);
 router.use('/productos/:id', productById);
 router.use('/productos/:gender', productByGender)
 
-
+router.use('/productos', postProduct);
 
 
 

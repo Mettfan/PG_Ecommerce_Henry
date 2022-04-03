@@ -3,6 +3,7 @@ const {Op}= require("sequelize");
 const {Product, Category} = require('../../db');
 
 const getInfo=require('../../../src/routes/infoApi.js');
+const { Product } = require('../../db.js')
 
 const getProduct= async(req,res, next)=>{
     const {name}=req.query;
@@ -43,5 +44,12 @@ const getProduct= async(req,res, next)=>{
 }
 
 
-    
+
+const getProduct = async(req,res)=>{
+    const apiInfo= await getInfo();
+    let allProducts = await Product.findAll()
+
+    res.json(allProducts.reverse().concat(apiInfo));
+    }
+
     module.exports=getProduct;

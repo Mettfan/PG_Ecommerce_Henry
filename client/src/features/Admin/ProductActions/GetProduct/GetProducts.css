@@ -1,0 +1,66 @@
+.admin-panel-product{
+    
+
+    display: flex;
+    font-size: small;
+    justify-content: space-around;
+    
+    
+    /* background-color: red; */
+    margin-bottom: 20px;
+    margin-top: 20px;
+    align-items: center;
+
+    filter: drop-shadow(1px 1px 1px black);
+    
+
+}
+.admin-panel-product:hover{
+
+
+    
+
+    animation-name:selectAdminProduct ;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform: translate(0, 3px);
+    filter: drop-shadow(1px 1px 1px rgb(241, 150, 150))
+
+}
+
+.admin-panel-product-img{
+    width: 50px;
+}
+
+.admin-panel-product-catalog{
+    
+    /* background-color: blue; */
+    border-color: black;
+
+    width: 100%;
+    
+
+
+}
+.admin-panel-product-button-add{
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    width: 30px;
+    font-size: x-large;
+    
+}
+
+@keyframes selectAdminProduct {
+
+    0%{
+        transform: translate(0, 0);
+    }
+    100%{
+        transform: translate(0, 3px);
+        filter: drop-shadow(1px 1px 1px rgb(241, 150, 150))
+
+    }
+    
+}
