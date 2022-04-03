@@ -21,7 +21,7 @@ export const getProducts = ( ) => async dispatch  => {
 }
 
 export const getProduct = ( id ) => async ( dispatch ) => {
-    axios.get('http://localhost:3001/producto/' + id).then( response => {
+    axios.get('http://localhost:3001/productos/' + id).then( response => {
         dispatch({
             type: GET_PRODUCT,
             payload: response.data
@@ -34,6 +34,7 @@ export const getProduct = ( id ) => async ( dispatch ) => {
         })
     })
 }
+
 
 export const createProduct = ( {id, gender, name, description, size, color, stock, price, category_name, image} ) => async ( dispatch ) => {
     axios.post('http://localhost:3001/productos', { 
