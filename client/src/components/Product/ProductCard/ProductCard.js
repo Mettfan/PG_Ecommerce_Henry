@@ -5,11 +5,11 @@ function ProductCard(props){
     return(
     
 
+
         <div className="wrapper">
         <div className="card">
             <img alt="" src={image} className="card-image"/>
             <div className="card-container">
-
             
             </div>
             <div className="info">

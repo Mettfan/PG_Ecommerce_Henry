@@ -7,6 +7,8 @@ import { Login } from '../features/Login';
 import { DetailProduct } from '../features/DetailProduct';
 import Promotions from '../components/Promotions/Promotions';
 import PromotionDetails from '../components/PromotionDetails/PromotionDetails';
+import GetProducts from '../features/Admin/ProductActions/GetProduct/GetProducts'
+import CreateProduct from '../features/Admin/ProductActions/CreateProduct/CreateProduct';
 
 
 function App() {
@@ -28,6 +30,9 @@ function App() {
         <Route path="*" element={<NavBar/>} />
 
 
+        <Route path="/admin/products" element={<GetProducts></GetProducts>} />
+
+        <Route path="/admin/product/create" element={<CreateProduct></CreateProduct> } />
       </Routes>
       
     </div>

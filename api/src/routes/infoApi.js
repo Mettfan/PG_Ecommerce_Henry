@@ -3,7 +3,7 @@ const data = require( '../fakeData');
 
 
 const getInfo= ()=>{
-         console.log('hola')
+        //  console.log('hola')
          var id_generated = 0
     const apiInfo= data?.map(el=>{
         
