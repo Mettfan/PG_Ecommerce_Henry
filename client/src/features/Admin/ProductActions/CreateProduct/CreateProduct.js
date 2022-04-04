@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { createProduct } from "../../../../redux/actions/productActions"
-
+import './CreateProduct.css'
 export default function CreateProduct (props) {
     let goTo = useNavigate()
     let [state, setState] = useState({
@@ -28,7 +28,7 @@ export default function CreateProduct (props) {
         dispatch(createProduct({
             name: state.product.name,
             description: state.product.description,
-            size: state.product.size,
+            size: state.product.size.join('-'),
             color: state.product.color,
             gender: state.product.gender,
             stock: Number(state.product.stock),
@@ -124,6 +124,6 @@ export default function CreateProduct (props) {
 
             <button type="submit">CREAR PRODUCTO</button>
         </form>
-
+        <Link className="admin-goto-products" to={'/admin/products'}>ADMIN PRODUCTS</Link>
     </div>)
 }

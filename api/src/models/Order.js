@@ -16,11 +16,11 @@ module.exports = (sequelize) => {
           allowNull: false
       },
 
-      id: {
-          type: DataTypes.STRING,
-          default: nanoid(),
-          primaryKey: true
-      }
+    //   id: {
+    //       type: DataTypes.STRING,
+    //       default: nanoid(),
+    //       primaryKey: true
+    //   }
 
     
   });

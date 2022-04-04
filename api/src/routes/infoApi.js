@@ -8,11 +8,11 @@ const getInfo= ()=>{
     const apiInfo= data?.map(el=>{
         
         return {
-            id:++id_generated,
+            // id:++id_generated,
             gender:el.gender,
             name:el.name,
             description:el.description,
-            size:el.size.split('-'),
+            size:el.size,
             color:el.color,
             stock:el.stock,
             price:el.price,
