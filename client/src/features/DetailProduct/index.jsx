@@ -16,7 +16,7 @@ const DetailProduct = (props) => {
   }, [dispatch, id])
   
   const productoDetail = useSelector((state) => state.productReducer.producto[0])
-  
+  console.log(productoDetail)
   console.log(getProduct(id))
   console.log(productoDetail)
 

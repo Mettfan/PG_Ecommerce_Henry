@@ -16,6 +16,7 @@ const getProduct = require('./product.js');
 const productById = require('./product.js');
 const productByGender = require('./product.js');
 const postProduct = require('./product.js');
+const deleteProduct = require('./product.js');
 
 
 // Configurar los routers
@@ -29,6 +30,7 @@ router.use('/usuario', login);
 router.use('/productos', getProduct);
 router.use('/productos/:id', productById);
 router.use('/productos/:gender', productByGender)
+router.use('/productos/:id', deleteProduct);
 
 router.use('/productos', postProduct);
 
