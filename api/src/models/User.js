@@ -10,16 +10,33 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
 
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+
+        gender: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+
+        born: {
+            type: DataTypes.DATE,
+            allowNull: false,
+        },
+
+        dni: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+        },
+
         email: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
         },
         address: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        country: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -37,9 +54,11 @@ module.exports = (sequelize) => {
         },
         permission: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 'user'
         }
 
 
     });
 };
+
