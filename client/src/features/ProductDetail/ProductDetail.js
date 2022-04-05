@@ -10,10 +10,13 @@ export default function ProductDetail (props) {
     let { id } = useParams()
     let dispatch = useDispatch()
     useEffect(() => {
+      if(id) {
+        
         dispatch(getProduct(id))
+      }
     }, [])
     let product = useSelector( (state) => state.productReducer.producto)
-
+    product = product ? product : props.producto
     return (<>
         {product ? 
     
@@ -42,7 +45,7 @@ export default function ProductDetail (props) {
           <div className="detail-one-size">
             <p className="detail-size">Talles</p>
             
-              {product.size?.split("-")?.map(el => <strong key={el}> <div className="detail-sizes2">{el}</div>     </strong>)}
+              {product?.size?.split("-")?.map(el => <strong key={el}> <div className="detail-sizes2">{el}</div>     </strong>)}
             
             </div>
           <div className="detail-one-buttons">

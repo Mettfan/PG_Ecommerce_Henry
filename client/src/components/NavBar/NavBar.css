@@ -595,3 +595,15 @@
 }
 
 
+.userImg{
+    position: relative;
+    right: 30px;
+    width: 50px;
+    border-radius: 100%;
+    border-width: 5px;
+    border-color: white;
+
+}
+.userName{
+    font-size: medium;
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { RiLoginCircleFill } from 'react-icons/ri';
 import { AiFillHeart } from 'react-icons/ai';
 import { BsFillCartFill } from 'react-icons/bs';
@@ -9,10 +9,12 @@ import { connect } from 'react-redux';
 import { getProducts } from '../../redux/actions/productActions';
 import SearchDialog from './SearchDialog/SearchDialog';
 import Catalog from '../Product/Catalog/Catalog';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function NavBar(props) {
   let productos = props.productos
-
+  const { loginWithRedirect, user, isAuthenticated } = useAuth0()
+  let nav = useNavigate()
   useEffect(()=>{
     console.log('gettingProducts')
     props.getProducts()
@@ -139,23 +141,28 @@ function NavBar(props) {
 
             <div className="userbuttons-container">
               <ul className="main-nav">
-                <Link to="/login">
-                  <button className="btnHome">
+                {/* <Link to="/login"> */}
+                  {!isAuthenticated?
+                  <button className="btnHome" onClick={() => loginWithRedirect() }>
                     <RiLoginCircleFill />
-                  </button>
-                </Link>
+                  </button>:
+                  <button className='btnUser' onClick={()=> nav('../user/profile') }>
+                    <img className='userImg' src={user?.picture}></img>
+                    <div className='userName'> Hola {user?.name.split(' ')[0]}! </div>
+                  </button>}
+                {/* </Link> */}
 
-                <Link to="/login">
-                  <button className="btnHome">
+                {/* <Link to={!user?.name?"/login":'/user/favorites'}> */}
+                  <button onClick={ () => isAuthenticated ? nav('/user/favorites') : loginWithRedirect()} className="btnHome" >
                     <AiFillHeart />
                   </button>
-                </Link>
+                {/* </Link> */}
 
-                <Link to="/home">
-                  <button className="btnHome">
+                {/* <Link to={!user?.name?"/login":'/user/products'}> */}
+                  <button onClick={ () => isAuthenticated ? nav('/user/products') : loginWithRedirect()} className="btnHome">
                     <BsFillCartFill />
                   </button>
-                </Link>
+                {/* </Link> */}
               </ul>
             </div>
           

@@ -6,14 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import  store  from './redux/store/store'
+import { Auth0Provider } from '@auth0/auth0-react'
 
 ReactDOM.render(
   <React.StrictMode>
+    <Auth0Provider domain='booma.us.auth0.com' clientId='mXjW5ldDV5ubNLEkI7elWLZzWbjJMeCi' redirectUri={window.location.origin} >
+    
     <BrowserRouter>
     <Provider store={store}>
       <App />
     </Provider>
     </BrowserRouter>
+
+    </Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root')
   );

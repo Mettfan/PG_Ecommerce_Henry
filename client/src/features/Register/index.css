@@ -192,3 +192,7 @@ form .form-submit input {
     padding: 2px;
   }
 }
+
+.login-button{
+  text-decoration: none;
+}
