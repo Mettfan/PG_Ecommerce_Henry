@@ -37,7 +37,7 @@ var data = [
     {
         name: 'Nike Dri-FIT Fast',
         description: 'Los leggings Nike Dri-FIT Fast combinan la suavidad de uno de tus favoritos de siempre con la frescura que necesitas para correr cuando hace calor. El almacenamiento importa, por lo que hemos añadido tres bolsillos de distintos tamaños para guardar las llaves, el teléfono y la tarjeta para cuando lo necesites. Este producto se ha confeccionado con, al menos, un 75 % de fibras de poliéster reciclado.',
-        size: '7-8',
+        size: 'S-M-L',
         color: 'Madder Root',
         stock: 205,
         price: 60,
@@ -48,7 +48,7 @@ var data = [
     {
         name: 'Nike Dri-FIT',
         description: 'Vístete para tu carrera diaria con el mejor estilo. Estos leggings son ligeros y transpirables para mantener la frescura y la sujeción en cada pisada. Incluye muchos bolsillos para guardar tus básicos de forma segura. Este producto se ha confeccionado con, al menos, un 75 % de fibras de poliéster reciclado',
-        size: '7-8',
+        size: 'S-M-L',
         color: 'Sangria/Burdeos',
         stock: 300,
         price: 74.99,
@@ -59,7 +59,7 @@ var data = [
     {
         name: 'Nike Yoga Dri-FIT',
         description: 'Este ligero pantalón de tejido Woven te hace sentir como en casa. Con un diseño que se inspira en los textiles y motivos de la ropa de estar en casa, el estampado por toda la prenda ofrece comodidad y un toque nostálgico',
-        size: '7-12',
+        size: 'S-M-L',
         color: 'Oil Green',
         stock: 32,
         price: 54.99,
@@ -70,7 +70,7 @@ var data = [
     {
         name: 'Nike Air Zoom Alphafly',
         description: 'Equípate para dar lo mejor de ti con las Nike Air Zoom Alphafly NEXT% Flyknit. La espuma reactiva y las dos unidades Zoom Air visibles se combinan para impulsar tu forma de correr de cara a tu próxima maratón o carrera.',
-        size: '35-43',
+        size: '35-36-37-38-39-40-41-42-43',
         color: 'Hyper Violet',
         stock: 1220,
         price: 299.99,
@@ -81,7 +81,7 @@ var data = [
     {
         name: 'Nike Air Zoom Pegasus',
         description: 'Dirígete a la pista y prepárate para despegar a lomos de nuestras todoterreno con alas. Este increíble modelo regresa con un extra de elasticidad perfecto para correr sobre asfalto. Perfectas para carreras cortas o largas, te ofrecen la misma pisada elástica y sujeción amortiguada que sus predecesoras. La parte superior de malla transpirable combina la comodidad y la durabilidad que necesitas con un ajuste más amplio en la puntera.',
-        size: '35-41',
+        size: '35-36-37-38-39-40-41',
         color: 'Negro/Off Noir/Flash Crimson/Hyper Violet',
         stock: 354,
         price: 1150,
@@ -92,7 +92,7 @@ var data = [
     {
         name: 'Nike Wildhorse 7',
         description: 'Enfréntate a las carreras de trail más duras y extremas gracias al resistente diseño de las Nike Wildhorse 7.Corre con seguridad por terrenos rocosos con goma de alta resistencia a la abrasión en la suela exterior para una tracción duradera.La parte superior aporta ventilación, durabilidad y sujeción donde más las necesitas',
-        size: '35-42',
+        size: '35-36-37-38-39-40-41-42',
         color: 'Pure Platinum/Cool Grey/University Blue/Plata metalizado',
         stock: 220,
         price: 129.99,
@@ -125,7 +125,7 @@ var data = [
     {
         name: 'Jordan Dri-FIT Air',
         description: 'La sudadera con capucha de tejido Fleece Jordan Dri-FIT Air es ideal para cualquier ocasión. Su diseño, ideal dentro y fuera de la cancha, combina la funcionalidad y el look urbano con materiales de alto rendimiento y un ajuste a medida. Este producto se ha confeccionado con, al menos, un 50 % de fibras de poliéster reciclado.',
-        size: 'XS-XL',
+        size: 'XS-S-M-L-XL',
         color: 'Gym Red',
         stock: 150,
         price: 59.99,
@@ -136,7 +136,7 @@ var data = [
     {
         name: 'Nike Dri-FIT F.C. Libero',
         description: 'El pantalón F.C. Libero con capilarización del sudor ofrece el look de la equipación para antes del partido y una suavidad perfecta para el día a día. Cuenta con un ajuste holgado y ligeramente elástico para ofrecer libertad de movimiento durante todo el día',
-        size: 'S-XL',
+        size: 'S-M-L-XL',
         color: 'Black',
         stock: 3025,
         price: 59.99,
@@ -158,7 +158,7 @@ var data = [
     {
         name: 'Nike Air',
         description: 'El jogger Nike Air combina el estilo deportivo de los 90 con un look impecable para lucir las zapatillas. El suave tejido Fleece cepillado en la parte trasera ofrece calidez y comodidad a tu armario del día a día',
-        size: 'S-XL',
+        size: 'S-M-L-XL',
         color: ' Blanco/Football Grey/Vivid Sulfur',
         stock: 1258,
         price: 74.99,
@@ -169,7 +169,7 @@ var data = [
     {
         name: 'Nike Sportswear Club - Niño/a',
         description: 'Un diseño ideal para combinarlo con otras prendas o llevarlo solo durante los entrenamientos de los días más fríos.La sudadera con capucha Nike Sportswear está confeccionada con un cálido tejido Fleece cepillado en el interior para ofrecer una suavidad extraordinaria',
-        size: 'XS-M',
+        size: 'XS-S-M',
         color: 'rojo',
         stock: 1200,
         price: 39.99,
@@ -180,7 +180,7 @@ var data = [
     {
         name: 'Nike Sportswear French terry - Niño',
         description: 'La sudadera Nike Sportswear es suave y cómoda, por lo que es ideal para disfrutar de una capa de calidez adicional',
-        size: 'XS-M',
+        size: 'XS-S-M',
         color: ' Carbon Heather/Blanco',
         stock: 120,
         price: 34.99,
@@ -191,7 +191,7 @@ var data = [
     {
         name: 'Nike Sportswear Club Fleece',
         description: 'La sudadera con capucha Nike Sportswear es suave, cómoda y cálida, como cualquier sudadera favorita. El bolsillo práctico, el logotipo exclusivo y el tejido Fleece aportan un toque clásico que pueden llevar durante todo el día y siempre que quieran.',
-        size: 'S-XL',
+        size: 'S-M-L-XL',
         color: 'Marina/Negro',
         stock: 1235,
         price: 54.99,
@@ -202,7 +202,7 @@ var data = [
     {
         name: 'Nike Sportswear - Niña',
         description: 'La camiseta Nike Sportswear está confeccionada para ofrecer una mayor versatilidad. El suave tejido Knit de estilo Henley y el colorido estampado floral permiten que la combines con leggings, vaqueros o tus mejores pantalones. Esta camiseta muy versátil y divertida aporta un ajuste cómodo para añadir a cualquier armario.',
-        size: 'S-XL',
+        size: 'S-M-L-XL',
         color: 'University Blue/Blanco',
         stock: 123,
         price: 48.99,
@@ -213,7 +213,7 @@ var data = [
     {
         name: 'Nike Sportswear - Jogger de tejido Fleece - Niño',
         description: 'Confeccionado con un cálido tejido Fleece cepillado, este jogger para el día a día ofrece la comodidad suave y agradable que tanto gusta a los más pequeños.',
-        size: 'XS-XL',
+        size: 'XS-S-M-L-XL',
         color: 'Team Red/Dark Smoke',
         stock: 1325,
         price: 44.99,
@@ -224,7 +224,7 @@ var data = [
     {
         name: 'Nike Sportswear Kids Pack - Unisex',
         description: 'Hay que seguir jugando y compitiendo en carreras. Sabemos que lo mejor es jugar sin pensar en nada, aunque a veces no se puede. Así hemos confeccionado nuestro pantalón. Los bolsillos de fácil acceso son perfectos para que nada salga volando al jugar, saltar o liderar el grupo.',
-        size: 'XS-M',
+        size: 'XS-S-M',
         color: 'Mint Foam',
         stock: 159,
         price: 64.99,
@@ -235,7 +235,7 @@ var data = [
     {
         name: 'Nike Sportswear Fleece - Niña',
         description: 'El pantalón Nike Sportswear está confeccionado con un tejido Fleece supersuave y cómodo. Además, cuentan con un ajuste entallado para ofrecer la máxima comodidad sin añadir un look abultado',
-        size: 'XS-L',
+        size: 'XS-S-M-L',
         color: 'Carbon Heather/Negro/Rush Pink',
         stock: 447,
         price: 37.99,
@@ -246,7 +246,7 @@ var data = [
     {
         name: 'Nike Dynamo Go',
         description: 'Las Nike Dynamo Go tienen un diseño sencillo, ceñido e ideal para jugar, por lo que serán el próximo modelo favorito de los más pequeños. Lo mejor es que son fáciles de poner gracias al talón plegable. Si los más pequeños no pueden hacerlo solos, enséñales. Además, ofrecen suavidad en los mejores lugares para que no pare la diversión.',
-        size: '27-35',
+        size: '27-28-29-30-31-32-33-34-35',
         color: 'rojo',
         stock: 125,
         price: 64.99,
@@ -257,7 +257,7 @@ var data = [
     {
         name: 'Nike Flex Advance',
         description: 'Las Nike Flex Advance no podrían ser más cómodas.La tecnología Nike FlyEase presenta una abertura extraancha para poder ponérselas con facilidad a los más pequeños (de verdad, es pan comido).Entrecruza las correas (para que los más pequeños se vayan acostumbrando a los cordones de verdad) y ¡listo!Son extremadamente flexibles, cómodas y duraderas, por lo que resultan perfectas para que los más pequeños caminen, corran y jueguen.',
-        size: '24-35',
+        size: '24-25-26-27-28-29-30-31-32-33-34-35',
         color: 'Medium Ash/Canyon Rust/Kumquat/Negro',
         stock: 159,
         price: 59.99,
@@ -268,7 +268,7 @@ var data = [
     {
         name: 'Nike Huarache Run',
         description: 'Las Nike Huarache Run son inconfundibles.La famosa correa de piel Huarache destaca en este modelo, sencillo de poner para los más pequeños.El diseño de botín con ajuste ceñido mantiene la seguridad y la sujeción de los más pequeños al correr, escalar y jugar.',
-        size: '24-37',
+        size: '24-25-26-27-28-29-30-31-32-33-34-35-36-37',
         color: 'Marina/Armory Navy/Blanco/Negro',
         stock: 1589,
         price: 84.99,
