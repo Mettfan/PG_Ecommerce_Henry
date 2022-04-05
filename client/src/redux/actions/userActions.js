@@ -20,8 +20,8 @@ export const getUsers = ( ) => async dispatch  => {
 }
 
 
-export const createUser = ( {name, lastName, gender, born, dni, email, address, province, phone, password,  permission} ) => async ( dispatch ) => {
-    axios.post('http://localhost:3001/usuario', { 
+export const createUser = ( {name, lastName, gender, born, dni, email, address, province, phone, password} ) => async ( dispatch ) => {
+    axios.post('http://localhost:3001/usuario/crearusuario', { 
         
         name,
         lastName,
@@ -33,7 +33,7 @@ export const createUser = ( {name, lastName, gender, born, dni, email, address, 
         province,
         phone,
         password,
-        permission
+        permission: "user"
      }).then( response => {
          dispatch({
              type: CREATE_USER,
