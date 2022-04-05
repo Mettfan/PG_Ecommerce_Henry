@@ -33,7 +33,9 @@ const Login = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-login-container">
           <div className="login-container">
+
             <div className="title-login">Iniciar Sesión</div>
+
               <div className="form-group-login">
                 <div className="login-labelAndInput">
                   <label className="input-label-login">*Email: </label>
