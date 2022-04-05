@@ -1,7 +1,7 @@
 export default function ( ) {
     return (<>
     
-        HERE ARE YOUR FAVORITE PRODUCTS!
+        <b>HERE ARE YOUR FAVORITE PRODUCTS!</b>
     
     </>)
 }

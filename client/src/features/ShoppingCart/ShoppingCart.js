@@ -1,7 +1,7 @@
 export default function ( ) {
     return (<>
     
-        HERE IS YOUR SHOPPING CART!
+        <b>HERE IS YOUR SHOPPING CART!</b>
     
     </>)
 }

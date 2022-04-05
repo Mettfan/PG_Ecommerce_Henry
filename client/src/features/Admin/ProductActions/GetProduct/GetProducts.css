@@ -58,7 +58,7 @@
 .admin-panel-product-button-add{
     position: fixed;
     text-decoration: none;
-    top: 50px;
+    top: 150px;
     right: 50px;
     width: 30px;
     font-size: x-large;
@@ -67,7 +67,7 @@
 .admin-panel-product-button-goto-home{
     position: fixed;
     text-decoration: none;
-    top: 100px;
+    top: 200px;
     right: 50px;
     width: 30px;
     font-size: x-large;
