@@ -21,7 +21,7 @@ const getProduct = async(req,res)=>{
     
     } )
     else{
-        res.send(allProducts.reverse())
+        res.send(allProducts)
     }
 
     // res.json(allProducts.reverse().concat(apiInfo));
