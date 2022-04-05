@@ -36,7 +36,7 @@ export const getProduct = ( id ) => async ( dispatch ) => {
 }
 
 
-export const createProduct = ( { gender, name, description, size, color, stock, price, image} ) => async ( dispatch ) => {
+export const createProduct = ( { gender, name, description, size, color, stock, price, image, category} ) => async ( dispatch ) => {
 
     axios.post('http://localhost:3001/productos', { 
         
@@ -48,7 +48,8 @@ export const createProduct = ( { gender, name, description, size, color, stock, 
         stock,
         price,
         
-        image
+        image,
+        category
      }).then( response => {
          dispatch({
              type: CREATE_PRODUCT,

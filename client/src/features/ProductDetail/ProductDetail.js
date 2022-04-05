@@ -24,7 +24,8 @@ export default function ProductDetail (props) {
     <div className="main-container">
     <div className="detailProduct-container">
       <div className="gender-category">
-        <p> {product.gender}  </p>
+        <p> {product.gender +'/'+product?.CategoryName}  </p>
+        {console.log(product)}
       <Link to="/home" >
           <MdOutlineArrowBack />
         </Link>
