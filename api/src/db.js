@@ -50,11 +50,11 @@ Product.belongsTo(Category);
 Promotion.hasMany(Product);
 Product.belongsTo(Promotion);
 
-Product.belongsToMany(Favorite, {through: 'product_favorite'});
-Favorite.belongsToMany(Product, {through: 'product_favorite'});
+// Product.belongsToMany(Favorite, {through: 'product_favorite'});
+// Favorite.belongsToMany(Product, {through: 'product_favorite'});
 
-Favorite.belongsTo(User);
-User.belongsTo(Favorite);
+// Favorite.belongsTo(User);
+// User.belongsTo(Favorite);
 
 
 module.exports = {
