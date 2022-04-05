@@ -41,7 +41,7 @@ function Home(props) {
   return (
     <>
       {console.log(productos)}
-      <NavBar/>
+      {/* <NavBar/> */}
       {/* <SearchDialog content = {productos}></SearchDialog> */}
 
 

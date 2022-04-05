@@ -2,6 +2,7 @@ import './index.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
 const formSchema = Yup.object().shape({
   name: Yup.string()
@@ -164,6 +165,7 @@ const Register = () => {
               value="CREAR MI CUENTA"
               />
           </div>
+          <Link to = '/login' className='login-button'> <b>Log In</b> </Link>
             </div>  
           </div>  
         </form>
