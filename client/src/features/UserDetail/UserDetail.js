@@ -32,19 +32,18 @@ export default function UserDetail (props){
     return (<>
         
         {isUserAuthenticated && <div>
-            ¿Tus datos están correctos?
             <img  className="userImgOnprofile" src={user?.picture || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU" }></img>
             <div>{user?.name || userValidated.name } </div>
             <div>{user?.email || userValidated.email} </div>
 
-            
-            <button onClick={crearUsuario}>Crear</button>
-        </div>
+            {!userValidated &&
+                <div>
+                    <p>¿Tus datos están correctos? </p>
+                    <button className="logintbtn" onClick={crearUsuario}>Crear</button>
+                </div>
             }
-        
-        <button className="logoutbtn" onClick={singOut}>LOGOUT</button>
-    
-    
-    
+            <button className="logoutbtn" onClick={singOut}>LOGOUT</button>
+        </div>
+        }
     </>)
 }
