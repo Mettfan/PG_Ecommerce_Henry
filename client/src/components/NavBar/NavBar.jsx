@@ -5,7 +5,7 @@ import { AiFillHeart } from 'react-icons/ai';
 import { BsFillCartFill } from 'react-icons/bs';
 import logo from '../../assets/Booma_logo_backless_white.png'
 import './NavBar.css'
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { getProducts } from '../../redux/actions/productActions';
 import SearchDialog from './SearchDialog/SearchDialog';
 import Catalog from '../Product/Catalog/Catalog';
@@ -14,6 +14,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 function NavBar(props) {
   let productos = props.productos
   const { loginWithRedirect, user, isAuthenticated } = useAuth0()
+  let status = useSelector( state => state.userReducer.status )
+  let isUserAuthenticated = isAuthenticated || status
+  
   let nav = useNavigate()
   useEffect(()=>{
     console.log('gettingProducts')
@@ -147,24 +150,24 @@ function NavBar(props) {
             <div className="userbuttons-container">
               <ul className="main-nav">
                 {/* <Link to="/login"> */}
-                  {!isAuthenticated?
+                  {!isUserAuthenticated?
                   <button className="btnHome" onClick={() => ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login')) }>
                     <RiLoginCircleFill />
                   </button>:
                   <button className='btnUser' onClick={()=> nav('../user/profile') }>
-                    <img className='userImg' src={user?.picture}></img>
-                    <div className='userName'> Hola {user?.name.split(' ')[0]}! </div>
+                    <img className='userImg' src={user?.picture || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU'}></img>
+                    <div className='userName'> Hola {user?.name.split(' ')[0] || status.user.name}! </div>
                   </button>}
                 {/* </Link> */}
 
                 {/* <Link to={!user?.name?"/login":'/user/favorites'}>               Debajo de esta linea se encuentra un operador ternario dentro de otro!                   */}
-                  <button onClick={ () => isAuthenticated ? nav('/user/favorites') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login') )} className="btnHome" >
+                  <button onClick={ () => isUserAuthenticated ? nav('/user/favorites') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login') )} className="btnHome" >
                     <AiFillHeart />
                   </button>
                 {/* </Link> */}
 
                 {/* <Link to={!user?.name?"/login":'/user/products'}> */}
-                  <button onClick={ () => isAuthenticated ? nav('/user/products') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))} className="btnHome">
+                  <button onClick={ () => isUserAuthenticated ? nav('/user/products') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))} className="btnHome">
                     <BsFillCartFill />
                   </button>
                 {/* </Link> */}

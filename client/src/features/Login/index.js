@@ -2,7 +2,9 @@ import './index.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../redux/actions/userActions';
 
 
 
@@ -16,17 +18,27 @@ const formSchema = Yup.object().shape({
   .required ("Este campo es requerido")
     // .max ( 16, "Máximo 16 carácteres")
     // .min ( 8, "Mínimo 8 carácteres")
-    .matches  ( RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/), "Contraseña Incorrecta"),
+    // .matches  ( RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/), "Contraseña Incorrecta"),
 })
 
 const formOptions = { resolver : yupResolver(formSchema) };
 
 const Login = (props) => { 
+  let nav = useNavigate()
+  let dispatch = useDispatch()
+  let status = useSelector( state => state.userReducer.status)
+  let token = status.token
   const { register, formState: { errors }, handleSubmit } = useForm(formOptions);
 
   const onSubmit = (data) => {
-    console.log('data', data)
+    console.log('data', data, token, status)
+    console.log('TOKEN', token)
+    dispatch(login(data))
+    console.log(status)
+    nav('/home')
+    
   }
+
 
   return (
     <div>
@@ -35,7 +47,7 @@ const Login = (props) => {
           <div className="login-container">
 
             <div className="title-login">Iniciar Sesión</div>
-
+            {/* <div>TOKEN: {token}</div> */}
               <div className="form-group-login">
                 <div className="login-labelAndInput">
                   <label className="input-label-login">*Email: </label>

@@ -2,12 +2,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import NavBar from '../NavBar/NavBar';
 import './Home.css'
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import Catalog from '../Product/Catalog/Catalog'
 // import SearchDialog from '../NavBar/SearchDialog/SearchDialog';
 import { useAuth0 } from '@auth0/auth0-react'
 function Home(props) {
-
+  let status = useSelector( state => state.userReducer.status)
   const { isAuthenticated } = useAuth0()
 
   let nav = useNavigate()
@@ -55,7 +55,7 @@ function Home(props) {
           <li className="category-item">Hombre</li>
         </ul>
       </div> */}
-
+      {/* {JSON.stringify(status)} */}
       <div className="home-main">
         <img
           className="home-mainBanner"
