@@ -31,10 +31,10 @@ const Login = (props) => {
   const { register, formState: { errors }, handleSubmit } = useForm(formOptions);
 
   const onSubmit = (data) => {
-    console.log('data', data, token, status);
-    console.log('TOKEN', token);
+    //console.log('data', data, token, status);
+    //console.log('TOKEN', token);
     dispatch(login(data));
-    console.log(status);
+    //console.log(status);
     nav('/home');
 
   };
@@ -79,6 +79,12 @@ const Login = (props) => {
                 value="INGRESAR"
               />
             </div>
+            <div className="title-register" >
+              Si no tienes una cuenta puedes registrarte ahora
+            </div>
+            <Link to="/register">
+            <button className='register-btn'>Registrarse</button>
+            </Link>
           </div>
         </div>
 

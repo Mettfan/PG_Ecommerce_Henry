@@ -5,8 +5,8 @@ import { AiFillHeart } from 'react-icons/ai';
 import { BsFillCartFill } from 'react-icons/bs';
 import logo from '../../assets/Booma_logo_backless_white.png';
 import './NavBar.css';
-import { connect, useSelector } from 'react-redux';
-import { getProducts } from '../../redux/actions/productActions';
+import { connect, useSelector, useDispatch } from 'react-redux';
+import { getProducts, FilterByName } from '../../redux/actions/productActions';
 import SearchDialog from './SearchDialog/SearchDialog';
 import Catalog from '../Product/Catalog/Catalog';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -21,7 +21,7 @@ function NavBar(props) {
 
   let nav = useNavigate();
   useEffect(() => {
-    console.log('gettingProducts');
+    //console.log('gettingProducts');
     props.getProducts();
 
   }, []);
@@ -49,20 +49,20 @@ function NavBar(props) {
   function handleInputChange(event) {
     event.preventDefault();
     setName(event.target.value.toLowerCase());
-    console.log(name, 'HandleChange');
+    //console.log(name, 'HandleChange');
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     dispatch(FilterByName(name));
     setName('');
-    console.log(name, 'HandleSubmit');
+    //console.log(name, 'HandleSubmit');
   }
 
 
   function onDisplayLoginChange() {
     setState({ ...state, myButtonLoginIsDisplayed: !state.myButtonLoginIsDisplayed });
-    console.log('LoginShown: ' + state.myButtonLoginIsDisplayed);
+    //console.log('LoginShown: ' + state.myButtonLoginIsDisplayed);
   }
   return (
     <>
