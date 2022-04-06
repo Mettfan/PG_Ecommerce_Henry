@@ -141,16 +141,19 @@ function NavBar(props) {
 
             <div className="userbuttons-container">
               <ul className="main-nav">
-                {/* <Link to="/login"> */}
-                  {!isAuthenticated?
-                  <button className="btnHome" onClick={() => loginWithRedirect() }>
+
+              {!isAuthenticated
+                ?
+                <Link to="/login">
+                  <button className="btnHome">
                     <RiLoginCircleFill />
-                  </button>:
+                  </button>
+                </Link>
+                :
                   <button className='btnUser' onClick={()=> nav('../user/profile') }>
                     <img className='userImg' src={user?.picture}></img>
                     <div className='userName'> Hola {user?.name.split(' ')[0]}! </div>
-                  </button>}
-                {/* </Link> */}
+                </button>}
 
                 {/* <Link to={!user?.name?"/login":'/user/favorites'}> */}
                   <button onClick={ () => isAuthenticated ? nav('/user/favorites') : loginWithRedirect()} className="btnHome" >
