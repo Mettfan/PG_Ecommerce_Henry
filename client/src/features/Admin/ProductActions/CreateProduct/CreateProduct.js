@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { createProduct } from "../../../../redux/actions/productActions"
-
+import ProductDetail from "../../../ProductDetail/ProductDetail"
+import './CreateProduct.css'
 export default function CreateProduct (props) {
     let goTo = useNavigate()
     let [state, setState] = useState({
@@ -28,7 +29,7 @@ export default function CreateProduct (props) {
         dispatch(createProduct({
             name: state.product.name,
             description: state.product.description,
-            size: state.product.size,
+            size: state.product.size.join('-'),
             color: state.product.color,
             gender: state.product.gender,
             stock: Number(state.product.stock),
@@ -66,7 +67,7 @@ export default function CreateProduct (props) {
         console.log(state.product.gender)
     }
 
-    return (<div>
+    return (<div className="create-product-form">
         
         {console.log('HERE YOU CAN CREATE PRODUCTS')}
 
@@ -74,33 +75,36 @@ export default function CreateProduct (props) {
 
         <form onSubmit={ (e) => onSubmit(e) }>
             
+                <label>Nombre</label>
             <div className="product-name-input">
-                <label>Nombre del Producto</label>
                 <input onChange= {( e ) => handleInputOnChange(e)} type='text' name = 'name' placeholder="Ingrese el nombre del Producto..."></input>
             </div>
 
+                <label>Descripción</label>
             <div className="product-description-input">
-                <label>Descripción del Producto</label>
                 <input onChange= {( e ) => handleInputOnChange(e)} type='text' name = 'description' placeholder="Ingrese la descripción del Producto..."></input>
             </div>
 
-            <div className="product-size-input">
 
-            <label>Talla del Producto</label>
+            <label>Talla</label>
+            <div className="product-size-input">
                 <select name="select-size" onChange={ (e) => selectSizeOnChange(e)}>
+                    <option value="XS">XS</option>
                     <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
+                    <option value="XL">XL</option>
                 </select>
+                {state.product.size.join('-')}
             </div>
 
+                <label>Color</label>
             <div className="product-color-input">
-                <label>Color del Producto</label>
                 <input onChange= {( e ) => handleInputOnChange(e)} type='text' name = 'color' placeholder="Ingrese el Color del Producto..."></input>
             </div>
 
+            <label>Genero</label>
             <div className="product-gender-input">
-            <label>Genero del Producto</label>
             <select name="select-gender" onChange={ (e) => selectGenderOnChange(e)}>
                     <option value="Dama">Dama</option>
                     <option value="Caballero">Caballero</option>
@@ -108,22 +112,32 @@ export default function CreateProduct (props) {
                 </select>
             </div>
 
+                <label>Stock</label>
             <div className="product-stock-input">
-                <label>Stock del Producto</label>
                 <input onChange= {( e ) => handleInputOnChange(e)} type='number' name = 'stock' placeholder="Ingrese el Stock del Producto..."></input>
             </div>
+                <label>Precio</label>
             <div className="product-price-input">
-                <label>Precio del Producto</label>
                 <input onChange= {( e ) => handleInputOnChange(e)} type='number' name = 'price' placeholder="Ingrese el Precio del Producto..."></input>
             </div>
+                <label>URL de imagen</label>
             <div className="product-image-input">
-                <label>URL de imagen del Producto</label>
                 <input onChange= {( e ) => handleInputOnChange(e)} type='text' name = 'image' placeholder="Ingrese el nombre del Producto..."></input>
             </div>
 
 
             <button type="submit">CREAR PRODUCTO</button>
         </form>
-
+        <Link className="admin-goto-products" to={'/admin/products'}>ADMIN PRODUCTS</Link>
+        {/* <ProductDetail producto = {{
+            name: state.product.name,
+            description: state.product.description,
+            size: state.product.size.join('-'),
+            color: state.product.color,
+            gender: state.product.gender,
+            stock: Number(state.product.stock),
+            price: Number(state.product.price),
+            image: state.product.image
+        }} ></ProductDetail> */}
     </div>)
 }

@@ -1,19 +1,15 @@
 const getInfo=require('../../../src/routes/infoApi.js');
-
+const { Product } = require('../../db.js')
 const productById=async(req,res)=>{
     const {id} = req.params
-    const apiInfo= await getInfo();
-    try {
+    const apiInfo=  getInfo();
+   
         if (id) {
-          let productId = await apiInfo.filter((el) => el.id === parseInt(id)
-          );
-       
-          productId.length? res.status(200).send(productId)
-            : res.status(400).send("Not found");
+          let producto = await Product.findOne( { where: { id: id } } )
+          res.send(producto)
+        
         }
-      } catch (err) {
-        res.json({ message: err });
-      }
+     
     }
     module.exports=productById;
 

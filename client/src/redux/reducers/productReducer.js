@@ -2,7 +2,7 @@
 import  { GET_PRODUCTS, GET_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, ERROR } from '../actions/productActions'
 const initialState = {
     productos: [],
-    producto: {},
+    producto: [],
     status: ''
 }
 function productReducer( state = initialState, action ){

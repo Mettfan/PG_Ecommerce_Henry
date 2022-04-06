@@ -6,6 +6,12 @@ const {nanoid} = require('nanoid')
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Order', {
+      id: {
+          type: DataTypes.STRING,
+          default: nanoid(),
+          primaryKey: true
+      },
+      
       quantity: {
           type: DataTypes.INTEGER,
           allowNull: false 
@@ -16,11 +22,7 @@ module.exports = (sequelize) => {
           allowNull: false
       },
 
-      id: {
-          type: DataTypes.STRING,
-          default: nanoid(),
-          primaryKey: true
-      }
+
 
     
   });

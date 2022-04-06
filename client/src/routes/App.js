@@ -9,32 +9,38 @@ import NavBar from '../components/NavBar/NavBar';
 import PromotionDetails from '../components/PromotionDetails/PromotionDetails';
 import GetProducts from '../features/Admin/ProductActions/GetProduct/GetProducts'
 import CreateProduct from '../features/Admin/ProductActions/CreateProduct/CreateProduct';
-
+import DeleteProduct from '../features/Admin/ProductActions/DeleteProduct/DeleteProduct';
+import ProductDetail from '../features/ProductDetail/ProductDetail';
+import UserDetail from '../features/UserDetail/UserDetail';
+import UserFavorites from '../features/UserFavorites/UserFavorites';
+import ShoppingCart from '../features/ShoppingCart/ShoppingCart';
+import RedirectRouteToHome from '../components/RedirectRouteToHome/RedirectRouteToHome';
 
 function App() {
   return (
-
+    
     <div className="App">
-      
       <NavBar/>
-
       <Routes>
-        <Route path="/" exact element={<Home/>} />
-        
+        {/* <Route exact path="/"  element={<RedirectRouteToHome />} /> */}
         <Route path="/register" element={<Register />} />
 
         <Route path="/login" element={<Login />} />
 
-        <Route path="/productos/:id" element={<DetailProduct/>} />
+        <Route path="/home" element={<Home/>} />
+        <Route path="/productos/:id" element={<ProductDetail/>} />
 
         <Route path="/promotions" element={<Promotions/>} />
         <Route path="/promotions/:id" element={<PromotionDetails/>} />
-          
-        <Route path="*" element={<NavBar/>} />
+                
+        <Route path="/user/profile" element={<UserDetail></UserDetail>} />
+        <Route path="/user/favorites" element={<UserFavorites></UserFavorites>} />
+        <Route path="/user/products" element={<ShoppingCart></ShoppingCart>} />
 
         <Route path="/admin/products" element={<GetProducts></GetProducts>} />
 
         <Route path="/admin/product/create" element={<CreateProduct></CreateProduct> } />
+        <Route path="/admin/product/delete" element={<DeleteProduct></DeleteProduct> } />
       </Routes>
       
     </div>

@@ -1,10 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import './Home.css'
 import { connect } from 'react-redux';
 import Catalog from '../Product/Catalog/Catalog'
-
+// import SearchDialog from '../NavBar/SearchDialog/SearchDialog';
+import { useAuth0 } from '@auth0/auth0-react'
 function Home(props) {
+
+  const { isAuthenticated } = useAuth0()
+
+  let nav = useNavigate()
 
   let [state, setState] = useState({
     productsRendered: 4,
@@ -38,14 +43,17 @@ function Home(props) {
   return (
     <>
       {console.log(productos)}
+      {/* <NavBar/> */}
+      {/* <SearchDialog content = {productos}></SearchDialog> */}
 
-      <div className="category-container">
+
+      {/* <div className="category-container">
         <ul className="category-ul">
           <li className="category-item">Categoría</li>
           <li className="category-item">Mujer</li>
           <li className="category-item">Hombre</li>
         </ul>
-      </div>
+      </div> */}
 
       <div className="home-main">
         <img
@@ -132,6 +140,7 @@ function Home(props) {
 
 
     <button className='scroll-top-button' onClick={() => goTop()}> <img className='go-top-arrow' src='https://cdn2.iconfinder.com/data/icons/arrows-part-3-3/32/arrow-top-1-512.png' alt='GO TOP'></img> </button>
+    {isAuthenticated && <button className='admin-create-button' onClick={() => nav("../admin/products") }> <b>ADMIN WATCH </b> </button>}
 
     
     </>

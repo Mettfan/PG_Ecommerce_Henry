@@ -1,7 +1,10 @@
 import './index.css';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { createUser } from '../../redux/actions/userActions';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
 const formSchema = Yup.object().shape({
   name: Yup.string()
@@ -9,7 +12,7 @@ const formSchema = Yup.object().shape({
     .max ( 30, "Máximo 30 carácteres")
     .min ( 2, "Mínimo 2 carácteres")
     .matches (RegExp(/^[a-z A-Z]+$/), "El nombre debe tener solo letras"),
-  lastname: Yup.string()
+  lastName: Yup.string()
     .required ("Este campo es requerido")
     .max ( 30, "Máximo 30 carácteres")
     .min ( 2, "Mínimo 2 carácteres")
@@ -22,30 +25,46 @@ const formSchema = Yup.object().shape({
   confirmEmail: Yup.string()
     .required ("Este campo es requerido")
     .oneOf ([Yup.ref("email")], "El email ingresado no coincide "),
-  DNI: Yup.string()
+  dni: Yup.string()
     .required ("Este campo es requerido")
     .max ( 20, "Máximo 20 carácteres")
     .min ( 8, "Mínimo 8 carácteres"),
-  date: Yup.string()
+  born: Yup.string()
     .required ("Este campo es requerido"),
   password: Yup.string()
     .required ("Este campo es requerido")
     .max ( 16, "Máximo 16 carácteres")
     .min ( 8, "Mínimo 8 carácteres")
-    .matches  ( RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/), "Debe tener numero, letra mayuscula y minuscula"),
+    .matches  ( RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/), "Incluir número, mayúscula y minúscula"),
   confirmPassword: Yup.string()
     .required ("Este campo es requerido")
     .oneOf ([Yup.ref("password")], "La contraseña ingresada no coincide"),
-  gender: Yup.string()
+  province: Yup.string()
+    .required ("Este campo es requerido")
+    .max ( 30, "Máximo 30 carácteres")
+    .min ( 2, "Mínimo 2 carácteres")
+    .matches (RegExp(/^[a-z A-Z]+$/), "Debe tener solo letras"),
+  address: Yup.string()
+    .required ("Este campo es requerido")
+    .max ( 30, "Máximo 30 carácteres")
+    .min ( 2, "Mínimo 2 carácteres")
+    .matches (RegExp(/[A-Za-z0-9]+/g), "Incluir el nombre y número"),
+  phone: Yup.string()
+    .required ("Este campo es requerido")
+    .max ( 20, "Máximo 20 carácteres")
+    .min ( 8, "Mínimo 8 carácteres"),
+  gender: Yup.string(),
 })
 
 const formOptions = { resolver : yupResolver(formSchema) };
 
 const Register = () => {
+  const dispatch = useDispatch();
   const { register, formState: { errors }, handleSubmit, reset } = useForm(formOptions);
 
   const onSubmit = (data) => {
     console.log('data', data)
+    dispatch(createUser(data))
     reset();
   }
 
@@ -72,10 +91,10 @@ const Register = () => {
                     <input
                       className="input-register"
                       type="text"
-                      name="lastname"
-                      {...register('lastname')}
+                      name="lastName"
+                      {...register('lastName')}
                     />
-                    {<div className="form-register-errors">{ errors.lastname?.message }</div>}  
+                    {<div className="form-register-errors">{ errors.lastName?.message }</div>}  
                   </div>
                   <div className="labelAndInput">
                     <label className="input-label">*Email: </label>
@@ -102,20 +121,20 @@ const Register = () => {
                     <input
                       className="input-register"
                       type="number"
-                      name="DNI"
-                      {...register('DNI')}
+                      name="dni"
+                      {...register('dni')}
                     />
-                    {<div className="form-register-errors">{ errors.DNI?.message }</div>}  
+                    {<div className="form-register-errors">{ errors.dni?.message }</div>}  
                   </div>
                   <div className="labelAndInput">
                     <label className="input-label">*Fecha de Nacimiento: </label>
                     <input
                       className="input-register"
                       type="date"
-                      name="date"
-                      {...register('date')}
+                      name="born"
+                      {...register('born')}
                     />
-                    {<div className="form-register-errors">{ errors.date?.message }</div>}  
+                    {<div className="form-register-errors">{ errors.born?.message }</div>}  
                   </div>  
                   <div className="labelAndInput">
                     <label className="input-label">*Contraseña: </label>
@@ -136,6 +155,36 @@ const Register = () => {
                       {...register('confirmPassword')}
                     />
                     {<div className="form-register-errors">{ errors.confirmPassword?.message }</div>}  
+                  </div>
+                  <div className="labelAndInput">
+                    <label className="input-label">*Localidad: </label>
+                    <input
+                      className="input-register"
+                      type="text"
+                      name="province"
+                      {...register('province')}
+                    />
+                    {<div className="form-register-errors">{ errors.province?.message }</div>}  
+                  </div>  
+                  <div className="labelAndInput">
+                    <label className="input-label">*Dirección: </label>
+                    <input
+                      className="input-register"
+                      type="text"
+                      name="address"
+                      {...register('address')}
+                    />
+                    {<div className="form-register-errors">{ errors.address?.message }</div>}  
+                  </div>  
+                  <div className="labelAndInput">
+                    <label className="input-label">*Celular: </label>
+                    <input
+                      className="input-register"
+                      type="number"
+                      name="phone"
+                      {...register('phone')}
+                    />
+                    {<div className="form-register-errors">{ errors.phone?.message }</div>}  
                   </div>
                 </div>
                 <div className="gender-details"> 
@@ -164,6 +213,7 @@ const Register = () => {
               value="CREAR MI CUENTA"
               />
           </div>
+          <Link to = '/login' className='login-button'> <b>Log In</b> </Link>
             </div>  
           </div>  
         </form>

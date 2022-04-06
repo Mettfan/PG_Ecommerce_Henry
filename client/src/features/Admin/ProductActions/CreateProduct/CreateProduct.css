@@ -1,0 +1,46 @@
+.admin-goto-products{
+    position: fixed;
+    text-decoration: none;
+    top: 200px;
+    left: 50px;
+    width: 30px;
+    font-size: x-large;
+}
+
+.create-product-form{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 200px;
+    left: 40%;
+}
+
+.product-name-input{
+    margin-left: 10px;
+    
+}
+
+.product-description-input{
+    margin-left: 10px;
+}
+
+.product-size-input{
+    margin-left: 10px;
+}
+
+.product-color-input{
+    margin-left: 10px;
+}
+
+.product-gender-input{
+    margin-left: 10px;
+}
+.product-stock-input{
+    margin-left: 10px;
+}
+.product-price-input{
+    margin-left: 10px;
+}
+.product-image-input{
+    margin-left: 10px;
+}

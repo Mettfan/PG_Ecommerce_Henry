@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       unique: true // el producto debería tener un nombre único me parece mejor
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT, 
       allowNull: false
     },
     size: {
@@ -36,8 +36,8 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     image: { // pienso que deberíamos colocar una imagen por defecto por si acaso...
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.TEXT,
+      allowNull: true,
       defaultValue: 'https://pixabay.com/es/vectors/camiseta-de-manga-corta-camisa-cima-34481'
     }
   });

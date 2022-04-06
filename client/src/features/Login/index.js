@@ -2,7 +2,7 @@ import './index.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import NavBar from '../../components/NavBar/NavBar';
+import { Link } from 'react-router-dom'
 
 
 
@@ -14,9 +14,9 @@ const formSchema = Yup.object().shape({
     .matches (RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/), "El email no es válido"),
   password: Yup.string()
   .required ("Este campo es requerido")
-    .max ( 16, "Máximo 16 carácteres")
-    .min ( 8, "Mínimo 8 carácteres")
-    .matches  ( RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/), "Debe tener numero, letra mayuscula y minuscula"),
+    // .max ( 16, "Máximo 16 carácteres")
+    // .min ( 8, "Mínimo 8 carácteres")
+    .matches  ( RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/), "Contraseña Incorrecta"),
 })
 
 const formOptions = { resolver : yupResolver(formSchema) };
@@ -33,7 +33,9 @@ const Login = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-login-container">
           <div className="login-container">
-            <div className="title-login">Loguearme</div>
+
+            <div className="title-login">Iniciar Sesión</div>
+
               <div className="form-group-login">
                 <div className="login-labelAndInput">
                   <label className="input-label-login">*Email: </label>
@@ -66,7 +68,7 @@ const Login = (props) => {
                 type="submit"
                 value="INGRESAR"
                 />
-            <button type='button' className='register-button'>Registrarse</button>
+            <Link to = '/register' className='register-button'>Registrarse</Link>
             </div>
           </div>
         </div>
