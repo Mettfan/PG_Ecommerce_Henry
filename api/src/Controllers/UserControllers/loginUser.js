@@ -1,21 +1,23 @@
-const {User, key} = require ('../../db');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const {User} = require ('../../db');
+const { compare } = require('../../helpers/handlebcripts');
+const { tokenSign } = require('../../helpers/generateToken');
+//const jwt = require('jsonwebtoken');
 
 
 const postLogin = async (req, res, next) => {
-    const {email, password} = req.body;
     try {
+    const {email, password} = req.body;
         let user = await User.findOne({where : {email}});
         if(user){
-            const match = await bcrypt.compare(password, user.password);
-        if(match){
-            const token = jwt.sign({id: user.id, email: user.email, permission: user.permission}, key, {expiresIn: '1h'});
-            //console.log(token);
-            res.status(200).json({msg: 'usuario logueado con éxito', token});
-        } else {
-            res.status(400).json({msg: 'contraseña incorrecta'});
-        }
+            const match = await compare(password, user.password)
+            const tokenSession = await tokenSign(user);
+            if(match){
+                //console.log(token);
+                res.status(200).json({msg: 'usuario logueado con éxito',user: user, id: user.id, name: user.name, permission:user.permission, tokenSession});
+                //console.log(jwt.verify(tokenSession, process.env.KEY))
+            } else {
+                res.status(400).json({msg: 'contraseña incorrecta'});
+            }
         } else {
             res.status(400).json({msg: 'email no registrado'});
         }
@@ -23,6 +25,5 @@ const postLogin = async (req, res, next) => {
         next(error);
     }
 }
-
 
 module.exports = postLogin;
