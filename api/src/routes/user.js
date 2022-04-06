@@ -11,7 +11,11 @@ const checkAuth = require('../middlewares/auth');
 const checkRoleAdmin = require('../middlewares/roleAuth');
 const putUserRole = require('../Controllers/UserControllers/putUserRol');
 const postUserEmail = require('../Controllers/UserControllers/postUserEmail');
+
 const addProductToShoppingCart = require('../Controllers/ShoppingCartControllers/addProductToShoppingCart')
+const getProductsFromShoppingCart = require('../Controllers/ShoppingCartControllers/getProductsFromShoppingCart')
+const logoutUser = require('../Controllers/UserControllers/logoutUser');
+
 router.get('/', checkAuth, checkRoleAdmin(['admin', 'superadmin']),  getUsers);
 router.post('/crearusuario', postUser);
 router.put('/actualizarusuario', putUser);
@@ -20,6 +24,8 @@ router.delete('/eliminarusuario', deleteUser);
 router.post('/login', postLogin);
 router.put('/userrol', checkAuth, checkRoleAdmin(['superadmin']), putUserRole);
 router.post('/subscribe', postUserEmail);
+router.get('/logout', logoutUser);
 
 router.post('/shopping', addProductToShoppingCart )
+router.get('/shopping', getProductsFromShoppingCart )
 module.exports = router;

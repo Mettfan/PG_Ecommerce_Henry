@@ -1,17 +1,23 @@
 const jwt = require('jsonwebtoken');
 
 const tokenSign = async (user) => {
-    const token = jwt.sign(
-        {
-            id: user.id, 
-            permission: user.permission
-        }, 
-        process.env.KEY, 
-        {
-            expiresIn: '1h'
-        }
-    );
-    return token;
+    try {
+        const token = jwt.sign(
+            {
+                id: user.id, 
+                permission: user.permission,
+                email: user.email,
+            }, 
+            process.env.KEY, 
+            {
+                expiresIn: '1h'
+            }
+        );
+        return token;
+        
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 const verifyToken = async (token) => {
@@ -22,4 +28,22 @@ const verifyToken = async (token) => {
     }
 }
 
-module.exports = {tokenSign, verifyToken};
+const tokenSignOut = async (user) => {
+    try {
+        return jwt.sign(
+            {
+                id: user.id, 
+                permission: user.permission,
+                email: user.email,
+            }, 
+            process.env.KEY, 
+            {
+                expiresIn: '1'
+            }
+        );
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+module.exports = {tokenSign, verifyToken, tokenSignOut};
