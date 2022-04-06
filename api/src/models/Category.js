@@ -4,8 +4,9 @@ module.exports = (sequelize) => {
 
     sequelize.define('Category', {
         
-        category_name: {
+        name: {
             type: DataTypes.STRING,
+            primaryKey: true,
             allowNull: false,
         },
 

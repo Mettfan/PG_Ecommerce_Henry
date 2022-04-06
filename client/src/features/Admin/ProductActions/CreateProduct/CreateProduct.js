@@ -10,6 +10,7 @@ export default function CreateProduct (props) {
         product: {
             name: '',
             description: '',
+            category: '',
             size: [],
             color: '',
             gender: '',
@@ -34,7 +35,8 @@ export default function CreateProduct (props) {
             gender: state.product.gender,
             stock: Number(state.product.stock),
             price: Number(state.product.price),
-            image: state.product.image
+            image: state.product.image,
+            category: state.product.category
         }))
         goTo('../admin/products')
 
@@ -84,7 +86,13 @@ export default function CreateProduct (props) {
             <div className="product-description-input">
                 <input onChange= {( e ) => handleInputOnChange(e)} type='text' name = 'description' placeholder="Ingrese la descripción del Producto..."></input>
             </div>
+            
+            <label>Category</label>
+            <div className="product-category-input"> 
 
+                <input onChange= {( e ) => handleInputOnChange(e)} type='text' name = 'category' placeholder="Ingrese la Categoria del Producto..."></input>
+
+            </div>
 
             <label>Talla</label>
             <div className="product-size-input">
