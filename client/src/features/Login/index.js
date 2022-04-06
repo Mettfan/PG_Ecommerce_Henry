@@ -29,12 +29,12 @@ const Login = (props) => {
   }
 
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-login-container">
           <div className="login-container">
 
-            <div className="title-login">Iniciar Sesión</div>
+            <div className="title-login">¿Ya tenés una cuenta? Inicia sesión aquí</div>
 
               <div className="form-group-login">
                 <div className="login-labelAndInput">
@@ -68,12 +68,24 @@ const Login = (props) => {
                 type="submit"
                 value="INGRESAR"
                 />
-            <Link to = '/register' className='register-button'>Registrarse</Link>
+            </div>
+          </div>
+           <div className="login-container">
+
+            <div className="title-login">
+              ¿Todavía no tenés una cuenta? 
+              No esperes más y empieza a disfrutar de increibles beneficios...
+            </div> 
+              <div className="form-submit-login">
+                <Link to="/register">
+                  <button>Registrarse</button>
+                </Link>
             </div>
           </div>
         </div>
+        
       </form>
-    </div>
+    </>
   )
 }
 
