@@ -9,6 +9,7 @@ import Promotions from '../components/Promotions/Promotions';
 import PromotionDetails from '../components/PromotionDetails/PromotionDetails';
 import GetProducts from '../features/Admin/ProductActions/GetProduct/GetProducts'
 import CreateProduct from '../features/Admin/ProductActions/CreateProduct/CreateProduct';
+import Landing from '../features/Landing/Landing';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     <div className="App">
     
       <Routes>
+        <Route path="/" element={<Landing />} />
         <Route path="/register" element={<Register />} />
 
         <Route path="/login" element={<Login />} />

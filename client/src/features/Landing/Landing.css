@@ -1,0 +1,75 @@
+body::-webkit-scrollbar {
+    background-color: #797979;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 20px;
+
+}
+
+.Comrparahora {
+    position: absolute;
+    bottom: 100px;
+    left: 10px;
+    background-color: rgb(255, 253, 253);
+    padding: 20px 25px;
+    font-size: 22px;
+    font-weight: bold; 
+}
+
+.loginLanding {
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    background-color: transparent;
+    font-size: 17px;
+    font-weight: bold; 
+}
+
+.linkCatalogo {
+    text-decoration: none;
+    color: black;
+}
+
+.firstImage {
+    width: 100%;
+    height: 100vh;
+}
+
+.contentStyle  {
+    height: '160px';
+    color: '#fff';
+    line-height: '160px';
+    text-align: 'center';
+    background: '#364d79';
+  };
+
+.landingCar img {
+    width: 100%;
+}
+
+
+/* ================================= 
+    Media Queries
+  ==================================== */
+
+
+  @media (max-width: 1224px) {
+
+
+
+
+  }
+
+  @media (max-width: 584px) {
+
+
+}
+
+
+@media (max-width: 390px) {
+
+
+
+}

@@ -75,12 +75,16 @@
 
 
 
+.newsletter-container {
+    margin-bottom: 10%;
+}
+
 .home-newsletter {
     background: #e26e6c;
     width: 45%;
     margin: 15px auto;
     border-radius: 5px;
-    padding:  40px 175px
+    padding:  40px 175px;
 }
 
 .home-newsletter-title {

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import './ProductCard.css'
 function ProductCard(props){
-    let {id, name, category_name, color, description, gender, image, price, size, stock} = props
+    let {id, name, image, price} = props
     return(
     
 
