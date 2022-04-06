@@ -27,7 +27,8 @@ function NavBar(props) {
     result: [],
     searchIsVisible: false,
     genderFilter: 'All',
-    categoryFilter: 'All'
+    categoryFilter: 'All',
+    myButtonLoginIsDisplayed: false
   })
 
   //Creamos la función con la que guardaremos lo que escribe el usuario en la barra de busqueda
@@ -102,6 +103,10 @@ function NavBar(props) {
     console.log(state.categoryFilter)
   }
   
+  function onDisplayLoginChange(){
+    setState({...state, myButtonLoginIsDisplayed: !state.myButtonLoginIsDisplayed})
+    console.log('LoginShown: '+state.myButtonLoginIsDisplayed)
+  }
   return (
     <>
       {/* {state.searchIsVisible? <div className='search-dialog-box'><SearchDialog content = {state.result}></SearchDialog> </div> : undefined} */}
@@ -143,7 +148,7 @@ function NavBar(props) {
               <ul className="main-nav">
                 {/* <Link to="/login"> */}
                   {!isAuthenticated?
-                  <button className="btnHome" onClick={() => loginWithRedirect() }>
+                  <button className="btnHome" onClick={() => ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login')) }>
                     <RiLoginCircleFill />
                   </button>:
                   <button className='btnUser' onClick={()=> nav('../user/profile') }>
@@ -152,14 +157,14 @@ function NavBar(props) {
                   </button>}
                 {/* </Link> */}
 
-                {/* <Link to={!user?.name?"/login":'/user/favorites'}> */}
-                  <button onClick={ () => isAuthenticated ? nav('/user/favorites') : loginWithRedirect()} className="btnHome" >
+                {/* <Link to={!user?.name?"/login":'/user/favorites'}>               Debajo de esta linea se encuentra un operador ternario dentro de otro!                   */}
+                  <button onClick={ () => isAuthenticated ? nav('/user/favorites') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login') )} className="btnHome" >
                     <AiFillHeart />
                   </button>
                 {/* </Link> */}
 
                 {/* <Link to={!user?.name?"/login":'/user/products'}> */}
-                  <button onClick={ () => isAuthenticated ? nav('/user/products') : loginWithRedirect()} className="btnHome">
+                  <button onClick={ () => isAuthenticated ? nav('/user/products') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))} className="btnHome">
                     <BsFillCartFill />
                   </button>
                 {/* </Link> */}
@@ -199,6 +204,9 @@ function NavBar(props) {
           </div>
       <div>
       
+      {/* Aqui está el boton que cambia el acceso al login entre auth0 directamente o /login */}
+
+      <button className='changelogin' onClick={ ()=> onDisplayLoginChange()  }>{ state.myButtonLoginIsDisplayed?<img className='changeloginImage' src='https://avatars.githubusercontent.com/u/65836423?v=4'></img>:<img  className='changeloginImage' src='https://avatars.githubusercontent.com/u/91890016?v=4'></img>}</button>
 
       </div>
       
