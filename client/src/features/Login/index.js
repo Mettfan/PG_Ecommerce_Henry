@@ -80,18 +80,6 @@ const Login = (props) => {
               />
             </div>
           </div>
-          <div className="login-container">
-
-            <div className="title-register">
-              ¿Todavía no tenés una cuenta?
-              No esperes más y empieza a disfrutar de increibles beneficios...
-            </div>
-            <div className="form-submit-login">
-              <Link to="/register">
-                <button className="button_register" >Registrarse</button>
-              </Link>
-            </div>
-          </div>
         </div>
 
       </form>

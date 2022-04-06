@@ -1,7 +1,7 @@
 .form-login-container {
   display: flex;
   align-items: center;
-  height: 100vh;
+  height: 80.7vh;
   justify-content: center;
   background-color: grey;
 }
@@ -19,6 +19,7 @@
   padding: 25px 30px;
   /* border: 1px solid black; */
   border-radius: 5px;
+  background-color: aquamarine;
 }
 
 .input-label-login {
