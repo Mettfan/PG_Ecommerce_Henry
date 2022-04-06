@@ -1,11 +1,30 @@
 const getInfo=require('../../../src/routes/infoApi.js');
-const { Product } = require('../../db.js')
+const data = require( '../../fakeData');
+const { Product, Category } = require('../../db.js');
+
 
 
 const getProduct = async(req,res)=>{
-    const apiInfo= await getInfo();
-    let allProducts = await Product.findAll()
+    const apiInfo= data;
+    let allProducts = await Product.findAll({include:[
+        {model: Category}
+    ]})
+    
+    // console.log(JSON.stringify(mockData))
+    //Esta función te muestra si hay algo en la base de datos y la rellena con la apiInfo si no existe nada 
+    if (!allProducts.length) await Product.bulkCreate([...apiInfo]).then( async bulkRes => {
+        
+        
+        let updatedProductList = await Product.findAll()
+        
+        res.send(updatedProductList.reverse())
+    
+    } )
+    else{
+        res.send(allProducts)
+    }
 
+<<<<<<< HEAD
     //Esta función te muestra si hay algo en la base de datos y la rellena con la apiInfo si no existe nada 
     if (!allProducts.length) await Product.bulkCreate([...apiInfo]).then( async bulkRes => {
         let updatedProductList = await Product.findAll()
@@ -16,6 +35,8 @@ const getProduct = async(req,res)=>{
         res.send(allProducts.reverse())
     }
 
+=======
+>>>>>>> 2ea67f70b99c2c3a32842eef7fdc2b797834bf95
     // res.json(allProducts.reverse().concat(apiInfo));
     }
     module.exports=getProduct;
