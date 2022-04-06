@@ -400,3 +400,12 @@
 .go-top-arrow{
     width: 30px;
 }
+.admin-create-button{
+    position: fixed;
+    
+    left: 5px;
+    bottom: 5px;
+    
+    height: 50px;
+    width: 50px;
+}

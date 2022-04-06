@@ -2,7 +2,7 @@
     
 
     display: flex;
-    font-size: small;
+    font-size: large;
     justify-content: space-around;
     
     
@@ -37,6 +37,18 @@
     
     /* background-color: blue; */
     border-color: black;
+    
+
+    width: 100%;
+    
+
+
+}
+.admin-panel-product-catalog:hover{
+    
+    /* background-color: blue; */
+    border-color: rgb(148, 224, 233);
+    
 
     width: 100%;
     
@@ -45,7 +57,17 @@
 }
 .admin-panel-product-button-add{
     position: fixed;
-    top: 50px;
+    text-decoration: none;
+    top: 150px;
+    right: 50px;
+    width: 30px;
+    font-size: x-large;
+    
+}
+.admin-panel-product-button-goto-home{
+    position: fixed;
+    text-decoration: none;
+    top: 200px;
     right: 50px;
     width: 30px;
     font-size: x-large;

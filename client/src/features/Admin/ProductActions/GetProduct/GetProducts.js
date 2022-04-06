@@ -17,12 +17,24 @@ export default function GetProduct (props) {
         { productos.map( producto => <div className="admin-panel-product-catalog" >
         
         <div className="admin-panel-product">
+            <div>
+            {producto.stock+"pz"}
+            </div>
+            <div>
+
             {producto.name}
+            </div>
+            <div>
+            {"$"+producto.price}
+
+            </div>
             <img className="admin-panel-product-img" src={producto.image}></img>
+            
         </div>
 
         
         <Link className="admin-panel-product-button-add" to= '/admin/product/create'><b>+</b></Link>
+        <Link className="admin-panel-product-button-goto-home" to= '/home'><b>Home</b></Link>
         </div>) }
         
         <div>PRODUCTS SHOULD BE OVER HERE</div>
