@@ -88,7 +88,7 @@ const Login = (props) => {
             </div>
             <div className="form-submit-login">
               <Link to="/register">
-                <button>Registrarse</button>
+                <button className="button_register" >Registrarse</button>
               </Link>
             </div>
           </div>
