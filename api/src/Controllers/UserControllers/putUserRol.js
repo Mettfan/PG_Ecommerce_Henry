@@ -22,4 +22,5 @@ const putUserRole = async (req, res, next) => {
         next(error);
     };
 }
+
 module.exports = putUserRole;
