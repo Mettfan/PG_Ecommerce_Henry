@@ -27,7 +27,7 @@ const Login = (props) => {
   let nav = useNavigate();
   let dispatch = useDispatch();
   let status = useSelector(state => state.userReducer.status);
-  let token = status.token;
+  //let token = status.token;
   const { register, formState: { errors }, handleSubmit } = useForm(formOptions);
 
   const onSubmit = (data) => {

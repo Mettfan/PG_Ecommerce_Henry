@@ -5,12 +5,11 @@ import { AiFillHeart } from 'react-icons/ai';
 import { BsFillCartFill } from 'react-icons/bs';
 import logo from '../../assets/Booma_logo_backless_white.png';
 import './NavBar.css';
-import { connect, useSelector, useDispatch } from 'react-redux';
-import { getProducts, FilterByName } from '../../redux/actions/productActions';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { FilterByName, getProducts } from '../../redux/actions/productActions';
 import SearchDialog from './SearchDialog/SearchDialog';
 import Catalog from '../Product/Catalog/Catalog';
 import { useAuth0 } from '@auth0/auth0-react';
-
 
 function NavBar(props) {
   let productos = props.productos;
@@ -21,7 +20,7 @@ function NavBar(props) {
 
   let nav = useNavigate();
   useEffect(() => {
-    //console.log('gettingProducts');
+    console.log('gettingProducts');
     props.getProducts();
 
   }, []);
@@ -49,26 +48,34 @@ function NavBar(props) {
   function handleInputChange(event) {
     event.preventDefault();
     setName(event.target.value.toLowerCase());
-    //console.log(name, 'HandleChange');
+    console.log(name, 'HandleChange');
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     dispatch(FilterByName(name));
     setName('');
-    //console.log(name, 'HandleSubmit');
+    console.log(name, 'HandleSubmit');
   }
 
 
   function onDisplayLoginChange() {
     setState({ ...state, myButtonLoginIsDisplayed: !state.myButtonLoginIsDisplayed });
-    //console.log('LoginShown: ' + state.myButtonLoginIsDisplayed);
+    console.log('LoginShown: ' + state.myButtonLoginIsDisplayed);
   }
   return (
     <>
       {/* {state.searchIsVisible? <div className='search-dialog-box'><SearchDialog content = {state.result}></SearchDialog> </div> : undefined} */}
       <div className="header">
+
         <div className="home-container">
+
+
+          <Link to="/home">
+            <img src={logo} className="logo" alt="a " />
+          </Link>
+
+
           <div className="sb_nav">
             <form id="Find" className="Find" onSubmit={(e) => handleSubmit(e)} >
               <div className="sb_searchcontainer">
@@ -91,43 +98,48 @@ function NavBar(props) {
                 </button>
               </div>
             </form>
+
           </div>
-        </div>
 
-        <div className="userbuttons-container">
-          <ul className="main-nav">
-
-            {/* <Link to="/login"> */}
-            {/* {!isUserAuthenticated?
-                  <button className="btnHome" onClick={() => ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login')) }> */}
-
-
-            {!isUserAuthenticated
-              ?
-              <Link to="/login">
-                <button className="btnHome">
+          <div className="userbuttons-container">
+            <ul className="main-nav">
+              {/* <Link to="/login"> */}
+              {!isUserAuthenticated ?
+                <button className="btnHome" onClick={() => (state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))}>
                   <RiLoginCircleFill />
-                </button>
-              </Link>
-              :
-              <button className='btnUser' onClick={() => nav('../user/profile')}>
-                <img className='userImg' src={user?.picture || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU'}></img>
-                <div className='userName'> Hola {user?.name.split(' ')[0] || status.user.name}! </div>
-              </button>}
+                </button> :
+                <button className='btnUser' onClick={() => nav('../user/profile')}>
+                  <img className='userImg' src={user?.picture || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU'}></img>
+                  <div className='userName'> Hola {user?.name.split(' ')[0] || status.user.name}! </div>
+                </button>}
+              {/* </Link> */}
 
-            {/* <Link to={!user?.name?"/login":'/user/favorites'}>               Debajo de esta linea se encuentra un operador ternario dentro de otro!                   */}
-            <button onClick={() => isUserAuthenticated ? nav('/user/favorites') : (state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))} className="btnHome" >
-              <AiFillHeart />
-            </button>
-            {/* </Link> */}
+              {/* <Link to={!user?.name?"/login":'/user/favorites'}>               Debajo de esta linea se encuentra un operador ternario dentro de otro!                   */}
+              <button onClick={() => isUserAuthenticated ? nav('/user/favorites') : (state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))} className="btnHome" >
+                <AiFillHeart />
+              </button>
+              {/* </Link> */}
 
-            {/* <Link to={!user?.name?"/login":'/user/products'}> */}
-            <button onClick={() => isUserAuthenticated ? nav('/user/products') : (state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))} className="btnHome">
-              <BsFillCartFill />
-            </button>
-            {/* </Link> */}
-          </ul>
+              {/* <Link to={!user?.name?"/login":'/user/products'}> */}
+              <button onClick={() => isUserAuthenticated ? nav('/user/products') : (state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))} className="btnHome">
+                <BsFillCartFill />
+              </button>
+              {/* </Link> */}
+            </ul>
+          </div>
+
+
+
         </div>
+      </div>
+      <div>
+
+        {state.searchIsVisible ?
+          <div>
+
+          </div>
+
+          : undefined}
       </div>
       <div>
 
