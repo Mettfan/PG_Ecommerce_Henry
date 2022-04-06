@@ -37,8 +37,8 @@ const { User, Product, Order, Category, Promotion, Favorite} = sequelize.models;
 // Product.hasMany(Reviews);
 User.belongsToMany(Product, {as: 'ShoppingCart',through: 'UserProduct'});
 Product.belongsToMany(User, {as: 'ShoppingCart', through: 'UserProduct'});
-User.belongsToMany(Product, {as: 'UserFavorites',through: 'user_product'});
-Product.belongsToMany(User, {as: 'UserFavorites', through: 'user_product'});
+User.belongsToMany(Product, {as: 'UserFavorites',through: 'UserProduct'});
+Product.belongsToMany(User, {as: 'UserFavorites', through: 'UserProduct'});
 
 User.hasMany(Order);
 Order.belongsTo(User);
