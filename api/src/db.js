@@ -35,11 +35,11 @@ const { User, Product, Order, Category, Promotion, UserProduct, UserFavorite} = 
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-User.belongsToMany(Product, { through: UserProduct } )
-Product.belongsToMany(User, { through: UserProduct } )
+User.belongsToMany(Product, { through: 'UserProducts' } )
+Product.belongsToMany(User, { through: 'UserProducts' } )
  
-User.belongsToMany(Product, { through: UserFavorite } )
-Product.belongsToMany(User, { through: UserFavorite } )
+User.belongsToMany(Product, { through: 'UserFavorites' } )
+Product.belongsToMany(User, { through: 'UserFavorites' } )
 
 User.hasMany(Order);
 Order.belongsTo(User);
