@@ -45,29 +45,6 @@ function Home(props) {
   }
 
 
-  return (
-      <>
-      {console.log(productos)}
-      {/* <NavBar/> */}
-      {/* <SearchDialog content = {productos}></SearchDialog> */}
-
-
-      {/* <div className="category-container">
-        <ul className="category-ul">
-          <li className="category-item">Categoría</li>
-          <li className="category-item">Mujer</li>
-          <li className="category-item">Hombre</li>
-        </ul>
-      </div> */}
-      {/* {JSON.stringify(status)} */}
-      <div className="home-main">
-        <img
-          className="home-mainBanner"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dwe786c867/28mar/full4boca.jpg?sw=1440&sfrm=jpg"
-          alt="boquita"
-        />
-      </div>
-      </>)
 
   useEffect (()=>{
     document.querySelector(".dropdown-container span").addEventListener("click", function() {
@@ -87,10 +64,6 @@ function Home(props) {
 
   })
 
-  const [toggle, setToggle] = useState(false)
-  const [toggle2, setToggle2] = useState(false)
-  const [toggle3, setToggle3] = useState(false)
-
   return (
     <>
       {console.log(productos)}
@@ -101,7 +74,7 @@ function Home(props) {
         <div className="home-filter">
 
         <div className="dropdown-container"  >
-          <span onClick={() => setToggle(!toggle)} >Mi filtro  </span> 
+          <span  >Mi filtro  </span> 
             
             <ul>
               <li>asdasdasd</li>
