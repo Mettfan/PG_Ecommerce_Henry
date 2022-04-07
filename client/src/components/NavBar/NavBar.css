@@ -611,3 +611,18 @@
 .userName{
     font-size: medium;
 }
+
+.changelogin{
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0%;
+    right:  0%;
+    
+    border-radius: 100%;
+}
+
+.changeloginImage{
+    width: 25px;
+    border-radius: 100%;
+}

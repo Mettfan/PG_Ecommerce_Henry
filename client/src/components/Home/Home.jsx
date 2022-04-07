@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import NavBar from '../NavBar/NavBar';
 import './Home.css'
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import Catalog from '../Product/Catalog/Catalog'
 // import SearchDialog from '../NavBar/SearchDialog/SearchDialog';
 import { useAuth0 } from '@auth0/auth0-react'
@@ -10,7 +10,7 @@ import {MdOutlineArrowDropUp, MdOutlineArrowDropDown} from 'react-icons/md'
 
 
 function Home(props) {
-
+  let status = useSelector( state => state.userReducer.status)
   const { isAuthenticated } = useAuth0()
 
   let nav = useNavigate()
@@ -43,6 +43,30 @@ function Home(props) {
     document.documentElement.scrollTop = 0
     console.log('GO TOP')
   }
+
+
+  return (
+    <>
+      {console.log(productos)}
+      {/* <NavBar/> */}
+      {/* <SearchDialog content = {productos}></SearchDialog> */}
+
+
+      {/* <div className="category-container">
+        <ul className="category-ul">
+          <li className="category-item">Categoría</li>
+          <li className="category-item">Mujer</li>
+          <li className="category-item">Hombre</li>
+        </ul>
+      </div> */}
+      {/* {JSON.stringify(status)} */}
+      <div className="home-main">
+        <img
+          className="home-mainBanner"
+          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dwe786c867/28mar/full4boca.jpg?sw=1440&sfrm=jpg"
+          alt="boquita"
+        />
+      </div>
 
 
   useEffect (()=>{
