@@ -177,13 +177,14 @@ function NavBar(props) {
               <div className="category-container">
             <form className="categoryform" onSubmit={(e)=> handleOnSearch(e)}>
 
-              {/* <select className="category-item" onChange={ (e) => onCategoryChange(e) }>
+               <select className="category-item" onChange={ (e) => onCategoryChange(e) }>
                 <option disabled={true}>Seleccione Categoria</option>
                 <option>Todas</option>
                 <option>Zapatillas</option>
                 <option>Pantalones</option>
                 <option>Sudaderas</option>
-              </select> */}
+              </select> 
+              
 
               <button type='submit' className={'category-item'} name= 'Dama' onClick={(e) => onGenderChange(e) }>Mujer</button>
               <button type='submit' className={'category-item'} name= 'Caballero' onClick={(e) => onGenderChange(e) }>Hombre</button>

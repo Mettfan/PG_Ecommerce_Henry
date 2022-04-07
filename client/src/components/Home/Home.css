@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
-*{
+* {
     font-family: "Poppins", sans-serif;
 }
 
@@ -50,6 +50,7 @@
 .home-ofertaitems {
     margin: 0 13px;
 }
+
 .home-ofertaitems:hover {
     cursor: pointer;
 }
@@ -64,7 +65,7 @@
 
 .home-bannersecundario {
     display: flex;
-    justify-content:center;
+    justify-content: center;
 }
 
 .home-secBanner {
@@ -80,7 +81,7 @@
     width: 45%;
     margin: 15px auto;
     border-radius: 5px;
-    padding:  40px 175px
+    padding: 40px 175px
 }
 
 .home-newsletter-title {
@@ -99,6 +100,7 @@
     border: none;
     padding: 5px 15px;
 }
+
 .home-newsletter-button {
     height: 50px;
     margin: auto 5px;
@@ -114,14 +116,14 @@
   ==================================== */
 
 
-  @media (max-width: 1224px) {
+@media (max-width: 1224px) {
 
 
     .home-ofertas {
         display: flex;
         flex-direction: column;
     }
-    
+
     .home-ofertaitems {
         width: 60%;
         margin: 15px auto;
@@ -142,20 +144,20 @@
 
         margin: 15px 15px;
     }
-    
+
     .home-bannersecundario {
         display: flex;
         flex-direction: column;
-        justify-content:center;
+        justify-content: center;
     }
 
-    
+
     .home-newsletter {
         background: #e26e6c;
         width: 95%;
         margin: 15px auto;
         border-radius: 5px;
-        padding:  20px 0px
+        padding: 20px 0px
     }
 
     .home-newsletter-container {
@@ -184,6 +186,7 @@
         padding: 5px 15px;
         margin-left: 5px;
     }
+
     .home-newsletter-button {
         height: 50px;
         margin: 5px 5px;
@@ -194,16 +197,16 @@
     }
 
 
-  }
+}
 
-  @media (max-width: 584px) {
+@media (max-width: 584px) {
 
 
     .home-ofertas {
         display: flex;
         flex-direction: column;
     }
-    
+
     .home-ofertaitems {
         width: 60%;
         margin: 5px auto;
@@ -219,20 +222,20 @@
 
         margin: 15px 15px;
     }
-    
+
     .home-bannersecundario {
         display: flex;
         flex-direction: column;
-        justify-content:center;
+        justify-content: center;
     }
 
-    
+
     .home-newsletter {
         background: #e26e6c;
         width: 95%;
         margin: 15px auto;
         border-radius: 5px;
-        padding:  20px 0px
+        padding: 20px 0px
     }
 
     .home-newsletter-container {
@@ -262,6 +265,7 @@
         padding: 5px 15px;
         margin-left: 5px;
     }
+
     .home-newsletter-button {
         height: 50px;
         margin: 5px 5px;
@@ -292,7 +296,7 @@
         display: flex;
         flex-direction: column;
     }
-    
+
     .home-ofertaitems {
         width: 60%;
         margin: 5px auto;
@@ -308,20 +312,20 @@
 
         margin: 15px 15px;
     }
-    
+
     .home-bannersecundario {
         display: flex;
         flex-direction: column;
-        justify-content:center;
+        justify-content: center;
     }
 
-    
+
     .home-newsletter {
         background: #e26e6c;
         width: 100%;
         margin: 15px auto;
         border-radius: 5px;
-        padding:  20px 0px
+        padding: 20px 0px
     }
 
     .home-newsletter-title {
@@ -343,6 +347,7 @@
         padding: 5px 15px;
         margin-left: 5px;
     }
+
     .home-newsletter-button {
         height: 50px;
         margin: auto 5px;
@@ -352,7 +357,7 @@
         font-weight: 800;
     }
 
-    .sb_searchcontainer{
+    .sb_searchcontainer {
         background: rgba(255, 255, 255, 0.753);
         height: 1px;
         border-radius: 10px;
@@ -362,14 +367,14 @@
         align-items: center;
         cursor: pointer;
         transition: 0.8s;
-      text-shadow: 2px 2px 3px rgba(255,255,255,0.5); 
-      box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
-                  -4px -4px 6px 0 rgba(116, 125, 136, .2), 
-        inset -4px -4px 6px 0 rgba(255,255,255,.2),
-        inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+        text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
+        box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
+            -4px -4px 6px 0 rgba(116, 125, 136, .2),
+            inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+            inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
         padding: 20px 25px;
         width: 70%;
-        
+
     }
 
 }
@@ -383,25 +388,143 @@
     width: 70%;
 }
 
-.scroll-top-button{
+.scroll-top-button {
     position: fixed;
-    
+
     right: 5px;
     bottom: 5px;
-    
+
     height: 50px;
     width: 50px;
 }
 
-.go-top-arrow{
+.go-top-arrow {
     width: 30px;
 }
-.admin-create-button{
+
+.admin-create-button {
     position: fixed;
-    
+
     left: 5px;
     bottom: 5px;
-    
+
     height: 50px;
     width: 50px;
+}
+
+.home-filtersandcard {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.home-cards {
+    width: 90%;
+}
+
+.home-filter {
+    width: 10%;
+    margin: 2% auto;
+    height: 10%;
+
+}
+.home-filter div {
+    margin: 15% auto;
+}
+.home-filter div span {
+    display: flex;
+    justify-content: flex-start;
+    text-align: center;
+    margin-left: 5%;
+}
+
+/*********************************************************************************************************
+asdadasd        asd asdasd  
+asdasdad            asdasdad    sdfsdfsdfd
+****************************************************************************************************************/
+
+.dropdown-container {
+    position: relative;
+    font-size: 18px;
+}
+
+
+.dropdown-container ul {
+    display: none;
+    max-height: 0px;
+    transition: all 0.4s;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.dropdown-container ul li {
+    margin: 3% auto;
+}
+
+.dropdown-container:hover {
+    cursor: pointer;
+
+}
+
+.dropdown-container ul.show {
+    display: block;
+    max-height: 400px;
+}
+/*********************************************************************************************************
+asdadasd        asd asdasd  
+asdasdad            asdasdad    sdfsdfsdfd
+****************************************************************************************************************/
+
+.dpcontainer1 {
+    font-size: 18px;
+}
+
+
+.dpcontainer1 ul {
+    display: none;
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 0.4s;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.dpcontainer1:hover {
+    cursor: pointer;
+
+}
+
+.dpcontainer1 ul.show {
+    display: block;
+    max-height: 400px;
+}
+
+
+/*********************************************************************************************************
+asdadasd        asd asdasd  
+asdasdad            asdasdad    sdfsdfsdfd
+****************************************************************************************************************/
+
+.dcontainer2 {
+    position: relative;
+    font-size: 18px;
+}
+
+
+.dcontainer2 ul {
+    display: none;
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 0.4s;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.dcontainer2:hover {
+    cursor: pointer;
+
+}
+
+.dcontainer2 ul.show {
+    display: block;
+    max-height: 400px;
 }

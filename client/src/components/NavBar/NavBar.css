@@ -157,7 +157,8 @@
 .category-container {
     display: flex;
     width: 50%;
-    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
     font-weight: 500;
 }
 
@@ -174,8 +175,11 @@
     cursor: pointer;
     display: flex;
     color: black;
-    background-color: rgb(212, 212, 212);
+    border: none;
+    background-color: transparent;
     padding: 5px 5px 5px 5px;
+    margin: 25%;
+    font-size: 14px;
 }
 .category-item-active {
     cursor: pointer;

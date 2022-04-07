@@ -1,0 +1,154 @@
+@charset "UTF-8";
+/*  Custom properties */
+:root {
+  --negro: #393939;
+  --blanco: #ececec;
+  --sombra-ppal: #c9c9c9;
+  --sombra-sec: #ffffff;
+  --borde-negro: #00000050;
+  --marcado: rgb(127, 195, 255);
+}
+
+/*  modo oscuro 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --negro: #ececec;
+    --blanco: #303030;
+    --sombra-ppal: #242424;
+    --sombra-sec: #3c3c3c;
+    --borde-negro: #FFFFFF50;
+  }
+}*/
+/* Configuramos si un usuario ha activado el modo alto contraste. (BETA) */
+/*
+    Estilos generales para que las etiquetas no contengan propiedades
+    que nos estorben y en todos los navegadores se vean correctamente
+*/
+
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+
+
+.carrousel {
+  width: 100%;
+  max-width: 120em;
+  color: var(--negro);
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.carrousel .grande {
+  width: 300%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--negro);
+  transition: all 0.4s ease;
+  transition: all 0.5s ease;
+  transform: translateX(0%);
+}
+
+.carrousel .img {
+  width: calc( 100% / 3);
+  height: 60vh;
+  color: var(--negro);
+  transition: all 0.4s ease;
+}
+
+.carrousel .puntos {
+  width: 100%;
+  margin: 1em 0 0;
+  padding: 0.4em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.carrousel .punto {
+  width: 2em;
+  height: 0.8em;
+  margin: 0 0.8em 0em;
+  color: var(--negro);
+  transition: all 0.4s ease;
+  border-radius: 1em;
+  background-color: var(--blanco);
+  box-shadow: 0.6em 0.3em 0.9em var(--sombra-ppal), -0.6em -0.6em 1.2em var(--sombra-sec), inset 0 0 0 transparent, inset 0 0 0 transparent;
+}
+.carrousel .punto:hover {
+    cursor: pointer;
+}
+
+.carrousel .punto.activo {
+  background-color: rgba(49, 52, 53, 0.809);
+}
+
+
+
+
+
+.marcasdivpadre {
+    margin-bottom: 12em;
+}
+
+.marcascontainter {
+    width: 50%;
+    margin: 5% auto;
+}
+
+
+
+
+.encontraContainer {
+    float: left; 
+    width: 90%;
+    overflow: hidden;
+    /*will change this to hidden later to deny scolling to user*/
+    white-space: nowrap;
+}
+
+.encontraContainer img {
+    margin: 0 4%;
+}
+
+#leftbtn{
+    float: left; 
+    border: none;
+    background: transparent;
+    font-size: 30px;
+}
+
+#rigbtn{
+    float: right; 
+    border: none;
+    font-size: 30px;
+    background: transparent;
+}
+
+.marcascontainter button:hover {
+    cursor: pointer;
+}
+
+
+.internal{
+    width: 31.75%;
+    height: 100%;
+    display: inline-block;
+}
+   
+
+.footer {
+    width: 100%;
+    margin-top: 5%;
+    background-color: rgba(185, 185, 185, 0.867);
+    padding: 20px 0;
+}
