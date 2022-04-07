@@ -158,11 +158,12 @@ function NavBar(props) {
                   </button>
                 {/* </Link> */}
 
-                {/* <Link to={!user?.name?"/login":'/user/products'}> */}
-                  <button onClick={ () => isAuthenticated ? nav('/user/products') : loginWithRedirect()} className="btnHome">
+                <Link to={'/user/products'}>
                     <BsFillCartFill />
-                  </button>
-                {/* </Link> */}
+                  {/* <button onClick={ () => isAuthenticated ? nav('/user/products') : loginWithRedirect()} className="btnHome">
+                    <BsFillCartFill />
+                  </button> */}
+                </Link>
               </ul>
             </div>
           

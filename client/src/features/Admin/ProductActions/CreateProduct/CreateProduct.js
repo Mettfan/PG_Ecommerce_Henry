@@ -90,12 +90,9 @@ export default function CreateProduct (props) {
             <label>Category</label>
             <div className="product-category-input"> 
 
-<<<<<<< HEAD
-=======
                 <input onChange= {( e ) => handleInputOnChange(e)} type='text' name = 'category' placeholder="Ingrese la Categoria del Producto..."></input>
 
             </div>
->>>>>>> 2ea67f70b99c2c3a32842eef7fdc2b797834bf95
 
             <label>Talla</label>
             <div className="product-size-input">
