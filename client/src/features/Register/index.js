@@ -65,7 +65,7 @@ const Register = () => {
   const onSubmit = (data) => {
     console.log('data', data)
     dispatch(createUser(data))
-    nav('/login')
+    nav('/')
     reset();
   }
 
