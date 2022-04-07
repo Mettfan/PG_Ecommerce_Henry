@@ -6,6 +6,9 @@ import { connect, useSelector } from 'react-redux';
 import Catalog from '../Product/Catalog/Catalog'
 // import SearchDialog from '../NavBar/SearchDialog/SearchDialog';
 import { useAuth0 } from '@auth0/auth0-react'
+import {MdOutlineArrowDropUp, MdOutlineArrowDropDown} from 'react-icons/md'
+
+
 function Home(props) {
   let status = useSelector( state => state.userReducer.status)
   const { isAuthenticated } = useAuth0()
@@ -13,7 +16,7 @@ function Home(props) {
   let nav = useNavigate()
 
   let [state, setState] = useState({
-    productsRendered: 4,
+    productsRendered: 8,
   })
   
   var productos = props.productos
@@ -41,6 +44,7 @@ function Home(props) {
     console.log('GO TOP')
   }
 
+
   return (
     <>
       {console.log(productos)}
@@ -64,88 +68,92 @@ function Home(props) {
         />
       </div>
 
-      <div className="home-ofertas">
-        <Link to="/promotions">
-        <img
-          className="home-ofertaitems"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dwd16dc829/13dic/deal1ojotas.png"
-          alt="boquita"
-        />
-        </Link>
 
-        <Link to="/promotions">
-        <img
-          className="home-ofertaitems"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw8c42a0bf/13dic/deal2botines.png"
-          alt="boquita"
-          />
-          </Link>
-
-          <Link to="/promotions">
-        <img
-          className="home-ofertaitems"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw3257527e/13dic/deal3mochilas.png"
-          alt="boquita"
-        />
-        </Link>
-
-        <Link to="/promotions">
-        <img
-          className="home-ofertaitems"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw4345030f/07feb/deal4remeras.png"
-          alt="boquita"
-        />
-        </Link>
-      </div>
+  useEffect (()=>{
+    document.querySelector(".dropdown-container span").addEventListener("click", function() {
+      document.querySelector(".dropdown-container ul").classList.toggle("show");
+    });
+    
+    
+    document.querySelector(".dpcontainer1 span").addEventListener("click", function() {
+      document.querySelector(".dpcontainer1 ul").classList.toggle("show");
+    });
+    
+    
+    document.querySelector(".dcontainer2 span").addEventListener("click", function() {
+      document.querySelector(".dcontainer2 ul").classList.toggle("show");
+    });
 
 
+  })
+
+  const [toggle, setToggle] = useState(false)
+  const [toggle2, setToggle2] = useState(false)
+  const [toggle3, setToggle3] = useState(false)
+
+  return (
+    <>
+      {console.log(productos)}
+      {/* <NavBar/> */}
+      {/* <SearchDialog content = {productos}></SearchDialog> */}
+
+      <div className="home-filtersandcard">
+        <div className="home-filter">
+
+        <div className="dropdown-container"  >
+          <span onClick={() => setToggle(!toggle)} >Mi filtro  </span> 
+            
+            <ul>
+              <li>asdasdasd</li>
+              <li>asdasdasd</li>
+              <li>asdasdasda</li>
+            </ul>
+        </div>
+        <div className="dpcontainer1">
+          <span>Mi otro fitro</span>
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+            </ul>
+        </div>
+        <div className="dcontainer2">
+          <span>Otro más</span>
+            <ul>
+              <li>213123</li>
+              <li>123</li>
+              <li>asda32423523sdasda</li>
+            </ul>
+        </div>
 
 
+        </div>
 
-      <div className="home-ofertas">
-        <Link to="/promotions">
-        <img
-          className="fotosofertas"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dwde63764d/28mar/triplo1adidasbocariver.png"
-          alt="boquita"
-        />
-        </Link>
-
-        <Link to="/promotions">
-        <img
-          className="fotosofertas"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw2eeffcaa/28mar/triplo2sale.png"
-          alt="boquita"
-        />
-        </Link>
-
-        <Link to="/promotions">
-        <img
-          className="fotosofertas"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw09fb095c/28mar/triplo3reebokwhs.jpg"
-          alt="boquita"
-        />
-        </Link>
-      </div>
-
-      <div className="home-newsletter">
-          <div className="home-newsletter-container">
-          <h2 className="home-newsletter-title">¡SUSCRIBITE Y OBTENÉ $600 PARA TU PRIMERA COMPRA!</h2>
-          <p className="home-newsletter-p">Además recibí novedades y promociones exclusivas en tu mail.</p>
-          <input className="home-newsletter-input" type="text" placeholder="Ingresá tu mail" />
-          <button className="home-newsletter-button">Suscribirme</button>
+        <div className="home-cards">
+          <Catalog
+            productos={productos.slice(0, state.productsRendered)}
+          ></Catalog>
         </div>
       </div>
 
-        <Catalog productos = {productos.slice(0,state.productsRendered)}></Catalog>
-
-
-    <button className='scroll-top-button' onClick={() => goTop()}> <img className='go-top-arrow' src='https://cdn2.iconfinder.com/data/icons/arrows-part-3-3/32/arrow-top-1-512.png' alt='GO TOP'></img> </button>
-    {isAuthenticated && <button className='admin-create-button' onClick={() => nav("../admin/products") }> <b>ADMIN WATCH </b> </button>}
-
-    
+      <button className="scroll-top-button" onClick={() => goTop()}>
+        {" "}
+        <img
+          className="go-top-arrow"
+          src="https://cdn2.iconfinder.com/data/icons/arrows-part-3-3/32/arrow-top-1-512.png"
+          alt="GO TOP"
+        ></img>{" "}
+      </button>
+      {isAuthenticated && (
+        <button
+          className="admin-create-button"
+          onClick={() => nav("../admin/products")}
+        >
+          {" "}
+          <b>ADMIN WATCH </b>{" "}
+        </button>
+      )}
     </>
-  
   );
 
 }

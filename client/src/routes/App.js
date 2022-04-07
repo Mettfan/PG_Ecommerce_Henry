@@ -15,6 +15,7 @@ import UserDetail from '../features/UserDetail/UserDetail';
 import UserFavorites from '../features/UserFavorites/UserFavorites';
 import ShoppingCart from '../features/ShoppingCart/ShoppingCart';
 import RedirectRouteToHome from '../components/RedirectRouteToHome/RedirectRouteToHome';
+import Landing from '../features/Landing/Landing';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         {/* <Route exact path="/"  element={<RedirectRouteToHome />} /> */}
         <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Landing />} />
 
         <Route path="/login" element={<Login />} />
 
