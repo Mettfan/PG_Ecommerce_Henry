@@ -46,7 +46,7 @@ function Home(props) {
 
 
   return (
-    <>
+      <>
       {console.log(productos)}
       {/* <NavBar/> */}
       {/* <SearchDialog content = {productos}></SearchDialog> */}
@@ -67,7 +67,7 @@ function Home(props) {
           alt="boquita"
         />
       </div>
-
+      </>)
 
   useEffect (()=>{
     document.querySelector(".dropdown-container span").addEventListener("click", function() {
