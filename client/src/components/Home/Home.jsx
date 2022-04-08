@@ -2,16 +2,29 @@ import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import NavBar from '../NavBar/NavBar';
 import './Home.css'
-import { connect, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import Catalog from '../Product/Catalog/Catalog'
 // import SearchDialog from '../NavBar/SearchDialog/SearchDialog';
 import { useAuth0 } from '@auth0/auth0-react'
 import {MdOutlineArrowDropUp, MdOutlineArrowDropDown} from 'react-icons/md'
+import { FilterByCategory, filterByGenre } from '../../redux/actions/productActions';
 
 
 function Home(props) {
   let status = useSelector( state => state.userReducer.status)
   const { isAuthenticated } = useAuth0()
+
+
+  const dispatch = useDispatch();
+  
+  function handleGenre(event) {
+      dispatch(filterByGenre(event.target.value))
+  }
+
+  function handleCategory(event) {
+      dispatch(FilterByCategory(event.target.value))
+  }
+
 
   let nav = useNavigate()
 
@@ -84,22 +97,21 @@ function Home(props) {
         <div className="home-filter">
 
         <div className="acordeon">
-      <div className="bloqueacordeon activo">
-        <h2 className="h2acordeon">Filtro 0</h2>
-        <div className="contenido">Sección de filtro 0</div>
+      <div className="bloqueacordeon">
+        <h2 className="h2acordeon">Genero</h2>
+        <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenre(event)}  >Todos</button>
+        <button className="contenido botongenero" value={'Niño'} onClick={(event) => handleGenre(event)} >Niño</button>
+        <button className="contenido botongenero" value={'Dama'} onClick={(event) => handleGenre(event)} >Dama</button>
+        <button className="contenido botongenero" value={'Caballero'} onClick={(event) => handleGenre(event)}  >Caballero</button>
       </div>
       <div className="bloqueacordeon">
-        <h2 className="h2acordeon">Filtro 1</h2>
-        <div className="contenido">Sección de filtro 1</div>
+        <h2 className="h2acordeon">Categorías</h2>
+        <button className="contenido botongenero" value={'todos'} onClick={(event) => handleCategory(event)}  >Todos</button>
+        <button className="contenido botongenero" value={'Remera'} onClick={(event) => handleCategory(event)} >Remeras</button>
+        <button className="contenido botongenero" value={'Pantalon'} onClick={(event) => handleCategory(event)} >Pantalones</button>
+        <button className="contenido botongenero" value={'Zapatilla'} onClick={(event) => handleCategory(event)}  >Zapatillas</button>
       </div>
-      <div className="bloqueacordeon">
-        <h2 className="h2acordeon">Filtro 2</h2>
-        <div className="contenido">Sección de filtro 2</div>
-      </div>
-      <div className="bloqueacordeon">
-        <h2 className="h2acordeon">Filtro 3</h2>
-        <div className="contenido">Sección de filtro 3</div>
-      </div>
+
     </div>
 
 

@@ -484,7 +484,7 @@ blockquote:before, blockquote:after, q:before, q:after {
 }
 
 .acordeon .bloqueacordeon {
-  margin: 1rem 0 -1rem;
+  margin: 2rem 0 -1rem;
   color: var(--negro);
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
@@ -522,6 +522,20 @@ blockquote:before, blockquote:after, q:before, q:after {
   overflow: hidden;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.botongenero {
+    border: none;
+    width: 100%;
+    font-size: 17px;
+    font-weight: bold;
+    transition: all 0.5s ease;
+}
+.botongenero:hover {
+    cursor: pointer;
+    color:rgb(196, 125, 125);
 }
 
 .acordeon .bloqueacordeon.activo .contenido {
