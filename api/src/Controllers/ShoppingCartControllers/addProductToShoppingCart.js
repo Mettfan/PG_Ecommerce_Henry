@@ -6,10 +6,9 @@ const addProductToShoppingCart = async(req,res, next )=>{
     await Product.findOne( {where: {id: productId}}).then( async producto => {
         await User.findOne( {where: {email: userEmail}}).then( async usuario => {
             await usuario.addProduct(producto)
-                await  Product.findAll({where: { email: userEmail} }, {include: [UserProduct]}).then( shopping => {
-                    res.send({msg: 'Shopping List', shopping: shopping })
-                
-            })
+                await  usuario.getProducts().then( shoppingList => {
+                    res.send({msg: shoppingList})
+                }) 
         } )
     }).catch( error => {
         console.log(error)

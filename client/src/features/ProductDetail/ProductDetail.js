@@ -15,7 +15,7 @@ export default function ProductDetail (props) {
 
   let userValidated = useSelector( state => state.userReducer.status.user )
   let isUserAuthenticated = isAuthenticated || userValidated
-
+  
     
     let { id } = useParams()
     let dispatch = useDispatch()
@@ -26,6 +26,7 @@ export default function ProductDetail (props) {
       }
     }, [])
     let product = useSelector( (state) => state.productReducer.producto)
+    
     product = product ? product : props.producto
     let nav = useNavigate()
     async function addShoppingCart  (){ 
@@ -34,6 +35,7 @@ export default function ProductDetail (props) {
       console.log('CON '+id)
       await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(id), userEmail: usuario?.email}).then( response => {
         console.log(response.data)
+        
       },
       (error) => console.log(error))
       nav(!isUserAuthenticated?'../login':'../user/products')
