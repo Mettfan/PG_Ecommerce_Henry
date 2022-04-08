@@ -27,11 +27,17 @@ export const addProduct = ( {productId, userEmail} ) => async dispatch  => {
 
 export const getShoppingList = ( { email } ) => async dispatch => {
     console.log(email, 'emaillll ')
-    await axios.get('http://localhost:3001/usuario/shopping', { email: email }).then( response => {
+    await axios.get('http://localhost:3001/usuario/shopping', { userEmail: email }).then( response => {
         console.log(response.data, 'dataaaaaaaaaaaaaaaaa ')
         dispatch({
             type: GET_SHOOPPING,
             payload: response.data
+        })
+    },
+    (error) => {
+        dispatch({
+            type: ERROR,
+            payload: error.error
         })
     })
 }
