@@ -13,6 +13,7 @@ const putUserPassword = require('./user.js');
 const deleteUser = require('./user.js');
 const login = require('./user.js');
 const putUserRol = require('./user')
+const logoutUser = require('./user.js')
 const postUserEmail = require('./user.js');
 const getProduct = require('./product.js');
 const productById = require('./product.js');
@@ -31,6 +32,7 @@ router.use('/usuario', deleteUser);
 router.use('/usuario', login);
 router.use('usuario', putUserRol)
 router.use('/usuario', postUserEmail);
+router.use('usuario', logoutUser)
 router.use('/productos', getProduct);
 router.use('/productos/:id', productById);
 router.use('/productos/:gender', productByGender)

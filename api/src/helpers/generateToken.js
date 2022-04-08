@@ -22,4 +22,21 @@ const verifyToken = async (token) => {
     }
 }
 
-module.exports = {tokenSign, verifyToken};
+const tokenSignOut = async (token) => {
+    try {
+        return jwt.sign(
+            {
+                id: token.id, 
+                permission: token.permission
+            }, 
+            process.env.KEY, 
+            {
+                expiresIn: 1
+            }
+        );
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+module.exports = {tokenSign, verifyToken, tokenSignOut};
