@@ -8,8 +8,8 @@ const checkRoleAdmin = (roles) => async (req, res, next)=> {
         const tokenData = await verifyToken(token);
         console.log(tokenData,'tokenData')
         const userData = await User.findOne({where: { id: tokenData.id }});
-        console.log(userData, 'userData')
-        console.log(userData.permission, 'userData.permission')
+        //console.log(userData, 'userData')
+        //console.log(userData.permission, 'userData.permission')
         if([].concat(roles).includes(userData.permission)){
             next();
         } else {
