@@ -1,12 +1,21 @@
 
 import {MdOutlineArrowBack} from 'react-icons/md'
 import { BsSuitHeartFill } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getProduct } from "../../redux/actions/productActions"
+import { useAuth0 } from '@auth0/auth0-react';
+
 export default function ProductDetail (props) {
+
+  const {  isAuthenticated  } = useAuth0()
+
+  let userValidated = useSelector( state => state.userReducer.status.user )
+  let isUserAuthenticated = isAuthenticated || userValidated
+
+    
     let { id } = useParams()
     let dispatch = useDispatch()
     useEffect(() => {
@@ -17,6 +26,12 @@ export default function ProductDetail (props) {
     }, [])
     let product = useSelector( (state) => state.productReducer.producto)
     product = product ? product : props.producto
+    let nav = useNavigate()
+    function addShoppingCart (){ 
+
+      nav(!isUserAuthenticated?'../login':'../user/products')
+
+    }
     return (<>
         {product ? 
     
@@ -50,9 +65,9 @@ export default function ProductDetail (props) {
             
             </div>
           <div className="detail-one-buttons">
-          <Link to="/login" style={{ textDecoration: 'none' }}>
-          <button className="detail-button-buy">Agregar al carrito</button>
-            </Link>
+          {/* <Link to="/login" style={{ textDecoration: 'none' }}> */}
+          <button onClick={ () => addShoppingCart()} className="detail-button-buy">Agregar al carrito</button>
+            {/* </Link> */}
             
             <Link to="/home" style={{ textDecoration: 'none'}} className="detail-button-like">
             <button style={{border: 'none', background: 'none', textDecoration: 'none' }}>
