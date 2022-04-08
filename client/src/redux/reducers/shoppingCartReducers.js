@@ -1,7 +1,7 @@
 
-import  { ADD_PRODUCT, ERROR } from '../actions/shoppingCartActions'
+import  { ADD_PRODUCT, GET_SHOOPPING, ERROR } from '../actions/shoppingCartActions'
 const initialState = {
-    productos: [],
+    shoppingList: [],
     producto: [],
     status: ''
 }
@@ -10,8 +10,8 @@ function shoppingCartReducer( state = initialState, action ){
 
         case ADD_PRODUCT: 
             return { ...state, productos: action.payload }
-        // case GET_PRODUCT:
-        //     return { ...state, producto: action.payload  }
+        case GET_SHOOPPING:
+            return { ...state, shoppingList: action.payload  }
         // case CREATE_PRODUCT: 
         //     return { ...state, status: action.payload }
         // case DELETE_PRODUCT:
