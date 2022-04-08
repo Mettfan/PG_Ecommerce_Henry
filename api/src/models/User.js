@@ -34,14 +34,15 @@ module.exports = (sequelize) => {
             allowNull: false,
             unique: true,
         },
+
         address: {
             type: DataTypes.STRING,
-            allowNull: false
         },
+
         province: {
             type: DataTypes.STRING,
-            allowNull: false
         },
+
         phone: {
             type: DataTypes.STRING,
         },

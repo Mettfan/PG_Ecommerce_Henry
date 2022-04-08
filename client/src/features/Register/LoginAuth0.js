@@ -9,12 +9,6 @@ export const LoginAuth0 = () => {
     const dispatch = useDispatch();
     const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 
-    if (isAuthenticated) {
-        console.log(user);
-        //dispatch(createUser());
-    }
-
-
     return (
 
         <div className="form-container">

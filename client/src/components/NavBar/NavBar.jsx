@@ -10,12 +10,25 @@ import { getProducts } from '../../redux/actions/productActions';
 import SearchDialog from './SearchDialog/SearchDialog';
 import Catalog from '../Product/Catalog/Catalog';
 import { useAuth0 } from '@auth0/auth0-react';
+import { createUser } from '../../redux/actions/userActions';
+import { useDispatch } from 'react-redux';
 
 function NavBar(props) {
   let productos = props.productos;
   const { loginWithRedirect, user, isAuthenticated } = useAuth0();
   let status = useSelector(state => state.userReducer.status);
   let isUserAuthenticated = isAuthenticated || status;
+
+  //Crear registro.. Debería ser en otro componente
+  const dispatch = useDispatch();
+  function crearUsuario() {
+    dispatch(createUser({
+      name: user.given_name,
+      lastName: user.family_name,
+      email: user.email,
+      picture: user.picture
+    }));
+  }
 
   let nav = useNavigate();
   useEffect(() => {
@@ -179,6 +192,7 @@ function NavBar(props) {
                 <BsFillCartFill />
               </button>
               {/* </Link> */}
+              <button onClick={crearUsuario}>Crear</button>
             </ul>
           </div>
 
