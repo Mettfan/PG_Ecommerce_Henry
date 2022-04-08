@@ -1,4 +1,4 @@
-const { Product, User } = require('../../db.js')
+const { Product, User, UserProduct } = require('../../db.js')
 const addProductToShoppingCart = async(req,res, next )=>{
     const { productId, userEmail } = req.body
     
@@ -6,7 +6,9 @@ const addProductToShoppingCart = async(req,res, next )=>{
     await Product.findOne( {where: {id: productId}}).then( async producto => {
         await User.findOne( {where: {email: userEmail}}).then( async usuario => {
             await usuario.addProduct(producto)
-            res.send({msg: "listo"})
+                await  usuario.getProducts().then( shoppingList => {
+                    res.send({msg: shoppingList})
+                }) 
         } )
     }).catch( error => {
         console.log(error)

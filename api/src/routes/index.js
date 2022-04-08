@@ -21,6 +21,7 @@ const productByGender = require('./product.js');
 const postProduct = require('./product.js');
 const deleteProduct = require('./product.js');
 const addProductToShoppingCart = require('./user.js')
+const getProductsFromShoppingCart = require('./user.js')
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -41,6 +42,7 @@ router.use('/productos/:id', deleteProduct);
 router.use('/productos', postProduct);
 
 router.use('/usuario', addProductToShoppingCart);
+router.use('/usuario', getProductsFromShoppingCart);
 
 
 
