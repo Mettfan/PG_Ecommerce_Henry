@@ -12,6 +12,7 @@ const checkRoleAdmin = require('../middlewares/roleAuth');
 const putUserRole = require('../Controllers/UserControllers/putUserRol');
 const emailUserForgot = require('../Controllers/UserControllers/postUserEmail');
 const emailUserRegister = require('../Controllers/UserControllers/postUserEmail');
+const emailUserOrder=require('../Controllers/UserControllers/postUserEmail');
 
 router.get('/', checkAuth, checkRoleAdmin(['admin', 'superadmin']),  getUsers);
 router.post('/crearusuario', postUser);
@@ -20,8 +21,9 @@ router.put('/actualizarpassword', putUserPassword);
 router.delete('/eliminarusuario', deleteUser);
 router.post('/login', postLogin);
 router.put('/userrol', checkAuth, checkRoleAdmin(['superadmin']), putUserRole);
-router.post('/subscribe', emailUserForgot);
-router.post('/subscribe/:id', emailUserRegister);
+router.post('/forgot', emailUserForgot);
+router.post('/subscribe', emailUserRegister);
+router.post('/orderemail', emailUserOrder);
 
 
 module.exports = router;

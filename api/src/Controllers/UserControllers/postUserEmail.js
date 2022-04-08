@@ -46,8 +46,8 @@ const emailUserForgot= async (req, res) => {
 }
 
 const emailUserOrder= async (req, res) => {
-    const {id} = req.params;
-    if (id) {
+    const {email} = req.params;
+    if (email) {
         let usuario = await Order.findOne( { where: { id:id} } )
         const {email} = usuario;
         var transporter = nodemailer.createTransport({
@@ -86,10 +86,10 @@ const emailUserOrder= async (req, res) => {
 
 
 const emailUserRegister= async (req, res) => {
-    const {id} = req.params;
-    if (id) {
-        let usuario = await User.findOne( { where: { id:id} } )
-        const {email} = usuario;
+    const {email} = req.body;
+    if (email) {
+        let usuario = await User.findOne( { where: { email:email} } )
+        //const {email} = usuario;
        
         var transporter = nodemailer.createTransport({
         host:"smtp.ethereal.email",
@@ -134,5 +134,4 @@ const emailUserRegister= async (req, res) => {
 
     
     
-module.exports = emailUserForgot, emailUserRegister,
-emailUserOrder;
+module.exports = emailUserForgot, emailUserRegister,emailUserOrder;
