@@ -47,20 +47,30 @@ function Home(props) {
 
 
   useEffect (()=>{
-    document.querySelector(".dropdown-container span").addEventListener("click", function() {
-      document.querySelector(".dropdown-container ul").classList.toggle("show");
-    });
+    const bloque    = document.querySelectorAll('.bloqueacordeon')
+    const h2        = document.querySelectorAll('.h2acordeon')
+        
     
+    // Cuando CLICK en h2,
+        // QUITAR la clase activo de TODOS los bloque
+        // Vamos a añadir la clase activo al BLOQUE con la POSICION del h2
     
-    document.querySelector(".dpcontainer1 span").addEventListener("click", function() {
-      document.querySelector(".dpcontainer1 ul").classList.toggle("show");
-    });
+    // Recorrer TODOS los h2
+    h2.forEach( ( cadaH2 , i )=>{
+        // Asignando un CLICK a cada h2
+        h2[i].addEventListener('click', ()=>{
     
+            // Recorrer TODOS los bloque
+            bloque.forEach( ( cadaBloque , i )=>{
+                // Quitamos la clase activo de TODOS los bloques
+                bloque[i].classList.remove('activo')
+            })
+            // Añadiendo la clase activo al bloque cuya posición sea igual al del h2
+            // (Línea número 12)
+            bloque[i].classList.add('activo')
     
-    document.querySelector(".dcontainer2 span").addEventListener("click", function() {
-      document.querySelector(".dcontainer2 ul").classList.toggle("show");
-    });
-
+        })
+    })
 
   })
 
@@ -73,31 +83,24 @@ function Home(props) {
       <div className="home-filtersandcard">
         <div className="home-filter">
 
-        <div className="dropdown-container"  >
-          <span  >Mi filtro  </span> 
-            
-            <ul>
-              <li>asdasdasd</li>
-              <li>asdasdasd</li>
-              <li>asdasdasda</li>
-            </ul>
-        </div>
-        <div className="dpcontainer1">
-          <span>Mi otro fitro</span>
-            <ul>
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-            </ul>
-        </div>
-        <div className="dcontainer2">
-          <span>Otro más</span>
-            <ul>
-              <li>213123</li>
-              <li>123</li>
-              <li>asda32423523sdasda</li>
-            </ul>
-        </div>
+        <div className="acordeon">
+      <div className="bloqueacordeon activo">
+        <h2 className="h2acordeon">Filtro 0</h2>
+        <div className="contenido">Sección de filtro 0</div>
+      </div>
+      <div className="bloqueacordeon">
+        <h2 className="h2acordeon">Filtro 1</h2>
+        <div className="contenido">Sección de filtro 1</div>
+      </div>
+      <div className="bloqueacordeon">
+        <h2 className="h2acordeon">Filtro 2</h2>
+        <div className="contenido">Sección de filtro 2</div>
+      </div>
+      <div className="bloqueacordeon">
+        <h2 className="h2acordeon">Filtro 3</h2>
+        <div className="contenido">Sección de filtro 3</div>
+      </div>
+    </div>
 
 
         </div>

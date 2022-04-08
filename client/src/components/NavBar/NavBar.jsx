@@ -185,7 +185,7 @@ function NavBar(props) {
               <div className="category-container">
             <form className="categoryform" onSubmit={(e)=> handleOnSearch(e)}>
 
-               <select className="category-item" onChange={ (e) => onCategoryChange(e) }>
+              <select className="category-item" onChange={ (e) => onCategoryChange(e) }>
                 <option disabled={true}>Seleccione Categoria</option>
                 <option>Todas</option>
                 <option>Zapatillas</option>

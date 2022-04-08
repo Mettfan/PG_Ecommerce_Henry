@@ -443,88 +443,87 @@ asdadasd        asd asdasd
 asdasdad            asdasdad    sdfsdfsdfd
 ****************************************************************************************************************/
 
-.dropdown-container {
-    position: relative;
-    font-size: 18px;
+/* Aquí definimos las Custom properties */
+:root {
+  --negro: #393939;
+  --blanco: #ececec;
+  --sombra-ppal: #c9c9c9;
+  --sombra-sec: #ffffff;
+  --borde-negro: #00000050;
+  --marcado: rgb(127, 195, 255);
+  /* Tipografía */
+  --tipo-principal: Helvetica, Arial, sans-serif;
 }
 
 
-.dropdown-container ul {
-    display: none;
-    max-height: 0px;
-    transition: all 0.4s;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-}
-.dropdown-container ul li {
-    margin: 3% auto;
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
 }
 
-.dropdown-container:hover {
-    cursor: pointer;
-
+::-moz-selection {
+  background-color: var(--negro);
+  color: var(--blanco);
 }
 
-.dropdown-container ul.show {
-    display: block;
-    max-height: 400px;
-}
-/*********************************************************************************************************
-asdadasd        asd asdasd  
-asdasdad            asdasdad    sdfsdfsdfd
-****************************************************************************************************************/
-
-.dpcontainer1 {
-    font-size: 18px;
+::selection {
+  background-color: var(--negro);
+  color: var(--blanco);
 }
 
 
-.dpcontainer1 ul {
-    display: none;
-    max-height: 0px;
-    overflow: hidden;
-    transition: all 0.4s;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+.acordeon {
+    
+  width: 20em;
+  max-width: 20rem;
+  padding: 2rem;
+  color: var(--negro);
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  border-radius: 1rem;
 }
 
-.dpcontainer1:hover {
-    cursor: pointer;
-
+.acordeon .bloqueacordeon {
+  margin: 1rem 0 -1rem;
+  color: var(--negro);
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  border-radius: 1rem;
+  background-color: var(--blanco);
+  -webkit-box-shadow: 0.4rem 0.4rem 0.8rem var(--sombra-ppal), -0.4rem -0.4rem 0.8rem var(--sombra-sec), inset 0 0 0 transparent, inset 0 0 0 transparent;
+          box-shadow: 0.4rem 0.4rem 0.8rem var(--sombra-ppal), -0.4rem -0.4rem 0.8rem var(--sombra-sec), inset 0 0 0 transparent, inset 0 0 0 transparent;
 }
 
-.dpcontainer1 ul.show {
-    display: block;
-    max-height: 400px;
+.acordeon .h2acordeon {
+  margin: 0 0 1rem;
+  padding: 1rem;
+  color: var(--negro);
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  border-radius: 1rem;
+  background-color: var(--blanco);
+  -webkit-box-shadow: 0.4rem 0.4rem 0.8rem var(--sombra-ppal), -0.4rem -0.4rem 0.8rem var(--sombra-sec), inset 0 0 0 transparent, inset 0 0 0 transparent;
+          box-shadow: 0.4rem 0.4rem 0.8rem var(--sombra-ppal), -0.4rem -0.4rem 0.8rem var(--sombra-sec), inset 0 0 0 transparent, inset 0 0 0 transparent;
+  cursor: pointer;
+}
+.acordeon .h2acordeon:hover {
+  color: var(--negro);
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  border-radius: 1rem;
+  background-color: var(--blanco);
+  -webkit-box-shadow: 0 0 0 transparent, 0 0 0 transparent, inset 0.4rem 0.4rem 0.8rem var(--sombra-ppal), inset -0.4rem -0.4rem 0.8rem var(--sombra-sec);
+          box-shadow: 0 0 0 transparent, 0 0 0 transparent, inset 0.4rem 0.4rem 0.8rem var(--sombra-ppal), inset -0.4rem -0.4rem 0.8rem var(--sombra-sec);
 }
 
-
-/*********************************************************************************************************
-asdadasd        asd asdasd  
-asdasdad            asdasdad    sdfsdfsdfd
-****************************************************************************************************************/
-
-.dcontainer2 {
-    position: relative;
-    font-size: 18px;
+.acordeon .contenido {
+  height: 0;
+  padding: 0rem;
+  overflow: hidden;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
-
-.dcontainer2 ul {
-    display: none;
-    max-height: 0px;
-    overflow: hidden;
-    transition: all 0.4s;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-}
-
-.dcontainer2:hover {
-    cursor: pointer;
-
-}
-
-.dcontainer2 ul.show {
-    display: block;
-    max-height: 400px;
+.acordeon .bloqueacordeon.activo .contenido {
+  height: 4rem;
 }
