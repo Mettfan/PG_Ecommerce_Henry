@@ -7,10 +7,11 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getProduct } from "../../redux/actions/productActions"
 import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
 
 export default function ProductDetail (props) {
 
-  const {  isAuthenticated  } = useAuth0()
+  const {  isAuthenticated, user  } = useAuth0()
 
   let userValidated = useSelector( state => state.userReducer.status.user )
   let isUserAuthenticated = isAuthenticated || userValidated
@@ -27,8 +28,14 @@ export default function ProductDetail (props) {
     let product = useSelector( (state) => state.productReducer.producto)
     product = product ? product : props.producto
     let nav = useNavigate()
-    function addShoppingCart (){ 
-
+    async function addShoppingCart  (){ 
+      let usuario = userValidated || user
+      console.log("ASOCIANDO: "+usuario?.email)
+      console.log('CON '+id)
+      await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(id), userEmail: usuario?.email}).then( response => {
+        console.log(response.data)
+      },
+      (error) => console.log(error))
       nav(!isUserAuthenticated?'../login':'../user/products')
 
     }
