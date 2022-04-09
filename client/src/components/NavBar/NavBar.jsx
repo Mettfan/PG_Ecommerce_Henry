@@ -5,8 +5,8 @@ import { AiFillHeart } from 'react-icons/ai';
 import { BsFillCartFill } from 'react-icons/bs';
 import logo from '../../assets/Booma_logo_backless_white.png'
 import './NavBar.css'
-import { connect, useSelector } from 'react-redux';
-import { getProducts } from '../../redux/actions/productActions';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { FilterByName, getProducts } from '../../redux/actions/productActions';
 import SearchDialog from './SearchDialog/SearchDialog';
 import Catalog from '../Product/Catalog/Catalog';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -16,6 +16,7 @@ function NavBar(props) {
   const { loginWithRedirect, user, isAuthenticated } = useAuth0()
   let status = useSelector( state => state.userReducer.status )
   let isUserAuthenticated = isAuthenticated || status
+  const dispatch = useDispatch();
   
   let nav = useNavigate()
   useEffect(()=>{
@@ -39,73 +40,25 @@ function NavBar(props) {
     setState({
       ...state, 
       search: e.target.value,
-      
     })
   }
-
-  //Creamos la funcion con la cual realizaremos el filtrado de acuerdo a lo que el usuario ingresa
-  function handleOnSearch (e){
-
-    
-    e?.preventDefault()
-    console.log(' SEARCHING: ' + state.search )
-
-    //Filtramos por nombre
-    let result = productos.filter( producto => {
-      return producto.name.includes(state.search)
-    }) 
-
-    //Luego fitlramos por Género
-    result = result.filter( producto => {
-      switch (state.genderFilter){
-        case 'All':
-          return true
-        case 'Dama':
-          return producto.gender === 'Dama'
-        case 'Caballero':
-          return producto.gender === 'Caballero'
-        case 'Niño':
-          return producto.gender === 'Niño'
-      }
-    })
-
-    //Por último filtramos por Categoría
-    result = result.filter( producto => {
-      switch (state.categoryFilter){
-        case 'All':
-          return true
-        case 'Zapatillas':
-          return producto.category === 'Zapatillas'
-        case 'Pantalones':
-          return producto.category === 'Pantalones'
-        case 'Sudaderas':
-          return producto.category === 'Sudaderas'
-      }
-    })
-    
-    setState({
-      ...state,
-      result: result,
-      searchIsVisible: state.search!==''?true:false
-    }) 
-    //El console log esta un render atrás, para ver el resultado en tiempo real se debe usar dentro del componente  
-    console.log('RESULT: ')
-    console.log(state.result)
-    console.log(state.searchIsVisible) 
-    console.log(state.genderFilter) 
+  const[name, setName] = useState('')
 
 
+  function handleInputChange(event) {
+      event.preventDefault();
+      setName(event.target.value.toLowerCase());
+      console.log(name, 'HandleChange')
   }
 
-  function onGenderChange(e){
-    setState({...state, genderFilter: e.target.name })
-    
+  function handleSubmit(event) {
+      event.preventDefault();
+      dispatch(FilterByName(name))
+      setName('');
+      console.log(name, 'HandleSubmit')
   }
-  function onCategoryChange(e){
-    setState({...state, categoryFilter: e.target.value })
-    console.log(state.categoryFilter)
-  }
-  
+
+
   function onDisplayLoginChange(){
     setState({...state, myButtonLoginIsDisplayed: !state.myButtonLoginIsDisplayed})
     console.log('LoginShown: '+state.myButtonLoginIsDisplayed)
@@ -124,16 +77,17 @@ function NavBar(props) {
             
 
             <div className="sb_nav">
-              <form id="Find" className="Find">
+              <form id="Find" className="Find"  onSubmit={(e) => handleSubmit(e)} >
                 <div className="sb_searchcontainer">
                   <input
                     id="form"
                     type="text"
                     placeholder="Busca tu articulo"
                     className="inputSearch"
-                    onChange={ (e) => handleOnChange(e)}
+                    value={name}
+                    onChange ={(e) => {handleInputChange(e)}}
                   />
-                  <button id="sb_send" type="submit" className="submitBtn" onClick={ (e) => handleOnSearch(e)}>
+                  <button id="sb_send" type="submit" className="submitBtn">
                   
                     <img
                       src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpluspng.com%2Fimg-png%2Fsearch-button-png-search-icon-this-icon-is-supposed-to-represent-a-magnifying-glass-it-s-a-large-png-50-px-1600.png&f=1&nofb=1"
@@ -182,26 +136,7 @@ function NavBar(props) {
       
             {state.searchIsVisible?
             <div>
-              <div className="category-container">
-            <form className="categoryform" onSubmit={(e)=> handleOnSearch(e)}>
 
-               <select className="category-item" onChange={ (e) => onCategoryChange(e) }>
-                <option disabled={true}>Seleccione Categoria</option>
-                <option>Todas</option>
-                <option>Zapatillas</option>
-                <option>Pantalones</option>
-                <option>Sudaderas</option>
-              </select> 
-              
-
-              <button type='submit' className={'category-item'} name= 'Dama' onClick={(e) => onGenderChange(e) }>Mujer</button>
-              <button type='submit' className={'category-item'} name= 'Caballero' onClick={(e) => onGenderChange(e) }>Hombre</button>
-              <button type='submit' className={'category-item'} name= 'Niño' onClick={(e) => onGenderChange(e) }>Niño</button>
-            </form>
-          </div>
-            <div><b>BUSCANDO</b>: {state.search}</div>
-            <div>EN: <i>{state.genderFilter}</i></div>
-            <Catalog productos = {state.result}></Catalog> 
             </div>
 
           : undefined}

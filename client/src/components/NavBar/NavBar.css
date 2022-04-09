@@ -155,7 +155,7 @@
 }
 
 .category-container {
-    display: flex;
+    position: relative;
     width: 50%;
     justify-content: center;
     align-items: center;
