@@ -20,8 +20,11 @@ const productById = require('./product.js');
 const productByGender = require('./product.js');
 const postProduct = require('./product.js');
 const deleteProduct = require('./product.js');
-const addProductToShoppingCart = require('./user.js')
-const getProductsFromShoppingCart = require('./user.js')
+const addProductToShoppingCart = require('./user.js');
+const getProductsFromShoppingCart = require('./user.js');
+const addProductToFavorites = require('./user.js');
+const getProductFromFavorites = require('./user.js');
+const deleteProductFromFavorites = require('./user.js');
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -33,7 +36,7 @@ router.use('/usuario', deleteUser);
 router.use('/usuario', login);
 router.use('usuario', putUserRol)
 router.use('/usuario', postUserEmail);
-router.use('usuario', logoutUser)
+router.use('/usuario', logoutUser)
 router.use('/productos', getProduct);
 router.use('/productos/:id', productById);
 router.use('/productos/:gender', productByGender)
@@ -43,6 +46,10 @@ router.use('/productos', postProduct);
 
 router.use('/usuario', addProductToShoppingCart);
 router.use('/usuario', getProductsFromShoppingCart);
+
+router.use('/usuario', addProductToFavorites);
+router.use('/usuario', getProductFromFavorites);
+router.use('/usuario', deleteProductFromFavorites);
 
 
 

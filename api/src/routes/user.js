@@ -16,6 +16,10 @@ const addProductToShoppingCart = require('../Controllers/ShoppingCartControllers
 const getProductsFromShoppingCart = require('../Controllers/ShoppingCartControllers/getProductsFromShoppingCart')
 const logoutUser = require('../Controllers/UserControllers/logoutUser');
 
+const addProductToFavorites = require('../Controllers/FavoritesControllers/addProductToFavorites');
+const getProductFromFavorites = require('../Controllers/FavoritesControllers/getProductFromFavorites');
+const deleteProductFromFavorites = require('../Controllers/FavoritesControllers/deleteProductFromFavorites')
+
 router.get('/', checkAuth, checkRoleAdmin(['admin', 'superadmin']),  getUsers);
 router.post('/crearusuario', postUser);
 router.put('/actualizarusuario', putUser);
@@ -26,6 +30,11 @@ router.put('/userrol', checkAuth, checkRoleAdmin(['superadmin']), putUserRole);
 router.post('/subscribe', postUserEmail);
 router.get('/logout', logoutUser);
 
-router.post('/shopping', addProductToShoppingCart )
-router.get('/shopping', getProductsFromShoppingCart )
+router.post('/shopping', addProductToShoppingCart);
+router.get('/shopping', getProductsFromShoppingCart);
+
+router.post('/favorites', addProductToFavorites);
+router.get('/favorites', getProductFromFavorites);
+router.delete('/favorites/:email/:productId', deleteProductFromFavorites);
+
 module.exports = router;
