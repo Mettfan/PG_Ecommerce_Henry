@@ -10,7 +10,7 @@ const emailUserForgot= async (req, res) => {
             email:email
         }
     });
-    console.log(user);
+    //console.log(user);
     if(user){
         var transporter = nodemailer.createTransport({
         host:"smtp.ethereal.email",
@@ -86,21 +86,26 @@ const emailUserOrder= async (req, res) => {
 
 
 const emailUserRegister= async (req, res) => {
-    const {email} = req.body;
-    if (email) {
-        let usuario = await User.findOne( { where: { email:email} } )
-        //const {email} = usuario;
-       
-        var transporter = nodemailer.createTransport({
-        host:"smtp.ethereal.email",
-        port:587,
-        secure:false,
-        auth:{
-            user:"malcolm.kihn33@ethereal.email",
-            pass:"SB3McwyksjF35GeQ9C"
-             }
-        });
+  const {email} = req.body;
+  const user = await User.findOne({
+      where: {
+          email:email
+      },
       
+  });
+  
+  
+  //console.log(user);
+  if(user){
+      var transporter = nodemailer.createTransport({
+      host:"smtp.ethereal.email",
+      port:587,
+      secure:false,
+      auth:{
+          user:"malcolm.kihn33@ethereal.email",
+          pass:"SB3McwyksjF35GeQ9C"
+           }
+      });
       
     
  // var mensaje = "Su registro fue exitoso, puede iniciar sesion haciendo click en el siguiente enlace: http://localhost:3000/login";
@@ -108,7 +113,7 @@ const emailUserRegister= async (req, res) => {
     <b>Su registro fue exitoso, puede iniciar sesion haciendo click en el siguiente enlace:</b>
     <a href="http://localhost:3000/login">Iniciar sesion</a>
         `
-  
+       
   var mailOptions = {
     from: '"Envio de email"<malcolm.kihn33@ethereal.email>',
     to: email,
@@ -116,7 +121,7 @@ const emailUserRegister= async (req, res) => {
     //text: mensaje
         html: mensaje
   };
-       
+
     }
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
@@ -134,4 +139,4 @@ const emailUserRegister= async (req, res) => {
 
     
     
-module.exports = emailUserForgot, emailUserRegister,emailUserOrder;
+module.exports= emailUserRegister,emailUserForgot, emailUserOrder;
