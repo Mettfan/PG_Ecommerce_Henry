@@ -107,9 +107,9 @@ function Home(props) {
       <div className="bloqueacordeon">
         <h2 className="h2acordeon">Categorías</h2>
         <button className="contenido botongenero" value={'todos'} onClick={(event) => handleCategory(event)}  >Todos</button>
-        <button className="contenido botongenero" value={'Remera'} onClick={(event) => handleCategory(event)} >Remeras</button>
-        <button className="contenido botongenero" value={'Pantalon'} onClick={(event) => handleCategory(event)} >Pantalones</button>
-        <button className="contenido botongenero" value={'Zapatilla'} onClick={(event) => handleCategory(event)}  >Zapatillas</button>
+        <button className="contenido botongenero" value={'Sudaderas'} onClick={(event) => handleCategory(event)} >Remeras</button>
+        <button className="contenido botongenero" value={'Pantalones'} onClick={(event) => handleCategory(event)} >Pantalones</button>
+        <button className="contenido botongenero" value={'Zapatillas'} onClick={(event) => handleCategory(event)}  >Zapatillas</button>
       </div>
 
     </div>
