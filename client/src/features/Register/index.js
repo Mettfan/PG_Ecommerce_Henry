@@ -6,9 +6,8 @@ import './index.css';
 const Register = () => {
 
   return (
-    <div>
+    <div className="container-index">
       <LoginAuth0 />
-      <br />
       <LoginForm />
     </div>
   );

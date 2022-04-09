@@ -1,22 +1,18 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { createUser } from '../../redux/actions/userActions';
 import { useAuth0 } from '@auth0/auth0-react';
 import './index.css';
 
 export const LoginAuth0 = () => {
 
-    const dispatch = useDispatch();
     const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 
     return (
 
-        <div className="form-container">
+        <div className="container-LoginAuth0">
             <div className="title">
-                Registro Rápido...
-                No hay tiempo que perder
+                Registro Rápido... No hay tiempo que perder!
             </div>
-            <button onClick={loginWithRedirect} >Registro express</button>
+            <button className='register-btn' onClick={loginWithRedirect} >Registrarse</button>
         </div>
     );
 };

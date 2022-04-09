@@ -71,7 +71,7 @@ const LoginForm = () => {
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="container-register">
+                <div className="container-index">
                     <div className="form-container">
                         <div className="title">Prefiero registrarme con un formulario</div>
                         <p className="register-subtitle">(* campos requeridos)</p>
