@@ -2,7 +2,9 @@ import React from 'react'
 import "./index.css";
 import CardSlim from "../../components/CardSlim";
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';  
+import { pruebaAction } from '../../redux/actions/productActions';
 
 
 //agregar descuento en modelo de producto en bd y para crear producto
@@ -59,11 +61,22 @@ var user = [
     }
 ]
 
-console.log('user.name', user[0].name)
+// console.log('user.name', user[0].name)
 
 function ShoppingCart() {
+    const dispatch = useDispatch();
     const [select, setSelect] = useState("Retiro por la tienda");
     const [count, setCount] = useState(3);
+    const subtotal = useSelector((state) => state.productReducer.totalCart);
+    const status = useSelector((state) => state.productReducer.status);
+    console.log('subtotal reducer in shoppingCart', subtotal)
+
+    const total = subtotal?.reduce((a,b) => a + b).toFixed(2);
+    // useEffect(() => {
+    // console.log('subtotal', subtotal)
+    // console.log('total useEffect', total)
+    //     // dispatch(pruebaAction())
+    // })
     
     const handleSelect = (e) => {
        console.log('e.target.value', e.target.value)
@@ -119,6 +132,7 @@ function ShoppingCart() {
                         ? data.map((product, i) => {
                             return <CardSlim 
                             key= { i }
+                            index= { i }
                             image= { product.image }
                             name= { product.name }
                             size= { product.size }
@@ -136,10 +150,6 @@ function ShoppingCart() {
                     <div className="cart-container-2">
                         <h3>Resumen de compra</h3>
                         <hr/>
-                        <div className="cart-price-products">
-                            <h4>Productos (3)</h4>
-                            <p>$25000</p>
-                        </div>
                         <div className="cart-price-send">
                             <h4>Envío gratis</h4>
                             <p>$0</p>
@@ -147,7 +157,7 @@ function ShoppingCart() {
                         <hr/>        
                         <div className="cart-total-products">
                             <h4>TOTAL:</h4>
-                            <p>$25000</p>
+                            <p>${ total }</p>
                         </div>
                     </div>
                         <button className="btn-continue-cart" onClick={() => handleContinue()} >Continuar</button>

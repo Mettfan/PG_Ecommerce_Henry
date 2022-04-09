@@ -1,15 +1,30 @@
 import React from 'react'
 import './index.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { QuantityCart, deleteSubtotal } from '../../redux/actions/productActions';
 
-const handleDelete = (e) => {
-  console.log('eliminar')
-}
 
-let discount = 15;
+
+let discount = "";
+//ver si no tiene descuento
 //agregar descuento en productos
-function CardSlim({ image, name, size, color, stock, price }) {
-  const [count, setCount] = useState(1)
+function CardSlim({ image, name, size, color, stock, price, index }) {
+  const dispatch = useDispatch();
+  const [count, setCount] = useState(1);
+  
+  const subtotal = Number((((1-(discount/100))*price)*count).toFixed(2));
+
+  const data = [index, subtotal];
+
+  useEffect(() => {
+    dispatch(QuantityCart(data))
+  },[dispatch, count]);
+
+  const handleDelete = (e) => {
+    //eliminar de la db también
+    dispatch(deleteSubtotal(subtotal))
+  }
 
   return (
     <div className="card-slim-container">
@@ -37,7 +52,7 @@ function CardSlim({ image, name, size, color, stock, price }) {
               <p>{ discount }%</p>
               <strike>${ (price * count).toFixed(2) }</strike>
             </div>
-            <p className="price-slim-card">${  (((1-(discount/100))*price)*count).toFixed(2) }</p>
+            <p className="price-slim-card">${ subtotal }</p>
           </div>
       </div>
       <div className="card-slim-2">
