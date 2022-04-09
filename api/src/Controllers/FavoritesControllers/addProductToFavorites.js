@@ -1,21 +1,28 @@
 const {Product, User} = require('../../db.js');
 
 const addProductToFavorites = async (req, res, next) => {
-        const {id, email} = req.body // Recibo los parámetros de id e email por body
-        console.log(id, email)
-        await Product.findOne({where: {id: id}}).then (async product => { //Espero encontrar un producto en el cual el id coincida con el que le paso por body
-            console.log(product, "linea 7")
-            User.findOne( {where: {email: email}}).then (async user => { //Encuentro un usuario por su email
-                console.log(user, "linea 9")
-                await user.addFavorite(product) //Agrego el producto el producto a usuario a través de la tabla intermedia
-                await user.getFavorites().then(favorites => { //Obtengo todos los favoritos del usuario y los envio
-                     return res.send({msg: favorites});
-                })
-            })
-        }).catch (error => {
-            console.log(error);
-             return res.send ({msg: error}) //Muestro el error si existiese, igual lo dudo
-        })
+    try {
+        const {email, productId} = req.body;
+        const product = await Product.findOne({where: {id: productId}});
+        //console.log(product, 'product')
+
+                if (!product) {
+                    res.status(404).json({msg: 'Producto no encontrado'});
+                } else {
+                    const user = await User.findOne({where: {email: email}});
+                    //console.log(user, 'user')
+                    if(!user) {
+                        res.status(404).json({msg: 'Usuario no encontrado'});
+                    } else {
+                        const favorite = await user.addProduct(product)
+                        res.status(200).json({favorite, msg:'Producto agregado a favoritos'});
+                    }
+
+                }
+
+    } catch (error) {
+        next(error);
+    }
 
 }
 
