@@ -35,7 +35,7 @@ export default function ProductDetail (props) {
       console.log('CON '+id)
       await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(id), userEmail: usuario?.email}).then( response => {
         console.log(response.data)
-        
+        dispatch({ type: 'ADD_PRODUCT', payload: response.data })
       },
       (error) => console.log(error))
       nav(!isUserAuthenticated?'../login':'../user/products')
