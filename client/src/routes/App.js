@@ -16,6 +16,7 @@ import UserFavorites from '../features/UserFavorites/UserFavorites';
 import ShoppingCart from '../features/ShoppingCart/ShoppingCart';
 import RedirectRouteToHome from '../components/RedirectRouteToHome/RedirectRouteToHome';
 import Landing from '../features/Landing/Landing';
+import SesionExpirada from '../features/SesionExpirada/SesionExpirada';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <NavBar/>
       <Routes>
         {/* <Route exact path="/"  element={<RedirectRouteToHome />} /> */}
+        <Route path="/sesionexpirada" element={<SesionExpirada />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Landing />} />
 

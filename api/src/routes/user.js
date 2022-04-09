@@ -20,6 +20,10 @@ const getProductFromFavorite = require('../Controllers/FavoriteControllers/getPr
 const deleteProductFromFavorite = require('../Controllers/FavoriteControllers/deleteProductFromFavorite');
 
 
+const addProductToFavorites = require('../Controllers/FavoritesControllers/addProductToFavorites');
+const getProductFromFavorites = require('../Controllers/FavoritesControllers/getProductFromFavorites');
+const deleteProductFromFavorites = require('../Controllers/FavoritesControllers/deleteProductFromFavorites')
+
 router.get('/', checkAuth, checkRoleAdmin(['admin', 'superadmin']),  getUsers);
 router.post('/crearusuario', postUser);
 router.put('/actualizarusuario', putUser);
@@ -30,9 +34,11 @@ router.put('/userrol', checkAuth, checkRoleAdmin(['superadmin']), putUserRole);
 router.post('/subscribe', postUserEmail);
 router.get('/logout', logoutUser);
 
+
 router.post('/shopping', addProductToShoppingCart )
 router.get('/shopping', getProductsFromShoppingCart )
 router.post('/favorite', addProductToFavorite)
 router.get('/favorite', getProductFromFavorite)
 router.delete('/favorite/:email/:productId', deleteProductFromFavorite);
+
 module.exports = router;

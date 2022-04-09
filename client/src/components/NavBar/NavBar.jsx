@@ -5,17 +5,21 @@ import { AiFillHeart } from 'react-icons/ai';
 import { BsFillCartFill } from 'react-icons/bs';
 import logo from '../../assets/Booma_logo_backless_white.png'
 import './NavBar.css'
-import { connect, useSelector } from 'react-redux';
-import { getProducts } from '../../redux/actions/productActions';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { createProduct, FilterByName, getProducts } from '../../redux/actions/productActions';
 import SearchDialog from './SearchDialog/SearchDialog';
 import Catalog from '../Product/Catalog/Catalog';
 import { useAuth0 } from '@auth0/auth0-react';
+import maxiLoginImg from '../../assets/LOGO_BOOMA_simple.jpg'
+import { createUser } from '../../redux/actions/userActions';
+import data from '../../fakeData'
 
 function NavBar(props) {
   let productos = props.productos
   const { loginWithRedirect, user, isAuthenticated } = useAuth0()
   let status = useSelector( state => state.userReducer.status )
   let isUserAuthenticated = isAuthenticated || status
+  const dispatch = useDispatch();
   
   let nav = useNavigate()
   useEffect(()=>{
@@ -39,76 +43,65 @@ function NavBar(props) {
     setState({
       ...state, 
       search: e.target.value,
-      
     })
   }
-
-  //Creamos la funcion con la cual realizaremos el filtrado de acuerdo a lo que el usuario ingresa
-  function handleOnSearch (e){
-
-    
-    e?.preventDefault()
-    console.log(' SEARCHING: ' + state.search )
-
-    //Filtramos por nombre
-    let result = productos.filter( producto => {
-      return producto.name.includes(state.search)
-    }) 
-
-    //Luego fitlramos por Género
-    result = result.filter( producto => {
-      switch (state.genderFilter){
-        case 'All':
-          return true
-        case 'Dama':
-          return producto.gender === 'Dama'
-        case 'Caballero':
-          return producto.gender === 'Caballero'
-        case 'Niño':
-          return producto.gender === 'Niño'
-      }
-    })
-
-    //Por último filtramos por Categoría
-    result = result.filter( producto => {
-      switch (state.categoryFilter){
-        case 'All':
-          return true
-        case 'Zapatillas':
-          return producto.category === 'Zapatillas'
-        case 'Pantalones':
-          return producto.category === 'Pantalones'
-        case 'Sudaderas':
-          return producto.category === 'Sudaderas'
-      }
-    })
-    
-    setState({
-      ...state,
-      result: result,
-      searchIsVisible: state.search!==''?true:false
-    }) 
-    //El console log esta un render atrás, para ver el resultado en tiempo real se debe usar dentro del componente  
-    console.log('RESULT: ')
-    console.log(state.result)
-    console.log(state.searchIsVisible) 
-    console.log(state.genderFilter) 
+  const[name, setName] = useState('')
 
 
+  function handleInputChange(event) {
+      event.preventDefault();
+      setName(event.target.value.toLowerCase());
+      console.log(name, 'HandleChange')
   }
 
-  function onGenderChange(e){
-    setState({...state, genderFilter: e.target.name })
-    
+  function handleSubmit(event) {
+      event.preventDefault();
+      dispatch(FilterByName(name))
+      setName('');
+      console.log(name, 'HandleSubmit')
   }
-  function onCategoryChange(e){
-    setState({...state, categoryFilter: e.target.value })
-    console.log(state.categoryFilter)
-  }
-  
+
+
   function onDisplayLoginChange(){
     setState({...state, myButtonLoginIsDisplayed: !state.myButtonLoginIsDisplayed})
     console.log('LoginShown: '+state.myButtonLoginIsDisplayed)
+  }
+
+  function addUser(){
+    console.log( ' Adduser' )
+    dispatch(createUser(  {
+      name: "Yomero", 
+      lastName : "asdAA", 
+      gender: "Femenino", 
+      dni : "asdasd", 
+      born : "12/05/1977", 
+      email: "admin@gmail.com", 
+      address: "morfeo 13", 
+      province: "san juan", 
+      phone: "1234343432", 
+      password: "12345AbC",
+      permission: "admin"
+      }))
+  }
+
+  function addProducts(){
+    console.log( ' AddProducts' )
+    console.log(data)
+    data?.map( producto => {
+      return dispatch(createProduct(  {
+        name: producto.name,
+        description:  producto.description,
+        size:  producto.size,
+        color: producto.color,
+        gender: producto.gender,
+        stock: producto.stock,
+        price: producto.price,
+        image: producto.image,
+        category: producto.category
+    }))
+    })
+    
+    
   }
   return (
     <>
@@ -124,16 +117,17 @@ function NavBar(props) {
             
 
             <div className="sb_nav">
-              <form id="Find" className="Find">
+              <form id="Find" className="Find"  onSubmit={(e) => handleSubmit(e)} >
                 <div className="sb_searchcontainer">
                   <input
                     id="form"
                     type="text"
                     placeholder="Busca tu articulo"
                     className="inputSearch"
-                    onChange={ (e) => handleOnChange(e)}
+                    value={name}
+                    onChange ={(e) => {handleInputChange(e)}}
                   />
-                  <button id="sb_send" type="submit" className="submitBtn" onClick={ (e) => handleOnSearch(e)}>
+                  <button id="sb_send" type="submit" className="submitBtn">
                   
                     <img
                       src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpluspng.com%2Fimg-png%2Fsearch-button-png-search-icon-this-icon-is-supposed-to-represent-a-magnifying-glass-it-s-a-large-png-50-px-1600.png&f=1&nofb=1"
@@ -182,36 +176,22 @@ function NavBar(props) {
       
             {state.searchIsVisible?
             <div>
-              <div className="category-container">
-            <form className="categoryform" onSubmit={(e)=> handleOnSearch(e)}>
 
-               <select className="category-item" onChange={ (e) => onCategoryChange(e) }>
-                <option disabled={true}>Seleccione Categoria</option>
-                <option>Todas</option>
-                <option>Zapatillas</option>
-                <option>Pantalones</option>
-                <option>Sudaderas</option>
-              </select> 
-              
-
-              <button type='submit' className={'category-item'} name= 'Dama' onClick={(e) => onGenderChange(e) }>Mujer</button>
-              <button type='submit' className={'category-item'} name= 'Caballero' onClick={(e) => onGenderChange(e) }>Hombre</button>
-              <button type='submit' className={'category-item'} name= 'Niño' onClick={(e) => onGenderChange(e) }>Niño</button>
-            </form>
-          </div>
-            <div><b>BUSCANDO</b>: {state.search}</div>
-            <div>EN: <i>{state.genderFilter}</i></div>
-            <Catalog productos = {state.result}></Catalog> 
             </div>
 
           : undefined}
           </div>
       <div>
       
+      
       {/* Aqui está el boton que cambia el acceso al login entre auth0 directamente o /login */}
+      <button className='changelogin' onClick={ ()=> onDisplayLoginChange()  }>{ state.myButtonLoginIsDisplayed?<img className='changeloginImage' src='https://cdn.worldvectorlogo.com/logos/auth0.svg'></img>:<img  className='changeloginImage' src={maxiLoginImg}></img>}</button>
 
-      <button className='changelogin' onClick={ ()=> onDisplayLoginChange()  }>{ state.myButtonLoginIsDisplayed?<img className='changeloginImage' src='https://avatars.githubusercontent.com/u/65836423?v=4'></img>:<img  className='changeloginImage' src='https://avatars.githubusercontent.com/u/91890016?v=4'></img>}</button>
+      {/* Aqui esta un boton que agrega usuarios automaticamente */}
+      <button className='addUser' onClick={ ()=> addUser()  }>{ state.myButtonLoginIsDisplayed?<img className='addUserImage' src='https://cdn-icons-png.flaticon.com/512/72/72648.png'></img>:<img  className='addUserImg' alt=''></img>}</button>
 
+      {/* Aquí esta un botón que llena la database */}
+      <button className='fillDB' onClick={ ()=> addProducts()  }>{ state.myButtonLoginIsDisplayed?<img className='fillDBImage' src='https://www.nicepng.com/png/detail/839-8397245_warehouse-free-vector-icons-designed-by-freepik-warehouse.png'></img>:<img  className='fillDBImage' alt=''></img>}</button>
       </div>
       
       
