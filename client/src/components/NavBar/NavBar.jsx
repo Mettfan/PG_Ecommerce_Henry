@@ -6,10 +6,13 @@ import { BsFillCartFill } from 'react-icons/bs';
 import logo from '../../assets/Booma_logo_backless_white.png';
 import './NavBar.css';
 import { connect, useDispatch, useSelector } from 'react-redux';
-import { FilterByName, getProducts } from '../../redux/actions/productActions';
+import { createProduct, FilterByName, getProducts } from '../../redux/actions/productActions';
 import SearchDialog from './SearchDialog/SearchDialog';
 import Catalog from '../Product/Catalog/Catalog';
 import { useAuth0 } from '@auth0/auth0-react';
+import maxiLoginImg from '../../assets/LOGO_BOOMA_simple.jpg';
+import { createUser } from '../../redux/actions/userActions';
+import data from '../../fakeData';
 
 function NavBar(props) {
   let productos = props.productos;
@@ -62,6 +65,43 @@ function NavBar(props) {
   function onDisplayLoginChange() {
     setState({ ...state, myButtonLoginIsDisplayed: !state.myButtonLoginIsDisplayed });
     console.log('LoginShown: ' + state.myButtonLoginIsDisplayed);
+  }
+
+  function addUser() {
+    console.log(' Adduser');
+    dispatch(createUser({
+      name: "Yomero",
+      lastName: "asdAA",
+      gender: "Femenino",
+      dni: "asdasd",
+      born: "12/05/1977",
+      email: "admin@gmail.com",
+      address: "morfeo 13",
+      province: "san juan",
+      phone: "1234343432",
+      password: "12345AbC",
+      permission: "admin"
+    }));
+  }
+
+  function addProducts() {
+    console.log(' AddProducts');
+    console.log(data);
+    data?.map(producto => {
+      return dispatch(createProduct({
+        name: producto.name,
+        description: producto.description,
+        size: producto.size,
+        color: producto.color,
+        gender: producto.gender,
+        stock: producto.stock,
+        price: producto.price,
+        image: producto.image,
+        category: producto.category
+      }));
+    });
+
+
   }
   return (
     <>
@@ -143,10 +183,15 @@ function NavBar(props) {
       </div>
       <div>
 
+
         {/* Aqui está el boton que cambia el acceso al login entre auth0 directamente o /login */}
+        <button className='changelogin' onClick={() => onDisplayLoginChange()}>{state.myButtonLoginIsDisplayed ? <img className='changeloginImage' src='https://cdn.worldvectorlogo.com/logos/auth0.svg'></img> : <img className='changeloginImage' src={maxiLoginImg}></img>}</button>
 
-        <button className='changelogin' onClick={() => onDisplayLoginChange()}>{state.myButtonLoginIsDisplayed ? <img className='changeloginImage' src='https://avatars.githubusercontent.com/u/65836423?v=4'></img> : <img className='changeloginImage' src='https://avatars.githubusercontent.com/u/91890016?v=4'></img>}</button>
+        {/* Aqui esta un boton que agrega usuarios automaticamente */}
+        <button className='addUser' onClick={() => addUser()}>{state.myButtonLoginIsDisplayed ? <img className='addUserImage' src='https://cdn-icons-png.flaticon.com/512/72/72648.png'></img> : <img className='addUserImg' alt=''></img>}</button>
 
+        {/* Aquí esta un botón que llena la database */}
+        <button className='fillDB' onClick={() => addProducts()}>{state.myButtonLoginIsDisplayed ? <img className='fillDBImage' src='https://www.nicepng.com/png/detail/839-8397245_warehouse-free-vector-icons-designed-by-freepik-warehouse.png'></img> : <img className='fillDBImage' alt=''></img>}</button>
       </div>
 
 
