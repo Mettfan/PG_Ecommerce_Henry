@@ -1,10 +1,11 @@
 
-import  { GET_PRODUCTS, GET_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, ERROR, FILTER_BY_GENRE, FILTER_BY_NAME, FILTER_BY_CATEGORY } from '../actions/productActions'
+import  { GET_PRODUCTS, GET_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, ERROR, FILTER_BY_GENRE, FILTER_BY_NAME, FILTER_BY_CATEGORY, ADD_SUBTOTAL, DELETE_SUBTOTAL } from '../actions/productActions'
 const initialState = {
     productos: [],
     allProductos: [],
     producto: [],
-    status: ''
+    status: '',
+    totalCart: [0],   
 }
 function productReducer( state = initialState, action ){
     switch (action.type){
@@ -51,6 +52,15 @@ function productReducer( state = initialState, action ){
                 productos: prodsFilteredByCat
             }
 
+        case ADD_SUBTOTAL: 
+            const total = [...state.totalCart]
+            total.splice(action.payload[0],1,action.payload[1])
+            return { ...state, totalCart : total}
+
+        case DELETE_SUBTOTAL:
+            const totalDelete = [...state.totalCart]
+            const filterSubtotal = totalDelete.filter((subtotal) => subtotal !== action.payload)
+            return { ...state, totalCart: filterSubtotal }
 
         default: 
             return { ...state }
