@@ -45,10 +45,10 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        postal: {
-            type: DataTypes.STRING,
-            // allowNull: false
-        },
+        // postal: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        // },
         phone: {
             type: DataTypes.STRING,
             allowNull: false,

@@ -7,6 +7,8 @@ export const ERROR = 'ERROR'
 export const FILTER_BY_GENRE = 'FILTER_BY_GENRE'
 export const FILTER_BY_NAME = 'FILTER_BY_NAME'
 export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY'
+export const ADD_SUBTOTAL = 'ADD_SUBTOTAL'
+export const DELETE_SUBTOTAL = 'DELETE_SUBTOTAL'
 
 
 
@@ -123,5 +125,24 @@ export function FilterByCategory(payload) {
         catch (error) {
             console.log(error)
         }    
+    }
+}
+
+export const QuantityCart = ( value ) => {
+    return function (dispatch){
+        dispatch({
+            type: ADD_SUBTOTAL,
+            payload: [value[0],value[1]]
+        })
+    }
+}
+
+export const deleteSubtotal = ( value ) => {
+    console.log('delete', value)
+    return function (dispatch){
+        dispatch({
+            type: DELETE_SUBTOTAL,
+            payload: value
+        })
     }
 }
