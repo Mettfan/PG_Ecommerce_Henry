@@ -10,7 +10,7 @@ export default function UserDetail (props){
     return (<>
 
 
-            {JSON.stringify(userValidated) + 'status'}
+            {/* {JSON.stringify(userValidated) + 'status'} */}
         
         {isUserAuthenticated && <div>
             <img  className="userImgOnprofile" src={user?.picture || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU" }></img>

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import {getShoppingList} from '../../redux/actions/shoppingCartActions'
 import CardSlim from "../../components/CardSlim/CardSlim"
 import { Link } from "react-router-dom"
-
+import './ShoppingCart.css'
 export default function ShoppingCart ( ) {
 
     let {  isAuthenticated, user  } = useAuth0()
@@ -95,7 +95,7 @@ export default function ShoppingCart ( ) {
 
 
 {/* Carrito Maxi */}
-        <div>
+        
             {
                 ProductosParaMostrar
                 && 
@@ -171,7 +171,7 @@ export default function ShoppingCart ( ) {
   
                 
             }
-        </div>
+       
 
         {/* {JSON.stringify(state)}
         {console.log(state)} */}

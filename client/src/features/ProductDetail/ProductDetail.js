@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom"
 import { getProduct } from "../../redux/actions/productActions"
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
+import './index.css'
 
 export default function ProductDetail (props) {
 
