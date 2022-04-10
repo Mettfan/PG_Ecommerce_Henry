@@ -14,7 +14,10 @@ const postUserEmail = require('../Controllers/UserControllers/postUserEmail');
 
 const addProductToShoppingCart = require('../Controllers/ShoppingCartControllers/addProductToShoppingCart')
 const getProductsFromShoppingCart = require('../Controllers/ShoppingCartControllers/getProductsFromShoppingCart')
+const deleteProductFromShoppingCart = require('../Controllers/ShoppingCartControllers/deleteProductFromShoppingCart');
+
 const logoutUser = require('../Controllers/UserControllers/logoutUser');
+
 
 const addProductToFavorites = require('../Controllers/FavoritesControllers/addProductToFavorites');
 const getProductFromFavorites = require('../Controllers/FavoritesControllers/getProductFromFavorites');
@@ -32,6 +35,7 @@ router.get('/logout', logoutUser);
 
 router.post('/shopping', addProductToShoppingCart);
 router.get('/shopping', getProductsFromShoppingCart);
+router.delete('/shopping', deleteProductFromShoppingCart);
 
 router.post('/favorites', addProductToFavorites);
 router.get('/favorites', getProductFromFavorites);
