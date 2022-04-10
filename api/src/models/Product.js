@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
     },
     descount: {
       type: DataTypes.FLOAT,
-      allowNull: false
+      // allowNull: false
     },
     image: { // pienso que deberíamos colocar una imagen por defecto por si acaso...
       type: DataTypes.TEXT,
