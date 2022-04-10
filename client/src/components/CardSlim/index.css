@@ -17,8 +17,8 @@
 }
 
 .img-slim{
-  padding: 5px;
-  width: 100%;
+  width: 90%;
+  height: 100%;
 }
 
 .card-slim-information {
@@ -93,7 +93,6 @@
 .btn-delete-cart {
   display: flex;
   padding: 1px 5px;
-  /* background-color: transparent; */
   color: grey;
   border-radius: 25px;
   font-weight: 1000;
@@ -111,6 +110,12 @@
   background-color: black;
 }
 
+@media (max-width: 900px) {
+  .card-slim-information {
+    font-size: 12px;
+  }
+}
+
 @media (max-width: 584px) {
   .quantity-stock {
     padding: 5px; 
@@ -123,6 +128,13 @@
     flex-direction: column;
     justify-content: center;
     margin-right: 15px;
+  }
+
+  .img-slim {
+    width: 100%;
+  }
+  .card-slim-information {
+    font-size: 10px;
   }
 }
 

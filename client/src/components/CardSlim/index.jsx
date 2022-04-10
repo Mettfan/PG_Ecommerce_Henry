@@ -6,10 +6,9 @@ import { QuantityCart, deleteSubtotal } from '../../redux/actions/productActions
 
 
 
-let discount = "";
 //ver si no tiene descuento
 //agregar descuento en productos
-function CardSlim({ image, name, size, color, stock, price, index }) {
+function CardSlim({ image, name, size, color, stock, price, index, discount }) {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   
@@ -48,9 +47,14 @@ function CardSlim({ image, name, size, color, stock, price, index }) {
           </div>
         </div>
           <div className="price-slim">
-            <div className="price-discount-slim">
-              <p>{ discount }%</p>
-              <strike>${ (price * count).toFixed(2) }</strike>
+            <div>
+              {
+                discount &&
+                <div className="price-discount-slim">
+                <p>{ discount }%</p>
+                <strike>${ (price * count).toFixed(2) }</strike>
+              </div>
+              }
             </div>
             <p className="price-slim-card">${ subtotal }</p>
           </div>
