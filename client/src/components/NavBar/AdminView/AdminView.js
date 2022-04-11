@@ -36,19 +36,19 @@ export default function AdminView( props){
       console.log( ' AddProducts' )
     //   console.log(data)
     nav("/admin/products")
-    //   data?.map( producto => {
-    //     return dispatch(createProduct(  {
-    //       name: producto.name,
-    //       description:  producto.description,
-    //       size:  producto.size,
-    //       color: producto.color,
-    //       gender: producto.gender,
-    //       stock: producto.stock,
-    //       price: producto.price,
-    //       image: producto.image,
-    //       category: producto.category
-    //   }))
-    //   })
+      data?.map( producto => {
+        return dispatch(createProduct(  {
+          name: producto.name,
+          description:  producto.description,
+          size:  producto.size,
+          color: producto.color,
+          gender: producto.gender,
+          stock: producto.stock,
+          price: producto.price,
+          image: producto.image,
+          category: producto.category
+      }))
+      })
       
       
     }
