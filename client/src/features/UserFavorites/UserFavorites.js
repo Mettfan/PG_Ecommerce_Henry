@@ -1,4 +1,4 @@
-/* eslint-disable import/no-anonymous-default-export */
+
 import './index.css';
 import CardSlim from "../../components/CardSlim/CardSlim";
 import { Link } from "react-router-dom";
@@ -68,5 +68,6 @@ export default function ( ) {
                 </div>
             </div>              
         }
+
     </>)
 }

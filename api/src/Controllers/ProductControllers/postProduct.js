@@ -9,23 +9,30 @@ const postProduct = async(req,res, next )=>{
     console.log(stock, typeof stock)
     console.log(price, typeof price)
     console.log(category)
-    let productCreated = await Product.create({ name: name, description: description, size: size, color: color, gender: gender, stock: stock, price: price, descount: descount, image: image, category: (category || 'General') });
-    
 
     try{
-        await Category.create({name: category})
 
-    }
+        let productCreated = await Product.create({ name: name, description: description, size: size, color: color, gender: gender, stock: stock, price: price, descount: descount, image: image, category: (category || 'General') });
+        
 
-    catch(err){
-        console.log('categoryExists')
-        
-        
-    }
-    let categoryCreated = await Category.findOne({where: {name: category}})
-    await categoryCreated.addProduct(productCreated) 
-    res.status(201).json({msg: 'Product created correctly with id', id: productCreated})
+        try{
+            await Category.create({name: category})
+
+        }
+
+        catch(err){
+            console.log('categoryExists')
+            
+            
+        }
+        let categoryCreated = await Category.findOne({where: {name: category}})
+        await categoryCreated.addProduct(productCreated) 
+        res.status(201).json({msg: 'Product created correctly with id', id: productCreated})
     
+    }
+    catch(error){
+        console.log('Post Error ')
+    }
     }
 
     module.exports = postProduct;

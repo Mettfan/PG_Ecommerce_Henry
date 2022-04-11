@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { RiLoginCircleFill } from 'react-icons/ri';
 import { AiFillHeart } from 'react-icons/ai';
 import { BsFillCartFill } from 'react-icons/bs';
@@ -13,6 +13,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import maxiLoginImg from '../../assets/LOGO_BOOMA_simple.jpg'
 import { createUser } from '../../redux/actions/userActions';
 import data from '../../fakeData'
+import AdminView from './AdminView/AdminView';
+
 
 function NavBar(props) {
   let productos = props.productos
@@ -35,7 +37,8 @@ function NavBar(props) {
     searchIsVisible: false,
     genderFilter: 'All',
     categoryFilter: 'All',
-    myButtonLoginIsDisplayed: false
+    myButtonLoginIsDisplayed: false,
+    interruptor: false
   })
 
   //Creamos la función con la que guardaremos lo que escribe el usuario en la barra de busqueda
@@ -103,6 +106,12 @@ function NavBar(props) {
     
     
   }
+ 
+  
+  function switchLanding(){
+    nav( state.interruptor  ? "/" : "/home")
+    setState({...state, interruptor: !state.interruptor})
+  }
   return (
     <>
       {/* {state.searchIsVisible? <div className='search-dialog-box'><SearchDialog content = {state.result}></SearchDialog> </div> : undefined} */}
@@ -111,9 +120,9 @@ function NavBar(props) {
         <div className="home-container">
           
 
-            <Link to="/home">
-              <img src={logo} className="logo" alt="a " />
-            </Link>
+            {/* <Link to={url_ref?"/home":"/"}> */}
+              <img src={logo} onClick={ ( ) => switchLanding()} className="logo" alt="a " />
+            {/* </Link> */}
             
 
             <div className="sb_nav">
@@ -184,14 +193,18 @@ function NavBar(props) {
       <div>
       
       
+      <AdminView>
+
+        
+      </AdminView>
       {/* Aqui está el boton que cambia el acceso al login entre auth0 directamente o /login */}
-      <button className='changelogin' onClick={ ()=> onDisplayLoginChange()  }>{ state.myButtonLoginIsDisplayed?<img className='changeloginImage' src='https://cdn.worldvectorlogo.com/logos/auth0.svg'></img>:<img  className='changeloginImage' src={maxiLoginImg}></img>}</button>
+      {/* <button className='changelogin' onClick={ ()=> onDisplayLoginChange()  }>{ state.myButtonLoginIsDisplayed?<img className='changeloginImage' src='https://cdn.worldvectorlogo.com/logos/auth0.svg'></img>:<img  className='changeloginImage' src={maxiLoginImg}></img>}</button> */}
 
       {/* Aqui esta un boton que agrega usuarios automaticamente */}
-      <button className='addUser' onClick={ ()=> addUser()  }>{ state.myButtonLoginIsDisplayed?<img className='addUserImage' src='https://cdn-icons-png.flaticon.com/512/72/72648.png'></img>:<img  className='addUserImg' alt=''></img>}</button>
+      {/* <button className='addUser' onClick={ ()=> addUser()  }>{ state.myButtonLoginIsDisplayed?<img className='addUserImage' src='https://cdn-icons-png.flaticon.com/512/72/72648.png'></img>:<img  className='addUserImg' alt=''></img>}</button> */}
 
       {/* Aquí esta un botón que llena la database */}
-      <button className='fillDB' onClick={ ()=> addProducts()  }>{ state.myButtonLoginIsDisplayed?<img className='fillDBImage' src='https://www.nicepng.com/png/detail/839-8397245_warehouse-free-vector-icons-designed-by-freepik-warehouse.png'></img>:<img  className='fillDBImage' alt=''></img>}</button>
+      {/* <button className='fillDB' onClick={ ()=> addProducts()  }>{ state.myButtonLoginIsDisplayed?<img className='fillDBImage' src='https://www.nicepng.com/png/detail/839-8397245_warehouse-free-vector-icons-designed-by-freepik-warehouse.png'></img>:<img  className='fillDBImage' alt=''></img>}</button> */}
       </div>
       
       
