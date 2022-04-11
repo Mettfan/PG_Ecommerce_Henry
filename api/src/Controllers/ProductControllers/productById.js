@@ -1,6 +1,8 @@
 const getInfo=require('../../../src/routes/infoApi.js');
 const { Product } = require('../../db.js')
 const productById=async(req,res)=>{
+
+    try {
     const {id} = req.params
     const apiInfo=  getInfo();
    
@@ -10,7 +12,11 @@ const productById=async(req,res)=>{
         
         }
      
+    } catch (error) {
+        console.log(error);
     }
+
+}
     module.exports=productById;
 
   
