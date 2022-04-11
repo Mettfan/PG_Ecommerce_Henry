@@ -92,38 +92,32 @@ function Home(props) {
       {console.log(productos)}
       {/* <NavBar/> */}
       {/* <SearchDialog content = {productos}></SearchDialog> */}
-
       <div className="home-filtersandcard">
         <div className="home-filter">
-
-        <div className="acordeon">
-      <div className="bloqueacordeon">
-        <h2 className="h2acordeon">Genero</h2>
-        <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenre(event)}  >Todos</button>
-        <button className="contenido botongenero" value={'Niño'} onClick={(event) => handleGenre(event)} >Niño</button>
-        <button className="contenido botongenero" value={'Dama'} onClick={(event) => handleGenre(event)} >Dama</button>
-        <button className="contenido botongenero" value={'Caballero'} onClick={(event) => handleGenre(event)}  >Caballero</button>
-      </div>
-      <div className="bloqueacordeon">
-        <h2 className="h2acordeon">Categorías</h2>
-        <button className="contenido botongenero" value={'todos'} onClick={(event) => handleCategory(event)}  >Todos</button>
-        <button className="contenido botongenero" value={'Sudaderas'} onClick={(event) => handleCategory(event)} >Remeras</button>
-        <button className="contenido botongenero" value={'Pantalones'} onClick={(event) => handleCategory(event)} >Pantalones</button>
-        <button className="contenido botongenero" value={'Zapatillas'} onClick={(event) => handleCategory(event)}  >Zapatillas</button>
-      </div>
-
-    </div>
-
-
+          <div className="acordeon">
+            <div className="bloqueacordeon">
+              <h2 className="h2acordeon">Genero</h2>
+              <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenre(event)}  >Todos</button>
+              <button className="contenido botongenero" value={'Niño'} onClick={(event) => handleGenre(event)} >Niño</button>
+              <button className="contenido botongenero" value={'Dama'} onClick={(event) => handleGenre(event)} >Dama</button>
+              <button className="contenido botongenero" value={'Caballero'} onClick={(event) => handleGenre(event)}  >Caballero</button>
+            </div>
+            <div className="bloqueacordeon">
+              <h2 className="h2acordeon">Categorías</h2>
+              <button className="contenido botongenero" value={'todos'} onClick={(event) => handleCategory(event)}  >Todos</button>
+              <button className="contenido botongenero" value={'Sudaderas'} onClick={(event) => handleCategory(event)} >Remeras</button>
+              <button className="contenido botongenero" value={'Pantalones'} onClick={(event) => handleCategory(event)} >Pantalones</button>
+              <button className="contenido botongenero" value={'Zapatillas'} onClick={(event) => handleCategory(event)}  >Zapatillas</button>
+            </div>
+          </div>
         </div>
-
         <div className="home-cards">
           <Catalog
             productos={productos.slice(0, state.productsRendered)}
           ></Catalog>
         </div>
       </div>
-
+      <div className="scroll-top-button-bottom">
       <button className="scroll-top-button" onClick={() => goTop()}>
         {" "}
         <img
@@ -132,6 +126,7 @@ function Home(props) {
           alt="GO TOP"
         ></img>{" "}
       </button>
+      </div>
       {isAuthenticated && (
         <button
           className="admin-create-button"
