@@ -43,7 +43,10 @@ module.exports = (sequelize) => {
         province: {
             type: DataTypes.STRING,
         },
-
+        // postal: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        // },
         phone: {
             type: DataTypes.STRING,
         },

@@ -2,12 +2,12 @@ const {User} = require ('../../db');
 
 const putUser = async (req, res, next) => {
     
-    const {name, lastName, gender, born, email, address, province, phone} = req.body;
+    const {name, lastName, gender, born, email, address, province, postal, phone} = req.body;
     const allUsers = await User.findAll();
     
     if (allUsers.length) {
         try {
-            const result = await User.update({name, lastName, gender, born, address, province, phone},
+            const result = await User.update({name, lastName, gender, born, address, province, postal, phone},
                 {where: {
                     email: email,
                 }},
