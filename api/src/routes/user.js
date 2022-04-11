@@ -41,4 +41,6 @@ router.post('/favorites', addProductToFavorites);
 router.get('/favorites', getProductFromFavorites);
 router.delete('/favorites/:email/:productId', deleteProductFromFavorites);
 
+
+
 module.exports = router;
