@@ -2,17 +2,7 @@
     border-radius: 100%;
 }
 
-.loginbtn{
-    border-radius: 5px;
-    border: none;
-    width: 100px;
-    background-color: rgb(172, 216, 252);
-    padding: 3px 3px 3px 3px;
-}
 .logoutbtn{
-    border-radius: 5px;
-    border: none;
-    width: 100px;
     background-color: pink;
     padding: 3px 3px 3px 3px;
 }
