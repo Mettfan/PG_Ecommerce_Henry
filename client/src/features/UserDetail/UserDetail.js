@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import './UserDetail.css';
 
 export default function UserDetail(props) {
+
     const { logout, isAuthenticated, user } = useAuth0();
     const nav = useNavigate();
 
-    let userValidated = useSelector(state => state.userReducer.status.user);
-
-    let isUserAuthenticated = isAuthenticated || userValidated;
+    const userValidated = useSelector(state => state.userReducer.status.user);
+    const isUserAuthenticated = isAuthenticated || userValidated;
 
     const dispatch = useDispatch();
     function crearUsuario() {
@@ -29,24 +29,23 @@ export default function UserDetail(props) {
         logout();
     }
 
-    return (<>
+    return (
+        <div className="container">
+            <div className="profile-container">
+                {isUserAuthenticated && <div>
+                    <img className="userImgOnprofile" src={user?.picture || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU"}></img>
+                    <div>{user?.name || userValidated.name} </div>
+                    <div>{user?.email || userValidated.email} </div>
 
-
-        {/* {JSON.stringify(userValidated) + 'status'} */}
-
-        {isUserAuthenticated && <div>
-            <img className="userImgOnprofile" src={user?.picture || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU"}></img>
-            <div>{user?.name || userValidated.name} </div>
-            <div>{user?.email || userValidated.email} </div>
-
-            {!userValidated &&
-                <div>
-                    <p>¿Tus datos están correctos? </p>
-                    <button className="logintbtn" onClick={crearUsuario}>Crear</button>
+                    {!userValidated &&
+                        <div>
+                            <p>¿Tus datos están correctos? </p>
+                            <button className="loginbtn" onClick={crearUsuario}>CREAR CUENTA</button>
+                        </div>
+                    }
+                    <button className="logoutbtn" onClick={singOut}>LOGOUT</button>
                 </div>
-            }
-            <button className="logoutbtn" onClick={singOut}>LOGOUT</button>
-        </div>
-        }
-    </>);
+                }
+            </div>
+        </div>);
 }

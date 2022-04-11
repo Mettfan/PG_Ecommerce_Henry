@@ -69,7 +69,7 @@ const LoginForm = () => {
     };
 
     return (
-        <div>
+        <div className="contenido">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="container-index">
                     <div className="form-container">

@@ -5,8 +5,13 @@ const { tokenSign } = require('../../helpers/generateToken');
 
 const postUser = async (req, res, next) => {
     try {
-        const { name, lastName, gender, born, dni, email, address, province, postal, phone, password, permission } = req.body;
-        const passwordHash = await encrypt(password);
+        const { name, lastName, picture, gender, born, dni, email, address, province, postal, phone, password, permission } = req.body;
+        let passwordHash = null;
+
+        if (password) {
+            passwordHash = await encrypt(password);
+        }
+
         let user = await User.findOne({ where: { email } });
         //let searchDni = await User.findOne({where : {dni}})
         if (!user/*  && !searchDni */) {
