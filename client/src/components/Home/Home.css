@@ -389,13 +389,18 @@
 }
 
 .scroll-top-button {
-    position: fixed;
-
     right: 5px;
     bottom: 5px;
 
     height: 50px;
     width: 50px;
+
+}
+
+.scroll-top-button-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 .go-top-arrow {
@@ -414,8 +419,10 @@
 
 .home-filtersandcard {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 100%;
+    flex-direction: row;
+    /* position: relative; */
 }
 
 .home-cards {
@@ -423,9 +430,11 @@
 }
 
 .home-filter {
-    width: 10%;
+    /* width: 10%; */
+    width: 20em;
     margin: 2% auto;
     height: 10%;
+    /* position: absolute; */
 
 }
 .home-filter div {
