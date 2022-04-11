@@ -164,7 +164,9 @@ export default function ShoppingCart ( ) {
                             <p>${ total }</p>
                         </div>
                     </div>
-                        <button className="btn-continue-cart" onClick={() => handleContinue()} >Continuar</button>
+                        <Link to="/user/products/pay">
+                            <button className="btn-continue-cart" onClick={() => handleContinue()} >Continuar</button>
+                        </Link>
                 </div>
         </div>
     </div>
