@@ -1,8 +1,43 @@
+.container {
+  display: flex;
+  align-items: center;
+  min-height: 80.7vh;
+  justify-content: center;
+  background-color: grey;
+}
+
+.profile-container {
+  background-color: #fff;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120%;
+  height: max-content;
+  max-width: 400px;
+  padding: 25px 30px;
+  border-radius: 5px;
+}
+
+
 .userImgOnprofile{
     border-radius: 100%;
 }
 
+.loginbtn{
+    border-radius: 5px;
+    border: none;
+    width: 100px;
+    background-color: rgb(172, 216, 252);
+    padding: 3px 3px 3px 3px;
+    cursor: pointer;
+    margin: 5px;
+}
 .logoutbtn{
+   border-radius: 5px;
+    border: none;
+    width: 100px;
     background-color: pink;
     padding: 3px 3px 3px 3px;
+    cursor: pointer;
+    margin: 5px;
 }

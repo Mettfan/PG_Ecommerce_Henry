@@ -1,4 +1,4 @@
-import { useAuth0 } from "@auth0/auth0-react"
+//import { useAuth0 } from "@auth0/auth0-react"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -8,10 +8,10 @@ import { Link } from "react-router-dom"
 import './ShoppingCart.css'
 export default function ShoppingCart ( ) {
 
-    let {  isAuthenticated, user  } = useAuth0()
+    //let {  isAuthenticated, user  } = useAuth0()
     
     let userValidated = useSelector( state => state.userReducer.status.user )
-    let isUserAuthenticated = isAuthenticated || userValidated
+    //let isUserAuthenticated = isAuthenticated || userValidated
     
     const status = useSelector( state => state )
     const userRed  = status.userReducer
@@ -48,7 +48,7 @@ export default function ShoppingCart ( ) {
 
 
         async function addShoppingCart  (){ 
-            let usuario = userValidated || user
+            let usuario = userValidated; //|| user
             console.log("ASOCIANDO: "+usuario?.email)
             await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(60), userEmail: usuario?.email}).then( response => {
               console.log(response.data)
@@ -60,7 +60,7 @@ export default function ShoppingCart ( ) {
         
         // dispatch(getShoppingList({ email: user.status.user.email }))
 
-        const productosCarrito = axios.get('http://localhost:3001/usuario/shopping', { email: user?.status.user.email }).then( response => {
+        const productosCarrito = axios.get('http://localhost:3001/usuario/shopping', { email: userValidated?.email }).then(response => {
             console.log(response.data)
             console.log(status.shoppingCartReducer)
             return status.shoppingCartReducer.productos?.msg
