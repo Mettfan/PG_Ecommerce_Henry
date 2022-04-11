@@ -33,9 +33,6 @@
     margin: 5px;
 }
 .logoutbtn{
-    border-radius: 5px;
-    border: none;
-    width: 100px;
     background-color: pink;
     padding: 3px 3px 3px 3px;
     cursor: pointer;

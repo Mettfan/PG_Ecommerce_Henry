@@ -37,6 +37,9 @@ let dispatch = useDispatch()
             <p>Talle: { size }</p>
             <p>Color: { color }</p>
           </div>
+          {
+            stock
+            ?
           <div className="quantity-stock">
             <div className="Button-quantity">
               <button className="btn-btn" onClick={() => count >= 2 ? setCount(count -1) : console.log('no resta')}>-</button>
@@ -45,22 +48,28 @@ let dispatch = useDispatch()
             </div>
             <p className="stock-available">{ stock } disponibles</p>
           </div>
+            : 
+            null
+          } 
         </div>
           <div className="price-slim">
             <div>
-              {
-                // discount &&
+              {/* {
+                discount 
+                ? */}
                 <div className="price-discount-slim">
                 <p>{ discount }%</p>
                 <strike>${ (price * count).toFixed(2) }</strike>
               </div>
-              }
+                {/* : 
+                null
+              } */}
             </div>
             <p className="price-slim-card">${ subtotal }</p>
           </div>
       </div>
       <div className="card-slim-2">
-        <button onClick={() => handleDelete()} className="btn-delete-cart"  >Eliminar del carrito</button>
+        <button onClick={() => handleDelete()} className="btn-delete-cart"  >{!stock ? "Eliminar de Favoritos" : "Eliminar del carrito"}</button>
       </div>
       <hr/>
     </div>

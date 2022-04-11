@@ -236,13 +236,6 @@ function Landing() {
           <button className="home-newsletter-button">Suscribirme</button>
         </div>
       </div>
-
-
-        <div className="footer">
-          <h1>Booma </h1>
-          <h6>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor ipsum voluptates eius.</h6>
-        </div>
-
     </>
   );
 }

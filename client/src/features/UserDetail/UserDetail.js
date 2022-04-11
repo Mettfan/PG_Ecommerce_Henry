@@ -1,8 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from "react-redux";
-import { createUser } from '../../redux/actions/userActions';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import './UserDetail.css';
 
 export default function UserDetail(props) {
