@@ -10,8 +10,8 @@ import { Auth0Provider } from '@auth0/auth0-react'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Auth0Provider domain='booma.us.auth0.com' clientId='mXjW5ldDV5ubNLEkI7elWLZzWbjJMeCi' redirectUri={window.location.origin} >
-    
+    {/* <Auth0Provider domain='booma.us.auth0.com' clientId='mXjW5ldDV5ubNLEkI7elWLZzWbjJMeCi' redirectUri={window.location.origin} > */}
+    <Auth0Provider domain='leonardomontilla74.us.auth0.com' clientId='s0zsNgFrPiZ32OSzGtOK7SRf2YX1a1Xf' redirectUri={'http://localhost:3000/user/profile'} >
     <BrowserRouter>
     <Provider store={store}>
       <App />
