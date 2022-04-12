@@ -6,13 +6,14 @@ const productByGender = require('../Controllers/ProductControllers/getProductByG
 const productById=require('../Controllers/ProductControllers/productById');
 const deleteProduct = require('../Controllers/ProductControllers/deleteProduct');
 const postProduct = require('../Controllers/ProductControllers/postProduct');
-
+const putProduct = require('../Controllers/ProductControllers/putProduct');
 
 router.get('/', getProduct);
 router.get('/:id', productById);
 router.get('/gender/:gender', productByGender)
 router.post('/', postProduct)
 router.delete('/:id', deleteProduct);
+router.put('/putproduct', putProduct);
 
 module.exports = router;
 
