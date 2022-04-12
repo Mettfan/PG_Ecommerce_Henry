@@ -23,6 +23,14 @@ function NavBar(props) {
   let isUserAuthenticated = isAuthenticated || status
   const dispatch = useDispatch();
   
+
+  const statusCart = useSelector( state => state )
+  const shopping = status.shoppingCartReducer
+  const ProductosParaMostrar = statusCart.shoppingCartReducer.productos?.msg
+
+  console.log(ProductosParaMostrar, 'shopping length eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+
+
   let nav = useNavigate()
   useEffect(()=>{
     console.log('gettingProducts')
