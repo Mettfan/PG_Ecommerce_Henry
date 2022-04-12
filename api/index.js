@@ -1,9 +1,9 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const preloader = require('./src/preloader')
+const preloader = require('./src/preloader');
 
-conn.sync({ force: true }).then(() => {
-
+// Syncing all the models at once.
+conn.sync({ force: false }).then(() => {
   server.listen(3001, () => {
 
     preloader();
