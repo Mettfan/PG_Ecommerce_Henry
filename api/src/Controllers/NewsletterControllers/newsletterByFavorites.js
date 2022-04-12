@@ -40,27 +40,21 @@ const {User} = require('../../db.js');
 const Mailchimp = require('mailchimp-api-v3');
 var md5 = require('md5');
 
-// load and create api key and list id constants
 const API_KEY_MAILCHIMP = process.env.API_KEY_MAILCHIMP;
 const ID_LIST_MAILCHIMP = process.env.ID_LIST_MAILCHIMP;
 
-// This bad boy will have the honor of representing mailchimp :)
 let mailchimp;
 
-// If api constant is not undefined go head and instatiate mailchimp
 if(API_KEY_MAILCHIMP){
   mailchimp = new Mailchimp(API_KEY_MAILCHIMP);
 }
-// This flag is set to whether mailchimp is empty
 const isEmptyMailchimp = typeof mailchimp === Object && mailchimp.keys(mailchimp).length === 0 && mailchimp.constructor === Object;
 
-// ==========> This function is in charge of actually trying to add a subscriber <==============
 const newsProductFavorite = (req, res, data) => {
     const {email} = req.body;
 
-    // Make sure mailchimp, email and listid are all set and not undefined
     if (!mailchimp || !email || isEmptyMailchimp || !ID_LIST_MAILCHIMP) {
-        const msg = `No puede suscribirse, el parametro ${!email ? 'email': 'API Key or List ID'}`;
+        const msg = `No puede suscribirse, perdida del parametro ${!email ? 'email': 'API Key or List ID'}`;
         console.warn(msg);
         return Promise.reject({ msg });
     }
@@ -80,6 +74,7 @@ const newsProductFavorite = (req, res, data) => {
         }
         addTag(email)
         return Promise.resolve({ m });
+        
     }).catch(err => {
         console.warn('Failed adding subscriber', email, err);
         return Promise.reject({ err });
