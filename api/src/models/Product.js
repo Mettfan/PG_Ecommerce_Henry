@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
     },
     description: {
       type: DataTypes.TEXT, 
-      allowNull: false
+      allowNull: true
     },
     size: {
       type: DataTypes.STRING,
@@ -35,14 +35,43 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
       allowNull: false
     },
-    descount: {
+    discount: {
       type: DataTypes.FLOAT,
-      // allowNull: false
+      allowNull: true
+    },
+    warranty: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    }, 
+    brand: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    suitable_for: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    composition: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    origin: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    important_data: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    extras: {
+      type: DataTypes.STRING,
+      allowNull: true
     },
     image: { // pienso que deberíamos colocar una imagen por defecto por si acaso...
       type: DataTypes.TEXT,
       allowNull: true,
       defaultValue: 'https://pixabay.com/es/vectors/camiseta-de-manga-corta-camisa-cima-34481'
-    }
+    },
+    
   });
 };
