@@ -19,8 +19,14 @@ import Landing from '../features/Landing/Landing';
 import SesionExpirada from '../features/SesionExpirada/SesionExpirada';
 import Footer from '../components/Footer';
 import { CartPay } from '../features/CartPay/index';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
+
+
+
   return (
     
     <div className="App">

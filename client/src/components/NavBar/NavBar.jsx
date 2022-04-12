@@ -25,11 +25,14 @@ function NavBar(props) {
   
 
   const statusCart = useSelector( state => state )
-  const shopping = status.shoppingCartReducer
   const ProductosParaMostrar = statusCart.shoppingCartReducer.productos?.msg
 
   console.log(ProductosParaMostrar, 'shopping length eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
 
+
+
+
+  
 
   let nav = useNavigate()
   useEffect(()=>{
@@ -179,7 +182,7 @@ function NavBar(props) {
 
                 {/* <Link to={!user?.name?"/login":'/user/products'}> */}
                   <button onClick={ () => isUserAuthenticated ? nav('/user/products') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))} className="btnHome">
-                    <BsFillCartFill />
+                    <BsFillCartFill /> <div> {isUserAuthenticated ? ProductosParaMostrar?.length : null} </div>
                   </button>
                 {/* </Link> */}
               </ul>
