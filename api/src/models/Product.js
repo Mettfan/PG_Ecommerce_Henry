@@ -72,6 +72,9 @@ module.exports = (sequelize) => {
       allowNull: true,
       defaultValue: 'https://pixabay.com/es/vectors/camiseta-de-manga-corta-camisa-cima-34481'
     },
-    
+    disabled: {
+      typeof: DataTypes.BOOLEAN,
+      allowNull: false
+    }
   });
 };
