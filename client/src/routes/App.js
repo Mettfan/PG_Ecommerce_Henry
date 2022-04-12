@@ -19,6 +19,7 @@ import Landing from '../features/Landing/Landing';
 import SesionExpirada from '../features/SesionExpirada/SesionExpirada';
 import Footer from '../components/Footer';
 import { CartPay } from '../features/CartPay/index';
+import CreateUser from '../features/Admin/UserActions/CreateUser/CreateUser';
 
 function App() {
   return (
@@ -48,6 +49,8 @@ function App() {
 
         <Route path="/admin/product/create" element={<CreateProduct></CreateProduct> } />
         <Route path="/admin/product/delete" element={<DeleteProduct></DeleteProduct> } />
+
+        <Route path="/admin/user/create" element={<CreateUser></CreateUser> } />
         
       </Routes>
       <Footer />      
