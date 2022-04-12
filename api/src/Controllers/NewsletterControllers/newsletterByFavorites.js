@@ -72,6 +72,7 @@ const newsProductFavorite = (req, res, data) => {
             status : data.status || 'subscribed',
             merge_fields: {},
         }],
+
     }).then(m => {
         if (m && Object.keys(m.errors).length > 0) {
             console.log('Error adding new subscriber to MC', m.errors);
@@ -85,7 +86,7 @@ const newsProductFavorite = (req, res, data) => {
     });
 }
 
-// ==========> This function is in charge of adding a tag to an already subscribed user with the given email <==============
+
 const addTag = async (email) => {
 
     const user = await User.findOne({where: {email: email}});
