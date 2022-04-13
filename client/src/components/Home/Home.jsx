@@ -96,12 +96,35 @@ function Home(props) {
         <div className="home-filter">
           <div className="acordeon">
             <div className="bloqueacordeon">
+              <h2 className="h2acordeon">Categorias por genero</h2>
+              <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenre(event)}  >Todos</button>
+              <button className="contenido botongenero" value={'Niño'} onClick={(event) => handleGenre(event)} >Niño</button>
+              <button className="contenido botongenero" value={'Dama'} onClick={(event) => handleGenre(event)} >Dama</button>
+              <button className="contenido botongenero" value={'Caballero'} onClick={(event) => handleGenre(event)}  >Caballero</button>
+            </div>
+
+
+            <div className="bloqueacordeon">
+              <h2 className="h2acordeon">Precios</h2>
+              <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenre(event)}  >0 - 5.000</button>
+              <button className="contenido botongenero" value={'Niño'} onClick={(event) => handleGenre(event)} >5.000 - 10.0000</button>
+              <button className="contenido botongenero" value={'Dama'} onClick={(event) => handleGenre(event)} >10.000 - 15.000</button>
+              <button className="contenido botongenero" value={'Caballero'} onClick={(event) => handleGenre(event)}  >15.000 ▶ </button>
+            </div>
+
+
+
+
+            <div className="bloqueacordeon">
               <h2 className="h2acordeon">Genero</h2>
               <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenre(event)}  >Todos</button>
               <button className="contenido botongenero" value={'Niño'} onClick={(event) => handleGenre(event)} >Niño</button>
               <button className="contenido botongenero" value={'Dama'} onClick={(event) => handleGenre(event)} >Dama</button>
               <button className="contenido botongenero" value={'Caballero'} onClick={(event) => handleGenre(event)}  >Caballero</button>
             </div>
+
+
+
             <div className="bloqueacordeon">
               <h2 className="h2acordeon">Categorías</h2>
               <button className="contenido botongenero" value={'todos'} onClick={(event) => handleCategory(event)}  >Todos</button>

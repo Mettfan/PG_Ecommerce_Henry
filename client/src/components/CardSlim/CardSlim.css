@@ -93,15 +93,23 @@
   .btn-delete-cart {
     display: flex;
     padding: 1px 5px;
-    color: grey;
+    color: rgba(128, 128, 128, 0.781);
     border-radius: 25px;
     font-weight: 1000;
     border: none;
     font-size: 12px;
     margin-left: 15px;
     text-decoration: none;
+    transition: all 0.4s ease;
   }
   
+
+  .btn-delete-cart:hover {
+    cursor: pointer;
+    color: grey;
+}
+
+
   .card-slim-container hr {
     margin: auto;
     margin-top: 3px;

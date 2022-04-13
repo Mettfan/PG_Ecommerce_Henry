@@ -31,15 +31,22 @@ export default function ProductDetail (props) {
     product = product ? product : props.producto
     let nav = useNavigate()
     async function addShoppingCart  (){ 
-      let usuario = userValidated || user
-      console.log("ASOCIANDO: "+usuario?.email)
-      console.log('CON '+id)
-      await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(id), userEmail: usuario?.email}).then( response => {
-        console.log(response.data)
-        dispatch({ type: 'ADD_PRODUCT', payload: response.data })
-      },
-      (error) => console.log(error))
-      nav(!isUserAuthenticated?'../login':'../user/products')
+
+      if (!isUserAuthenticated) {
+        nav('/login')
+      } else {
+
+        let usuario = userValidated || user
+        console.log("ASOCIANDO: "+usuario?.email)
+        console.log('CON '+id)
+        await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(id), userEmail: usuario?.email}).then( response => {
+          console.log(response.data)
+          dispatch({ type: 'ADD_PRODUCT', payload: response.data })
+        },
+        (error) => console.log(error))
+      }
+
+
 
     }
     return (<>

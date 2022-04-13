@@ -14,17 +14,12 @@ import ProductDetail from '../features/ProductDetail/ProductDetail';
 import UserDetail from '../features/UserDetail/UserDetail';
 import UserFavorites from '../features/UserFavorites/UserFavorites';
 import ShoppingCart from '../features/ShoppingCart/ShoppingCart';
-import RedirectRouteToHome from '../components/RedirectRouteToHome/RedirectRouteToHome';
 import Landing from '../features/Landing/Landing';
 import SesionExpirada from '../features/SesionExpirada/SesionExpirada';
 import Footer from '../components/Footer';
 import { CartPay } from '../features/CartPay/index';
-import { useEffect } from 'react';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
-
 
 
   return (

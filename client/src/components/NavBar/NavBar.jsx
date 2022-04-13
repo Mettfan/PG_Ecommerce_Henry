@@ -182,7 +182,7 @@ function NavBar(props) {
 
                 {/* <Link to={!user?.name?"/login":'/user/products'}> */}
                   <button onClick={ () => isUserAuthenticated ? nav('/user/products') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))} className="btnHome">
-                    <BsFillCartFill /> <div> {isUserAuthenticated ? ProductosParaMostrar?.length : null} </div>
+                    <BsFillCartFill /> <div className="numeroCantidadCart"> {isUserAuthenticated ? ProductosParaMostrar?.length : 0} </div>
                   </button>
                 {/* </Link> */}
               </ul>

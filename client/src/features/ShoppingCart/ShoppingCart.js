@@ -16,6 +16,7 @@ export default function ShoppingCart ( ) {
     const status = useSelector( state => state )
     const userRed  = status.userReducer
     const shopping = status.shoppingCartReducer
+    console.log(shopping, 'SHOPPINNNGNGNGNGNGNGNGN')
     const dispatch = useDispatch()
 
 
@@ -42,6 +43,7 @@ export default function ShoppingCart ( ) {
          console.log('CONTINUAR')
          setCount(0);
      }
+
     
     useEffect( ( )=> {
         console.log( 'GETTING SHOPPING LIST')
@@ -97,8 +99,8 @@ export default function ShoppingCart ( ) {
 {/* Carrito Maxi */}
         
             {
-                ProductosParaMostrar
-                && 
+                ProductosParaMostrar?
+                
                     <div className="shopping-cart-container">
         <div className="into-container">
             <div className="cart-container-1">
@@ -136,7 +138,7 @@ export default function ShoppingCart ( ) {
                     : null
                     }
                 </div>
-                    { ProductosParaMostrar && ProductosParaMostrar?.map((product, i) => {
+                    { ProductosParaMostrar?.map((product, i) => {
                     return <CardSlim 
                     key= { i }
                     index= { i }
@@ -147,6 +149,7 @@ export default function ShoppingCart ( ) {
                     stock= { product?.stock }
                     discount= { 0 }
                     price= { product?.price }
+                    id= { product?.id }
                     />
                 })}
                 </div>
@@ -170,7 +173,7 @@ export default function ShoppingCart ( ) {
                 </div>
         </div>
     </div>
-  
+    : null
                 
             }
        

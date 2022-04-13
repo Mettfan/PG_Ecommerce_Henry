@@ -5,6 +5,8 @@ import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/userActions';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 
 
@@ -30,12 +32,19 @@ const Login = (props) => {
   let token = status.token;
   const { register, formState: { errors }, handleSubmit } = useForm(formOptions);
 
-  const onSubmit = (data) => {
+
+
+
+  const onSubmit = async (data) => {
     //console.log('data', data, token, status);
     //console.log('TOKEN', token);
     dispatch(login(data));
     //console.log(status);
+
+
     nav('/home');
+
+  
 
   };
 
