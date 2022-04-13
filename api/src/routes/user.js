@@ -41,4 +41,9 @@ router.post('/favorites', addProductToFavorites);
 router.get('/favorites', getProductFromFavorites);
 router.delete('/favorites/:email/:productId', deleteProductFromFavorites);
 
+const newsletter = require('../Controllers/NewsletterControllers/newsletter');
+router.post('/newsletter', newsletter);
+const newsProductFavorite = require('../Controllers/NewsletterControllers/newsletterByFavorites');
+router.post('/newsfavorites', newsProductFavorite);
+
 module.exports = router;

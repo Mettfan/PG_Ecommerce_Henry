@@ -4,7 +4,7 @@ const addProductToFavorites = async (req, res, next) => {
     try {
         const {email, productId} = req.body;
         const product = await Product.findOne({where: {id: productId}});
-        //console.log(product, 'product')
+        console.log(product, 'product')
 
                 if (!product) {
                     res.status(404).json({msg: 'Producto no encontrado'});
