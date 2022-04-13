@@ -18,11 +18,27 @@ import Landing from '../features/Landing/Landing';
 import SesionExpirada from '../features/SesionExpirada/SesionExpirada';
 import Footer from '../components/Footer';
 import { CartPay } from '../features/CartPay/index';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
 
+  let userValidated = useSelector( state => state.userReducer.status.user )
+  const dispatch = useDispatch()
+  const email = userValidated?.email
+
+  useEffect(()=> {
+    if(userValidated) {
+      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(60), userEmail: email}).then( response => {
+        console.log(response.data)
+        dispatch({ type: 'ADD_PRODUCT', payload: response.data })
+      })
+    }
+  })
 
   return (
+
     
     <div className="App">
       <NavBar/>

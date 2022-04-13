@@ -6,6 +6,7 @@ import { QuantityCart, deleteSubtotal } from '../../redux/actions/productActions
 import axios from 'axios';
 import { deleteProductFromCart, DeleteProductFromShopping } from '../../redux/actions/shoppingCartActions';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -16,6 +17,9 @@ function CardSlim({ image, name, size, color, stock, price, index, discount, id 
   const [count, setCount] = useState(1);
 
   const subtotal = Number((((1-(discount/100))*price)*count).toFixed(2));
+
+
+  const nav = useNavigate()
 
   const data = [index, subtotal];
 let dispatch = useDispatch()
@@ -30,27 +34,33 @@ let dispatch = useDispatch()
 
 
   const statusCart = useSelector( state => state )
-  const ProductosParaMostrar = statusCart.shoppingCartReducer.productos?.msg
+  let ProductosParaMostrar = statusCart.shoppingCartReducer.productos?.msg
 
 
-
+  
   const {  isAuthenticated, user  } = useAuth0()
   let userValidated = useSelector( state => state.userReducer.status.user )
   console.log(String(userValidated?.email), 'userValidated')
 
-  async function DeleteProductShoppingCart  (){ 
 
-    
-      await axios.delete('http://localhost:3001/usuario/shopping', { email: String(userValidated?.email) , productId: parseInt(id)})
-      .then( response => {
-        console.log(response.data)
-        dispatch(deleteProductFromCart({ type: 'DELETE_PRODUCT', payload: response.data }))
-      },
-      (error) => console.log(error))
+  const email = userValidated?.email
+  const productId = id
 
+    async function DeleteProductShoppingCart  (){
+
+     await axios.delete(`http://localhost:3001/usuario/shopping?email=${email}&productId=${productId}`).then( response => {
+      console.log(response.data)
+    },
+    (error) => console.log(error))
+
+
+    axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(60), userEmail: email}).then( response => {
+      console.log(response.data)
+      dispatch({ type: 'ADD_PRODUCT', payload: response.data })
+    })
 
   }
-
+  
 
   return (
     <div className="card-slim-container">

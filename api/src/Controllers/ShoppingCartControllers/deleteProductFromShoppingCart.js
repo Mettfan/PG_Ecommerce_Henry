@@ -2,7 +2,7 @@ const {User} = require('../../db.js');
 
 const deleteProductFromShoppingCart = async (req, res, next) => {
     try {
-        const {email, productId} = req.body;
+        const {email, productId} = req.query;
         console.log(email, productId, 'desde el back')
         // const idNumber = parseInt(productId);
         const user = await User.findOne({where: {email}});
@@ -16,7 +16,7 @@ const deleteProductFromShoppingCart = async (req, res, next) => {
             console.log(parseInt(productId), 'productid')
             if(ids.includes(parseInt(productId))) {
                 const cart = await user.removeProduct(parseInt(productId));
-                res.status(200).json({cart, msg: 'Producto eliminado de favoritos'});
+                res.status(200).json({cart, msg: 'Producto eliminado del carrito'});
             } else {
                 res.status(404).json({msg: 'Producto no encontrado'});
             }   
