@@ -1,7 +1,7 @@
 import axios from 'axios'
 export const GET_USERS = 'GET_USERS'
 export const CREATE_USER = 'CREATE_USER'
-// export const EDIT_USER = 'EDIT_USER'
+export const UPDATE_USER = 'UPDATE_USER'
 export const LOGIN = 'LOGIN'
 export const ERROR = 'ERROR'
 
@@ -57,6 +57,29 @@ export const login  = ({ email, password}) => async (dispatch) => {
     }).then( response => {
         dispatch({
             type: LOGIN,
+            payload: response.data
+        })
+    },
+    (error) => {
+        dispatch({
+            type: ERROR,
+            payload: error.error
+        })
+    }
+    )
+}
+export const updateUser=({email,adress,phone,province,postal,name,lastName})=>async(dispatch)=>{
+    axios.put('http://localhost:3001/usuario',{
+        email,
+        adress,
+        phone,
+        province,
+        postal,
+        name,
+        lastName
+    }).then( response => {
+        dispatch({
+            type: UPDATE_USER,
             payload: response.data
         })
     },

@@ -16,6 +16,7 @@ import UserFavorites from '../features/UserFavorites/UserFavorites';
 import ShoppingCart from '../features/ShoppingCart/ShoppingCart';
 import RedirectRouteToHome from '../components/RedirectRouteToHome/RedirectRouteToHome';
 import Landing from '../features/Landing/Landing';
+import EditSend from '../features/EditSend/EditSend';
 import SesionExpirada from '../features/SesionExpirada/SesionExpirada';
 import Footer from '../components/Footer';
 import { CartPay } from '../features/CartPay/index';
@@ -44,6 +45,9 @@ function App() {
         <Route path="/user/favorites" element={<UserFavorites></UserFavorites>} />
         <Route path="/user/products" element={<ShoppingCart></ShoppingCart>} />
         <Route path="/user/products/pay" element={<CartPay></CartPay> } />
+        <Route path="/user/products/send" element={<EditSend></EditSend> } />
+
+
 
         <Route path="/admin/products" element={<GetProducts></GetProducts>} />
 

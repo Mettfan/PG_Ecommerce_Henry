@@ -1,8 +1,9 @@
 
-import  { GET_USERS, CREATE_USER, ERROR, LOGIN } from '../actions/userActions'
+import  { GET_USERS, CREATE_USER, ERROR, LOGIN, UPDATE_USER } from '../actions/userActions'
 const initialState = {
     usuarios: [],
-    status: ''
+    status: '',
+    usuario: {},
 }
 function userReducer( state = initialState, action ){
     switch (action.type){
@@ -16,6 +17,8 @@ function userReducer( state = initialState, action ){
             return { ...state, status: action.payload}
         case ERROR: 
             return { ...state, status: action.payload}
+        case UPDATE_USER:
+            return { ...state, usuario: action.payload}    
         default: 
             return { ...state }
         
