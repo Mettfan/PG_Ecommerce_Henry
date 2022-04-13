@@ -22,6 +22,7 @@ const productById = require('./product.js');
 const productByGender = require('./product.js');
 const postProduct = require('./product.js');
 const deleteProduct = require('./product.js');
+const putProduct = require('./product.js');
 const addProductToShoppingCart = require('./user.js');
 const getProductsFromShoppingCart = require('./user.js');
 const deleteProductFromShoppingCart = require('./user.js')
@@ -48,7 +49,11 @@ router.use('/productos/:gender', productByGender)
 router.use('/productos/:id', deleteProduct);
 
 router.use('/productos', postProduct);
+
 router.use('/productos/checkout', checkoutProducts);
+
+
+router.use('/productos', putProduct);
 
 router.use('/usuario', addProductToShoppingCart);
 router.use('/usuario', getProductsFromShoppingCart);
