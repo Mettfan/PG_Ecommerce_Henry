@@ -16,7 +16,9 @@ const checkoutProducts = async(req,res, next )=>{
        }
    })
    let preference = {
-       items: productOrder
+       items: productOrder,
+       notification_url: ''
+       
     // [
     //     {
     //         title: productList[0],
@@ -43,4 +45,4 @@ const checkoutProducts = async(req,res, next )=>{
 
 }
 
-    module.exports = checkoutProducts;
+module.exports = checkoutProducts;

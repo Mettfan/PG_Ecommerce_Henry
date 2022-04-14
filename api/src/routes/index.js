@@ -30,7 +30,8 @@ const addProductToFavorites = require('./user.js');
 const getProductFromFavorites = require('./user.js');
 const deleteProductFromFavorites = require('./user.js');
 const checkoutProducts = require('./product.js');
-
+const notificationOrder = require('./product.js');
+// const notifiactiononorden = require('./product.js')
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -51,6 +52,8 @@ router.use('/productos/:id', deleteProduct);
 router.use('/productos', postProduct);
 
 router.use('/productos/checkout', checkoutProducts);
+// router.use('/productos/checkout', notificationOrder);
+// router.use('/productos/checkout', notifiactiononorden);
 
 
 router.use('/productos', putProduct);

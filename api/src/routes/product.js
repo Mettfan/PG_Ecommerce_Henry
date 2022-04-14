@@ -11,12 +11,16 @@ const checkoutProducts = require('../Controllers/ProductControllers/checkoutProd
 
 
 const putProduct = require('../Controllers/ProductControllers/putProduct');
+// const notificationOrder = require('../Controllers/ProductControllers/notificationOrder');
+// const { notifiactiononorden } = require('../Controllers/ProductControllers/notificationonorder');
 
 router.get('/', getProduct);
 router.get('/:id', productById);
 router.get('/gender/:gender', productByGender)
 router.post('/', postProduct)
 router.post('/checkout', checkoutProducts)
+// router.post('/notificationOrder', notificationOrder)
+// router.post('/checkout/notifiactiononorden', notifiactiononorden)
 router.delete('/:id', deleteProduct);
 router.put('/putproduct', putProduct);
 
