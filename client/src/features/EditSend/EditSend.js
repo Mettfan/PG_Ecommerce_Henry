@@ -5,6 +5,8 @@ import {updateUser}  from '../../redux/actions/userActions';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector } from "react-redux";
 
 const formSchema = Yup.object().shape({
     email: Yup.string()
@@ -13,7 +15,7 @@ const formSchema = Yup.object().shape({
         .min(8, "Mínimo 8 carácteres")
         .matches(RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/), "El email no es válido"),
     
-    province: Yup.string()
+        province: Yup.string()
         .required("Este campo es requerido")
         .max(30, "Máximo 30 carácteres")
         .min(2, "Mínimo 2 carácteres")
@@ -27,21 +29,27 @@ const formSchema = Yup.object().shape({
         .required("Este campo es requerido")
         .max(20, "Máximo 20 carácteres")
         .min(8, "Mínimo 8 carácteres"),
-    
 });
 
 const formOptions = { resolver: yupResolver(formSchema) };
 
 export default function EditSend  () {
+
+    const { logout, isAuthenticated, user } = useAuth0();
+    const nav = useNavigate();
+
+    const userValidated = useSelector(state => state.userReducer.status.user);
+    const isUserAuthenticated = isAuthenticated || userValidated;
+
     const dispatch = useDispatch();
     const { register, formState: { errors }, handleSubmit, reset } = useForm(formOptions);
-    const nav = useNavigate()
+    //const nav = useNavigate()
 
     const onSubmit = (data) => {
         console.log('data', data);
         dispatch(updateUser(data));
         reset();
-        nav('/home/products');
+        //nav('/home/products');
     };
 
     return (
@@ -58,7 +66,8 @@ export default function EditSend  () {
                                     className="input-register"
                                     type="text"
                                     name="email"
-                                    {...register('email')}
+                                    placeholder= {user?.email || userValidated.email} 
+                                    // {...register('email')}
                                 />
                                 {<div className="form-register-errors">{errors.email?.message}</div>}  
                             
@@ -88,7 +97,7 @@ export default function EditSend  () {
                                 <label className="input-label">*Celular: </label>
                                 <input
                                     className="input-register"
-                                    type="number"
+                                    type="text"
                                     name="phone"
                                     {...register('phone')}
                                 />

@@ -68,10 +68,10 @@ export const login  = ({ email, password}) => async (dispatch) => {
     }
     )
 }
-export const updateUser=({email,adress,phone,province,postal,name,lastName})=>async(dispatch)=>{
-    axios.put('http://localhost:3001/usuario',{
+export const updateUser=({email,address,phone,province,postal,name,lastName})=>async(dispatch)=>{
+    axios.put('http://localhost:3001/usuario/actualizarusuario',{
         email,
-        adress,
+        address,
         phone,
         province,
         postal,
