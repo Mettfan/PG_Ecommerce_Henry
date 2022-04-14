@@ -1,24 +1,25 @@
 import { React } from 'react'
-import './CardSlim.css';
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { QuantityCart, deleteSubtotal } from '../../redux/actions/productActions';
+import '../CardSlim/CardSlim.css';
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProductFavorite } from '../../redux/actions/favoriteActions.js';
+import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
-//ver si no tiene descuento
+
 //agregar descuento en productos
 function CardSlim({ image, name, size, color, stock, price, index, discount, id }) {
-  const dispatch = useDispatch();
-  const [count, setCount] = useState(1);
-  const subtotal = Number((((1-(discount/100))*price)*count).toFixed(2));
-  const data = [index, subtotal];
-  const handleDelete = (e) => {
-    //eliminar de la db también
-    dispatch(deleteSubtotal(subtotal))
-  }
+  const dispatch = useDispatch()
+  const subtotal = Number(((1-(discount/100))*price).toFixed(2));
+  const userValidated = useSelector( state => state.userReducer.status.user )
+  const {  isAuthenticated, user  } = useAuth0()
+  const usuario = userValidated || user
 
-  useEffect(() => {
-    dispatch(QuantityCart(data))
-  },[dispatch, count]);
+  // const data = [index, subtotal];  
+
+  const handleDeleteFav = (e) => {
+    //eliminar de la db también
+    dispatch(deleteProductFavorite({ productId: Number(id), email: usuario?.email}))
+  }
 
   return (
     <div className="card-slim-container">
@@ -33,14 +34,8 @@ function CardSlim({ image, name, size, color, stock, price, index, discount, id 
             <p>Color: { color }</p>
           </div>
           <div className="quantity-stock">
-            <div className="Button-quantity">
-              <button className="btn-btn" onClick={() => count >= 2 ? setCount(count -1) : console.log('no resta')}>-</button>
-              <p>{count}</p>  
-              <button className="btn-btn" onClick={() => count < stock ? setCount(count +1) : console.log('no suma')}>+</button>  
-            </div>
             <p className="stock-available">{ stock } disponibles</p>
-          </div>
-
+          </div>         
         </div>
           <div className="price-slim">
             <div>
@@ -49,7 +44,7 @@ function CardSlim({ image, name, size, color, stock, price, index, discount, id 
                 ? */}
                 <div className="price-discount-slim">
                 <p>{ discount }%</p>
-                <strike>${ (price * count).toFixed(2) }</strike>
+                <strike>${ (price).toFixed(2) }</strike>
               </div>
                 {/* : 
                 null
@@ -59,7 +54,10 @@ function CardSlim({ image, name, size, color, stock, price, index, discount, id 
           </div>
       </div>
       <div className="card-slim-2">
-        <button onClick={() => handleDelete()} className="btn-delete-cart">Eliminar del carrito</button>
+        <Link to={`/productos/${id}`} style={{textDecoration: 'none', color: 'black'}}>
+          <button className="btn-delete-cart"  >Ver detalle</button>
+        </Link>
+          <button onClick={() => handleDeleteFav()} className="btn-delete-cart">Eliminar de Favoritos</button>
       </div>
       <hr/>
     </div>
