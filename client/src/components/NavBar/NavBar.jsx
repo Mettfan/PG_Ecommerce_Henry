@@ -14,6 +14,7 @@ import maxiLoginImg from '../../assets/LOGO_BOOMA_simple.jpg'
 import { createUser } from '../../redux/actions/userActions';
 import data from '../../fakeData'
 import AdminView from './AdminView/AdminView';
+import Cookies from 'universal-cookie';
 
 
 function NavBar(props) {
@@ -22,7 +23,8 @@ function NavBar(props) {
   let status = useSelector( state => state.userReducer.status )
   let isUserAuthenticated = isAuthenticated || status
   const dispatch = useDispatch();
-  
+  const myGlobal = new Cookies()
+  const data = myGlobal.get('data')
   let nav = useNavigate()
   useEffect(()=>{
     console.log('gettingProducts')
@@ -192,7 +194,7 @@ function NavBar(props) {
           </div>
       <div>
       
-      
+      {JSON.stringify(data)}
       <AdminView>
 
         

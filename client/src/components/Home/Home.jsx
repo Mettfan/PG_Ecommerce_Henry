@@ -8,12 +8,12 @@ import Catalog from '../Product/Catalog/Catalog'
 import { useAuth0 } from '@auth0/auth0-react'
 import {MdOutlineArrowDropUp, MdOutlineArrowDropDown} from 'react-icons/md'
 import { FilterByCategory, filterByGenre } from '../../redux/actions/productActions';
-
+import Cookies from 'universal-cookie';
 
 function Home(props) {
   let status = useSelector( state => state.userReducer.status)
   const { isAuthenticated } = useAuth0()
-
+  const cookies = new Cookies()
 
   const dispatch = useDispatch();
   
@@ -48,6 +48,7 @@ function Home(props) {
       if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
           loadMoreProducts()
       }
+     
   };
   }, [state.productsRendered])
   
@@ -112,6 +113,7 @@ function Home(props) {
           </div>
         </div>
         <div className="home-cards">
+          {/* {JSON.stringify(cookies.get('user'))} */}
           <Catalog
             productos={productos.slice(0, state.productsRendered)}
           ></Catalog>

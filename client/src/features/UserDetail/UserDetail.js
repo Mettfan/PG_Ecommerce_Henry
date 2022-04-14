@@ -2,11 +2,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 import { createUser } from "../../redux/actions/userActions";
 import './UserDetail.css';
 
 export default function UserDetail(props) {
-
+    let cookie = new Cookies()
     const { logout, isAuthenticated, user } = useAuth0();
     const nav = useNavigate();
 
@@ -27,6 +28,8 @@ export default function UserDetail(props) {
     function singOut() {
         alert('Realmente quieres irte? Te perderás todo lo bueno');
         logout();
+        
+        cookie.set('data', '')
     }
 
     return (
@@ -35,7 +38,7 @@ export default function UserDetail(props) {
                 {isUserAuthenticated && <div>
                     <img className="userImgOnprofile" src={user?.picture || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU"}></img>
                     <div>{user?.name || userValidated.name} </div>
-                    <div>{user?.email || userValidated.email} </div>
+                    <div>{cookie.get('data')?.email || userValidated.email} </div>
 
                     {!userValidated &&
                         <div>

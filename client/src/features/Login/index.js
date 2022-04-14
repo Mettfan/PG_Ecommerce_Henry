@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/userActions';
-
+import Cookies from 'universal-cookie'
 
 
 const formSchema = Yup.object().shape({
@@ -31,10 +31,13 @@ const Login = (props) => {
   const { register, formState: { errors }, handleSubmit } = useForm(formOptions);
 
   const onSubmit = (data) => {
+    const cookies = new Cookies()
+    cookies.set('data', data, { path: '/'})
     //console.log('data', data, token, status);
     //console.log('TOKEN', token);
     dispatch(login(data));
     //console.log(status);
+    
     nav('/home');
 
   };
