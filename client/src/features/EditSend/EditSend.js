@@ -9,11 +9,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from "react-redux";
 
 const formSchema = Yup.object().shape({
-    email: Yup.string()
-        .required("Este campo es requerido")
-        .max(50, "Máximo 50 carácteres")
-        .min(8, "Mínimo 8 carácteres")
-        .matches(RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/), "El email no es válido"),
+    // email:user?.email || userValidated.email,
+     email: Yup.string(),
+    //     .required("Este campo es requerido")
+    //     .max(50, "Máximo 50 carácteres")
+    //     .min(8, "Mínimo 8 carácteres")
+    //     .matches(RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/), "El email no es válido"),
     
         province: Yup.string()
         .required("Este campo es requerido")
@@ -67,7 +68,8 @@ export default function EditSend  () {
                                     type="text"
                                     name="email"
                                     placeholder= {user?.email || userValidated.email} 
-                                    // {...register('email')}
+                                    value={user?.email || userValidated.email} 
+                                     {...register('email')}
                                 />
                                 {<div className="form-register-errors">{errors.email?.message}</div>}  
                             
