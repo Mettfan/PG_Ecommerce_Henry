@@ -9,14 +9,15 @@ module.exports = (sequelize) => {
     id: {
         type: DataTypes.STRING,
         default: nanoid(),
-        primaryKey: true
+        primaryKey: true,
+        
     },
       
     total: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    status: {
+    state: {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: 'pending',
