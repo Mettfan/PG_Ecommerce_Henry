@@ -66,21 +66,21 @@ function Landing() {
   return (
     <>
 
-      <div className="carrousel">
+      <div class="carrousel">
           <Link to="/home" style={{ textDecoration: 'none' }}>
-        <div className="grande">
-          <img src="https://essential.vteximg.com.br/arquivos/ids/538061/1600x576airmaxmonth.png?v=637838308044130000" alt="Imagen 2" className="img" />
+        <div class="grande">
+          <img src="https://essential.vteximg.com.br/arquivos/ids/538061/1600x576airmaxmonth.png?v=637838308044130000" alt="Imagen 2" class="img" />
 
-          <img src="https://essential.vteximg.com.br/arquivos/ids/540528/2717294_Grid1600x576pxsupersatt.jpg?v=637842452793630000" alt="Imagen 1" className="img" />
+          <img src="https://essential.vteximg.com.br/arquivos/ids/540528/2717294_Grid1600x576pxsupersatt.jpg?v=637842452793630000" alt="Imagen 1" class="img" />
 
-          <img src="https://essential.vteximg.com.br/arquivos/ids/535841/BannerDesktop_RENNONG.jpg?v=637834624494370000" alt="Imagen 3" className="img" />
+          <img src="https://essential.vteximg.com.br/arquivos/ids/535841/BannerDesktop_RENNONG.jpg?v=637834624494370000" alt="Imagen 3" class="img" />
         </div>
           </Link>
 
-        <ul className="puntos">
-          <li className="punto activo"></li>
-          <li className="punto"></li>
-          <li className="punto"></li>
+        <ul class="puntos">
+          <li class="punto activo"></li>
+          <li class="punto"></li>
+          <li class="punto"></li>
         </ul>
       </div>
 

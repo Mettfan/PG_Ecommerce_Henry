@@ -2,7 +2,7 @@
 import  { ADD_PRODUCT, GET_SHOOPPING, ERROR } from '../actions/shoppingCartActions'
 const initialState = {
     shoppingList: [],
-    productos: [],
+    producto: [],
     status: ''
 }
 function shoppingCartReducer( state = initialState, action ){

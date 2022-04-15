@@ -2,8 +2,7 @@ const {User} = require('../../db.js');
 
 const getProductFromFavorites = async (req, res, next) => {
     try {
-        // const {email} = req.body;
-        const { email } = req.params;
+        const {email} = req.body;
         const user = await User.findOne({where: {email}});
         if(!user) {
             res.status(404).json({msg: 'Usuario no encontrado'});

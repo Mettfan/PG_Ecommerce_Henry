@@ -1,5 +1,5 @@
 
-import  { GET_PRODUCTS, GET_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, ERROR, FILTER_BY_GENRE, FILTER_BY_NAME, FILTER_BY_CATEGORY, ADD_SUBTOTAL, DELETE_SUBTOTAL, DELETE_PRODUCT_ID } from '../actions/productActions'
+import  { GET_PRODUCTS, GET_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, ERROR, FILTER_BY_GENRE, FILTER_BY_NAME, FILTER_BY_CATEGORY, ADD_SUBTOTAL, DELETE_SUBTOTAL } from '../actions/productActions'
 const initialState = {
     productos: [],
     allProductos: [],
@@ -18,8 +18,6 @@ function productReducer( state = initialState, action ){
             return { ...state, status: action.payload }
         case DELETE_PRODUCT:
             return { ...state, status: action.payload }
-        case DELETE_PRODUCT_ID:
-            return { ...state, producto: action.payload }
         case ERROR: 
             return { ...state, status: action.payload}
 

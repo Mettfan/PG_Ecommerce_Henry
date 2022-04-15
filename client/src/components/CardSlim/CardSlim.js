@@ -1,24 +1,29 @@
-import { React } from 'react'
+import React from 'react'
 import './CardSlim.css';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { QuantityCart, deleteSubtotal } from '../../redux/actions/productActions';
 
+
+
 //ver si no tiene descuento
 //agregar descuento en productos
-function CardSlim({ image, name, size, color, stock, price, index, discount, id }) {
-  const dispatch = useDispatch();
+function CardSlim({ image, name, size, color, stock, price, index, discount }) {
+//   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
+
   const subtotal = Number((((1-(discount/100))*price)*count).toFixed(2));
+
   const data = [index, subtotal];
+let dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(QuantityCart(data))
+  },[dispatch, count]);
+
   const handleDelete = (e) => {
     //eliminar de la db también
     dispatch(deleteSubtotal(subtotal))
   }
-
-  useEffect(() => {
-    dispatch(QuantityCart(data))
-  },[dispatch, count]);
 
   return (
     <div className="card-slim-container">
@@ -32,6 +37,9 @@ function CardSlim({ image, name, size, color, stock, price, index, discount, id 
             <p>Talle: { size }</p>
             <p>Color: { color }</p>
           </div>
+          {
+            stock
+            ?
           <div className="quantity-stock">
             <div className="Button-quantity">
               <button className="btn-btn" onClick={() => count >= 2 ? setCount(count -1) : console.log('no resta')}>-</button>
@@ -40,7 +48,9 @@ function CardSlim({ image, name, size, color, stock, price, index, discount, id 
             </div>
             <p className="stock-available">{ stock } disponibles</p>
           </div>
-
+            : 
+            null
+          } 
         </div>
           <div className="price-slim">
             <div>
@@ -59,7 +69,7 @@ function CardSlim({ image, name, size, color, stock, price, index, discount, id 
           </div>
       </div>
       <div className="card-slim-2">
-        <button onClick={() => handleDelete()} className="btn-delete-cart">Eliminar del carrito</button>
+        <button onClick={() => handleDelete()} className="btn-delete-cart"  >{!stock ? "Eliminar de Favoritos" : "Eliminar del carrito"}</button>
       </div>
       <hr/>
     </div>

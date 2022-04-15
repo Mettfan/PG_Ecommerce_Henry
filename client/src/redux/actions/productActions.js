@@ -9,7 +9,6 @@ export const FILTER_BY_NAME = 'FILTER_BY_NAME'
 export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY'
 export const ADD_SUBTOTAL = 'ADD_SUBTOTAL'
 export const DELETE_SUBTOTAL = 'DELETE_SUBTOTAL'
-export const DELETE_PRODUCT_ID = 'DELETE_PRODUCT_ID'
 
 
 
@@ -26,15 +25,6 @@ export const getProducts = ( ) => async dispatch  => {
             payload: error.error
         })
     })
-}
-
-export const deleteProductAction = () => {
-    return function (dispatch){
-        dispatch({ 
-            type: DELETE_PRODUCT_ID,
-            payload: null
-        })
-    }
 }
 
 export const getProduct = ( id ) => async ( dispatch ) => {
