@@ -46,4 +46,7 @@ router.post('/newsletter', newsletter);
 const newsProductFavorite = require('../Controllers/NewsletterControllers/newsletterByFavorites');
 router.post('/newsfavorites', newsProductFavorite);
 
+const addOrder = require ('../Controllers/OrderControllers/addOrder');
+router.post('/order', addOrder);
+
 module.exports = router;

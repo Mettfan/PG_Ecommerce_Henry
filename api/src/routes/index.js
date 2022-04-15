@@ -30,7 +30,7 @@ const addProductToFavorites = require('./user.js');
 const getProductFromFavorites = require('./user.js');
 const deleteProductFromFavorites = require('./user.js');
 const checkoutProducts = require('./product.js');
-
+const addOrder = require('./user.js');
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -64,7 +64,7 @@ router.use('/usuario', getProductFromFavorites);
 router.use('/usuario', deleteProductFromFavorites);
 router.use('/usuario', newsletter);
 router.use('/usuario', newsProductFavorite);
-
+router.use('/usuario', addOrder);
 
 
 

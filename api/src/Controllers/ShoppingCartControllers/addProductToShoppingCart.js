@@ -7,7 +7,7 @@ const addProductToShoppingCart = async(req,res, next )=>{
         await User.findOne( {where: {email: userEmail}}).then( async usuario => {
             await usuario.addProduct(producto)
                 await  usuario.getProducts().then( shoppingList => {
-                    res.send({msg: shoppingList})
+                    res.send({msg: "Productos agregados al carrito de compras", shoppingList})
                 }) 
         } )
     }).catch( error => {
