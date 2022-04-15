@@ -8,8 +8,12 @@ import { useParams } from "react-router-dom"
 import { getProduct, deleteProductAction } from "../../redux/actions/productActions"
 import { useAuth0 } from '@auth0/auth0-react';
 import './index.css'
+
 import { addProductFavorite } from '../../redux/actions/favoriteActions';
 import { addProduct } from '../../redux/actions/shoppingCartActions';
+
+import Cookies from 'universal-cookie';
+
 
 export default function ProductDetail (props) {
   let { id } = useParams()
@@ -19,7 +23,10 @@ export default function ProductDetail (props) {
   let userValidated = useSelector( state => state.userReducer.status.user )
   // let statusFav = useSelector( state => state.favoriteReducer.status )
   const {  isAuthenticated, user  } = useAuth0()
-  // let isUserAuthenticated = isAuthenticated || userValidated
+
+  let cookie = new Cookies()
+  let userValidated = cookie.get('user').user
+  let isUserAuthenticated = isAuthenticated || userValidated
   let usuario = userValidated || user
 
   // console.log('userValidated', userValidated)

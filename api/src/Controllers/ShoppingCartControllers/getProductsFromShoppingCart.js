@@ -14,9 +14,6 @@ const getProductsFromShoppingCart = async(req,res, next )=>{
         res.send({msg: error})
         
     })
-   
-   
-
 }
 
     module.exports = getProductsFromShoppingCart;
