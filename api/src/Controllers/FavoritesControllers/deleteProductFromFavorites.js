@@ -14,8 +14,7 @@ const deleteProductFromFavorites = async (req, res, next) => {
             console.log(ids, 'ids')
             console.log(parseInt(productId), 'productid')
             if(ids.includes(parseInt(productId))) {
-                await user.removeProduct(parseInt(productId));
-                const favorite = await user.getProducts();
+                const favorite = await user.removeProduct(parseInt(productId));
                 res.status(200).json({favorite, msg: 'Producto eliminado de favoritos'});
             } else {
                 res.status(404).json({msg: 'Producto no encontrado'});

@@ -25,9 +25,9 @@ export const addProduct = ( {productId, userEmail} ) => async dispatch  => {
     })
 }
 
-export const getShoppingList = ( {userEmail} ) => async dispatch => {
-    console.log(`'${userEmail}'`, 'emaillll ')
-    await axios.get(`http://localhost:3001/usuario/shopping/${userEmail}`).then( response => {
+export const getShoppingList = ( { email } ) => async dispatch => {
+    console.log(email, 'emaillll ')
+    await axios.get('http://localhost:3001/usuario/shopping', { userEmail: email }).then( response => {
         console.log(response.data, 'dataaaaaaaaaaaaaaaaa ')
         dispatch({
             type: GET_SHOOPPING,

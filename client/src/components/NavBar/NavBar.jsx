@@ -7,7 +7,6 @@ import logo from '../../assets/Booma_logo_backless_white.png'
 import './NavBar.css'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { createProduct, FilterByName, getProducts } from '../../redux/actions/productActions';
-import { getFavorites } from '../../redux/actions/favoriteActions';
 import SearchDialog from './SearchDialog/SearchDialog';
 import Catalog from '../Product/Catalog/Catalog';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -106,24 +105,15 @@ function NavBar(props) {
         category: producto.category
     }))
     })
-  }
     
-      console.log('status NAVBAR', status)
-
-    const handleShopping = () => {
-      isUserAuthenticated ? nav('/user/products') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))
-      
-      // dispatch(getFavorites(status.user?.email))
-    }
-
-
+    
   }
  
+  
   function switchLanding(){
     nav( state.interruptor  ? "/" : "/home")
     setState({...state, interruptor: !state.interruptor})
   }
-
   return (
     <>
       {/* {state.searchIsVisible? <div className='search-dialog-box'><SearchDialog content = {state.result}></SearchDialog> </div> : undefined} */}
@@ -182,7 +172,7 @@ function NavBar(props) {
                 {/* </Link> */}
 
                 {/* <Link to={!user?.name?"/login":'/user/products'}> */}
-                  <button onClick={() => handleShopping()} className="btnHome">
+                  <button onClick={ () => isUserAuthenticated ? nav('/user/products') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))} className="btnHome">
                     <BsFillCartFill />
                   </button>
                 {/* </Link> */}

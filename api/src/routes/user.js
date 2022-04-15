@@ -34,11 +34,11 @@ router.post('/subscribe', postUserEmail);
 router.get('/logout', logoutUser);
 
 router.post('/shopping', addProductToShoppingCart);
-router.get('/shopping/:email', getProductsFromShoppingCart);
+router.get('/shopping', getProductsFromShoppingCart);
 router.delete('/shopping', deleteProductFromShoppingCart);
 
 router.post('/favorites', addProductToFavorites);
-router.get('/favorites/:email', getProductFromFavorites);
+router.get('/favorites', getProductFromFavorites);
 router.delete('/favorites/:email/:productId', deleteProductFromFavorites);
 
 const newsletter = require('../Controllers/NewsletterControllers/newsletter');
