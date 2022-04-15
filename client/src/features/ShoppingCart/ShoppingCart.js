@@ -6,11 +6,15 @@ import {getShoppingList} from '../../redux/actions/shoppingCartActions'
 import CardSlim from "../../components/CardSlim/CardSlim"
 import { Link } from "react-router-dom"
 import './ShoppingCart.css'
+import Cookies from "universal-cookie"
+
+
 export default function ShoppingCart ( ) {
 
     //let {  isAuthenticated, user  } = useAuth0()
-    
-    let userValidated = useSelector( state => state.userReducer.status.user )
+    let cookie = new Cookies()
+    // let userValidated = useSelector( state => state.userReducer.status.user )
+    let userValidated = cookie.get('user').user
     //let isUserAuthenticated = isAuthenticated || userValidated
     
     const status = useSelector( state => state )
@@ -108,12 +112,14 @@ export default function ShoppingCart ( ) {
                         <option>Seleccionar opción</option>
                         <option>Retiro por la tienda</option>
                         <option>Enviar a mi domicilio</option>
+                        
                     </select>
                 </div>
+                
                 <div>
                     {
-                        select === "Enviar a mi domicilio"
-                        ?  
+                       select === "Enviar a mi domicilio"?
+                          
                 <div className="card-send">
                     <div className="img-send-card">
                       <img className="img-send" src="https://cdn-icons-png.flaticon.com/512/535/535239.png" alt="imagen rota"></img>
@@ -127,13 +133,14 @@ export default function ShoppingCart ( ) {
                     </div>
                       <div className="cart-edit">
                         <div className="price-discount-slim">
-                            <Link to="">
+                            <Link to="/user/products/send">
                             <p> Editar campo </p>
                             </Link>
                       </div>
                     </div>
                 </div>
-                    : null
+                       :null
+                      
                     }
                 </div>
                     { ProductosParaMostrar && ProductosParaMostrar?.map((product, i) => {

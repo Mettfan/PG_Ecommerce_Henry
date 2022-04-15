@@ -22,12 +22,14 @@ const productById = require('./product.js');
 const productByGender = require('./product.js');
 const postProduct = require('./product.js');
 const deleteProduct = require('./product.js');
+const putProduct = require('./product.js');
 const addProductToShoppingCart = require('./user.js');
 const getProductsFromShoppingCart = require('./user.js');
 const deleteProductFromShoppingCart = require('./user.js')
 const addProductToFavorites = require('./user.js');
 const getProductFromFavorites = require('./user.js');
 const deleteProductFromFavorites = require('./user.js');
+const checkoutProducts = require('./product.js');
 
 
 // Configurar los routers
@@ -47,6 +49,11 @@ router.use('/productos/:gender', productByGender)
 router.use('/productos/:id', deleteProduct);
 
 router.use('/productos', postProduct);
+
+router.use('/productos/checkout', checkoutProducts);
+
+
+router.use('/productos', putProduct);
 
 router.use('/usuario', addProductToShoppingCart);
 router.use('/usuario', getProductsFromShoppingCart);

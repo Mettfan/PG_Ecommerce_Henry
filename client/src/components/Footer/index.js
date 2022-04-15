@@ -1,5 +1,6 @@
 import React from 'react'
 import './index.css';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
@@ -21,13 +22,16 @@ function Footer() {
               <p>Instagram</p>
               <p>TikTok</p>
             </div>
-            <div>
+            <div >
               <p>Contacto</p>
-              <p>Entregas</p>
+              <Link to="/map" className='link-footer'>
+              <p>Entregas y Envios</p>
+              </Link>
               <p>Cambios</p>
             </div>
           </div>  
         </div>
+        
         )
 }
 

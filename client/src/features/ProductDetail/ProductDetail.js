@@ -9,12 +9,15 @@ import { getProduct } from "../../redux/actions/productActions"
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import './index.css'
+import Cookies from 'universal-cookie';
 
 export default function ProductDetail (props) {
 
   const {  isAuthenticated, user  } = useAuth0()
+  let cookie = new Cookies()
 
-  let userValidated = useSelector( state => state.userReducer.status.user )
+  // let userValidated = useSelector( state => state.userReducer.status.user )
+  let userValidated = cookie.get('user').user
   let isUserAuthenticated = isAuthenticated || userValidated
   
     
