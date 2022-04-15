@@ -5,7 +5,7 @@ const initialState = {
     allProductos: [],
     producto: [],
     status: '',
-    totalCart: [0],   
+    totalCart: [0],
 }
 function productReducer( state = initialState, action ){
     switch (action.type){

@@ -28,13 +28,15 @@ export default function ShoppingCart ( ) {
     // const status = useSelector((state) => state.productReducer.status);
     console.log('subtotal reducer in shoppingCart', subtotal)
 
-    const total = subtotal?.reduce((a,b) => a + b).toFixed(2);
+    const subtotalCards = subtotal?.map((card) => card.subtotal)
+    const total = subtotalCards?.reduce((a,b) => a + b);
+    // const total = subtotalCards?.reduce((a,b) => a + b).toFixed(2);
     // useEffect(() => {
     // console.log('subtotal', subtotal)
     // console.log('total useEffect', total)
     //     // dispatch(pruebaAction())
     // })
-
+// {quantity:2, price: 69.00, name: "Zapatillas nike", size:"", color:"" img:""}
     const handleSelect = (e) => {
         console.log('e.target.value', e.target.value)
             setSelect(e.target.value);
@@ -166,7 +168,7 @@ export default function ShoppingCart ( ) {
                         <hr/>        
                         <div className="cart-total-products">
                             <h4>TOTAL:</h4>
-                            <p>${ total }</p>
+                            <p>${ total?.toFixed(2) }</p>
                         </div>
                     </div>
                         <Link to="/user/products/pay">
