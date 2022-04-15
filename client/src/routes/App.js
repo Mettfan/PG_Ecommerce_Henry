@@ -27,12 +27,13 @@ function App() {
   return (
     
     <div className="App">
+
       <NavBar/>
       <Routes>
         {/* <Route exact path="/"  element={<RedirectRouteToHome />} /> */}
         <Route path="/sesionexpirada" element={<SesionExpirada />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Landing />} />
+        <Route exact path="/" element={<Landing />} />
 
         <Route path="/login" element={<Login />} />
 
@@ -49,10 +50,7 @@ function App() {
         <Route path="/user/products/send" element={<EditSend></EditSend> } />
         <Route path="/map" element={<Map></Map> } />
 
-
-
         <Route path="/admin/products" element={<GetProducts></GetProducts>} />
-
         <Route path="/admin/product/create" element={<CreateProduct></CreateProduct> } />
         <Route path="/admin/product/delete" element={<DeleteProduct></DeleteProduct> } />
 
