@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from "react-redux";
+import Cookies from 'universal-cookie';
 
 const formSchema = Yup.object().shape({
     // email:user?.email || userValidated.email,
@@ -38,8 +39,9 @@ export default function EditSend  () {
 
     const { logout, isAuthenticated, user } = useAuth0();
     const nav = useNavigate();
-
-    const userValidated = useSelector(state => state.userReducer.status.user);
+    let cookie = new Cookies()
+    // const userValidated = useSelector(state => state.userReducer.status.user);
+    const userValidated = cookie.get('user').user;
     const isUserAuthenticated = isAuthenticated || userValidated;
 
     const dispatch = useDispatch();
