@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {getShoppingList} from '../../redux/actions/shoppingCartActions'
 import CardSlim from "../../components/CardSlim/CardSlim"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import './ShoppingCart.css'
 import Cookies from "universal-cookie"
 
@@ -16,7 +16,7 @@ export default function ShoppingCart ( ) {
     // let userValidated = useSelector( state => state.userReducer.status.user )
     let userValidated = cookie.get('user').user
     //let isUserAuthenticated = isAuthenticated || userValidated
-    
+    let nav = useNavigate()
     const status = useSelector( state => state )
     const userRed  = status.userReducer
     const shopping = status.shoppingCartReducer
@@ -86,6 +86,10 @@ export default function ShoppingCart ( ) {
         // console.log('total useEffect', total)
         //     // dispatch(pruebaAction())
         // })
+    let setShoppingTotal = ( ) => {
+        cookie.set('total', total)
+        nav("/user/products/pay")
+    }
     return (<>
     
         {/* <b>HERE IS YOUR SHOPPING CART!</b>
@@ -173,9 +177,9 @@ export default function ShoppingCart ( ) {
                             <p>${ total?.toFixed(2) }</p>
                         </div>
                     </div>
-                        <Link to="/user/products/pay">
+                        <button onClick={() => setShoppingTotal() }>
                             <button className="btn-continue-cart" onClick={() => handleContinue()} >Continuar</button>
-                        </Link>
+                        </button>
                 </div>
         </div>
     </div>
