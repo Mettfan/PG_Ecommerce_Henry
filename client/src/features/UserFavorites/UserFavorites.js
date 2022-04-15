@@ -1,4 +1,4 @@
-/* eslint-disable import/no-anonymous-default-export */
+
 import './index.css';
 import { useEffect } from 'react';
 import CardProductFav from "../../components/CardProductFav/CardProductFav";
@@ -52,5 +52,6 @@ export default function ( ) {
                 </div>
             </div>              
         }
+
     </>)
 }

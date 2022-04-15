@@ -1,4 +1,4 @@
-import { useAuth0 } from "@auth0/auth0-react"
+//import { useAuth0 } from "@auth0/auth0-react"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -6,13 +6,16 @@ import {getShoppingList} from '../../redux/actions/shoppingCartActions'
 import CardSlim from "../../components/CardSlim/CardSlim"
 import { Link } from "react-router-dom"
 import './ShoppingCart.css'
+
+
 export default function ShoppingCart ( ) {
 
-    let {  isAuthenticated, user  } = useAuth0()
+    //let {  isAuthenticated, user  } = useAuth0()
     
     let userValidated = useSelector( state => state.userReducer.status.user )
     let ProductosParaMostrar = useSelector( state => state.shoppingCartReducer.shoppingList )
     // let isUserAuthenticated = isAuthenticated || userValidated
+
     const status = useSelector( state => state )
     const userRed  = status.userReducer
     const shopping = status.shoppingCartReducer
@@ -52,12 +55,14 @@ export default function ShoppingCart ( ) {
                         <option>Seleccionar opción</option>
                         <option>Retiro por la tienda</option>
                         <option>Enviar a mi domicilio</option>
+                        
                     </select>
                 </div>
+                
                 <div>
                     {
-                        select === "Enviar a mi domicilio"
-                        ?  
+                       select === "Enviar a mi domicilio"?
+                          
                 <div className="card-send">
                     <div className="img-send-card">
                       <img className="img-send" src="https://cdn-icons-png.flaticon.com/512/535/535239.png" alt="imagen rota"></img>
@@ -71,13 +76,14 @@ export default function ShoppingCart ( ) {
                     </div>
                       <div className="cart-edit">
                         <div className="price-discount-slim">
-                            <Link to="">
+                            <Link to="/user/products/send">
                             <p> Editar campo </p>
                             </Link>
                       </div>
                     </div>
                 </div>
-                    : null
+                       :null
+                      
                     }
                 </div>
                     { ProductosParaMostrar && ProductosParaMostrar?.map((product, i) => {
