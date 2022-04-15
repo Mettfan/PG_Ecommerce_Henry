@@ -12,33 +12,25 @@ import Cookies from "universal-cookie"
 export default function ShoppingCart ( ) {
 
     //let {  isAuthenticated, user  } = useAuth0()
-    let cookie = new Cookies()
-    // let userValidated = useSelector( state => state.userReducer.status.user )
+
     let userValidated = cookie.get('user').user
-    //let isUserAuthenticated = isAuthenticated || userValidated
-    
+    let userValidated = cookie.get('user').user
+    let ProductosParaMostrar = useSelector( state => state.shoppingCartReducer.shoppingList )
+    // let isUserAuthenticated = isAuthenticated || userValidated
+
+
     const status = useSelector( state => state )
     const userRed  = status.userReducer
     const shopping = status.shoppingCartReducer
     const dispatch = useDispatch()
-
-
-    // const dispatch = useDispatch();
     const [select, setSelect] = useState("Retiro por la tienda");
     const [count, setCount] = useState(3);
     const subtotal = useSelector((state) => state.productReducer.totalCart);
+    let usuario = userValidated || user
     // const status = useSelector((state) => state.productReducer.status);
-    console.log('subtotal reducer in shoppingCart', subtotal)
-
     const total = subtotal?.reduce((a,b) => a + b).toFixed(2);
-    // useEffect(() => {
-    // console.log('subtotal', subtotal)
-    // console.log('total useEffect', total)
-    //     // dispatch(pruebaAction())
-    // })
 
     const handleSelect = (e) => {
-        console.log('e.target.value', e.target.value)
             setSelect(e.target.value);
      }
  
@@ -46,63 +38,17 @@ export default function ShoppingCart ( ) {
          console.log('CONTINUAR')
          setCount(0);
      }
+
+    useEffect(() => {
+        dispatch(getShoppingList({userEmail: usuario?.email}))
+    },[])
     
-    useEffect( ( )=> {
-        console.log( 'GETTING SHOPPING LIST')
+     console.log(ProductosParaMostrar)
 
-
-        async function addShoppingCart  (){ 
-            let usuario = userValidated; //|| user
-            console.log("ASOCIANDO: "+usuario?.email)
-            await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(60), userEmail: usuario?.email}).then( response => {
-              console.log(response.data)
-              dispatch({ type: 'ADD_PRODUCT', payload: response.data })
-            },
-            (error) => console.log(error))
-      
-        }
-        
-        // dispatch(getShoppingList({ email: user.status.user.email }))
-
-        const productosCarrito = axios.get('http://localhost:3001/usuario/shopping', { email: userValidated?.email }).then(response => {
-            console.log(response.data)
-            console.log(status.shoppingCartReducer)
-            return status.shoppingCartReducer.productos?.msg
-        })
-
-
-        addShoppingCart()
-     }, [])
-    
-     const ProductosParaMostrar = status.shoppingCartReducer.productos?.msg
-    // let state = useSelector( state => state.shoppingCartReducer  )
-    console.log(ProductosParaMostrar)
-    
-   
-        // useEffect(() => {
-        // console.log('subtotal', subtotal)
-        // console.log('total useEffect', total)
-        //     // dispatch(pruebaAction())
-        // })
     return (<>
-    
-        {/* <b>HERE IS YOUR SHOPPING CART!</b>
-        {JSON.stringify(userRed.status.user.email)}
-        {ProductosParaMostrar?.map(producto => 
-                <div>
-                <p>{producto.name}</p>
-                <p>${producto.price}</p>
-                <img src={producto.image} alt="producto" width="50px" height="50px" />
-            </div>)
-        } */}
-
-
-
-{/* Carrito Maxi */}
-        
             {
-                ProductosParaMostrar
-                && 
+                ProductosParaMostrar.length > 0
+                ? 
                     <div className="shopping-cart-container">
         <div className="into-container">
             <div className="cart-container-1">
@@ -152,6 +98,7 @@ export default function ShoppingCart ( ) {
                     size= { product?.size }
                     color= { product?.color }
                     stock= { product?.stock }
+                    id= { product.id }
                     discount= { 0 }
                     price= { product?.price }
                     />
@@ -177,14 +124,8 @@ export default function ShoppingCart ( ) {
                 </div>
         </div>
     </div>
-  
+                : <p className="title-no-cart">El carrito se encuentra vacío</p>
                 
-            }
-       
-
-        {/* {JSON.stringify(state)}
-        {console.log(state)} */}
-
-    
+            }    
     </>)
 }
