@@ -6,13 +6,15 @@ import {getShoppingList} from '../../redux/actions/shoppingCartActions'
 import CardSlim from "../../components/CardSlim/CardSlim"
 import { Link } from "react-router-dom"
 import './ShoppingCart.css'
+import Cookies from "universal-cookie"
 
 
 export default function ShoppingCart ( ) {
 
     //let {  isAuthenticated, user  } = useAuth0()
-    
-    let userValidated = useSelector( state => state.userReducer.status.user )
+    let cookie = new Cookies()
+    // let userValidated = useSelector( state => state.userReducer.status.user )
+    let userValidated = cookie.get('user').user
     //let isUserAuthenticated = isAuthenticated || userValidated
     
     const status = useSelector( state => state )
