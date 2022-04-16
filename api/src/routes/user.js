@@ -39,7 +39,7 @@ router.delete('/shopping', deleteProductFromShoppingCart);
 
 router.post('/favorites', addProductToFavorites);
 router.get('/favorites', getProductFromFavorites);
-router.delete('/favorites/:email/:productId', deleteProductFromFavorites);
+router.delete('/favorites', deleteProductFromFavorites);
 
 const newsletter = require('../Controllers/NewsletterControllers/newsletter');
 router.post('/newsletter', newsletter);
@@ -48,5 +48,13 @@ router.post('/newsfavorites', newsProductFavorite);
 
 const addOrder = require ('../Controllers/OrderControllers/addOrder');
 router.post('/order', addOrder);
+
+const addReview = require('../Controllers/ReviewsControllers/addReview');
+router.post('/review', addReview);
+const getReviews = require('../Controllers/ReviewsControllers/getReviews');
+router.get('/reviews', getReviews);
+const getReview = require('../Controllers/ReviewsControllers/getReview');
+router.get('/review', getReview);
+
 
 module.exports = router;

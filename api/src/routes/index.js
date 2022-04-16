@@ -17,6 +17,9 @@ const logoutUser = require('./user.js')
 const postUserEmail = require('./user.js');
 const newsletter = require('./user.js');
 const newsProductFavorite = require('./user.js')
+const addReview = require('./user.js')
+const getReviews = require('./user.js')
+const getReview = require('./user.js')
 const getProduct = require('./product.js');
 const productById = require('./product.js');
 const productByGender = require('./product.js');
@@ -65,6 +68,9 @@ router.use('/usuario', deleteProductFromFavorites);
 router.use('/usuario', newsletter);
 router.use('/usuario', newsProductFavorite);
 router.use('/usuario', addOrder);
+router.use('/usuario', addReview);
+router.use('/usuario', getReviews);
+router.use('/usuario', getReview);
 
 
 
