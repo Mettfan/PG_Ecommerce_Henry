@@ -2,7 +2,7 @@
 import {MdOutlineArrowBack} from 'react-icons/md'
 import { BsSuitHeartFill } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getProduct } from "../../redux/actions/productActions"
@@ -14,9 +14,12 @@ export default function ProductDetail (props) {
 
   const {  isAuthenticated, user  } = useAuth0()
 
+  const [show, setShow] = useState(false)
+
   let userValidated = useSelector( state => state.userReducer.status.user )
   let isUserAuthenticated = isAuthenticated || userValidated
   
+
     
     let { id } = useParams()
     let dispatch = useDispatch()
@@ -44,6 +47,7 @@ export default function ProductDetail (props) {
           dispatch({ type: 'ADD_PRODUCT', payload: response.data })
         },
         (error) => console.log(error))
+        setShow(true)
       }
 
 
@@ -81,6 +85,7 @@ export default function ProductDetail (props) {
               {product?.size?.split("-")?.map(el => <strong key={el}> <div className="detail-sizes2">{el}</div>     </strong>)}
             
             </div>
+          <p className={show ? 'producto_agregado' : 'producto_sinagregar'}> 🟢 El producto fue agregado al carrito</p>
           <div className="detail-one-buttons">
           {/* <Link to="/login" style={{ textDecoration: 'none' }}> */}
           <button onClick={ () => addShoppingCart()} className="detail-button-buy">Agregar al carrito</button>
