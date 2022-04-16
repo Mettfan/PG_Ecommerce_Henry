@@ -4,18 +4,14 @@ import { useDispatch } from 'react-redux';
 import {updateUser}  from '../../redux/actions/userActions';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from "react-redux";
 import Cookies from 'universal-cookie';
 
 const formSchema = Yup.object().shape({
-    // email:user?.email || userValidated.email,
      email: Yup.string(),
-    //     .required("Este campo es requerido")
-    //     .max(50, "Máximo 50 carácteres")
-    //     .min(8, "Mínimo 8 carácteres")
-    //     .matches(RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/), "El email no es válido"),
+    
     
         province: Yup.string()
         .required("Este campo es requerido")
@@ -46,13 +42,13 @@ export default function EditSend  () {
 
     const dispatch = useDispatch();
     const { register, formState: { errors }, handleSubmit, reset } = useForm(formOptions);
-    //const nav = useNavigate()
+    
 
     const onSubmit = (data) => {
         console.log('data', data);
         dispatch(updateUser(data));
         reset();
-        //nav('/home/products');
+        nav('/user/products');
     };
 
     return (
@@ -66,6 +62,7 @@ export default function EditSend  () {
                         <div className="labelAndInput">
                                 <label className="input-label">*Email: </label>
                                 <input
+                                readOnly
                                     className="input-register"
                                     type="text"
                                     name="email"
