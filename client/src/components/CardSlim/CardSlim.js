@@ -36,6 +36,7 @@ let dispatch = useDispatch()
             <p>{ name }</p>
             <p>Talle: { size }</p>
             <p>Color: { color }</p>
+           
           </div>
           {
             stock

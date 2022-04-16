@@ -20,6 +20,7 @@ import EditSend from '../features/EditSend/EditSend';
 import Map from '../features/Map/Map';
 import SesionExpirada from '../features/SesionExpirada/SesionExpirada';
 import Footer from '../components/Footer';
+import UserOrderView from '../features/UserOrderView/UserOrderView';
 import { CartPay } from '../features/CartPay/index';
 import CreateUser from '../features/Admin/UserActions/CreateUser/CreateUser';
 
@@ -47,7 +48,9 @@ function App() {
         <Route path="/user/products" element={<ShoppingCart></ShoppingCart>} />
         <Route path="/user/products/pay" element={<CartPay></CartPay> } />
         <Route path="/user/products/send" element={<EditSend></EditSend> } />
+        
         <Route path="/map" element={<Map></Map> } />
+        <Route path="/order" element={<UserOrderView></UserOrderView> } />
 
 
 
