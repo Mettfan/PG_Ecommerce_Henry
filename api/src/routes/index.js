@@ -21,6 +21,7 @@ const addReview = require('./user.js')
 const getReviews = require('./user.js')
 const getReview = require('./user.js')
 const deleteReview = require('./user.js')
+const deleteReviewById = require('./user.js')
 const getProduct = require('./product.js');
 const productById = require('./product.js');
 const productByGender = require('./product.js');
@@ -73,6 +74,7 @@ router.use('/usuario', addReview);
 router.use('/usuario', getReviews);
 router.use('/usuario', getReview);
 router.use('/usuario', deleteReview);
+router.use('/usuario', deleteReviewById);
 
 
 
