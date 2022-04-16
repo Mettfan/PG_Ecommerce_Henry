@@ -47,6 +47,6 @@ const newsProductFavorite = require('../Controllers/NewsletterControllers/newsle
 router.post('/newsfavorites', newsProductFavorite);
 
 const addOrder = require ('../Controllers/OrderControllers/addOrder');
-router.post('/order', addOrder);
+router.get('/order', addOrder);
 
 module.exports = router;

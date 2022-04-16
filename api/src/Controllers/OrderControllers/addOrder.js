@@ -3,7 +3,9 @@ const {nanoid} = require('nanoid')
 
 
 const addOrder = async (req, res, next) => {
-    const {status, status_detail, email} = req.body;
+    const {status, status_detail, email} = req.query;
+    console.log(req.query)
+    // res.redirect('http://localhost:3000')
     try {
         if(status !== 'approved') {
             res.status(400).json({msg: 'No se ha aprobado la transacción'});
@@ -44,6 +46,7 @@ const addOrder = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+
 }
 
 module.exports = addOrder;

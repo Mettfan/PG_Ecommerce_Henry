@@ -2,7 +2,7 @@ const { Product, User, UserProduct } = require('../../db.js')
 const mercadopago = require('mercadopago')
 // const { response } = require('express')
 mercadopago.configure({
-    access_token: 'TEST-4206952764594865-041216-028452a32798538039fa45b86c249fed-355601564'
+    access_token: 'APP_USR-4206952764594865-041216-86c66dae1de7c07e9a7a855ed313ba08-355601564'
 })
 const checkoutProducts = async(req,res, next )=>{
    
@@ -16,19 +16,14 @@ const checkoutProducts = async(req,res, next )=>{
        }
    })
    let preference = {
-       items: productOrder
-    // [
-    //     {
-    //         title: productList[0],
-    //         unit_price: 100,
-    //         quantity: 1
-    //     },
-    //     {
-    //         title: productList[1],
-    //         unit_price: 200,
-    //         quantity: 2
-    //     }
-    // ]
+       items: productOrder,
+       back_urls:{
+            'success': "http://localhost:3001/usuario/order",
+            'failure': "http://localhost:3001/usuario/order",
+            'pending': "http://localhost:3001/usuario/order"
+       },
+       auto_return: 'approved'
+ 
    } 
    mercadopago.preferences.create(preference).then( response => {
        //respuesta mp
