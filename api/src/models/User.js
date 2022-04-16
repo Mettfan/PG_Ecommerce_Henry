@@ -13,16 +13,16 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
         },
 
-        picture: {
-            type: DataTypes.STRING
-        },
+        // picture: {
+        //     type: DataTypes.STRING
+        // },
 
         gender: {
             type: DataTypes.STRING,
         },
 
         born: {
-            type: DataTypes.DATEONLY,
+            type: DataTypes.DATE,
         },
 
         dni: {

@@ -14,6 +14,8 @@
     "npm": ">=6.14.6"
   },
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.74",
+    "axios": "^0.26.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
@@ -22,6 +24,9 @@
     "express": "^4.17.3",
     "ioredis": "^4.19.2",
     "jsonwebtoken": "^8.5.1",
+    "mailchimp-api-v3": "^1.15.0",
+    "md5": "^2.3.0",
+    "mercadopago": "^1.5.12",
     "morgan": "^1.10.0",
     "nanoid": "^3.3.2",
     "nodemailer": "^6.7.3",

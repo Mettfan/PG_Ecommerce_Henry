@@ -15,12 +15,20 @@ import UserDetail from '../features/UserDetail/UserDetail';
 import UserFavorites from '../features/UserFavorites/UserFavorites';
 import ShoppingCart from '../features/ShoppingCart/ShoppingCart';
 import Landing from '../features/Landing/Landing';
+import EditSend from '../features/EditSend/EditSend';
+import Map from '../features/Map/Map';
 import SesionExpirada from '../features/SesionExpirada/SesionExpirada';
 import Footer from '../components/Footer';
+import UserOrderView from '../features/UserOrderView/UserOrderView';
 import { CartPay } from '../features/CartPay/index';
+
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+
+import CreateUser from '../features/Admin/UserActions/CreateUser/CreateUser';
+import OrderFinder from '../features/OrderFinder/OrderFinder';
+
 
 function App() {
 
@@ -41,12 +49,13 @@ function App() {
 
     
     <div className="App">
+
       <NavBar/>
       <Routes>
         {/* <Route exact path="/"  element={<RedirectRouteToHome />} /> */}
         <Route path="/sesionexpirada" element={<SesionExpirada />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Landing />} />
+        <Route exact path="/" element={<Landing />} />
 
         <Route path="/login" element={<Login />} />
 
@@ -60,11 +69,17 @@ function App() {
         <Route path="/user/favorites" element={<UserFavorites></UserFavorites>} />
         <Route path="/user/products" element={<ShoppingCart></ShoppingCart>} />
         <Route path="/user/products/pay" element={<CartPay></CartPay> } />
+        <Route path="/user/products/send" element={<EditSend></EditSend> } />
+        
+        <Route path="/map" element={<Map></Map> } />
+        <Route path="/order" element={<UserOrderView></UserOrderView> } />
 
         <Route path="/admin/products" element={<GetProducts></GetProducts>} />
-
         <Route path="/admin/product/create" element={<CreateProduct></CreateProduct> } />
         <Route path="/admin/product/delete" element={<DeleteProduct></DeleteProduct> } />
+
+        <Route path="/admin/user/create" element={<CreateUser></CreateUser> } />
+        <Route path="/order/finder/" element={<OrderFinder></OrderFinder> } />
         
       </Routes>
       <Footer />      

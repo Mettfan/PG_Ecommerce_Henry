@@ -31,15 +31,15 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { User, Product, Order, Category, Promotion, UserProduct, UserFavorite} = sequelize.models;
+const { User, Product, Order, Category, Promotion, Favorite, UserProduct, UserFavorite, Review} = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 User.belongsToMany(Product, { through: 'UserProducts' } )
 Product.belongsToMany(User, { through: 'UserProducts' } )
  
-User.belongsToMany(Product, { through: 'UserFavorites' } )
-Product.belongsToMany(User, { through: 'UserFavorites' } )
+User.belongsToMany(Favorite, { through: 'UserFavorites' } )
+Favorite.belongsToMany(User, { through: 'UserFavorites' } )
 
 User.hasMany(Order);
 Order.belongsTo(User);
@@ -52,6 +52,12 @@ Product.belongsTo(Category);
 
 Promotion.hasMany(Product);
 Product.belongsTo(Promotion);
+
+User.hasMany(Review);
+Review.belongsTo(User);
+
+Product.hasMany(Review);
+Review.belongsTo(Product);
 
 // Product.belongsToMany(Favorite, {through: 'product_favorite'});
 // Favorite.belongsToMany(Product, {through: 'product_favorite'});

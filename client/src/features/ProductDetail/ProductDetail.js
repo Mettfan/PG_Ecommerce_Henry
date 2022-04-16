@@ -9,14 +9,21 @@ import { getProduct } from "../../redux/actions/productActions"
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import './index.css'
+import Cookies from 'universal-cookie';
 
 export default function ProductDetail (props) {
 
   const {  isAuthenticated, user  } = useAuth0()
+  let cookie = new Cookies()
+
 
   const [show, setShow] = useState(false)
 
-  let userValidated = useSelector( state => state.userReducer.status.user )
+  let userValidatedSelector = useSelector( state => state.userReducer.status.user )
+
+  // let userValidated = useSelector( state => state.userReducer.status.user )
+  let userValidated = cookie.get('user').user
+
   let isUserAuthenticated = isAuthenticated || userValidated
   
 
@@ -39,7 +46,7 @@ export default function ProductDetail (props) {
         nav('/login')
       } else {
 
-        let usuario = userValidated || user
+        let usuario = userValidatedSelector || user
         console.log("ASOCIANDO: "+usuario?.email)
         console.log('CON '+id)
         await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(id), userEmail: usuario?.email}).then( response => {

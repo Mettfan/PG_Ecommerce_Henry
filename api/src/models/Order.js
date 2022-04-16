@@ -6,24 +6,25 @@ const {nanoid} = require('nanoid')
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Order', {
-      id: {
-          type: DataTypes.STRING,
-          default: nanoid(),
-          primaryKey: true
-      },
+    id: {
+        type: DataTypes.STRING,
+        default: nanoid(),
+        primaryKey: true,
+        
+    },
       
-      quantity: {
-          type: DataTypes.INTEGER,
-          allowNull: false 
-      },
-
-      total: {
-          type: DataTypes.INTEGER,
-          allowNull: false
-      },
-
-
-
-    
+    total: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    state: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'pending',
+        validate: {
+            isIn: [['pending', 'process', 'finished']]
+        }
+    },
+        
   });
 };

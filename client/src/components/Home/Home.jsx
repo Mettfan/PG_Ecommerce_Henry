@@ -7,13 +7,18 @@ import Catalog from '../Product/Catalog/Catalog'
 // import SearchDialog from '../NavBar/SearchDialog/SearchDialog';
 import { useAuth0 } from '@auth0/auth0-react'
 import {MdOutlineArrowDropUp, MdOutlineArrowDropDown} from 'react-icons/md'
+
 import { FilterByCategory, filterByGenre, filterByGenreChildren, filterByGenreMen, filterByGenreWomen } from '../../redux/actions/productActions';
+
+
+import Cookies from 'universal-cookie';
+
 
 
 function Home(props) {
   let status = useSelector( state => state.userReducer.status)
   const { isAuthenticated } = useAuth0()
-
+  let cookie = new Cookies()
 
   const dispatch = useDispatch();
   
@@ -54,12 +59,14 @@ function Home(props) {
 
     }
   }
-  
+
   useEffect (()=>{
     window.onscroll = function(ev) {
       if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
           loadMoreProducts()
       }
+
+  
   };
   }, [state.productsRendered])
   
@@ -150,6 +157,7 @@ function Home(props) {
 
           </div>
         </div>
+       {/* {JSON.stringify(cookie.get('user'))} */}
         <div className="home-cards">
           <Catalog
             productos={productos.slice(0, state.productsRendered)}
