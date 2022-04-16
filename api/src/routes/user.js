@@ -55,6 +55,7 @@ const getReviews = require('../Controllers/ReviewsControllers/getReviews');
 router.get('/reviews', getReviews);
 const getReview = require('../Controllers/ReviewsControllers/getReview');
 router.get('/review', getReview);
-
+const deleteReview = require('../Controllers/ReviewsControllers/deleteReview')
+router.delete('/review', deleteReview);
 
 module.exports = router;
