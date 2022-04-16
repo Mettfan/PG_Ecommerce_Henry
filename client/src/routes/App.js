@@ -22,6 +22,7 @@ import SesionExpirada from '../features/SesionExpirada/SesionExpirada';
 import Footer from '../components/Footer';
 import { CartPay } from '../features/CartPay/index';
 import CreateUser from '../features/Admin/UserActions/CreateUser/CreateUser';
+import OrderFinder from '../features/OrderFinder/OrderFinder';
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
         <Route path="/admin/product/delete" element={<DeleteProduct></DeleteProduct> } />
 
         <Route path="/admin/user/create" element={<CreateUser></CreateUser> } />
+        <Route path="/order/finder/" element={<OrderFinder></OrderFinder> } />
         
       </Routes>
       <Footer />      
