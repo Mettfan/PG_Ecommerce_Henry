@@ -58,6 +58,7 @@ export default function ShoppingCart ( ) {
             console.log("ASOCIANDO: "+usuario?.email)
             await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(60), userEmail: usuario?.email}).then( response => {
               console.log(response.data)
+              cookie.set('shopping', response.data)
               dispatch({ type: 'ADD_PRODUCT', payload: response.data })
             },
             (error) => console.log(error))
@@ -76,7 +77,7 @@ export default function ShoppingCart ( ) {
         addShoppingCart()
      }, [])
     
-     const ProductosParaMostrar = status.shoppingCartReducer.productos?.msg
+     const ProductosParaMostrar = status.shoppingCartReducer.productos?.msg || cookie.get('shopping')?.msg
     // let state = useSelector( state => state.shoppingCartReducer  )
     console.log(ProductosParaMostrar)
     
