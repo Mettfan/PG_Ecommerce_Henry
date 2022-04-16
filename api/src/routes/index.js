@@ -14,6 +14,7 @@ const deleteUser = require('./user.js');
 const login = require('./user.js');
 const putUserRol = require('./user')
 const logoutUser = require('./user.js')
+const userInformation = require('./user.js')
 const postUserEmail = require('./user.js');
 const newsletter = require('./user.js');
 const newsProductFavorite = require('./user.js')
@@ -45,9 +46,10 @@ router.use('/usuario', putUser);
 router.use('/usuario', putUserPassword);
 router.use('/usuario', deleteUser);
 router.use('/usuario', login);
-router.use('usuario', putUserRol)
+router.use('usuario', putUserRol);
 router.use('/usuario', postUserEmail);
-router.use('/usuario', logoutUser)
+router.use('/usuario', logoutUser);
+router.use('/usuario', userInformation);
 router.use('/productos', getProduct);
 router.use('/productos/:id', productById);
 router.use('/productos/:gender', productByGender)

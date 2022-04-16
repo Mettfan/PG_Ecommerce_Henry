@@ -17,7 +17,7 @@ const getProductsFromShoppingCart = require('../Controllers/ShoppingCartControll
 const deleteProductFromShoppingCart = require('../Controllers/ShoppingCartControllers/deleteProductFromShoppingCart');
 
 const logoutUser = require('../Controllers/UserControllers/logoutUser');
-
+const userInformation = require('../Controllers/UserControllers/getUserInformation');
 
 const addProductToFavorites = require('../Controllers/FavoritesControllers/addProductToFavorites');
 const getProductFromFavorites = require('../Controllers/FavoritesControllers/getProductFromFavorites');
@@ -32,6 +32,7 @@ router.post('/login', postLogin);
 router.put('/userrol', checkAuth, checkRoleAdmin(['superadmin']), putUserRole);
 router.post('/subscribe', postUserEmail);
 router.get('/logout', logoutUser);
+router.get('/info', userInformation);
 
 router.post('/shopping', addProductToShoppingCart);
 router.get('/shopping', getProductsFromShoppingCart);
