@@ -17,7 +17,7 @@ export const addProduct = ( {productId, userEmail} ) => async dispatch  => {
         productId,
         userEmail
     }).then( response => {
-        cookie.set('shopping', response)
+        cookie.set('shopping', response.data)
         dispatch({
             type: ADD_PRODUCT,
             payload: response.data
