@@ -11,8 +11,7 @@ module.exports = (sequelize) => {
       unique: true // el producto debería tener un nombre único me parece mejor
     },
     description: {
-      type: DataTypes.TEXT, 
-      allowNull: true
+      type: DataTypes.TEXT,
     },
     size: {
       type: DataTypes.STRING,
@@ -36,45 +35,36 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     discount: {
-      type: DataTypes.FLOAT,
-      allowNull: true
+      type: DataTypes.INTEGER,
     },
     warranty: {
-      type: DataTypes.TEXT,
-      allowNull: true
+      type: DataTypes.STRING,
     }, 
     brand: {
       type: DataTypes.STRING,
-      allowNull: false
     },
     suitable_for: {
       type: DataTypes.STRING,
-      allowNull: true
     },
     composition: {
       type: DataTypes.STRING,
-      allowNull: true
     },
     origin: {
       type: DataTypes.STRING,
-      allowNull: true
     },
     important_data: {
       type: DataTypes.STRING,
-      allowNull: true
     },
     extras: {
       type: DataTypes.STRING,
-      allowNull: true
     },
     image: { // pienso que deberíamos colocar una imagen por defecto por si acaso...
       type: DataTypes.TEXT,
-      allowNull: true,
       defaultValue: 'https://pixabay.com/es/vectors/camiseta-de-manga-corta-camisa-cima-34481'
     },
     disabled: {
-      typeof: DataTypes.BOOLEAN,
-      allowNull: false
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   });
 };

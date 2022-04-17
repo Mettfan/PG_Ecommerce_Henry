@@ -96,18 +96,15 @@ export default function ProductDetail (props) {
           <div className="description-bottom">
             <div className="description-bottom-p">
               <strong>Género:</strong> {product.gender} <br />
-              <strong>Beneficios:</strong> Amortiguación<br />
-              <strong>Caña:</strong> Baja<br />
-              <strong>Importante:</strong> El peso del calzado puede variar según el número solicitado. Los talles corresponden a numeración de Argentina<br />
-              <strong>Origen:</strong> Importado<br />
+              <strong>Extras:</strong> {product.extras}<br />
+              <strong>Importante:</strong> {product.important_data}<br />
+              <strong>Origen:</strong> {product.origin}<br />
             </div>
             <div className="description-bottom-p">
-              <strong>Adecuado para:</strong> Todo el día <br />
-              <strong>Composición:</strong> Capellada<br /> 
-              <strong>Malla/Sintético / Suela</strong>: Goma<br />
-              <strong>Ajuste:</strong> Con Cordones<br />
-              <strong>Garantía:</strong> Contra defecto de fabricación<br />
-              <strong>Marca:</strong> Nike<br />
+              <strong>Adecuado para:</strong> {product.suitable_for} <br />
+              <strong>Composición:</strong> {product.composition}<br />
+              <strong>Garantía:</strong>{product.warranty}<br />
+              <strong>Marca:</strong> {product.brand}<br />
             </div>
           </div>
         </div>
