@@ -81,12 +81,11 @@ export default function EditUser  () {
                         <div className="form-group-one">
                             <div className="labelAndInput">
                                 <label className="input-label">*Nombre: </label>
-                                <input
+                                <input 
                                     className="input-register"
                                     type="text"
                                     name="name"
-                                    placeholder= {user?.name || userValidated.name} 
-                                    value={user?.name || userValidated.name}
+                                    placeholder= {user?.name || userValidated?.name} 
                                     {...register('name')}
                                 />
                                 {<div className="form-register-errors">{errors.name?.message}</div>}
@@ -97,9 +96,9 @@ export default function EditUser  () {
                                     className="input-register"
                                     type="text"
                                     name="lastName"
-                                    placeholder= {user?.lastName || userValidated.lastName} 
-                                    value={user?.lastName || userValidated.lastName}
+                                    placeholder= {user?.lastName || userValidated?.lastName} 
                                     {...register('lastName')}
+                                    
                                 />
                                 {<div className="form-register-errors">{errors.lastName?.message}</div>}
                             </div>
@@ -109,9 +108,9 @@ export default function EditUser  () {
                                     className="input-register"
                                     type="text"
                                     name="email"
-                                    placeholder= {user?.email || userValidated.email} 
-                                    value={user?.email || userValidated.email}
+                                    placeholder= {user?.email || userValidated?.email} 
                                     {...register('email')}
+                                    
                                 />
                                 {<div className="form-register-errors">{errors.email?.message}</div>}
                             </div>
@@ -122,37 +121,11 @@ export default function EditUser  () {
                                     className="input-register"
                                     type="number"
                                     name="dni"
-                                    placeholder= {user?.dni || userValidated.dni} 
-                                    value={user?.dni || userValidated.dni}
+                                    placeholder= {user?.dni || userValidated?.dni} 
                                     {...register('dni')}
+                                    
                                 />
                                 {<div className="form-register-errors">{errors.dni?.message}</div>}
-                            </div>
-                            <div className="labelAndInput">
-                                <label className="input-label">*Fecha de Nacimiento: </label>
-                                <input
-                                    className="input-register"
-                                    type="date"
-                                    name="born"
-                                    placeholder= {user?.born || userValidated.born} 
-                                    value={user?.born || userValidated.born}
-                                    {...register('born')}
-                                />
-                                {<div className="form-register-errors">{errors.born?.message}</div>}
-                            </div>
-                            
-                            
-                            <div className="labelAndInput">
-                                <label className="input-label">*Localidad: </label>
-                                <input
-                                    className="input-register"
-                                    type="text"
-                                    name="province"
-                                    placeholder= {user?.province || userValidated.province} 
-                                    value={user?.province || userValidated.province}
-                                    {...register('province')}
-                                />
-                                {<div className="form-register-errors">{errors.province?.message}</div>}
                             </div>
                             <div className="labelAndInput">
                                 <label className="input-label">*Dirección: </label>
@@ -160,45 +133,40 @@ export default function EditUser  () {
                                     className="input-register"
                                     type="text"
                                     name="address"
-                                    placeholder= {user?.address || userValidated.address} 
-                                    value={user?.address || userValidated.address}
+                                    placeholder= {user?.address || userValidated?.address} 
                                     {...register('address')}
+                                    
                                 />
                                 {<div className="form-register-errors">{errors.address?.message}</div>}
                             </div>
+                            
+                            <div className="labelAndInput">
+                                <label className="input-label">*Provincia: </label>
+                                <input
+                                    className="input-register"
+                                    type="text"
+                                    name="province"
+                                    placeholder= {user?.province || userValidated?.province} 
+                                    {...register('province')}
+                                    
+                                />
+                                {<div className="form-register-errors">{errors.province?.message}</div>}
+                            </div>
+                            
                             <div className="labelAndInput">
                                 <label className="input-label">*Celular: </label>
                                 <input
                                     className="input-register"
                                     type="number"
                                     name="phone"
-                                    placeholder= {user?.phone || userValidated.phone} 
-                                    value={user?.phone || userValidated.phone}
+                                    placeholder= {user?.phone || userValidated?.phone} 
                                     {...register('phone')}
+                                    
                                 />
                                 {<div className="form-register-errors">{errors.phone?.message}</div>}
                             </div>
                         </div>
-                        <div className="gender-details">
-                            <input type="radio" name="gender" value="Femenino" id="dot-1" {...register('gender')} />
-                            <input type="radio" name="gender" value="Masculino" id="dot-2" {...register('gender')} />
-                            <input type="radio" name="gender" value="Prefiero no decirlo" id="dot-3" {...register('gender')} />
-                            <span className="gender-title">Género</span>
-                            <div className="category">
-                                <label htmlFor="dot-1">
-                                    <span className="dot one"></span>
-                                    <span className="gender">Femenino</span>
-                                </label>
-                                <label htmlFor="dot-2">
-                                    <span className="dot two"></span>
-                                    <span className="gender">Masculino</span>
-                                </label>
-                                <label htmlFor="dot-3">
-                                    <span className="dot three"></span>
-                                    <span className="gender">Prefiero no decirlo</span>
-                                </label>
-                            </div>
-                        </div>
+                        
                         <div className="form-submit">
                             <input
                                 type="submit"

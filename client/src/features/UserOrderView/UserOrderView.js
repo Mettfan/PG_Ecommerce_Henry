@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
 import './index.css'
 import data from './fake'
 //import CardSlim from "../../components/CardSlim/CardSlim";
@@ -43,6 +44,9 @@ const datas= data
       <div>Color: {product.color}</div>
       <div>Cantidad: {product.quantify}</div>
       <div>Precio: $ {product.price} </div>
+      <Link to='/'>
+      <div><button>Comentarios</button></div>
+      </Link>
       <div>-----------------------------------------------</div>
                 </div>
              )
