@@ -21,7 +21,7 @@ function OrdersView() {
     //        dispatch(getOrder(id))
     //   }, [dispatch, id])
   return(<>
-    <div ><h3>Ordenes de compra</h3></div>
+    <div className="card-name"><h3>Ordenes de compra</h3></div>
     { datas && datas?.map((order) => {
   return (
     <div className="card-admin-container">
@@ -29,7 +29,7 @@ function OrdersView() {
         
         <div className="card-admin-information">
             <p className="card-admin-name">Numero de orden: { order.id }</p>
-            <p className="price-slim-card">${ order.total }</p>
+            <p className="price-slim-card">Monto Total ${ order.total }</p>
             <p className="card-admin-size">Estado: {order.state }</p>
             
         </div>

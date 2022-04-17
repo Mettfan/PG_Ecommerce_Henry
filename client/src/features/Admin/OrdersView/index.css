@@ -39,14 +39,16 @@
   
   .card-admin-name {
     width: 30%;
+    font-size: 17px;
   }
   
   .card-admin-size {
-    width: 15%;
+    width: 30%;
+    font-size: 17px;
   }
   
   .card-admin-color {
-    width: 25%;
+    width: 30%;
   }
   
   .card-admin-available {
@@ -57,7 +59,8 @@
   }
   
   .price-slim-card {
-    width: 25%;
+    width: 30%;
+    font-size: 17px;
   }
   
   .button-card-admin {
@@ -67,4 +70,10 @@
     width: 10px;
     border: none;
     background-color: transparent;
+  }
+
+  .card-name{
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 80%;
   }
