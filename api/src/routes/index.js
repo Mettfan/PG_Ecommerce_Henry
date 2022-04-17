@@ -14,6 +14,7 @@ const deleteUser = require('./user.js');
 const login = require('./user.js');
 const putUserRol = require('./user')
 const logoutUser = require('./user.js')
+const userInformation = require('./user.js')
 const postUserEmail = require('./user.js');
 const newsletter = require('./user.js');
 const newsProductFavorite = require('./user.js')
@@ -36,6 +37,7 @@ const getProductFromFavorites = require('./user.js');
 const deleteProductFromFavorites = require('./user.js');
 const checkoutProducts = require('./product.js');
 const addOrder = require('./user.js');
+const forgotPassword = require('./user.js');
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -45,9 +47,10 @@ router.use('/usuario', putUser);
 router.use('/usuario', putUserPassword);
 router.use('/usuario', deleteUser);
 router.use('/usuario', login);
-router.use('usuario', putUserRol)
+router.use('usuario', putUserRol);
 router.use('/usuario', postUserEmail);
-router.use('/usuario', logoutUser)
+router.use('/usuario', logoutUser);
+router.use('/usuario', userInformation);
 router.use('/productos', getProduct);
 router.use('/productos/:id', productById);
 router.use('/productos/:gender', productByGender)
@@ -75,6 +78,7 @@ router.use('/usuario', getReviews);
 router.use('/usuario', getReview);
 router.use('/usuario', deleteReview);
 router.use('/usuario', deleteReviewById);
+router.use('/usuario', forgotPassword);
 
 
 
