@@ -14,7 +14,6 @@ import ProductDetail from '../features/ProductDetail/ProductDetail';
 import UserDetail from '../features/UserDetail/UserDetail';
 import UserFavorites from '../features/UserFavorites/UserFavorites';
 import ShoppingCart from '../features/ShoppingCart/ShoppingCart';
-import RedirectRouteToHome from '../components/RedirectRouteToHome/RedirectRouteToHome';
 import Landing from '../features/Landing/Landing';
 import EditSend from '../features/EditSend/EditSend';
 import Map from '../features/Map/Map';
@@ -22,11 +21,32 @@ import SesionExpirada from '../features/SesionExpirada/SesionExpirada';
 import Footer from '../components/Footer';
 import UserOrderView from '../features/UserOrderView/UserOrderView';
 import { CartPay } from '../features/CartPay/index';
+
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+
 import CreateUser from '../features/Admin/UserActions/CreateUser/CreateUser';
 import OrderFinder from '../features/OrderFinder/OrderFinder';
 
+
 function App() {
+
+  let userValidated = useSelector( state => state.userReducer.status.user )
+  const dispatch = useDispatch()
+  const email = userValidated?.email
+
+  useEffect(()=> {
+    if(userValidated) {
+      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(60), userEmail: email}).then( response => {
+        console.log(response.data)
+        dispatch({ type: 'ADD_PRODUCT', payload: response.data })
+      })
+    }
+  })
+
   return (
+
     
     <div className="App">
 
