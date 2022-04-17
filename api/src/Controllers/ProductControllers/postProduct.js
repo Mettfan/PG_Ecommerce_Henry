@@ -1,5 +1,10 @@
 const { Product, Category } = require('../../db.js')
+const postProduct = async(req,res, next )=>{
+    const {name, description, size, color, gender, stock, price, discount, warranty, brand, suitable_for, composition, origin, important_data, extras, disabled, image, category} = req.body
+    
+
 const postProduct = async (req, res, next) => {
+
 
     const { name, description, size, color, gender, stock, price, descount, image, category } = req.body
 
