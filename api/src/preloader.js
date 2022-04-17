@@ -1,4 +1,4 @@
-const data = require('./fakeData');
+const data = require('./productsList');
 const crearProduct = require('./Controllers/ProductControllers/crearProduct')
 
 module.exports = async function preloader() {
