@@ -1,3 +1,4 @@
+
 import '../Register/index.css';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -7,6 +8,7 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from "react-redux";
+import { useState } from 'react';
 
 
 const formSchema = Yup.object().shape({
@@ -53,6 +55,9 @@ const formSchema = Yup.object().shape({
 const formOptions = { resolver: yupResolver(formSchema) };
 
 export default function EditUser  () {
+    const dispatch = useDispatch();
+
+    
 
     const { logout, isAuthenticated, user } = useAuth0();
     const nav = useNavigate();
@@ -60,20 +65,38 @@ export default function EditUser  () {
     const userValidated = useSelector(state => state.userReducer.status.user);
     const isUserAuthenticated = isAuthenticated || userValidated;
 
-    const dispatch = useDispatch();
+    
     const { register, formState: { errors }, handleSubmit, reset } = useForm(formOptions);
     
+    const[input, setInput] = useState({
+        name: user?.name || userValidated?.name,
+        lastName: user?.lastName || userValidated?.lastName,
+        email: user?.email || userValidated?.email,
+        dni: user?.dni || userValidated?.dni,
+        phone: user?.phone || userValidated?.phone,
+        address: user?.address || userValidated?.address,
+        province: user?.province || userValidated?.province,
+       
+    })
+    //console.log(input)
+    
+    function handlerOnChange (e){
+        setInput({
+            ...input,
+            [e.target.name]:e.target.value
+        })
+    }
 
-    const onSubmit = (data) => {
-        console.log('data', data);
-        dispatch(updateUser(data));
+    const onSubmit = (e) => {
+        e.preventDefault();
+        dispatch(updateUser(input));
         reset();
         nav('/user/profile');
     };
 
     return (
         <div className="container-register-form">
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} >
                 <div className="container-index">
                     <div className="form-container">
                         <div className="title">Modificar mis datos</div>
@@ -81,22 +104,24 @@ export default function EditUser  () {
                         <div className="form-group-one">
                             <div className="labelAndInput">
                                 <label className="input-label">*Nombre: </label>
-                                <input 
+                                <input onChange={handlerOnChange}
                                     className="input-register"
                                     type="text"
                                     name="name"
-                                    placeholder= {user?.name || userValidated?.name} 
+                                    value={input.name}
+                                    //placeholder= {user?.name || userValidated?.name} 
                                     {...register('name')}
                                 />
                                 {<div className="form-register-errors">{errors.name?.message}</div>}
                             </div>
                             <div className="labelAndInput">
                                 <label className="input-label">*Apellido: </label>
-                                <input
+                                <input onChange={handlerOnChange}
                                     className="input-register"
                                     type="text"
                                     name="lastName"
-                                    placeholder= {user?.lastName || userValidated?.lastName} 
+                                    value={input.lastName}
+                                    //placeholder= {user?.lastName || userValidated?.lastName} 
                                     {...register('lastName')}
                                     
                                 />
@@ -104,11 +129,13 @@ export default function EditUser  () {
                             </div>
                             <div className="labelAndInput">
                                 <label className="input-label">*Email: </label>
-                                <input
+                                <input onChange={handlerOnChange}
                                     className="input-register"
                                     type="text"
                                     name="email"
-                                    placeholder= {user?.email || userValidated?.email} 
+                                    value={input.email}
+                                    // placeholder= {user?.email || userValidated?.email}
+                                    //value= {user?.email || userValidated?.email}
                                     {...register('email')}
                                     
                                 />
@@ -117,11 +144,12 @@ export default function EditUser  () {
                             
                             <div className="labelAndInput">
                                 <label className="input-label">*DNI: </label>
-                                <input
+                                <input onChange={handlerOnChange}
                                     className="input-register"
                                     type="number"
                                     name="dni"
-                                    placeholder= {user?.dni || userValidated?.dni} 
+                                    value={input.dni}
+                                    //placeholder= {user?.dni || userValidated?.dni} 
                                     {...register('dni')}
                                     
                                 />
@@ -129,11 +157,12 @@ export default function EditUser  () {
                             </div>
                             <div className="labelAndInput">
                                 <label className="input-label">*Dirección: </label>
-                                <input
+                                <input onChange={handlerOnChange}
                                     className="input-register"
                                     type="text"
                                     name="address"
-                                    placeholder= {user?.address || userValidated?.address} 
+                                    value={input.address}
+                                    //placeholder= {user?.address || userValidated?.address} 
                                     {...register('address')}
                                     
                                 />
@@ -142,11 +171,12 @@ export default function EditUser  () {
                             
                             <div className="labelAndInput">
                                 <label className="input-label">*Provincia: </label>
-                                <input
+                                <input onChange={handlerOnChange}
                                     className="input-register"
                                     type="text"
                                     name="province"
-                                    placeholder= {user?.province || userValidated?.province} 
+                                    value={input.province}
+                                    //placeholder= {user?.province || userValidated?.province} 
                                     {...register('province')}
                                     
                                 />
@@ -155,11 +185,12 @@ export default function EditUser  () {
                             
                             <div className="labelAndInput">
                                 <label className="input-label">*Celular: </label>
-                                <input
+                                <input onChange={handlerOnChange}
                                     className="input-register"
                                     type="number"
                                     name="phone"
-                                    placeholder= {user?.phone || userValidated?.phone} 
+                                    value={input.phone}
+                                    //placeholder= {user?.phone || userValidated?.phone} 
                                     {...register('phone')}
                                     
                                 />

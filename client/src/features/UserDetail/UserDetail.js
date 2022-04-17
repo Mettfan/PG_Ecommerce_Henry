@@ -43,6 +43,7 @@ export default function UserDetail(props) {
         <div className="container">
             {/* {JSON.stringify(cookies.get('data'))} */}
             <div className="profile-container">
+                <div><h2>Mi Cuenta</h2></div>
                 {isUserAuthenticated && <div>
                     <img className="userImgOnprofile" src={user?.picture || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU"}></img>
                     <div>{user?.name || userValidated.name} {user?.lastName || userValidated.lastName} </div>
