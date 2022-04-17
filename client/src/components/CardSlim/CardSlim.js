@@ -13,9 +13,18 @@ function CardSlim({ image, name, size, color, stock, price, index, discount }) {
   const [count, setCount] = useState(1);
 
   const subtotal = Number((((1-(discount/100))*price)*count).toFixed(2));
+  console.log('subtotal', subtotal)
+  const producto = {
+    image,
+    size,
+    name,
+    color,
+    quantity : count,
+    subtotal,
+  }
 
-  const data = [index, subtotal];
-let dispatch = useDispatch()
+  const data = [index, producto];
+  let dispatch = useDispatch()
   useEffect(() => {
     dispatch(QuantityCart(data))
   },[dispatch, count]);
@@ -36,6 +45,7 @@ let dispatch = useDispatch()
             <p>{ name }</p>
             <p>Talle: { size }</p>
             <p>Color: { color }</p>
+           
           </div>
           {
             stock

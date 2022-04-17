@@ -1,6 +1,8 @@
 import './index.css';
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom"
+import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 const handleSelect = (e) => {
@@ -21,12 +23,19 @@ const createOrder = (data, actions) =>  {
 const onApprove = (data, actions) =>  {
   return actions.order.capture();
 }
-function  handleSubmit(e){
-  e.preventDefault()
-}
+
 
 const CartPay = () => { 
-
+  let [state, setState] = useState({
+    price: 350
+  })
+  let nav = useNavigate()
+  function  cancel(e){
+    e.preventDefault()
+    console.log('cancel')
+    nav('/user/products')
+  }
+  let cookie = new Cookies()
   return (
     <div>
         <div className="form-pay-container">
@@ -39,7 +48,7 @@ const CartPay = () => {
             </div>
             <div className="total-pay">
               <h3>TOTAL</h3>
-              <h2>$350</h2>
+              <h2>{cookie.get('total')}</h2>
             </div>
               <div className="pay">
                 <p>Seleccione las cuotas</p>
@@ -53,23 +62,33 @@ const CartPay = () => {
                 </select>
               </div>  
               <div className="form-submit-pay">
-              <input 
-                type="submit"
-                value="Cancelar"
-                />
-              <input 
-                type="submit"
-                value="Pagar"
-                />
+                <form onSubmit={ (e ) => cancel(e) }> 
+
+              <button className='cancelButton' type='submit' ><b>Cancelar</b></button> 
+                
+              
+                </form>
+              {/* En el siguiente form se mandan los parámetros al back de manera rápida */}
+              {/* Value es pasado como string :( */}
+              <form action='http://localhost:3001/productos/checkout' method='POST'>
+                  <input type='hidden' name='productList' value={["Item"]}></input>
+                  <input type='hidden' name='userEmail' value='yannick@gmail.com'></input>
+                  <input type='hidden' name='total' value={cookie.get('total')} ></input>
+                  <button className='mpButton' type='submit' ><b>Pagar</b><img className='mpImage' src='https://www.lentesplus.com/media/wysiwyg/landings/metodos-de-pago/ico_mercadoPago.png' alt= ''></img> </button>
+
+              </form>
             </div>
+              
           </div>
+              
         </div>
                 <div>
 
-                <PayPalButton
+                {/* <PayPalButton
                 createOrder={(data, actions) => createOrder(data, actions)}
                 onApprove={(data, actions) => onApprove(data, actions)}
-              />
+              /> */}
+
                 </div>
     </div>
   )

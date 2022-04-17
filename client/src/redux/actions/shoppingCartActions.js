@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Cookies from 'universal-cookie'
 
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const GET_SHOOPPING = 'GET_SHOPPING'
@@ -8,10 +9,12 @@ export const GET_SHOOPPING = 'GET_SHOPPING'
 export const ERROR = 'ERROR'
 
 export const addProduct = ( {productId, userEmail} ) => async dispatch  => {
+    let cookie = new Cookies()
     await axios.post('http://localhost:3001/usuario/shopping', {
         productId,
         userEmail
     }).then( response => {
+        cookie.set('shopping', response)
         dispatch({
             type: ADD_PRODUCT,
             payload: response.data

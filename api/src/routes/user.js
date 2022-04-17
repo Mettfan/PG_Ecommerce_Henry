@@ -39,6 +39,25 @@ router.delete('/shopping', deleteProductFromShoppingCart);
 
 router.post('/favorites', addProductToFavorites);
 router.get('/favorites', getProductFromFavorites);
-router.delete('/favorites/:email/:productId', deleteProductFromFavorites);
+router.delete('/favorites', deleteProductFromFavorites);
+
+const newsletter = require('../Controllers/NewsletterControllers/newsletter');
+router.post('/newsletter', newsletter);
+const newsProductFavorite = require('../Controllers/NewsletterControllers/newsletterByFavorites');
+router.post('/newsfavorites', newsProductFavorite);
+
+const addOrder = require ('../Controllers/OrderControllers/addOrder');
+router.get('/order', addOrder);
+
+const addReview = require('../Controllers/ReviewsControllers/addReview');
+router.post('/review', addReview);
+const getReviews = require('../Controllers/ReviewsControllers/getReviews');
+router.get('/reviews', getReviews);
+const getReview = require('../Controllers/ReviewsControllers/getReview');
+router.get('/review', getReview);
+const deleteReview = require('../Controllers/ReviewsControllers/deleteReview')
+router.delete('/review', deleteReview);
+const deleteReviewById = require('../Controllers/ReviewsControllers/deleteReviewById')
+router.delete('/review/:id', deleteReviewById);
 
 module.exports = router;
