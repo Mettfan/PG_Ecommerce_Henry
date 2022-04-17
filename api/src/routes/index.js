@@ -37,6 +37,7 @@ const getProductFromFavorites = require('./user.js');
 const deleteProductFromFavorites = require('./user.js');
 const checkoutProducts = require('./product.js');
 const addOrder = require('./user.js');
+const forgotPassword = require('./user.js');
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -77,6 +78,7 @@ router.use('/usuario', getReviews);
 router.use('/usuario', getReview);
 router.use('/usuario', deleteReview);
 router.use('/usuario', deleteReviewById);
+router.use('/usuario', forgotPassword);
 
 
 
