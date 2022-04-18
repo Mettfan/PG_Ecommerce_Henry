@@ -141,7 +141,7 @@ var data = [
         stock: 3025,
         price: 59.99,
         image: 'https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/4387117d-10d6-4eef-b752-95f01a6e9082/dri-fit-fc-libero-pantalon-de-futbol-dVMvpL.png',
-        category: 'Zapatillas',
+        category: 'Pantalones',
         gender: 'Caballero'
     },
     {
@@ -152,7 +152,7 @@ var data = [
         stock: 1705,
         price: 49.99,
         image: 'https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/0384b918-7643-44ef-bcff-a74270650ebf/sportswear-club-jogger-vbZdxz.png',
-        category: 'Zapatillas',
+        category: 'Pantalones',
         gender: 'Caballero'
     },
     {
@@ -163,7 +163,7 @@ var data = [
         stock: 1258,
         price: 74.99,
         image: 'https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/0c933c07-e8e5-4c1b-b022-979c26448547/air-jogger-de-tejido-fleece-cepillado-en-la-parte-trasera-fHTgw4.png',
-        category: 'Zapatillas',
+        category: 'Pantalones',
         gender: 'Caballero'
     },
     {
