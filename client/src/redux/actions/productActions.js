@@ -11,7 +11,9 @@ export const ADD_SUBTOTAL = 'ADD_SUBTOTAL'
 export const DELETE_SUBTOTAL = 'DELETE_SUBTOTAL'
 export const FILTER_BY_MEN = 'FILTER_BY_MEN'
 export const FILTER_BY_WOMEN = 'FILTER_BY_WOMEN'
-export const FILTER_BY_CHILDREN = 'FILTER_BY_CHILDREN'
+export const FILTER_BY_NINO = 'FILTER_BY_NINO'
+export const FILTER_BY_NINA = 'FILTER_BY_NINA'
+
 
 
 
@@ -118,12 +120,27 @@ export function filterByGenreWomen (payload) {
       
     }
 }
-export function filterByGenreChildren (payload) {
+export function filterByGenreNiña (payload) {
     
     return async function (dispatch) {
         try {
             dispatch ({
-                type: FILTER_BY_CHILDREN,
+                type: FILTER_BY_NINA,
+                payload
+            });
+        }
+        catch (error) {
+            console.log(error)
+        }    
+      
+    }
+}
+export function filterByGenreNiño (payload) {
+    
+    return async function (dispatch) {
+        try {
+            dispatch ({
+                type: FILTER_BY_NINO,
                 payload
             });
         }
