@@ -1,46 +1,107 @@
-.admin-goto-products{
-    position: fixed;
-    text-decoration: none;
-    top: 200px;
-    left: 50px;
-    width: 30px;
-    font-size: x-large;
-}
-
-.create-product-form{
+.input-label-stock {
     display: flex;
+}
+
+.labelAndInput-stock {
+    width: 10%;
+}
+
+.container-stock {
+    display: flex;
+    margin: 10px 0;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.input-create-stock {
+    border-radius: 3px;
+    border: 1px solid black;
+    height: 27px;
+    width: 100%;
+    padding-left: 15px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.select-create-stock {
+    background: white;
+    padding: 3px;
+    border-color: black;
+    border-radius: 3px;
+}
+
+.button-create-stock {
+    background: rgb(0 0 0);
+    color: white;
+    padding: 4px;
+    border-radius: 14px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.labelAndInput-stock-finally {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: center;
+}
+.labelAndInput-stock-finally p {
+    background-color: #a2a2ac;
+    border: black;
+    border-radius: 4px;
+    margin-left: 2px;
+    font-weight: bold;
+    height:52px;
+    width:46px;
+}
+
+.gender-details-create-admin {
+    display: flex;
+    width: calc(100% / 2 - 20px);
+    align-items: flex-start;
     flex-direction: column;
-    position: fixed;
-    top: 200px;
-    left: 40%;
+    padding: 12px 0;
 }
 
-.product-name-input{
-    margin-left: 10px;
-    
+.gender {
+    font-size: 10px;
+    font-weight: 600;
 }
 
-.product-description-input{
-    margin-left: 10px;
+form .gender-details-create-admin .gender-title {
+    font-size: 10px;
+    font-weight: 600;
 }
 
-.product-size-input{
-    margin-left: 10px;
+form .gender-details-create-admin .category {
+    display: flex;
+    width: 60%;
+    margin: 14px 0;
+    justify-content: space-between;
 }
 
-.product-color-input{
-    margin-left: 10px;
+.gender-details-create-admin .category label {
+    display: flex;
+    align-items: center;
 }
 
-.product-gender-input{
-    margin-left: 10px;
+.gender-details-create-admin .category .dot {
+    height: 15px;
+    width: 15px;
+    background-color: #d9d9d9;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 20px;
+    border: 4px solid transparent;
+    transition: all 0.3s ease;
 }
-.product-stock-input{
-    margin-left: 10px;
-}
-.product-price-input{
-    margin-left: 10px;
-}
-.product-image-input{
-    margin-left: 10px;
+
+#dot-1:checked~.category label .one,
+#dot-2:checked~.category label .two,
+#dot-3:checked~.category label .three {
+    border-color: #d9d9d9;
+    background-color: black;
 }

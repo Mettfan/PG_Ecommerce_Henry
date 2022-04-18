@@ -10,12 +10,12 @@ export default function UserDetail(props) {
     let cookie = new Cookies();
     const status = cookie.get('user');
     const userDB = status.user;
-    const nav = useNavigate()
+    const nav = useNavigate();
 
     function singOut() {
-        cookie.set('user', '')
+        cookie.set('user', '');
         alert('Realmente quieres irte? Te perderás todo lo bueno');
-        nav('/home')
+        nav('/home');
     }
 
     return (
