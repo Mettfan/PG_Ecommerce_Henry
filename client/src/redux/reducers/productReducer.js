@@ -1,5 +1,5 @@
 
-import  { GET_PRODUCTS, GET_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, ERROR, FILTER_BY_MEN, FILTER_BY_WOMEN, FILTER_BY_NINO, FILTER_BY_NINA, FILTER_BY_NAME, FILTER_BY_CATEGORY, ADD_SUBTOTAL, DELETE_SUBTOTAL } from '../actions/productActions'
+import  { GET_PRODUCTS, GET_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, ERROR, FILTER_BY_MEN, FILTER_BY_WOMEN, FILTER_BY_NINO, FILTER_BY_NINA, FILTER_BY_NAME, FILTER_BY_CATEGORY, ADD_SUBTOTAL, DELETE_SUBTOTAL, FILTER_BY_PRICE } from '../actions/productActions'
 const initialState = {
     productos: [],
     allProductos: [],
@@ -77,6 +77,29 @@ function productReducer( state = initialState, action ){
             return {
                 ...state,
                 productos: prodsFilteredByCat
+            }
+
+        case FILTER_BY_PRICE:
+            let TodoslosProduPrice = state.allProductos
+            let priceProducts;
+ 
+            if (action.payload === "0-5") {
+                priceProducts = state.allProductos.filter(el => el.price >= 0 && el.price <= 5000)
+            };
+            if (action.payload === "5-10") {
+                priceProducts = state.allProductos.filter(el => el.price >= 5000 && el.price <= 10000)
+            };
+            if (action.payload === "10-15") {
+                priceProducts = state.allProductos.filter(el => el.price >= 10000 && el.price <= 15000)
+            };
+            if (action.payload === "15000") {
+                priceProducts = state.allProductos.filter(el => el.price >= 15000)
+            };
+            console.log(priceProducts)
+
+            return {
+                ...state,
+                productos: action.payload === 'todos' ? TodoslosProduPrice : priceProducts
             }
 
         case ADD_SUBTOTAL: 

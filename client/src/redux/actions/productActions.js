@@ -13,6 +13,7 @@ export const FILTER_BY_MEN = 'FILTER_BY_MEN'
 export const FILTER_BY_WOMEN = 'FILTER_BY_WOMEN'
 export const FILTER_BY_NINO = 'FILTER_BY_NINO'
 export const FILTER_BY_NINA = 'FILTER_BY_NINA'
+export const FILTER_BY_PRICE = 'FILTER_BY_PRICE'
 
 
 
@@ -171,6 +172,20 @@ export function FilterByCategory(payload) {
         try {
             dispatch ({
                 type: FILTER_BY_CATEGORY,
+                payload,
+            });
+        }
+        catch (error) {
+            console.log(error)
+        }    
+    }
+}
+
+export function FilterByPrice(payload) {
+    return async function (dispatch) {
+        try {
+            dispatch ({
+                type: FILTER_BY_PRICE,
                 payload,
             });
         }

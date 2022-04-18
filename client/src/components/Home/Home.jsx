@@ -8,7 +8,7 @@ import Catalog from '../Product/Catalog/Catalog'
 import { useAuth0 } from '@auth0/auth0-react'
 import {MdOutlineArrowDropUp, MdOutlineArrowDropDown} from 'react-icons/md'
 
-import { FilterByCategory, filterByGenreMen, filterByGenreNiña, filterByGenreNiño, filterByGenreWomen } from '../../redux/actions/productActions';
+import { FilterByCategory, filterByGenreMen, filterByGenreNiña, filterByGenreNiño, filterByGenreWomen, FilterByPrice } from '../../redux/actions/productActions';
 
 
 import Cookies from 'universal-cookie';
@@ -33,6 +33,11 @@ function Home(props) {
   }
   function handleGenreNiña(event) {
       dispatch(filterByGenreNiña(event.target.value))
+  }
+
+
+  function handlePriceFilter(event) {
+      dispatch(FilterByPrice(event.target.value))
   }
 
   
@@ -181,11 +186,14 @@ function Home(props) {
 
             <div className={showPri ? 'bloqueacordeon activo' : 'bloqueacordeon'} onClick={() => setShowPri(!showPri)}>
               <h2 className="h2acordeon">Precios</h2>
-              <button className="contenido botongenero" value={'All'}  >0 - 5.000</button>
-              <button className="contenido botongenero" value={'Niño'} >5.000 - 10.0000</button>
-              <button className="contenido botongenero" value={'Dama'} >10.000 - 15.000</button>
-              <button className="contenido botongenero" value={'Caballero'}  >15.000 ▶ </button>
+              <button className="contenido botongenero" value={'todos'} onClick={(event) => handlePriceFilter(event)} >Todos</button>
+              <button className="contenido botongenero" value={'0-5'} onClick={(event) => handlePriceFilter(event)} >0 - 5.000</button>
+              <button className="contenido botongenero" value={'5-10'} onClick={(event) => handlePriceFilter(event)}>5.000 - 10.0000</button>
+              <button className="contenido botongenero" value={'10-15'} onClick={(event) => handlePriceFilter(event)}>10.000 - 15.000</button>
+              <button className="contenido botongenero" value={'15000'} onClick={(event) => handlePriceFilter(event)} >15.000 ▶ </button>
             </div>
+            
+
 
           </div>
         </div>
