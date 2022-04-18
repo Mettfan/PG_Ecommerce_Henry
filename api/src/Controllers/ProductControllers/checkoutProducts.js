@@ -7,14 +7,19 @@ mercadopago.configure({
 const checkoutProducts = async(req,res, next )=>{
    
    const { productList, userEmail, total } = req.body
-   console.log( typeof productList, userEmail, total)
-   let productOrder = productList.split(',').map( item => {
+   console.log(  JSON.parse(productList), userEmail, total)
+   let productOrder = JSON.parse(productList)?.map( item => {
+    //    return item
        return {
-        title: item,
-        unit_price: parseInt(total),
-        quantity: 1
+        title: item.name,
+        unit_price: item.price,
+        quantity: item.quantity || 1,
+        picture_url: item.image,
+        category_id: item.CategoryName,
+        // description: item.description
        }
    })
+   console.log(productOrder);
    let preference = {
        items: productOrder,
        back_urls:{

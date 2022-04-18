@@ -59,8 +59,13 @@ export default function UserDetail(props) {
                             <button className="loginbtn" onClick={crearUsuario}>CREAR CUENTA</button>
                         </div>
                     }
+
                     <Link to="/order">
                         <button className="logoutbtn">Mi compra</button>
+
+                    <Link to="/order/finder">
+                        <button >Mi compra</button>
+
                     </Link>
                     <Link to="/editar">
                         <button className="logoutbtn">Editar</button>

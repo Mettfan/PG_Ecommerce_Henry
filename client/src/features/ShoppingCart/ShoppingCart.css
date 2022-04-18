@@ -135,6 +135,9 @@
     font-size: 14px;
     font-weight: bold;
   }
+  .btn-continue-cart:hover {
+   cursor: pointer;
+  }
   
   
   @media (max-width: 740px) {

@@ -4,11 +4,16 @@ export const GET_PRODUCT = 'GET_PRODUCT'
 export const CREATE_PRODUCT = 'CREATE_PRODUCT'
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'
 export const ERROR = 'ERROR'
-export const FILTER_BY_GENRE = 'FILTER_BY_GENRE'
+//export const FILTER_BY_GENRE = 'FILTER_BY_GENRE'
 export const FILTER_BY_NAME = 'FILTER_BY_NAME'
 export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY'
 export const ADD_SUBTOTAL = 'ADD_SUBTOTAL'
 export const DELETE_SUBTOTAL = 'DELETE_SUBTOTAL'
+export const FILTER_BY_MEN = 'FILTER_BY_MEN'
+export const FILTER_BY_WOMEN = 'FILTER_BY_WOMEN'
+export const FILTER_BY_CHILDREN = 'FILTER_BY_CHILDREN'
+
+
 
 
 
@@ -66,7 +71,7 @@ export const createProduct = ( { gender, name, description, size, color, stock, 
 }
 
 export const deleteProduct = ( id ) => async ( dispatch ) => {
-    axios.delete('http://localhost:3001/producto/'+id).then( response => {
+    axios.delete(`http://localhost:3001/productos/${id}`).then( response => {
         dispatch({
             type: DELETE_PRODUCT,
             payload: response.data
@@ -83,12 +88,42 @@ export const deleteProduct = ( id ) => async ( dispatch ) => {
 
 /*******  FILTROS *************/
 
-export function filterByGenre (payload) {
+export function filterByGenreMen (payload) {
     
     return async function (dispatch) {
         try {
             dispatch ({
-                type: FILTER_BY_GENRE,
+                type: FILTER_BY_MEN,
+                payload
+            });
+        }
+        catch (error) {
+            console.log(error)
+        }    
+      
+    }
+}
+export function filterByGenreWomen (payload) {
+    
+    return async function (dispatch) {
+        try {
+            dispatch ({
+                type: FILTER_BY_WOMEN,
+                payload
+            });
+        }
+        catch (error) {
+            console.log(error)
+        }    
+      
+    }
+}
+export function filterByGenreChildren (payload) {
+    
+    return async function (dispatch) {
+        try {
+            dispatch ({
+                type: FILTER_BY_CHILDREN,
                 payload
             });
         }

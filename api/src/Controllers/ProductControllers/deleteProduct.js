@@ -1,7 +1,8 @@
 const { Product } = require('../../db.js')
 const deleteProduct = async(req,res)=>{
-    const { id } = req.body
-
+    // const { id } = req.body
+    const {id} = req.params
+    console.log('id', id)
     const product = Product.findOne({where: { id: id }})
 
     if(!product.length){
