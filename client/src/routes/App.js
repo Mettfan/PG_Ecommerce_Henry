@@ -30,6 +30,7 @@ import HomeAdmin from '../features/Admin/HomeAdmin';
 import EditCard from '../features/Admin/component/EditCard';
 
 import OrderFinder from '../features/OrderFinder/OrderFinder';
+import { CreateProduct } from '../features/Admin/ProductActions/CreateProduct/CreateProduct';
 
 
 function App() {
@@ -88,7 +89,7 @@ function App() {
 
 
         <Route path="/admin/product/create" element={<CreateProduct></CreateProduct> } />
-        <Route path="/admin/product/delete" element={<DeleteProduct></DeleteProduct> } />
+        {/* <Route path="/admin/product/delete" element={<DeleteProduct></DeleteProduct> } /> */}
 
 
         <Route path="/admin/user/create" element={<CreateUser></CreateUser> } />
