@@ -27,12 +27,12 @@ export default function ShoppingCart ( ) {
     // const dispatch = useDispatch();
     const [select, setSelect] = useState("Retiro por la tienda");
     const [count, setCount] = useState(3);
-    const subtotal = useSelector((state) => state.productReducer.totalCart);
+    const subtotal = useSelector((state) => state.productReducer.totalCart );
     // const status = useSelector((state) => state.productReducer.status);
     console.log('subtotal reducer in shoppingCart', subtotal)
 
     const subtotalCards = subtotal?.map((card) => card.subtotal)
-    const total = subtotalCards?.reduce((a,b) => a + b);
+    const total = subtotalCards?.reduce((a,b) => a + b) || cookie.get('total');
     // const total = subtotalCards?.reduce((a,b) => a + b).toFixed(2);
     // useEffect(() => {
     // console.log('subtotal', subtotal)
@@ -90,6 +90,7 @@ export default function ShoppingCart ( ) {
         //     // dispatch(pruebaAction())
         // })
     let setShoppingTotal = ( ) => {
+        console.log(total)
         cookie.set('total', total)
         nav("/user/products/pay")
     }
@@ -178,7 +179,7 @@ export default function ShoppingCart ( ) {
                         <hr/>        
                         <div className="cart-total-products">
                             <h4>TOTAL:</h4>
-                            <p>${ total?.toFixed(2) }</p>
+                            <p>${ (Number(cookie.get('total')) || total) }</p>
                         </div>
                     </div>
                         <button onClick={() => setShoppingTotal() }>
