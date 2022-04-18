@@ -249,6 +249,9 @@ function validate(input){
     if(!input.province){
         errors.province = " Complete la provincia";
     }
+    if(!input.postal){
+        errors.postal = " Complete el código postal";
+    }
     if(!input.phone){
         errors.phone = " Complete el celular";
     }
@@ -280,6 +283,7 @@ export default function EditUser  () {
         phone: user?.phone || userValidated?.phone,
         address: user?.address || userValidated?.address,
         province: user?.province || userValidated?.province,
+        postal: user?.postal || userValidated?.postal,
         // name:'',
         // lastName: '',
         // email: '',
@@ -319,8 +323,9 @@ function handlerOnChange (e){
                     phone: '',
                     address: '',
                     province: '',
+                    postal: '',
                 })
-             
+             nav('/user/profile')
             }}
 
     return (
@@ -340,10 +345,8 @@ function handlerOnChange (e){
                                     value={input.name}
                                     placeholder= {user?.name || userValidated?.name} 
                                     />  {errors.name && <p >{errors.name}</p>}
-                                   
-                                
-                            </div>
-                            <div className="labelAndInput">
+                                </div>
+                                <div className="labelAndInput">
                                 <label className="input-label">*Apellido: </label>
                                 <input onChange={(e)=>handlerOnChange(e)}
                                     className="input-register"
@@ -351,12 +354,10 @@ function handlerOnChange (e){
                                     name="lastName"
                                     value={input.lastName}
                                     placeholder= {user?.lastName || userValidated?.lastName} 
-                                    /> {errors.lastName && <p >{errors.lastName}</p>}
-                                   
-                            </div>
-                                    
-                                
-                            <div className="labelAndInput">
+                                    /> 
+                                {errors.lastName && <p >{errors.lastName}</p>}
+                                </div>
+                                <div className="labelAndInput">
                                 <label className="input-label">*Email: </label>
                                 <input onChange={(e)=>handlerOnChange(e)}
                                     className="input-register"
@@ -366,10 +367,8 @@ function handlerOnChange (e){
                                     placeholder= {user?.email || userValidated?.email}
                                    />
                                 {errors.email && <p >{errors.email}</p>}
-                               
-                            </div>
-                            
-                            <div className="labelAndInput">
+                                </div>
+                                <div className="labelAndInput">
                                 <label className="input-label">*DNI: </label>
                                 <input onChange={(e)=>handlerOnChange(e)}
                                     className="input-register"
@@ -377,14 +376,10 @@ function handlerOnChange (e){
                                     name="dni"
                                     value={input.dni}
                                     placeholder= {user?.dni || userValidated?.dni} 
-                                    
-                                    
                                 />
                                 {errors.dni && <p >{errors.dni}</p>}
-
-                               
-                            </div>
-                            <div className="labelAndInput">
+                                </div>
+                                <div className="labelAndInput">
                                 <label className="input-label">*Dirección: </label>
                                 <input onChange={(e)=>handlerOnChange(e)}
                                     className="input-register"
@@ -392,15 +387,10 @@ function handlerOnChange (e){
                                     name="address"
                                     value={input.address}
                                     placeholder= {user?.address || userValidated?.address} 
-                                    
-                                    
                                 />
                                 {errors.address && <p >{errors.address}</p>}
-
-                               
-                            </div>
-                            
-                            <div className="labelAndInput">
+                                </div>
+                                <div className="labelAndInput">
                                 <label className="input-label">*Provincia: </label>
                                 <input onChange={(e)=>handlerOnChange(e)}
                                     className="input-register"
@@ -408,15 +398,21 @@ function handlerOnChange (e){
                                     name="province"
                                     value={input.province}
                                     placeholder= {user?.province || userValidated?.province} 
-                                    
-                                    
                                 />
                                 {errors.province && <p >{errors.province}</p>}
-
-                                
-                            </div>
-                            
-                            <div className="labelAndInput">
+                                </div>
+                                <div className="labelAndInput">
+                                <label className="input-label">*Código postal: </label>
+                                <input onChange={(e)=>handlerOnChange(e)}
+                                    className="input-register"
+                                    type="number"
+                                    name="postal"
+                                    value={input.postal}
+                                    placeholder= {user?.postal || userValidated?.postal} 
+                                />
+                                {errors.postal && <p >{errors.postal}</p>}
+                                </div>
+                                <div className="labelAndInput">
                                 <label className="input-label">*Celular: </label>
                                 <input onChange={(e)=>handlerOnChange(e)}
                                     className="input-register"
@@ -424,24 +420,18 @@ function handlerOnChange (e){
                                     name="phone"
                                     value={input.phone}
                                     placeholder= {user?.phone || userValidated?.phone} 
-                                    
-                                    
                                 />
                                 {errors.phone && <p >{errors.phone}</p>}
-
-                               
-                            </div>
-                        </div>
-                        
-                        <div className="form-submit">
-                            <input
+                                </div>
+                                </div>
+                                <div className="form-submit">
+                                <input
                                 type="submit"
                                 value="EDITAR"
-                            />
-                        </div>
-                        
-                    </div>
-                </div>
+                                />
+                             </div>
+                         </div>
+                   </div>
             </form>
 
         </div>

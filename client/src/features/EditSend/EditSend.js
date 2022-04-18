@@ -23,6 +23,10 @@ const formSchema = Yup.object().shape({
         .max(30, "Máximo 30 carácteres")
         .min(2, "Mínimo 2 carácteres")
         .matches(RegExp(/[A-Za-z0-9]+/g), "Incluir el nombre y número"),
+    postal : Yup.string()
+        .required("Este campo es requerido")
+        .max(20, "Máximo 8 carácteres")
+        .min(8, "Mínimo 4 carácteres"),
     phone: Yup.string()
         .required("Este campo es requerido")
         .max(20, "Máximo 20 carácteres")
@@ -93,6 +97,16 @@ export default function EditSend  () {
                                     {...register('address')}
                                 />
                                 {<div className="form-register-errors">{errors.address?.message}</div>}
+                            </div>
+                            <div className="labelAndInput">
+                                <label className="input-label">*C. Postal: </label>
+                                <input
+                                    className="input-register"
+                                    type="text"
+                                    name="postal"
+                                    {...register('postal')}
+                                />
+                                {<div className="form-register-errors">{errors.postal?.message}</div>}
                             </div>
                             <div className="labelAndInput">
                                 <label className="input-label">*Celular: </label>

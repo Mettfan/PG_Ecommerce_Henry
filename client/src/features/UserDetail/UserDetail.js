@@ -27,6 +27,7 @@ export default function UserDetail(props) {
             dni:user.dni,
             address:user.address,
             province:user.province,
+            postal:user.postal,
             phone:user.phone,
 
         }));
@@ -52,6 +53,7 @@ export default function UserDetail(props) {
                     <div>Celular: {user?.phone || userValidated.phone} </div>
                     <div>Direccion: {user?.address || userValidated.address} </div>
                     <div>Provincia: {user?.province || userValidated.province} </div>
+                    <div>Código postal: {user?.postal || userValidated.postal} </div>
 
                     {!userValidated &&
                         <div>
