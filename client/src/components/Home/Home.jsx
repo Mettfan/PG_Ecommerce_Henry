@@ -1,12 +1,12 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
-import NavBar from '../NavBar/NavBar';
+//import NavBar from '../NavBar/NavBar';
 import './Home.css'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import Catalog from '../Product/Catalog/Catalog'
 // import SearchDialog from '../NavBar/SearchDialog/SearchDialog';
 import { useAuth0 } from '@auth0/auth0-react'
-import {MdOutlineArrowDropUp, MdOutlineArrowDropDown} from 'react-icons/md'
+//import {MdOutlineArrowDropUp, MdOutlineArrowDropDown} from 'react-icons/md'
 
 import { FilterByCategory, filterByGenre, filterByGenreChildren, filterByGenreMen, filterByGenreWomen } from '../../redux/actions/productActions';
 
@@ -100,7 +100,7 @@ function Home(props) {
 
   return (
     <>
-      {console.log(productos)}
+      {/* {console.log(productos)} */}
       {/* <NavBar/> */}
       {/* <SearchDialog content = {productos}></SearchDialog> */}
       <div className="home-filtersandcard">

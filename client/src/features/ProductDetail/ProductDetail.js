@@ -35,7 +35,7 @@ export default function ProductDetail (props) {
         
         dispatch(getProduct(id))
       }
-    }, [])
+    }, [id, dispatch])
     let product = useSelector( (state) => state.productReducer.producto)
     
     product = product ? product : props.producto
