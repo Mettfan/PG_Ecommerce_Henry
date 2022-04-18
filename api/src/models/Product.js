@@ -40,6 +40,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
 
+
     discount: {
       type: DataTypes.INTEGER,
     },
@@ -65,6 +66,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
 
     },
+
     image: { // pienso que deberíamos colocar una imagen por defecto por si acaso...
       type: DataTypes.TEXT,
       defaultValue: 'https://pixabay.com/es/vectors/camiseta-de-manga-corta-camisa-cima-34481'

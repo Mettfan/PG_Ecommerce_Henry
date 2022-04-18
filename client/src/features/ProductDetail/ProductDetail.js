@@ -34,10 +34,12 @@ export default function ProductDetail (props) {
       if(id) {
         dispatch(getProduct(id))
       }
+
       return function deleteProduct(){
         dispatch(deleteProductAction())
       }
     }, [])
+
     
     product = product ? product : props.producto
 
