@@ -98,9 +98,16 @@ function Home(props) {
             <div className={show ? 'bloqueacordeon activo' : 'bloqueacordeon'} onClick={() => setShow(!show)}>
               <h2 className="h2acordeon">Hombre</h2>
               <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenreMen(event)}  >Todos</button>
-              <button className="contenido botongenero" value={'Sudaderas'} onClick={(event) => handleGenreMen(event)} >Remeras</button>
+              <button className="contenido botongenero" value={'Camperas'} onClick={(event) => handleGenreMen(event)} >Camperas</button>
               <button className="contenido botongenero" value={'Pantalones'} onClick={(event) => handleGenreMen(event)} >Pantalones</button>
               <button className="contenido botongenero" value={'Zapatillas'} onClick={(event) => handleGenreMen(event)}  >Zapatillas</button>
+              <button className="contenido botongenero" value={'Mochilas'} onClick={(event) => handleGenreMen(event)}  >Mochilas</button>
+              <button className="contenido botongenero" value={'Gorras'} onClick={(event) => handleGenreMen(event)}  >Gorras</button>
+              <button className="contenido botongenero" value={'Bolsos'} onClick={(event) => handleGenreMen(event)}  >Bolsos</button>
+              <button className="contenido botongenero" value={'Buzos'} onClick={(event) => handleGenreMen(event)}  >Buzos</button>
+              <button className="contenido botongenero" value={'Calzas'} onClick={(event) => handleGenreMen(event)}  >Calzas</button>
+              <button className="contenido botongenero" value={'Remeras'} onClick={(event) => handleGenreMen(event)}  >Remeras</button>
+              <button className="contenido botongenero" value={'Botines'} onClick={(event) => handleGenreMen(event)}  >Botines</button>
             </div>
             
 
@@ -109,9 +116,16 @@ function Home(props) {
             <div className={showWo ? 'bloqueacordeon activo' : 'bloqueacordeon'} onClick={() => setShowWo(!showWo)}>
               <h2 className="h2acordeon">Mujer</h2>
               <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenreWomen(event)}  >Todos</button>
-              <button className="contenido botongenero" value={'Sudaderas'} onClick={(event) => handleGenreWomen(event)} >Remeras</button>
+              <button className="contenido botongenero" value={'Camperas'} onClick={(event) => handleGenreWomen(event)} >Camperas</button>
               <button className="contenido botongenero" value={'Pantalones'} onClick={(event) => handleGenreWomen(event)} >Pantalones</button>
               <button className="contenido botongenero" value={'Zapatillas'} onClick={(event) => handleGenreWomen(event)}  >Zapatillas </button>
+              <button className="contenido botongenero" value={'Mochilas'} onClick={(event) => handleGenreWomen(event)}  >Mochilas </button>
+              <button className="contenido botongenero" value={'Gorras'} onClick={(event) => handleGenreWomen(event)}  >Gorras </button>
+              <button className="contenido botongenero" value={'Bolsos'} onClick={(event) => handleGenreWomen(event)}  >Bolsos </button>
+              <button className="contenido botongenero" value={'Buzos'} onClick={(event) => handleGenreWomen(event)}  >Buzos </button>
+              <button className="contenido botongenero" value={'Calzas'} onClick={(event) => handleGenreWomen(event)}  >Calzas </button>
+              <button className="contenido botongenero" value={'Remeras'} onClick={(event) => handleGenreWomen(event)}  >Remeras </button>
+              <button className="contenido botongenero" value={'Botines'} onClick={(event) => handleGenreWomen(event)}  >Botines </button>
             </div>
 
 
@@ -120,18 +134,32 @@ function Home(props) {
             <div className={showNiño ? 'bloqueacordeon activo' : 'bloqueacordeon'} onClick={() => setShowNiño(!showNiño)}>
               <h2 className="h2acordeon">Niño</h2>
               <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenreNiño(event)}  >Todos</button>
-              <button className="contenido botongenero" value={'Sudaderas'} onClick={(event) => handleGenreNiño(event)} >Remeras</button>
+              <button className="contenido botongenero" value={'Camperas'} onClick={(event) => handleGenreNiño(event)} >Camperas</button>
               <button className="contenido botongenero" value={'Pantalones'} onClick={(event) => handleGenreNiño(event)} >Pantalones</button>
               <button className="contenido botongenero" value={'Zapatillas'} onClick={(event) => handleGenreNiño(event)}  >Zapatillas</button>
+              <button className="contenido botongenero" value={'Mochilas'} onClick={(event) => handleGenreNiño(event)}  >Mochilas</button>
+              <button className="contenido botongenero" value={'Gorras'} onClick={(event) => handleGenreNiño(event)}  >Gorras</button>
+              <button className="contenido botongenero" value={'Bolsos'} onClick={(event) => handleGenreNiño(event)}  >Bolsos</button>
+              <button className="contenido botongenero" value={'Buzos'} onClick={(event) => handleGenreNiño(event)}  >Buzos</button>
+              <button className="contenido botongenero" value={'Calzas'} onClick={(event) => handleGenreNiño(event)}  >Calzas</button>
+              <button className="contenido botongenero" value={'Remeras'} onClick={(event) => handleGenreNiño(event)}  >Remeras</button>
+              <button className="contenido botongenero" value={'Botines'} onClick={(event) => handleGenreNiño(event)}  >Botines</button>
             </div>
 
 
             <div className={showNiña ? 'bloqueacordeon activo' : 'bloqueacordeon'} onClick={() => setShowNiña(!showNiña)}>
               <h2 className="h2acordeon">Niña</h2>
               <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenreNiña(event)}  >Todos</button>
-              <button className="contenido botongenero" value={'Sudaderas'} onClick={(event) => handleGenreNiña(event)} >Remeras</button>
+              <button className="contenido botongenero" value={'Camperas'} onClick={(event) => handleGenreNiña(event)} >Camperas</button>
               <button className="contenido botongenero" value={'Pantalones'} onClick={(event) => handleGenreNiña(event)} >Pantalones</button>
               <button className="contenido botongenero" value={'Zapatillas'} onClick={(event) => handleGenreNiña(event)}  >Zapatillas</button>
+              <button className="contenido botongenero" value={'Mochilas'} onClick={(event) => handleGenreNiña(event)}  >Mochilas</button>
+              <button className="contenido botongenero" value={'Gorras'} onClick={(event) => handleGenreNiña(event)}  >Gorras</button>
+              <button className="contenido botongenero" value={'Bolsos'} onClick={(event) => handleGenreNiña(event)}  >Bolsos</button>
+              <button className="contenido botongenero" value={'Buzos'} onClick={(event) => handleGenreNiña(event)}  >Buzos</button>
+              <button className="contenido botongenero" value={'Calzas'} onClick={(event) => handleGenreNiña(event)}  >Calzas</button>
+              <button className="contenido botongenero" value={'Remeras'} onClick={(event) => handleGenreNiña(event)}  >Remeras</button>
+              <button className="contenido botongenero" value={'Botines'} onClick={(event) => handleGenreNiña(event)}  >Botines</button>
             </div>
 
 
@@ -139,9 +167,16 @@ function Home(props) {
             <div className={showCats ? 'bloqueacordeon activo' : 'bloqueacordeon'} onClick={() => setShowCats(!showCats)}>
               <h2 className="h2acordeon">Categorías</h2>
               <button className="contenido botongenero" value={'todos'} onClick={(event) => handleCategory(event)}  >Todos</button>
-              <button className="contenido botongenero" value={'Sudaderas'} onClick={(event) => handleCategory(event)} >Remeras</button>
+              <button className="contenido botongenero" value={'Camperas'} onClick={(event) => handleCategory(event)} >Camperas</button>
               <button className="contenido botongenero" value={'Pantalones'} onClick={(event) => handleCategory(event)} >Pantalones</button>
               <button className="contenido botongenero" value={'Zapatillas'} onClick={(event) => handleCategory(event)}  >Zapatillas</button>
+              <button className="contenido botongenero" value={'Mochilas'} onClick={(event) => handleCategory(event)}  >Mochilas</button>
+              <button className="contenido botongenero" value={'Gorras'} onClick={(event) => handleCategory(event)}  >Gorras</button>
+              <button className="contenido botongenero" value={'Bolsos'} onClick={(event) => handleCategory(event)}  >Bolsos</button>
+              <button className="contenido botongenero" value={'Buzos'} onClick={(event) => handleCategory(event)}  >Buzos</button>
+              <button className="contenido botongenero" value={'Calzas'} onClick={(event) => handleCategory(event)}  >Calzas</button>
+              <button className="contenido botongenero" value={'Remeras'} onClick={(event) => handleCategory(event)}  >Remeras</button>
+              <button className="contenido botongenero" value={'Botines'} onClick={(event) => handleCategory(event)}  >Botines</button>
             </div>
 
             <div className={showPri ? 'bloqueacordeon activo' : 'bloqueacordeon'} onClick={() => setShowPri(!showPri)}>
