@@ -1,5 +1,5 @@
 const getInfo=require('../../../src/routes/infoApi.js');
-const data = require( '../../fakeData');
+const data = require( '../../productsList');
 const { Product, Category } = require('../../db.js');
 
 
