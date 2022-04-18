@@ -62,7 +62,7 @@ export default function UserDetail(props) {
 
                     <Link to="/order">
                         <button className="logoutbtn">Mi compra</button>
-
+                        </Link>
                     <Link to="/order/finder">
                         <button >Mi compra</button>
 
