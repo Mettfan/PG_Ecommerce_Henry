@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom"
-const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+// const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 
 export default function CreateUser(){
@@ -17,9 +17,9 @@ export default function CreateUser(){
           ],
         });
       }
-    const onApprove = (data, actions) =>  {
-        return actions.order.capture();
-      }
+    // const onApprove = (data, actions) =>  {
+    //     return actions.order.capture();
+    //   }
     function  handleSubmit(e){
         e.preventDefault()
     }
@@ -31,12 +31,12 @@ export default function CreateUser(){
 
     return (<>
     
-    HERE YOU CAN CREATE AN USER 
+    {/* HERE YOU CAN CREATE AN USER 
 
     <PayPalButton
         createOrder={(data, actions) => createOrder(data, actions)}
         onApprove={(data, actions) => onApprove(data, actions)}
       />
-    
+     */}
     </>)
 }
