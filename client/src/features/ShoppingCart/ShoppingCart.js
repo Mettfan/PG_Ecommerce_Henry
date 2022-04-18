@@ -137,7 +137,7 @@ export default function ShoppingCart ( ) {
                     <div className="cart-slim-information">
                       <div className="name-size">
                         <p>Direccion: { userValidated?.address }</p>
-                        <p>CP: { userValidated?.cp } - { userValidated?.province }</p>
+                        <p>CP: { userValidated?.postal } - { userValidated?.province }</p>
                         <p>{ `${(userValidated?.name) + " " +(userValidated?.lastName)}` } - { userValidated?.phone }</p>
                       </div>
                     </div>

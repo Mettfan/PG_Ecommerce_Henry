@@ -46,6 +46,7 @@ module.exports = (sequelize) => {
 
         postal: {
             type: DataTypes.STRING,
+
         },
 
         phone: {
