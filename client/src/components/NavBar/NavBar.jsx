@@ -117,8 +117,8 @@ function NavBar(props) {
     }
 
 
-  }
- 
+  // }
+
   function switchLanding(){
     nav( state.interruptor  ? "/" : "/home")
     setState({...state, interruptor: !state.interruptor})

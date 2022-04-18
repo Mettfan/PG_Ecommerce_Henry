@@ -18,6 +18,7 @@ function CardSlim({ image, name, size, color, stock, price, index, discount, id 
 
   const handleDeleteFav = (e) => {
     //eliminar de la db también
+    e.preventDefault();
     dispatch(deleteProductFavorite({ productId: Number(id), email: usuario?.email}))
   }
 
@@ -57,7 +58,7 @@ function CardSlim({ image, name, size, color, stock, price, index, discount, id 
         <Link to={`/productos/${id}`} style={{textDecoration: 'none', color: 'black'}}>
           <button className="btn-delete-cart"  >Ver detalle</button>
         </Link>
-          <button onClick={() => handleDeleteFav()} className="btn-delete-cart">Eliminar de Favoritos</button>
+          <button onClick={(e) => handleDeleteFav(e)} className="btn-delete-cart">Eliminar de Favoritos</button>
       </div>
       <hr/>
     </div>

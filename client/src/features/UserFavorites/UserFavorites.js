@@ -7,11 +7,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 // import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getFavorites } from '../../redux/actions/favoriteActions';
+import Cookies from "universal-cookie";
 
 export default function ( ) {
+    let cookie = new Cookies();
     const {  isAuthenticated, user  } = useAuth0()
     
-    let userValidated = useSelector( state => state.userReducer.status.user )
+    let userValidated = cookie.get('user')?.user;
+    // let userValidated = useSelector( state => state.userReducer.status.user ) || cookie.get('user').user;
+    console.log('cookie.get.user', cookie.get('user')?.user)
     // let isUserAuthenticated = isAuthenticated || userValidated
     console.log('userValidated', userValidated)
 

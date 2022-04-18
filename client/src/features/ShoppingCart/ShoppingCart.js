@@ -1,4 +1,4 @@
-//import { useAuth0 } from "@auth0/auth0-react"
+import { useAuth0 } from "@auth0/auth0-react"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -11,9 +11,8 @@ import Cookies from "universal-cookie"
 
 export default function ShoppingCart ( ) {
 
-    //let {  isAuthenticated, user  } = useAuth0()
-
-    let userValidated = cookie.get('user').user
+    let {  isAuthenticated, user  } = useAuth0()
+    let cookie = new Cookies();
     let userValidated = cookie.get('user').user
     let ProductosParaMostrar = useSelector( state => state.shoppingCartReducer.shoppingList )
     // let isUserAuthenticated = isAuthenticated || userValidated
