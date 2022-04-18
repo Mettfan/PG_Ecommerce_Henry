@@ -19,10 +19,10 @@ import Cookies from 'universal-cookie';
 function NavBar(props) {
   let productos = props.productos
   let cookie = new Cookies ()
-  const { loginWithRedirect, user, isAuthenticated } = useAuth0()
+  const { loginWithRedirect,  isAuthenticated } = useAuth0()
   // let status = useSelector( state => state.userReducer.status )
-  let status = cookie.get('user')
-  let isUserAuthenticated = isAuthenticated || status
+  let user = cookie.get('user').user
+  let isUserAuthenticated = isAuthenticated || user
   const dispatch = useDispatch();
   
 
@@ -172,7 +172,7 @@ function NavBar(props) {
                   </button>:
                   <button className='btnUser' onClick={()=> nav('../user/profile') }>
                     <img className='userImg' src={user?.picture || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU'}></img>
-                    <div className='userName'> Hola {user?.name.split(' ')[0] || status.user.name}! </div>
+                    <div className='userName'> Hola {user?.name?.split(' ')[0] }! </div>
                   </button>}
                 {/* </Link> */}
 
