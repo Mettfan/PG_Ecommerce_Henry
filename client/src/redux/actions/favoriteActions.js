@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Cookies from 'universal-cookie'
 
 export const ADD_PRODUCT_FAVORITE = 'ADD_PRODUCT_FAVORITE'
 export const GET_FAVORITE = 'GET_FAVORITE'
@@ -27,8 +28,10 @@ export const addProductFavorite = ( {productId, email} ) => async dispatch  => {
 
 
   export const getFavorites = ( email ) => async dispatch => {
+      let cookie = new Cookies()
     console.log('getFavoritesAction email', email)
       await axios.get(`http://localhost:3001/usuario/favorites/${email}`).then( response => { console.log('response.data getFavAct', response.data)
+            cookie.set('favorites', response.data.products)
           dispatch({
               type: GET_FAVORITE,
               payload: response.data.products
