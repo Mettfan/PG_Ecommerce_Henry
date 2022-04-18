@@ -282,6 +282,19 @@
     font-weight: 800;
 }
 
+.numeroCantidadCart {
+
+    background: #e26e6c;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    line-height: 25px;
+    font-weight: 800;
+}
+
 
 /* ================================= 
     Media Queries

@@ -20,18 +20,19 @@ export default function ShoppingCart ( ) {
     const status = useSelector( state => state )
     const userRed  = status.userReducer
     const shopping = status.shoppingCartReducer
+    console.log(shopping, 'SHOPPINNNGNGNGNGNGNGNGN')
     const dispatch = useDispatch()
 
 
     // const dispatch = useDispatch();
     const [select, setSelect] = useState("Retiro por la tienda");
     const [count, setCount] = useState(3);
-    const subtotal = useSelector((state) => state.productReducer.totalCart);
+    const subtotal = useSelector((state) => state.productReducer.totalCart );
     // const status = useSelector((state) => state.productReducer.status);
     console.log('subtotal reducer in shoppingCart', subtotal)
 
     const subtotalCards = subtotal?.map((card) => card.subtotal)
-    const total = subtotalCards?.reduce((a,b) => a + b);
+    const total = subtotalCards?.reduce((a,b) => a + b) || cookie.get('total');
     // const total = subtotalCards?.reduce((a,b) => a + b).toFixed(2);
     // useEffect(() => {
     // console.log('subtotal', subtotal)
@@ -48,6 +49,7 @@ export default function ShoppingCart ( ) {
          console.log('CONTINUAR')
          setCount(0);
      }
+
     
     useEffect( ( )=> {
         console.log( 'GETTING SHOPPING LIST')
@@ -88,6 +90,7 @@ export default function ShoppingCart ( ) {
         //     // dispatch(pruebaAction())
         // })
     let setShoppingTotal = ( ) => {
+        console.log(total)
         cookie.set('total', total)
         nav("/user/products/pay")
     }
@@ -108,8 +111,8 @@ export default function ShoppingCart ( ) {
 {/* Carrito Maxi */}
         
             {
-                ProductosParaMostrar
-                && 
+                ProductosParaMostrar?
+                
                     <div className="shopping-cart-container">
         <div className="into-container">
             <div className="cart-container-1">
@@ -150,7 +153,7 @@ export default function ShoppingCart ( ) {
                       
                     }
                 </div>
-                    { ProductosParaMostrar && ProductosParaMostrar?.map((product, i) => {
+                    { ProductosParaMostrar?.map((product, i) => {
                     return <CardSlim 
                     key= { i }
                     index= { i }
@@ -161,6 +164,7 @@ export default function ShoppingCart ( ) {
                     stock= { product?.stock }
                     discount= { 0 }
                     price= { product?.price }
+                    id= { product?.id }
                     />
                 })}
                 </div>
@@ -175,7 +179,7 @@ export default function ShoppingCart ( ) {
                         <hr/>        
                         <div className="cart-total-products">
                             <h4>TOTAL:</h4>
-                            <p>${ total?.toFixed(2) }</p>
+                            <p>${ (Number(cookie.get('total')) || total) }</p>
                         </div>
                     </div>
                         <button onClick={() => setShoppingTotal() }>
@@ -184,7 +188,7 @@ export default function ShoppingCart ( ) {
                 </div>
         </div>
     </div>
-  
+    : null
                 
             }
        

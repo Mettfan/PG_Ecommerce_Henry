@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { RiLoginCircleFill } from 'react-icons/ri';
 import { AiFillHeart } from 'react-icons/ai';
 import { BsFillCartFill } from 'react-icons/bs';
@@ -7,10 +7,10 @@ import logo from '../../assets/Booma_logo_backless_white.png'
 import './NavBar.css'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { createProduct, FilterByName, getProducts } from '../../redux/actions/productActions';
-import SearchDialog from './SearchDialog/SearchDialog';
-import Catalog from '../Product/Catalog/Catalog';
+//import SearchDialog from './SearchDialog/SearchDialog';
+//import Catalog from '../Product/Catalog/Catalog';
 import { useAuth0 } from '@auth0/auth0-react';
-import maxiLoginImg from '../../assets/LOGO_BOOMA_simple.jpg'
+//import maxiLoginImg from '../../assets/LOGO_BOOMA_simple.jpg'
 import { createUser } from '../../redux/actions/userActions';
 import data from '../../fakeData'
 import AdminView from './AdminView/AdminView';
@@ -25,9 +25,16 @@ function NavBar(props) {
   let isUserAuthenticated = isAuthenticated || status
   const dispatch = useDispatch();
   
+
+  const statusCart = useSelector( state => state )
+  const ProductosParaMostrar = statusCart.shoppingCartReducer.productos?.msg
+
+  //console.log(ProductosParaMostrar)
+
+
   let nav = useNavigate()
   useEffect(()=>{
-    console.log('gettingProducts')
+
     props.getProducts()
     
   },[])
@@ -56,24 +63,24 @@ function NavBar(props) {
   function handleInputChange(event) {
       event.preventDefault();
       setName(event.target.value.toLowerCase());
-      console.log(name, 'HandleChange')
+      //console.log(name, 'HandleChange')
   }
 
   function handleSubmit(event) {
       event.preventDefault();
       dispatch(FilterByName(name))
       setName('');
-      console.log(name, 'HandleSubmit')
+      //console.log(name, 'HandleSubmit')
   }
 
 
   function onDisplayLoginChange(){
     setState({...state, myButtonLoginIsDisplayed: !state.myButtonLoginIsDisplayed})
-    console.log('LoginShown: '+state.myButtonLoginIsDisplayed)
+    //console.log('LoginShown: '+state.myButtonLoginIsDisplayed)
   }
 
   function addUser(){
-    console.log( ' Adduser' )
+    //console.log( ' Adduser' )
     dispatch(createUser(  {
       name: "Yomero", 
       lastName : "asdAA", 
@@ -90,8 +97,8 @@ function NavBar(props) {
   }
 
   function addProducts(){
-    console.log( ' AddProducts' )
-    console.log(data)
+    //console.log( ' AddProducts' )
+    //console.log(data)
     data?.map( producto => {
       return dispatch(createProduct(  {
         name: producto.name,
@@ -173,7 +180,7 @@ function NavBar(props) {
 
                 {/* <Link to={!user?.name?"/login":'/user/products'}> */}
                   <button onClick={ () => isUserAuthenticated ? nav('/user/products') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))} className="btnHome">
-                    <BsFillCartFill />
+                    <BsFillCartFill /> <div className="numeroCantidadCart"> {isUserAuthenticated ? ProductosParaMostrar?.length : 0} </div>
                   </button>
                 {/* </Link> */}
               </ul>
