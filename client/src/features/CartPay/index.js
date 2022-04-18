@@ -3,26 +3,12 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom"
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 const handleSelect = (e) => {
   e.preventDefault();
   console.log('e.target.value', e.target.value)
 }
-const createOrder = (data, actions) =>  {
-  return actions.order.create({
-    purchase_units: [
-      {
-        amount: {
-          value: "0.01",
-        },
-      },
-    ],
-  });
-}
-const onApprove = (data, actions) =>  {
-  return actions.order.capture();
-}
+
 
 
 const CartPay = () => { 
@@ -48,7 +34,7 @@ const CartPay = () => {
             </div>
             <div className="total-pay">
               <h3>TOTAL</h3>
-              <h2>{cookie.get('total')}</h2>
+              <h2>{(Number(cookie.get('total')) )?.toFixed(2)}</h2>
             </div>
               <div className="pay">
                 <p>Seleccione las cuotas</p>
@@ -73,7 +59,7 @@ const CartPay = () => {
               <form action='http://localhost:3001/productos/checkout' method='POST'>
                   <input type='hidden' name='productList' value={JSON.stringify(cookie.get('shopping').msg)}></input>
                   <input type='hidden' name='userEmail' value={cookie.get('user').email}></input>
-                  <input type='hidden' name='total' value={cookie.get('total')} ></input>
+                  <input type='hidden' name='total' value={100} ></input>
                   <button className='mpButton' type='submit' ><b>Pagar</b><img className='mpImage' src='https://www.lentesplus.com/media/wysiwyg/landings/metodos-de-pago/ico_mercadoPago.png' alt= ''></img> </button>
 
               </form>
@@ -85,10 +71,7 @@ const CartPay = () => {
         </div>
                 <div>
 
-                {/* <PayPalButton
-                createOrder={(data, actions) => createOrder(data, actions)}
-                onApprove={(data, actions) => onApprove(data, actions)}
-              /> */}
+             
 
                 </div>
     </div>
