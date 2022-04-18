@@ -66,7 +66,7 @@ export const createProduct = ( { gender, name, description, size, color, stock, 
 }
 
 export const deleteProduct = ( id ) => async ( dispatch ) => {
-    axios.delete('http://localhost:3001/producto/'+id).then( response => {
+    axios.delete(`http://localhost:3001/productos/${id}`).then( response => {
         dispatch({
             type: DELETE_PRODUCT,
             payload: response.data
