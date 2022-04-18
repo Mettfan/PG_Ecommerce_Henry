@@ -5,13 +5,8 @@ import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/userActions';
-
-import axios from 'axios';
-import { useEffect } from 'react';
-
 import Cookies from 'universal-cookie';
-
-
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 const formSchema = Yup.object().shape({
@@ -22,9 +17,6 @@ const formSchema = Yup.object().shape({
     .matches(RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/), "El email no es válido"),
   password: Yup.string()
     .required("Este campo es requerido")
-  // .max ( 16, "Máximo 16 carácteres")
-  // .min ( 8, "Mínimo 8 carácteres")
-  // .matches  ( RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/), "Contraseña Incorrecta"),
 });
 
 const formOptions = { resolver: yupResolver(formSchema) };
@@ -33,25 +25,17 @@ const Login = (props) => {
   let nav = useNavigate();
   let dispatch = useDispatch();
   let status = useSelector(state => state.userReducer.status);
-  let token = status.token;
+  //let token = status.token;
   const { register, formState: { errors }, handleSubmit } = useForm(formOptions);
 
-
-
+  const { loginWithRedirect } = useAuth0()
 
   const onSubmit = async (data) => {
-    //console.log('data', data, token, status);
-    //console.log('TOKEN', token);
+
     let cookies = new Cookies()
     cookies.set('data', data)
     dispatch(login(data));
-    //console.log(status);
-
-
     nav('/home');
-
-  
-
   };
 
 
@@ -93,6 +77,7 @@ const Login = (props) => {
                 type="submit"
                 value="INGRESAR"
               />
+              <button className="register-btn" onClick={loginWithRedirect}>Google/Facebook</button>
             </div>
             <div className="title-register" >
               Si no tienes una cuenta puedes registrarte ahora

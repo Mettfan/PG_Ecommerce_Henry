@@ -4,7 +4,7 @@ import Home from '../components/Home/Home';
 import { Routes, Route } from 'react-router-dom';
 import { Register } from '../features/Register';
 import { Login } from '../features/Login';
-import { DetailProduct } from '../features/DetailProduct';
+//import { DetailProduct } from '../features/DetailProduct';
 import Promotions from '../components/Promotions/Promotions';
 import PromotionDetails from '../components/PromotionDetails/PromotionDetails';
 import GetProducts from '../features/Admin/ProductActions/GetProduct/GetProducts'
