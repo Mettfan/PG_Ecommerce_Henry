@@ -3,7 +3,9 @@ import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import Cookies from "universal-cookie"
 import './OrderFinder.css'
+import { useNavigate } from "react-router-dom"
 export default function OrderFinder()  {
+    let nav = useNavigate()
     let cookie = new Cookies()
     let [searchParams, setSearchParams] = useSearchParams()
     let payment_id = searchParams.get('payment_id') || cookie.get('searchId')
@@ -16,6 +18,7 @@ export default function OrderFinder()  {
    useEffect(()=> { 
        if (payment_id){
            cookie.set('searchId', payment_id )
+           
            handleOnSubmit()
        } 
    }, [])
@@ -38,6 +41,9 @@ export default function OrderFinder()  {
             setState({...state, orderFound: {...state.orderFound, status: 'Not found', status_detail: 'Not found'}} )
         })  
         console.log(state, "submited!")
+    }
+    let goToOrder = async ( ) => {
+        nav('/order')
     }
     let datas = state.orderFound.additional_info?.items
     return ( <>
@@ -91,6 +97,10 @@ export default function OrderFinder()  {
     {/* El boton que te redirige al ticket */}
     <div>
                 {state.orderFound.status === 'pending' && <button onClick={( ) => window.location.href = state.orderFound.transaction_details?.external_resource_url }> Ticket</button>  }
+
+                </div>
+    <div>
+                {state.orderFound.status === 'pending' && <button onClick={( ) =>  goToOrder() }> Ver Orden</button>  }
 
                 </div>
   </div>

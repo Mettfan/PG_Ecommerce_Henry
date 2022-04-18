@@ -58,7 +58,7 @@ export default function ShoppingCart ( ) {
         async function addShoppingCart  (){ 
             let usuario = userValidated; //|| user
             console.log("ASOCIANDO: "+usuario?.email)
-            await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(60), userEmail: usuario?.email}).then( response => {
+            await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(3000), userEmail: usuario?.email}).then( response => {
               console.log(response.data)
               cookie.set('shopping', response.data)
               dispatch({ type: 'ADD_PRODUCT', payload: response.data })
@@ -91,7 +91,7 @@ export default function ShoppingCart ( ) {
         // })
     let setShoppingTotal = ( ) => {
         console.log(total)
-        cookie.set('total', total)
+        cookie.set('total', subtotalCards?.reduce((a,b) => a + b))
         nav("/user/products/pay")
     }
     return (<>
@@ -111,7 +111,7 @@ export default function ShoppingCart ( ) {
 {/* Carrito Maxi */}
         
             {
-                ProductosParaMostrar?
+                ProductosParaMostrar &&
                 
                     <div className="shopping-cart-container">
         <div className="into-container">
@@ -188,7 +188,7 @@ export default function ShoppingCart ( ) {
                 </div>
         </div>
     </div>
-    : null
+    
                 
             }
        

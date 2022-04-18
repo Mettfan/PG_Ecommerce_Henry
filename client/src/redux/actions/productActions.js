@@ -3,6 +3,7 @@ export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_PRODUCT = 'GET_PRODUCT'
 export const CREATE_PRODUCT = 'CREATE_PRODUCT'
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'
+export const DELETE_PRODUCT_ID = 'DELETE_PRODUCT_ID'
 export const ERROR = 'ERROR'
 //export const FILTER_BY_GENRE = 'FILTER_BY_GENRE'
 export const FILTER_BY_NAME = 'FILTER_BY_NAME'
@@ -84,7 +85,14 @@ export const deleteProduct = ( id ) => async ( dispatch ) => {
         })
     })
 }
-
+export const deleteProductAction = () => {
+    return function (dispatch){
+        dispatch({ 
+            type: DELETE_PRODUCT_ID,
+            payload: null
+        })
+    }
+}
 
 /*******  FILTROS *************/
 

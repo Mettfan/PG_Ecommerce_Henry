@@ -39,8 +39,10 @@ router.get('/shopping', getProductsFromShoppingCart);
 router.delete('/shopping', deleteProductFromShoppingCart);
 
 router.post('/favorites', addProductToFavorites);
-router.get('/favorites', getProductFromFavorites);
-router.delete('/favorites', deleteProductFromFavorites);
+// router.get('/favorites', getProductFromFavorites);
+// router.delete('/favorites', deleteProductFromFavorites);
+router.get('/favorites/:email', getProductFromFavorites);
+router.delete('/favorites/:email/:productId', deleteProductFromFavorites);
 
 const newsletter = require('../Controllers/NewsletterControllers/newsletter');
 router.post('/newsletter', newsletter);
