@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
 import './index.css'
 import data from './fake'
 //import CardSlim from "../../components/CardSlim/CardSlim";
@@ -29,24 +30,31 @@ const datas= data
   //   }, [dispatch, id])
 
    return (<>
-    <div >
-      <div>
+    <div>
+                <div>
+                    <div>
        <div><h3> Tu numero de orden es {datas.id}</h3></div>
         <div><h3>Producto/s: {datas.product}</h3></div>
        
        { datas && datas?.map((product) => {
             return (
-                <div >
-      <div><img src={ product.image } alt="imagen rota" width="70px"></img></div>
-      <div><h5> {product.name}</h5></div>
-      <div>Talle: {product.size}  </div>
-      <div>Color: {product.color}</div>
-      <div>Cantidad: {product.quantify}</div>
-      <div>Precio: $ {product.price} </div>
-      <div>-----------------------------------------------</div>
-                </div>
-             )
+                <div>
+                  <div className="card-admin-information">
+      <div><img src={ product.image } alt="imagen rota" width="80px"></img></div>
+      <div className="card-admin-name"><h5> {product.name}</h5></div>
+      <div className="card-admin-name">Talle: {product.size}</div>  
+      <div className="card-admin-name">Color: {product.color}</div>
+      <div className="card-admin-name">Cantidad: {product.quantify}</div>
+      <div className="card-admin-name">Precio: $ {product.price}</div> 
+      
+      <Link to='/'>
+      <div className="card-admin-coment"><button className="card-admin-coments">Comentarios</button></div>
+      </Link>
+      </div>
+      </div>
+      )
             })}:
+   </div>
    </div>
   </div>
    </>)
