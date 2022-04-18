@@ -4,20 +4,23 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {getShoppingList} from '../../redux/actions/shoppingCartActions'
 import CardSlim from "../../components/CardSlim/CardSlim"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import './ShoppingCart.css'
+import Cookies from "universal-cookie"
 
 
 export default function ShoppingCart ( ) {
 
     //let {  isAuthenticated, user  } = useAuth0()
-    
-    let userValidated = useSelector( state => state.userReducer.status.user )
+    let cookie = new Cookies()
+    // let userValidated = useSelector( state => state.userReducer.status.user )
+    let userValidated = cookie.get('user').user
     //let isUserAuthenticated = isAuthenticated || userValidated
-    
+    let nav = useNavigate()
     const status = useSelector( state => state )
     const userRed  = status.userReducer
     const shopping = status.shoppingCartReducer
+    console.log(shopping, 'SHOPPINNNGNGNGNGNGNGNGN')
     const dispatch = useDispatch()
 
 
@@ -28,13 +31,15 @@ export default function ShoppingCart ( ) {
     // const status = useSelector((state) => state.productReducer.status);
     console.log('subtotal reducer in shoppingCart', subtotal)
 
-    const total = subtotal?.reduce((a,b) => a + b).toFixed(2);
+    const subtotalCards = subtotal?.map((card) => card.subtotal)
+    const total = subtotalCards?.reduce((a,b) => a + b);
+    // const total = subtotalCards?.reduce((a,b) => a + b).toFixed(2);
     // useEffect(() => {
     // console.log('subtotal', subtotal)
     // console.log('total useEffect', total)
     //     // dispatch(pruebaAction())
     // })
-
+// {quantity:2, price: 69.00, name: "Zapatillas nike", size:"", color:"" img:""}
     const handleSelect = (e) => {
         console.log('e.target.value', e.target.value)
             setSelect(e.target.value);
@@ -44,6 +49,7 @@ export default function ShoppingCart ( ) {
          console.log('CONTINUAR')
          setCount(0);
      }
+
     
     useEffect( ( )=> {
         console.log( 'GETTING SHOPPING LIST')
@@ -54,6 +60,7 @@ export default function ShoppingCart ( ) {
             console.log("ASOCIANDO: "+usuario?.email)
             await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(60), userEmail: usuario?.email}).then( response => {
               console.log(response.data)
+              cookie.set('shopping', response.data)
               dispatch({ type: 'ADD_PRODUCT', payload: response.data })
             },
             (error) => console.log(error))
@@ -72,7 +79,7 @@ export default function ShoppingCart ( ) {
         addShoppingCart()
      }, [])
     
-     const ProductosParaMostrar = status.shoppingCartReducer.productos?.msg
+     const ProductosParaMostrar = status.shoppingCartReducer.productos?.msg || cookie.get('shopping')?.msg
     // let state = useSelector( state => state.shoppingCartReducer  )
     console.log(ProductosParaMostrar)
     
@@ -82,6 +89,10 @@ export default function ShoppingCart ( ) {
         // console.log('total useEffect', total)
         //     // dispatch(pruebaAction())
         // })
+    let setShoppingTotal = ( ) => {
+        cookie.set('total', total)
+        nav("/user/products/pay")
+    }
     return (<>
     
         {/* <b>HERE IS YOUR SHOPPING CART!</b>
@@ -99,8 +110,8 @@ export default function ShoppingCart ( ) {
 {/* Carrito Maxi */}
         
             {
-                ProductosParaMostrar
-                && 
+                ProductosParaMostrar?
+                
                     <div className="shopping-cart-container">
         <div className="into-container">
             <div className="cart-container-1">
@@ -141,7 +152,7 @@ export default function ShoppingCart ( ) {
                       
                     }
                 </div>
-                    { ProductosParaMostrar && ProductosParaMostrar?.map((product, i) => {
+                    { ProductosParaMostrar?.map((product, i) => {
                     return <CardSlim 
                     key= { i }
                     index= { i }
@@ -152,6 +163,7 @@ export default function ShoppingCart ( ) {
                     stock= { product?.stock }
                     discount= { 0 }
                     price= { product?.price }
+                    id= { product?.id }
                     />
                 })}
                 </div>
@@ -166,16 +178,16 @@ export default function ShoppingCart ( ) {
                         <hr/>        
                         <div className="cart-total-products">
                             <h4>TOTAL:</h4>
-                            <p>${ total }</p>
+                            <p>${ total?.toFixed(2) }</p>
                         </div>
                     </div>
-                        <Link to="/user/products/pay">
+                        <button onClick={() => setShoppingTotal() }>
                             <button className="btn-continue-cart" onClick={() => handleContinue()} >Continuar</button>
-                        </Link>
+                        </button>
                 </div>
         </div>
     </div>
-  
+    : null
                 
             }
        

@@ -13,16 +13,16 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
         },
 
-        picture: {
-            type: DataTypes.STRING
-        },
+        // picture: {
+        //     type: DataTypes.STRING
+        // },
 
         gender: {
             type: DataTypes.STRING,
         },
 
         born: {
-            type: DataTypes.DATEONLY,
+            type: DataTypes.DATE,
         },
 
         dni: {
@@ -44,10 +44,9 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
         },
 
-        // postal: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false
-        // },
+        postal: {
+            type: DataTypes.STRING,
+        },
 
         phone: {
             type: DataTypes.STRING,

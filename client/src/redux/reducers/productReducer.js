@@ -1,11 +1,11 @@
 
-import  { GET_PRODUCTS, GET_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, ERROR, FILTER_BY_GENRE, FILTER_BY_NAME, FILTER_BY_CATEGORY, ADD_SUBTOTAL, DELETE_SUBTOTAL } from '../actions/productActions'
+import  { GET_PRODUCTS, GET_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, ERROR, FILTER_BY_MEN, FILTER_BY_WOMEN, FILTER_BY_CHILDREN, FILTER_BY_NAME, FILTER_BY_CATEGORY, ADD_SUBTOTAL, DELETE_SUBTOTAL } from '../actions/productActions'
 const initialState = {
     productos: [],
     allProductos: [],
     producto: [],
     status: '',
-    totalCart: [0],   
+    totalCart: [0],
 }
 function productReducer( state = initialState, action ){
     switch (action.type){
@@ -22,14 +22,32 @@ function productReducer( state = initialState, action ){
             return { ...state, status: action.payload}
 
 
-        case FILTER_BY_GENRE:
-            const allProds = state.allProductos
-            const filterProds =allProds.filter(el => el.gender.includes(action.payload)) 
-            console.log(filterProds)
-            const prodsFiltered = action.payload === 'All' ? allProds : filterProds
+        case FILTER_BY_MEN:
+            let allProdsMen = state.allProductos.filter(el =>  el.gender === 'Caballero')
+            let filterProdsMen =allProdsMen.filter(el =>  el.gender === 'Caballero' && el.CategoryName === action.payload) 
+            console.log(filterProdsMen)
+            let prodsFilteredMen = action.payload === 'All' ? allProdsMen : filterProdsMen
             return {
                 ...state,
-                productos: prodsFiltered
+                productos: prodsFilteredMen
+            }
+        case FILTER_BY_WOMEN:
+            let allProdsWomen = state.allProductos.filter(el =>  el.gender === 'Dama')
+            const filterProdsWomen =allProdsWomen.filter(el => el.gender === 'Dama' && el.CategoryName === action.payload) 
+            console.log(filterProdsWomen)
+            const prodsFilteredWomen = action.payload === 'All' ? allProdsWomen : filterProdsWomen
+            return {
+                ...state,
+                productos: prodsFilteredWomen
+            }
+        case FILTER_BY_CHILDREN:
+            let allProdsChildren = state.allProductos.filter(el =>  el.gender === 'Niño')
+            const filterProdsChildren =allProdsChildren.filter(el => el.gender === 'Niño' && el.CategoryName === action.payload) 
+            console.log(filterProdsChildren)
+            const prodsFilteredChildren = action.payload === 'All' ? allProdsChildren : filterProdsChildren
+            return {
+                ...state,
+                productos: prodsFilteredChildren
             }
 
 

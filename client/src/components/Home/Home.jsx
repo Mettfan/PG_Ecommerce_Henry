@@ -7,19 +7,36 @@ import Catalog from '../Product/Catalog/Catalog'
 // import SearchDialog from '../NavBar/SearchDialog/SearchDialog';
 import { useAuth0 } from '@auth0/auth0-react'
 import {MdOutlineArrowDropUp, MdOutlineArrowDropDown} from 'react-icons/md'
-import { FilterByCategory, filterByGenre } from '../../redux/actions/productActions';
+
+import { FilterByCategory, filterByGenre, filterByGenreChildren, filterByGenreMen, filterByGenreWomen } from '../../redux/actions/productActions';
+
+
+import Cookies from 'universal-cookie';
+
 
 
 function Home(props) {
   let status = useSelector( state => state.userReducer.status)
   const { isAuthenticated } = useAuth0()
-
+  let cookie = new Cookies()
 
   const dispatch = useDispatch();
   
-  function handleGenre(event) {
-      dispatch(filterByGenre(event.target.value))
+  function handleGenreMen(event) {
+      dispatch(filterByGenreMen(event.target.value))
   }
+  function handleGenreWomen(event) {
+      dispatch(filterByGenreWomen(event.target.value))
+  }
+  function handleGenreChildren(event) {
+      dispatch(filterByGenreChildren(event.target.value))
+  }
+
+  
+  
+  
+
+
 
   function handleCategory(event) {
       dispatch(FilterByCategory(event.target.value))
@@ -42,12 +59,14 @@ function Home(props) {
 
     }
   }
-  
+
   useEffect (()=>{
     window.onscroll = function(ev) {
       if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
           loadMoreProducts()
       }
+
+  
   };
   }, [state.productsRendered])
   
@@ -64,24 +83,17 @@ function Home(props) {
     const h2        = document.querySelectorAll('.h2acordeon')
         
     
-    // Cuando CLICK en h2,
-        // QUITAR la clase activo de TODOS los bloque
-        // Vamos a añadir la clase activo al BLOQUE con la POSICION del h2
+
     
     // Recorrer TODOS los h2
     h2.forEach( ( cadaH2 , i )=>{
         // Asignando un CLICK a cada h2
         h2[i].addEventListener('click', ()=>{
     
-            // Recorrer TODOS los bloque
-            bloque.forEach( ( cadaBloque , i )=>{
-                // Quitamos la clase activo de TODOS los bloques
-                bloque[i].classList.remove('activo')
-            })
+
             // Añadiendo la clase activo al bloque cuya posición sea igual al del h2
-            // (Línea número 12)
-            bloque[i].classList.add('activo')
-    
+           
+            bloque[i].classList.toggle('activo')
         })
     })
 
@@ -96,12 +108,37 @@ function Home(props) {
         <div className="home-filter">
           <div className="acordeon">
             <div className="bloqueacordeon">
-              <h2 className="h2acordeon">Genero</h2>
-              <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenre(event)}  >Todos</button>
-              <button className="contenido botongenero" value={'Niño'} onClick={(event) => handleGenre(event)} >Niño</button>
-              <button className="contenido botongenero" value={'Dama'} onClick={(event) => handleGenre(event)} >Dama</button>
-              <button className="contenido botongenero" value={'Caballero'} onClick={(event) => handleGenre(event)}  >Caballero</button>
+              <h2 className="h2acordeon">Hombre</h2>
+              <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenreMen(event)}  >Todos</button>
+              <button className="contenido botongenero" value={'Sudaderas'} onClick={(event) => handleGenreMen(event)} >Remeras</button>
+              <button className="contenido botongenero" value={'Pantalones'} onClick={(event) => handleGenreMen(event)} >Pantalones</button>
+              <button className="contenido botongenero" value={'Zapatillas'} onClick={(event) => handleGenreMen(event)}  >Zapatillas</button>
             </div>
+            
+
+
+
+            <div className="bloqueacordeon">
+              <h2 className="h2acordeon">Mujer</h2>
+              <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenreWomen(event)}  >Todos</button>
+              <button className="contenido botongenero" value={'Sudaderas'} onClick={(event) => handleGenreWomen(event)} >Remeras</button>
+              <button className="contenido botongenero" value={'Pantalones'} onClick={(event) => handleGenreWomen(event)} >Pantalones</button>
+              <button className="contenido botongenero" value={'Zapatillas'} onClick={(event) => handleGenreWomen(event)}  >Zapatillas </button>
+            </div>
+
+
+
+
+            <div className="bloqueacordeon">
+              <h2 className="h2acordeon">Niño</h2>
+              <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenreChildren(event)}  >Todos</button>
+              <button className="contenido botongenero" value={'Sudaderas'} onClick={(event) => handleGenreChildren(event)} >Remeras</button>
+              <button className="contenido botongenero" value={'Pantalones'} onClick={(event) => handleGenreChildren(event)} >Pantalones</button>
+              <button className="contenido botongenero" value={'Zapatillas'} onClick={(event) => handleGenreChildren(event)}  >Zapatillas</button>
+            </div>
+
+
+
             <div className="bloqueacordeon">
               <h2 className="h2acordeon">Categorías</h2>
               <button className="contenido botongenero" value={'todos'} onClick={(event) => handleCategory(event)}  >Todos</button>
@@ -109,8 +146,18 @@ function Home(props) {
               <button className="contenido botongenero" value={'Pantalones'} onClick={(event) => handleCategory(event)} >Pantalones</button>
               <button className="contenido botongenero" value={'Zapatillas'} onClick={(event) => handleCategory(event)}  >Zapatillas</button>
             </div>
+
+            <div className="bloqueacordeon">
+              <h2 className="h2acordeon">Precios</h2>
+              <button className="contenido botongenero" value={'All'}  >0 - 5.000</button>
+              <button className="contenido botongenero" value={'Niño'} >5.000 - 10.0000</button>
+              <button className="contenido botongenero" value={'Dama'} >10.000 - 15.000</button>
+              <button className="contenido botongenero" value={'Caballero'}  >15.000 ▶ </button>
+            </div>
+
           </div>
         </div>
+       {/* {JSON.stringify(cookie.get('user'))} */}
         <div className="home-cards">
           <Catalog
             productos={productos.slice(0, state.productsRendered)}

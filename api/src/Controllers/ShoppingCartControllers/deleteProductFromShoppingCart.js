@@ -2,19 +2,29 @@ const {User} = require('../../db.js');
 
 const deleteProductFromShoppingCart = async (req, res, next) => {
     try {
-        const {email, id} = req.body;
+        const {email, productId} = req.query;
+        console.log(email, productId, 'desde el back')
+        // const idNumber = parseInt(productId);
         const user = await User.findOne({where: {email}});
-        const products = await user.getProducts();
-        const userId = products.map(product => product.id);
-        if(userId.includes(parseInt(id))) {
-            const cart = await user.removeProduct(parseInt(id));
-            return res.status(200).json ({cart, msg: 'Producto eliminado con éxito'});
+        console.log(user)
+        if(!user) {
+            res.status(404).json({msg: 'Usuario no encontrado'});
         } else {
-            return res.status(404).json({msg: 'Error, producto no encontrado'})
+            const products = await user.getProducts();
+            const ids = products.map(prod => prod.id);
+            console.log(ids, 'ids')
+            console.log(parseInt(productId), 'productid')
+            if(ids.includes(parseInt(productId))) {
+                const cart = await user.removeProduct(parseInt(productId));
+                res.status(200).json({cart, msg: 'Producto eliminado del carrito'});
+            } else {
+                res.status(404).json({msg: 'Producto no encontrado'});
+            }   
         }
     } catch (error) {
         next(error);
     }
+
 }
 
 module.exports = deleteProductFromShoppingCart;

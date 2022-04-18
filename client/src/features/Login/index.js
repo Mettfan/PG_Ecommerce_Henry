@@ -6,6 +6,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/userActions';
 
+import axios from 'axios';
+import { useEffect } from 'react';
+
+import Cookies from 'universal-cookie';
+
+
 
 
 const formSchema = Yup.object().shape({
@@ -30,12 +36,21 @@ const Login = (props) => {
   let token = status.token;
   const { register, formState: { errors }, handleSubmit } = useForm(formOptions);
 
-  const onSubmit = (data) => {
+
+
+
+  const onSubmit = async (data) => {
     //console.log('data', data, token, status);
     //console.log('TOKEN', token);
+    let cookies = new Cookies()
+    cookies.set('data', data)
     dispatch(login(data));
     //console.log(status);
+
+
     nav('/home');
+
+  
 
   };
 

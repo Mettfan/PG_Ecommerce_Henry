@@ -2,6 +2,7 @@ import './index.css';
 import React, { useState } from "react";
 import ReactDOM from "react-dom"
 import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 const handleSelect = (e) => {
@@ -34,7 +35,7 @@ const CartPay = () => {
     console.log('cancel')
     nav('/user/products')
   }
-  
+  let cookie = new Cookies()
   return (
     <div>
         <div className="form-pay-container">
@@ -47,7 +48,7 @@ const CartPay = () => {
             </div>
             <div className="total-pay">
               <h3>TOTAL</h3>
-              <h2>{state.price}</h2>
+              <h2>{cookie.get('total')}</h2>
             </div>
               <div className="pay">
                 <p>Seleccione las cuotas</p>
@@ -70,12 +71,13 @@ const CartPay = () => {
               {/* En el siguiente form se mandan los parámetros al back de manera rápida */}
               {/* Value es pasado como string :( */}
               <form action='http://localhost:3001/productos/checkout' method='POST'>
-                  <input type='hidden' name='productList' value={["Item"]}></input>
-                  <input type='hidden' name='userEmail' value='yannick@gmail.com'></input>
-                  <input type='hidden' name='total' value={state.price} ></input>
+                  <input type='hidden' name='productList' value={JSON.stringify(cookie.get('shopping').msg)}></input>
+                  <input type='hidden' name='userEmail' value={cookie.get('user').email}></input>
+                  <input type='hidden' name='total' value={cookie.get('total')} ></input>
                   <button className='mpButton' type='submit' ><b>Pagar</b><img className='mpImage' src='https://www.lentesplus.com/media/wysiwyg/landings/metodos-de-pago/ico_mercadoPago.png' alt= ''></img> </button>
 
               </form>
+              {/* {JSON.stringify(cookie.get('shopping').msg)} */}
             </div>
               
           </div>

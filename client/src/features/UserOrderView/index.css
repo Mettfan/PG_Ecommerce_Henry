@@ -1,0 +1,160 @@
+.card-slim-left {
+    
+ 
+  width:30% ;
+  float:left;
+ 
+ 
+ 
+ 
+      }
+      
+  .card-slim-rigth {
+     
+     width: 30%;
+     float: right;
+ 
+     
+  }      
+
+.card-slim-container {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+}
+
+.card-slim-1 {
+  margin-top: 5px;
+  display:contents;
+  flex-direction:flex-start;
+  font-weight: 600;
+   
+
+}
+
+.img-slim-card {
+  width: 8em;
+}
+
+.img-slim{
+  width: 90%;
+  height: 100%;
+}
+
+.card-slim-information {
+  display: flex;
+  width: 70%;
+  padding-left: 10px;
+}
+
+.name-size {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+}
+
+.quantity-stock {
+  width: 10em;
+  margin-right: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stock-available {
+  margin-top: 3px;
+  font-size: 10px;
+  color: grey;
+}
+
+.Button-quantity {
+  border-color: grey;
+  background-color: rgb(242, 239, 239);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.btn-btn {
+  border: none;
+}
+
+.price-slim {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.price-slim-card {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.price-discount-slim {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.price-discount-slim p {
+  padding-right: 10px;
+}
+
+.card-slim-2 {
+  margin-right: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.btn-delete-cart {
+  display: flex;
+  padding: 1px 5px;
+  color: grey;
+  border-radius: 25px;
+  font-weight: 1000;
+  border: none;
+  font-size: 12px;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+.card-slim-container hr {
+  margin: auto;
+  margin-top: 3px;
+  height: 2px;
+  width: 80%;
+  background-color: black;
+}
+
+@media (max-width: 900px) {
+  .card-slim-information {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 584px) {
+  .quantity-stock {
+    padding: 5px; 
+    margin: 0;
+    }
+
+  .price-slim {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 15px;
+  }
+
+  .img-slim {
+    width: 100%;
+  }
+  .card-slim-information {
+    font-size: 10px;
+  }
+}

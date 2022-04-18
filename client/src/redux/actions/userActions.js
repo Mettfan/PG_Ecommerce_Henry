@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Cookies from 'universal-cookie'
 export const GET_USERS = 'GET_USERS'
 export const CREATE_USER = 'CREATE_USER'
 export const UPDATE_USER = 'UPDATE_USER'
@@ -22,6 +23,7 @@ export const getUsers = ( ) => async dispatch  => {
 
 
 export const createUser = ({ name, lastName, picture, gender, born, dni, email, address, province, phone, password, permission = 'user' }) => async (dispatch) => {
+    let cookie = new Cookies()
     axios.post('http://localhost:3001/usuario/crearusuario', { 
         
         name,
@@ -37,6 +39,7 @@ export const createUser = ({ name, lastName, picture, gender, born, dni, email, 
         password,
         permission
      }).then( response => {
+        cookie.set('user', response.data)
          dispatch({
              type: CREATE_USER,
              payload: response.data
@@ -51,10 +54,13 @@ export const createUser = ({ name, lastName, picture, gender, born, dni, email, 
 }
 
 export const login  = ({ email, password}) => async (dispatch) => {
+    let cookie  = new Cookies()
+    
     axios.post('http://localhost:3001/usuario/login',{
         email,
         password,
     }).then( response => {
+        cookie.set('user', response.data)
         dispatch({
             type: LOGIN,
             payload: response.data

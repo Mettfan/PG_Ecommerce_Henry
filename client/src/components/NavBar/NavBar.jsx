@@ -14,15 +14,28 @@ import maxiLoginImg from '../../assets/LOGO_BOOMA_simple.jpg'
 import { createUser } from '../../redux/actions/userActions';
 import data from '../../fakeData'
 import AdminView from './AdminView/AdminView';
-
+import Cookies from 'universal-cookie';
 
 function NavBar(props) {
   let productos = props.productos
+  let cookie = new Cookies ()
   const { loginWithRedirect, user, isAuthenticated } = useAuth0()
-  let status = useSelector( state => state.userReducer.status )
+  // let status = useSelector( state => state.userReducer.status )
+  let status = cookie.get('user')
   let isUserAuthenticated = isAuthenticated || status
   const dispatch = useDispatch();
   
+
+  const statusCart = useSelector( state => state )
+  const ProductosParaMostrar = statusCart.shoppingCartReducer.productos?.msg
+
+  console.log(ProductosParaMostrar, 'shopping length eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+
+
+
+
+  
+
   let nav = useNavigate()
   useEffect(()=>{
     console.log('gettingProducts')
@@ -171,7 +184,7 @@ function NavBar(props) {
 
                 {/* <Link to={!user?.name?"/login":'/user/products'}> */}
                   <button onClick={ () => isUserAuthenticated ? nav('/user/products') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))} className="btnHome">
-                    <BsFillCartFill />
+                    <BsFillCartFill /> <div className="numeroCantidadCart"> {isUserAuthenticated ? ProductosParaMostrar?.length : 0} </div>
                   </button>
                 {/* </Link> */}
               </ul>

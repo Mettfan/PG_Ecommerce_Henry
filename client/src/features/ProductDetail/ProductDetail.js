@@ -2,21 +2,31 @@
 import {MdOutlineArrowBack} from 'react-icons/md'
 import { BsSuitHeartFill } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getProduct } from "../../redux/actions/productActions"
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import './index.css'
+import Cookies from 'universal-cookie';
 
 export default function ProductDetail (props) {
 
   const {  isAuthenticated, user  } = useAuth0()
+  let cookie = new Cookies()
 
-  let userValidated = useSelector( state => state.userReducer.status.user )
+
+  const [show, setShow] = useState(false)
+
+  let userValidatedSelector = useSelector( state => state.userReducer.status.user )
+
+  // let userValidated = useSelector( state => state.userReducer.status.user )
+  let userValidated = cookie.get('user').user
+
   let isUserAuthenticated = isAuthenticated || userValidated
   
+
     
     let { id } = useParams()
     let dispatch = useDispatch()
@@ -31,15 +41,23 @@ export default function ProductDetail (props) {
     product = product ? product : props.producto
     let nav = useNavigate()
     async function addShoppingCart  (){ 
-      let usuario = userValidated || user
-      console.log("ASOCIANDO: "+usuario?.email)
-      console.log('CON '+id)
-      await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(id), userEmail: usuario?.email}).then( response => {
-        console.log(response.data)
-        dispatch({ type: 'ADD_PRODUCT', payload: response.data })
-      },
-      (error) => console.log(error))
-      nav(!isUserAuthenticated?'../login':'../user/products')
+
+      if (!isUserAuthenticated) {
+        nav('/login')
+      } else {
+
+        let usuario = userValidatedSelector || user
+        console.log("ASOCIANDO: "+usuario?.email)
+        console.log('CON '+id)
+        await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(id), userEmail: usuario?.email}).then( response => {
+          console.log(response.data)
+          dispatch({ type: 'ADD_PRODUCT', payload: response.data })
+        },
+        (error) => console.log(error))
+        setShow(true)
+      }
+
+
 
     }
     return (<>
@@ -74,6 +92,7 @@ export default function ProductDetail (props) {
               {product?.size?.split("-")?.map(el => <strong key={el}> <div className="detail-sizes2">{el}</div>     </strong>)}
             
             </div>
+          <p className={show ? 'producto_agregado' : 'producto_sinagregar'}> 🟢 El producto fue agregado al carrito</p>
           <div className="detail-one-buttons">
           {/* <Link to="/login" style={{ textDecoration: 'none' }}> */}
           <button onClick={ () => addShoppingCart()} className="detail-button-buy">Agregar al carrito</button>

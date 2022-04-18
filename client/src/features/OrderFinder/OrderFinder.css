@@ -1,0 +1,12 @@
+.orderImgState{
+    width: 30px;
+}
+.orderfinder{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.status_pad{
+    position: relative;
+    top: 0px;
+}
