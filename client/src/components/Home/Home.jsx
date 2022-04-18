@@ -51,8 +51,7 @@ function Home(props) {
   
   var productos = props.productos
   function loadMoreProducts() {
-    if(state.productsRendered!==productos.length){
-      console.log(state.productsRendered)
+    if (state.productsRendered !== productos.length) {
       setState({
         productsRendered: state.productsRendered + 4 
       })
@@ -73,7 +72,7 @@ function Home(props) {
   function goTop(){
 
     document.documentElement.scrollTop = 0
-    console.log('GO TOP')
+
   }
 
 
