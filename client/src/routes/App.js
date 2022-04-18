@@ -8,8 +8,6 @@ import { DetailProduct } from '../features/DetailProduct';
 import Promotions from '../components/Promotions/Promotions';
 import PromotionDetails from '../components/PromotionDetails/PromotionDetails';
 import GetProducts from '../features/Admin/ProductActions/GetProduct/GetProducts'
-import CreateProduct from '../features/Admin/ProductActions/CreateProduct/CreateProduct';
-import DeleteProduct from '../features/Admin/ProductActions/DeleteProduct/DeleteProduct';
 import ProductDetail from '../features/ProductDetail/ProductDetail';
 import UserDetail from '../features/UserDetail/UserDetail';
 import UserFavorites from '../features/UserFavorites/UserFavorites';
@@ -27,6 +25,10 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CreateUser from '../features/Admin/UserActions/CreateUser/CreateUser';
+
+import HomeAdmin from '../features/Admin/HomeAdmin';
+import EditCard from '../features/Admin/component/EditCard';
+
 import OrderFinder from '../features/OrderFinder/OrderFinder';
 
 
@@ -50,7 +52,11 @@ function App() {
     
     <div className="App">
 
+      {/* <NavBar/> */}
+
+
       <NavBar/>
+
       <Routes>
         {/* <Route exact path="/"  element={<RedirectRouteToHome />} /> */}
         <Route path="/sesionexpirada" element={<SesionExpirada />} />
@@ -72,17 +78,24 @@ function App() {
         <Route path="/user/products/send" element={<EditSend></EditSend> } />
         
         <Route path="/map" element={<Map></Map> } />
-        <Route path="/order" element={<UserOrderView></UserOrderView> } />
+
 
         <Route path="/admin/products" element={<GetProducts></GetProducts>} />
+        <Route path="/admin" element={<HomeAdmin />}/>
+        <Route path="/editcard" element={<EditCard />}/>
+
+        <Route path="/order" element={<UserOrderView></UserOrderView> } />
+
+
         <Route path="/admin/product/create" element={<CreateProduct></CreateProduct> } />
         <Route path="/admin/product/delete" element={<DeleteProduct></DeleteProduct> } />
+
 
         <Route path="/admin/user/create" element={<CreateUser></CreateUser> } />
         <Route path="/order/finder/" element={<OrderFinder></OrderFinder> } />
         
       </Routes>
-      <Footer />      
+      {/* <Footer />       */}
     </div>
 
   );

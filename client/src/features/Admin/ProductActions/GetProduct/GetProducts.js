@@ -1,42 +1,100 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-
-import { createProduct, getProducts } from "../../../../redux/actions/productActions"
-import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
 import './GetProducts.css'
+import { useDispatch, useSelector } from "react-redux"
+import { getProducts } from "../../../../redux/actions/productActions"
+import CardAdmin from "../../../../components/CardAdmin"
 
-export default function GetProduct (props) {
-    let productos = useSelector( (state) => state.productReducer.productos )
-    let dispatch = useDispatch()
+export default function GetProduct ({activeDrawer}) {
+    const productos = useSelector( (state) => state.productReducer.productos )
+    const dispatch = useDispatch()
+    const [search, setSearch] = useState('')
+    const [selectCategory, setSelectCategory] = useState('')
+
+    const filterCategory = productos?.map(( product, i ) => product.CategoryName)
+    const categories = new Set(filterCategory)
+    const arrayCategories = [...categories]
+
+    const productViews = selectCategory === "" 
+        ? productos 
+        : productos.filter(p => p.CategoryName === selectCategory)
+
+    const searchProductViews = productViews.filter(p=> p.name.toLowerCase().includes(search.toLowerCase()))
+
+    console.log('productos', productos)
+
     useEffect(()=>{
         dispatch(getProducts())
     },[])
-  
 
-    return (<div>
-        { productos.map( producto => <div className="admin-panel-product-catalog" >
-        
-        <div className="admin-panel-product">
-            <div>
-            {producto.stock+"pz"}
-            </div>
-            <div>
+    const handleInputChange = (e) => {
+        e.preventDefault();
+        setSearch(e.target.value)
+    }
 
-            {producto.name}
-            </div>
-            <div>
-            {"$"+producto.price}
+    const handleSelect = (e) => {
+        e.preventDefault();
+        setSelectCategory(e.target.value)
+        setSearch("")
+    }
 
+    return (
+    <div className="container-get-products"> 
+
+        <div className="title-search">
+            <h1>Artículos</h1>
+            <select className="select-get-product" onChange={(e)=> handleSelect(e)}>
+                <option value="">Todos</option>
+                {arrayCategories?.map( (category, i) => 
+                    {
+                        return <option key={i} value={category}>{category}</option>
+                    }    
+                    )
+                }
+            </select>
+            <div className="sb_nav-admin">
+                <form id="Find" className="Find" >
+                    <div className="sb_searchcontainer-admin">
+                    <input
+                        id="form"
+                        type="text"
+                        placeholder="Busca tu articulo"
+                        className="inputSearch-admin"
+                        value={search}
+                        onChange ={(e) => {handleInputChange(e)}}
+                    />
+                    </div>
+                </form>
             </div>
-            <img className="admin-panel-product-img" src={producto.image}></img>
+        </div>
+        <div className="container-articulos">
+            <div>
+                {productos.length 
+                    ?   <div>
+                            {searchProductViews.length 
+                                ?   <div>
+                                        {searchProductViews?.map( (producto, i) => 
+                                            <CardAdmin 
+                                                key = {i}
+                                                image= {producto.image}
+                                                name= {producto.name}
+                                                stock= {producto.stock}
+                                                size= {producto.size}
+                                                color= {producto.color}
+                                                price= {producto.price}
+                                                drawer= {activeDrawer}
+                                                id= {producto.id}
+                                            //   disabled 
+                                            />
+                                        )}
+                                    </div>
+                                :   <p className="text-no-products">No se encontraron artículos con ese nombre</p>
+                            }
+                        </div>
+                        
+                    : <p className="text-no-products">Loading...</p>
+                }
+            </div>
             
         </div>
-
-        
-        <Link className="admin-panel-product-button-add" to= '/admin/product/create'><b>+</b></Link>
-        <Link className="admin-panel-product-button-goto-home" to= '/home'><b>Home</b></Link>
-        </div>) }
-        
-        <div>PRODUCTS SHOULD BE OVER HERE</div>
     </div>)
 }

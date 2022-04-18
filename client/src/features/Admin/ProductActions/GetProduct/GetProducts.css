@@ -1,88 +1,75 @@
-.admin-panel-product{
-    
+.container-get-products {
+}
 
+.title-search {
     display: flex;
-    font-size: large;
-    justify-content: space-around;
-    
-    
-    /* background-color: red; */
-    margin-bottom: 20px;
-    margin-top: 20px;
+    flex-direction: row;
+    padding: 0 5%;
+    justify-content: space-between;
     align-items: center;
-
-    filter: drop-shadow(1px 1px 1px black);
-    
-
-}
-.admin-panel-product:hover{
-
-
-    
-
-    animation-name:selectAdminProduct ;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    transform: translate(0, 3px);
-    filter: drop-shadow(1px 1px 1px rgb(241, 150, 150))
-
 }
 
-.admin-panel-product-img{
-    width: 50px;
+.select-get-product {
+    background: white;
+    padding: 10px 20px;
+    width: 20%;
+    border-radius: 3px;
+    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+    font-size: 16px;
 }
 
-.admin-panel-product-catalog{
-    
-    /* background-color: blue; */
-    border-color: black;
-    
+.container-articulos {
+    background-color: white;
+    padding: 5%;
+    margin: 0 5%;
+}
 
+.sb_nav-admin {
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.sb_searchcontainer-admin {
+    background: white;
+    height: 1px;
+    border-radius: 3px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.8s;
+    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
+    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+    padding: 20px 25px;
     width: 100%;
-    
-
-
-}
-.admin-panel-product-catalog:hover{
-    
-    /* background-color: blue; */
-    border-color: rgb(148, 224, 233);
-    
-
-    width: 100%;
-    
-
-
-}
-.admin-panel-product-button-add{
-    position: fixed;
-    text-decoration: none;
-    top: 150px;
-    right: 50px;
-    width: 30px;
-    font-size: x-large;
-    
-}
-.admin-panel-product-button-goto-home{
-    position: fixed;
-    text-decoration: none;
-    top: 200px;
-    right: 50px;
-    width: 30px;
-    font-size: x-large;
-    
 }
 
-@keyframes selectAdminProduct {
+.inputSearch-admin {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 0px;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.8s;
+    color: black;
+}
 
-    0%{
-        transform: translate(0, 0);
-    }
-    100%{
-        transform: translate(0, 3px);
-        filter: drop-shadow(1px 1px 1px rgb(241, 150, 150))
+.submitBtn-admin {
+    border-radius: 15px;
+    background: transparent;
+    border: 0 solid transparent;
+}
 
-    }
-    
+.text-no-products {
+    font-weight: bold;
 }
