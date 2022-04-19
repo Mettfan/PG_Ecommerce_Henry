@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import Cookies from "universal-cookie"
+import { Link } from "react-router-dom"
 // import './OrderFinder.css'
 import { useNavigate } from "react-router-dom"
 export default function OrderFinder()  {
@@ -78,6 +79,9 @@ export default function OrderFinder()  {
       {/* <div>Description: {product.description}</div> */}
       <div  className="card-admin-name">Cantidad: {product.quantity}</div>
       <div  className="card-admin-name"> Precio: $ {product.unit_price} </div>
+      <Link to='/'>
+      <div className="card-admin-coment"><button className="card-admin-coments">Comentarios</button></div>
+      </Link>
       <div className="status_pad">
                 {/* La siguiente parte es la imagen que se renderizara de acuerdo al estado de la transaccion */}
                 {/* {state.orderFound && <img className="orderImgState" src={state.orderFound.status === 'pending'?
@@ -194,9 +198,9 @@ export default function OrderFinder()  {
 //       <div className="card-admin-name">Cantidad: {product.quantify}</div>
 //       <div className="card-admin-name">Precio: $ {product.price}</div> 
       
-//       <Link to='/'>
-//       <div className="card-admin-coment"><button className="card-admin-coments">Comentarios</button></div>
-//       </Link>
+    //   <Link to='/'>
+    //   <div className="card-admin-coment"><button className="card-admin-coments">Comentarios</button></div>
+    //   </Link>
 //       </div>
 //       </div>
 //       )
