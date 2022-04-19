@@ -33,16 +33,15 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     stock_by_size: {
-      type: DataTypes.JSONB
+      type: DataTypes.ARRAY(DataTypes.JSONB),
     },
     price: {
       type: DataTypes.FLOAT,
       allowNull: false
     },
-
-
     discount: {
       type: DataTypes.INTEGER,
+      defaultValue: 0,
     },
     warranty: {
       type: DataTypes.STRING,

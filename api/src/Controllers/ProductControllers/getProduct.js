@@ -11,7 +11,7 @@ const getProduct = async(req,res)=>{
         let allProducts = await Product.findAll({include:[
             {model: Category}
         ]})
-        console.log(apiInfo)
+        //console.log(apiInfo)
         // console.log(JSON.stringify(mockData))
         //Esta función te muestra si hay algo en la base de datos y la rellena con la apiInfo si no existe nada 
         // if (!allProducts.length) await Product.bulkCreate([...apiInfo]).then( async bulkRes => {
