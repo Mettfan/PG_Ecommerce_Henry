@@ -22,7 +22,10 @@ export default function OrderFinder()  {
    useEffect(()=> { 
        if (payment_id){
            cookie.set('searchId', payment_id )
-          dispatch(addOrder(cookie.get('user')?.user.email), payment_id )
+            axios.post('http://localhost:3001/usuario/order', {email: cookie.get('user')?.user?.email, payment_id: payment_id}).then( response => {
+                console.log(response.data);
+            })
+
         //    cookie.get('shopping')?.msg?.forEach(product => {
 
         //        deleteProductFavorite({productId: product?.id, userEmail: cookie.get('user')?.user?.email } )

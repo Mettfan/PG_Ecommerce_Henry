@@ -15,16 +15,19 @@ module.exports = (sequelize) => {
       
     total: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        // allowNull: false
     },
     state: {
         type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: 'pending',
-        validate: {
-            isIn: [['pending', 'process', 'finished']]
-        }
+        // allowNull: false,
+        // defaultValue: 'pending',
+        // validate: {
+        //     isIn: [['pending', 'process', 'finished']]
+        // }
     },
+    email: {
+      type: DataTypes.STRING
+    }
         
   });
 };

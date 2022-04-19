@@ -1,4 +1,4 @@
-const {  User } = require('../../db.js')
+const {  User, Order } = require('../../db.js')
 const {nanoid} = require('nanoid')
 
 
@@ -6,8 +6,19 @@ let token = 'APP_USR-4206952764594865-041216-86c66dae1de7c07e9a7a855ed313ba08-35
 const postOrder = async (req, res, next) => {
     const {email, payment_id} = req.body;
     console.log(req.body)
-    res.send({email: email, payment_id: payment_id})
-    
+    try{
+        await User.findOne({where: {email: email}}).then( async user => {
+            await user.createOrder({id: payment_id, email: email}).then( async orderCreated => {
+                res.send({orderCreated: orderCreated} )
+            })
+            
+        })
+
+    }
+    catch (error) {
+        res.send({msg: error})
+    }
+ 
     
     // res.redirect(`http://localhost:3000/order/finder/?collection_id=${collection_id}&collection_status=${collection_status}&payment_id=${payment_id}&status=${status}&preference_id=${preference_id}`)
     // try{
