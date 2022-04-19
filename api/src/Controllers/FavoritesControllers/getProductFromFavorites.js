@@ -9,7 +9,7 @@ const getProductFromFavorites = async (req, res, next) => {
         if(!user) {
             res.status(404).json({msg: 'Usuario no encontrado'});
         } else {
-            const products = await user.getProducts();
+            const products = await user.getFavorites();
             res.status(200).json({products, msg: 'Productos encontrados'}); 
         }
         
