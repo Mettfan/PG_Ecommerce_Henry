@@ -201,6 +201,16 @@
 }
 
 
+.sizes2Size {
+  font-size: 15px;
+}
+
+.sizes2NumerOfSize {
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.548);
+}
+
+
 /* RESPONSIVE
    ========================================================================= /
  
@@ -309,6 +319,8 @@
   .detail-sizes2 {
     display: inline-block !important;
   }
+
+
 
   .detail-two {
     padding: 5px;
