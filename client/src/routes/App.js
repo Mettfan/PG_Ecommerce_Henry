@@ -50,7 +50,7 @@ function App() {
 
     
     <div className="App">
-      {/* <NavBar/> */}
+      <NavBar/>
 
       <Routes>
         {/* <Route exact path="/"  element={<RedirectRouteToHome />} /> */}
