@@ -22,7 +22,9 @@ const userInformation = require('../Controllers/UserControllers/getUserInformati
 const addProductToFavorites = require('../Controllers/FavoritesControllers/addProductToFavorites');
 const getProductFromFavorites = require('../Controllers/FavoritesControllers/getProductFromFavorites');
 const deleteProductFromFavorites = require('../Controllers/FavoritesControllers/deleteProductFromFavorites')
-//checkAuth, checkRoleAdmin(['admin', 'superadmin']),
+
+// const postOrder = require('../Controllers/OrderControllers/postOrder')
+
 router.get('/',   getUsers);
 router.post('/crearusuario', postUser);
 router.put('/actualizarusuario', putUser);
@@ -52,6 +54,9 @@ router.post('/newsfavorites', newsProductFavorite);
 const addOrder = require ('../Controllers/OrderControllers/addOrder');
 router.get('/order', addOrder);
 
+const postOrder = require ('../Controllers/OrderControllers/postOrder');
+router.post('/order', postOrder);
+
 const addReview = require('../Controllers/ReviewsControllers/addReview');
 router.post('/review', addReview);
 const getReviews = require('../Controllers/ReviewsControllers/getReviews');
@@ -64,5 +69,7 @@ const deleteReviewById = require('../Controllers/ReviewsControllers/deleteReview
 router.delete('/review/:id', deleteReviewById);
 const forgotPassword = require('../Controllers/UserControllers/userForgotPassword');
 router.post('/forgot', forgotPassword);
+
+
 
 module.exports = router;
