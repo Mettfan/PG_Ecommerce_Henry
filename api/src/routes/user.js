@@ -57,6 +57,9 @@ router.get('/order', addOrder);
 const postOrder = require ('../Controllers/OrderControllers/postOrder');
 router.post('/order', postOrder);
 
+const getOrders = require ('../Controllers/OrderControllers/getOrders');
+router.get('/orders', getOrders);
+
 const addReview = require('../Controllers/ReviewsControllers/addReview');
 router.post('/review', addReview);
 const getReviews = require('../Controllers/ReviewsControllers/getReviews');
