@@ -299,9 +299,9 @@ export default function ProductDetail (props) {
               <strong>Género:</strong> {product.gender} <br />
               <strong>Importante:</strong> {product.important_data} <br />
               <strong>Origen:</strong> {product.origin} <br />
+              <strong>Adecuado para:</strong> {product.suitable_for} <br />
             </div>
             <div className="description-bottom-p">
-              <strong>Adecuado para:</strong> {product.suitable_for} <br />
               <strong>Composición:</strong> {product.composition} <br /> 
               <strong>Color:</strong> {product.color} <br />
               <strong>Garantía:</strong> {product.warranty}<br />
@@ -321,15 +321,15 @@ export default function ProductDetail (props) {
              </Link>
             </div>
             {
-              reviews &&  reviews.length >= 0 ?
+              reviewsOfTheProduct && reviewsOfTheProduct.length != 0 ?
               <>
               <h2 className="comentariosTitulo">Comentarios</h2>
              
               {
                 
-
+                
                 reviewsOfTheProduct?.map(review => (
-                  <div>
+                  <div className="divComments">
                     
                     <strong> {review?.User?.name} </strong>
                     <strong> {review?.User?.lastName} </strong>

@@ -13,7 +13,6 @@ function Landing() {
 
   const handleRedirectWithFilterNike = () => {
     nav('/home')
-      dispatch(getProducts())
     
     setTimeout(() => {
       dispatch(FilterByBrand('Nike'))
@@ -21,7 +20,6 @@ function Landing() {
   }
   const handleRedirectWithFilterAdidas = () => {
     nav('/home')
-      dispatch(getProducts())
     
     setTimeout(() => {
       dispatch(FilterByBrand('Adidas'))
@@ -29,7 +27,6 @@ function Landing() {
   }
   const handleRedirectWithFilterJordan = () => {
     nav('/home')
-      dispatch(getProducts())
     
     setTimeout(() => {
       dispatch(FilterByBrand('Jordan'))
@@ -37,7 +34,6 @@ function Landing() {
   }
   const handleRedirectWithFilterPuma = () => {
     nav('/home')
-      dispatch(getProducts())
     
     setTimeout(() => {
       dispatch(FilterByBrand('Puma'))
@@ -45,7 +41,6 @@ function Landing() {
   }
   const handleRedirectWithFilterReebok = () => {
     nav('/home')
-      dispatch(getProducts())
     
     setTimeout(() => {
       dispatch(FilterByBrand('Reebok'))
@@ -53,7 +48,6 @@ function Landing() {
   }
   const handleRedirectWithFilterFila = () => {
     nav('/home')
-      dispatch(getProducts())
     
     setTimeout(() => {
       dispatch(FilterByBrand('Fila'))
