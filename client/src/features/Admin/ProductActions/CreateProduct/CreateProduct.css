@@ -6,6 +6,9 @@
     width: 10%;
 }
 
+.container-register-form-admin {
+    background-color: grey;
+}
 .container-stock {
     display: flex;
     margin: 10px 0;
@@ -54,8 +57,7 @@
     border-radius: 4px;
     margin-left: 2px;
     font-weight: bold;
-    height:52px;
-    width:46px;
+    height: 25px;
 }
 
 .gender-details-create-admin {

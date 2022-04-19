@@ -19,15 +19,18 @@
 }
 
 .admin-panel-product-img {
-  width: 50px;
+  width: 60px;
 }
 
-.card-admin-information {
+.card-admin-information-slim {
   display: flex;
   flex-direction: row;
-  font-size: 14px;
   width: 75%;
   align-items: center;
+}
+
+.card-admin-information-slim p {
+  font-size: 12px;
 }
 
 .buttons-admin-container {
