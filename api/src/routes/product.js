@@ -6,7 +6,6 @@ const productByGender = require('../Controllers/ProductControllers/getProductByG
 const productById=require('../Controllers/ProductControllers/productById');
 const deleteProduct = require('../Controllers/ProductControllers/deleteProduct');
 const postProduct = require('../Controllers/ProductControllers/postProduct');
-
 const checkoutProducts = require('../Controllers/ProductControllers/checkoutProducts');
 
 

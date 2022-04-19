@@ -56,6 +56,7 @@ router.use('/productos/:id', productById);
 router.use('/productos/:gender', productByGender)
 router.use('/productos/:id', deleteProduct);
 
+
 router.use('/productos', postProduct);
 
 router.use('/productos/checkout', checkoutProducts);
