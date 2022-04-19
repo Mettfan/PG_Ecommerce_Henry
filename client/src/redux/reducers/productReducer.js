@@ -1,5 +1,5 @@
 
-import  { GET_PRODUCTS, GET_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, ERROR, FILTER_BY_MEN, FILTER_BY_WOMEN, FILTER_BY_NINO, FILTER_BY_NINA, FILTER_BY_NAME, FILTER_BY_CATEGORY, ADD_SUBTOTAL, DELETE_SUBTOTAL, FILTER_BY_PRICE } from '../actions/productActions'
+import  { GET_PRODUCTS, GET_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, ERROR, FILTER_BY_MEN, FILTER_BY_WOMEN, FILTER_BY_UNISEX, FILTER_BY_NINO, FILTER_BY_NINA, FILTER_BY_NAME, FILTER_BY_CATEGORY, ADD_SUBTOTAL, DELETE_SUBTOTAL, FILTER_BY_PRICE } from '../actions/productActions'
 const initialState = {
     productos: [],
     allProductos: [],
@@ -39,6 +39,15 @@ function productReducer( state = initialState, action ){
             return {
                 ...state,
                 productos: prodsFilteredWomen
+            }
+        case FILTER_BY_UNISEX:
+            let allProdsUnisex = state.allProductos.filter(el =>  el.gender === 'Unisex')
+            const filterProdsUnisex =allProdsUnisex.filter(el => el.gender === 'Unisex' && el.CategoryName === action.payload) 
+            console.log(filterProdsUnisex)
+            const prodsFilteredUnisex = action.payload === 'All' ? allProdsUnisex : filterProdsUnisex
+            return {
+                ...state,
+                productos: prodsFilteredUnisex
             }
         case FILTER_BY_NINO:
             let allProdsNino = state.allProductos.filter(el =>  el.gender === 'Niño')

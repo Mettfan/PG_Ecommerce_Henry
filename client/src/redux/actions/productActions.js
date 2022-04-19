@@ -11,6 +11,7 @@ export const ADD_SUBTOTAL = 'ADD_SUBTOTAL'
 export const DELETE_SUBTOTAL = 'DELETE_SUBTOTAL'
 export const FILTER_BY_MEN = 'FILTER_BY_MEN'
 export const FILTER_BY_WOMEN = 'FILTER_BY_WOMEN'
+export const FILTER_BY_UNISEX = 'FILTER_BY_UNISEX'
 export const FILTER_BY_NINO = 'FILTER_BY_NINO'
 export const FILTER_BY_NINA = 'FILTER_BY_NINA'
 export const FILTER_BY_PRICE = 'FILTER_BY_PRICE'
@@ -112,6 +113,22 @@ export function filterByGenreWomen (payload) {
         try {
             dispatch ({
                 type: FILTER_BY_WOMEN,
+                payload
+            });
+        }
+        catch (error) {
+            console.log(error)
+        }    
+      
+    }
+}
+
+export function filterByGenreUnisex (payload) {
+    
+    return async function (dispatch) {
+        try {
+            dispatch ({
+                type: FILTER_BY_UNISEX,
                 payload
             });
         }
