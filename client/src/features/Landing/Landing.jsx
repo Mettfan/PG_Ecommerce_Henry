@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
 import { FilterByBrand, getProducts } from '../../redux/actions/productActions';
+import fotoLandingPromotions from '../../assets/salesLanding.png'
 import './Landing.css'
 
 function Landing() {
@@ -192,71 +193,21 @@ function Landing() {
       
       
       
+   
+
+
+
+
+
+        <Link to="/promotions">
+        <img
+          className="fotosofertas"
+          src={fotoLandingPromotions}
+          alt="boquita"
+        />
+        </Link>
+
       
-      
-      <div className="home-ofertas">
-        <Link to="/promotions">
-        <img
-          className="home-ofertaitems"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dwd16dc829/13dic/deal1ojotas.png"
-          alt="boquita"
-        />
-        </Link>
-
-        <Link to="/promotions">
-        <img
-          className="home-ofertaitems"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw8c42a0bf/13dic/deal2botines.png"
-          alt="boquita"
-          />
-          </Link>
-
-          <Link to="/promotions">
-        <img
-          className="home-ofertaitems"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw3257527e/13dic/deal3mochilas.png"
-          alt="boquita"
-        />
-        </Link>
-
-        <Link to="/promotions">
-        <img
-          className="home-ofertaitems"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw4345030f/07feb/deal4remeras.png"
-          alt="boquita"
-        />
-        </Link>
-      </div>
-
-
-
-
-
-      <div className="home-ofertas">
-        <Link to="/promotions">
-        <img
-          className="fotosofertas"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dwde63764d/28mar/triplo1adidasbocariver.png"
-          alt="boquita"
-        />
-        </Link>
-
-        <Link to="/promotions">
-        <img
-          className="fotosofertas"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw2eeffcaa/28mar/triplo2sale.png"
-          alt="boquita"
-        />
-        </Link>
-
-        <Link to="/promotions">
-        <img
-          className="fotosofertas"
-          src="https://www.dexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Dexter-Library/default/dw09fb095c/28mar/triplo3reebokwhs.jpg"
-          alt="boquita"
-        />
-        </Link>
-      </div>
 
       <div className="home-newsletter">
           <div className="home-newsletter-container">
@@ -266,6 +217,9 @@ function Landing() {
           <button className="home-newsletter-button">Suscribirme</button>
         </div>
       </div>
+
+
+
     </>
   );
 }
