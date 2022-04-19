@@ -15,7 +15,12 @@ import Cookies from 'universal-cookie';
 
 
 
+
+
 function Home(props) {
+
+
+
   let status = useSelector( state => state.userReducer.status)
   const { isAuthenticated } = useAuth0()
   let cookie = new Cookies()
@@ -43,12 +48,6 @@ function Home(props) {
   function handleBrandFilter(event) {
       dispatch(FilterByBrand(event.target.value))
   }
-
-  
-  
-  
-
-
 
   function handleCategory(event) {
       dispatch(FilterByCategory(event.target.value))

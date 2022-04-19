@@ -14,14 +14,12 @@ export const getReviews = ( ) => async dispatch  => {
         dispatch({
             type: GET_REVIEWS,
             payload: response.data,
-            status: 'reviews loaded'
         })
     },
     (error) => {
         dispatch({
             type: ERROR,
             payload: error.error,
-            status: 'reviews failed to load'
         })
     })
 }

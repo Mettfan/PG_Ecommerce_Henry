@@ -210,6 +210,64 @@
   color: rgba(0, 0, 0, 0.548);
 }
 
+.detail-three-titleh1 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 2% auto;
+}
+
+
+.detailThreeButton {
+  align-items: center;
+  background: #f4f4f5;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: -10px -10px 30px 0 rgb(233, 232, 232),10px 10px 30px 0 #1d0dca17;
+  box-sizing: border-box;
+  color: #2a1f62;
+  cursor: pointer;
+  display: flex;
+  font-family: "Cascadia Code",Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+  font-size: 1rem;
+  justify-content: center;
+  line-height: 1.5rem;
+  padding: 15px;
+  position: relative;
+  text-align: left;
+  transition: .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: pre;
+  width: max-content;
+  word-break: normal;
+  word-spacing: normal;
+  margin: 3% auto;
+}
+
+.detailThreeButton:hover {
+  background: #e4e4e4d0;
+  box-shadow: -5px -5px 15px 0 rgb(160, 160, 160), 5px -5px 15px 0 #a3a0be17;
+}
+
+        
+
+
+
+.detail-three-valoracion {
+  background-color: rgba(36, 190, 36, 0.74);
+  margin: 1% auto;
+  width: 70%;
+  padding: 15px;
+}
+
+
+.comentariosTitulo {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 3% auto;
+}
+
 
 /* RESPONSIVE
    ========================================================================= /

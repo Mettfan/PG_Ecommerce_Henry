@@ -1,6 +1,6 @@
 
 
-import  { ADD_REVIEW, GET_REVIEWS, ERROR } from '../actions/shoppingCartActions'
+import  { ADD_REVIEW, GET_REVIEWS, ERROR } from '../actions/reviewsActions'
 const initialState = {
     AllReviews: [],
     reviews: [],
@@ -10,12 +10,12 @@ function reviewsReducer( state = initialState, action ){
     switch (action.type){
 
         case ADD_REVIEW: 
-            return { ...state, reviews: action.payload, AllReviews: action.payload, status: action.status }
+            return { ...state, reviews: action.payload, AllReviews: action.payload}
         case GET_REVIEWS:
             return { ...state, reviews: action.payload, AllReviews: action.payload  }
 
         case ERROR: 
-            return { ...state, status: action.status}
+            return { ...state, status: action.payload}
         default: 
             return { ...state }
         

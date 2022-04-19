@@ -10,6 +10,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import './index.css'
 import Cookies from 'universal-cookie';
+import { getReviews } from '../../redux/actions/reviewsActions';
 
 export default function ProductDetail (props) {
 
@@ -31,11 +32,14 @@ export default function ProductDetail (props) {
     let { id } = useParams()
     let dispatch = useDispatch()
     useEffect(() => {
+
+      
       if(id) {
         
         dispatch(getProduct(id))
       }
     }, [])
+
     let product = useSelector( (state) => state.productReducer.producto)
     
     product = product ? product : props.producto
@@ -60,6 +64,15 @@ export default function ProductDetail (props) {
 
 
     }
+
+    useEffect(() => {
+      dispatch(getReviews())
+    }, [])
+    let reviews = useSelector( (state) => state.reviewsReducer.reviews.review)
+    console.log(reviews, 'reviews useSelector')
+    const reviesWithName = reviews?.filter(r => r.UserId) 
+    console.log(reviesWithName, 'reviews with name')
+    
     return (<>
         {product ? 
     
@@ -168,7 +181,15 @@ export default function ProductDetail (props) {
               <span className="sizes2Size">
               34 </span>
                 
-                <span className="sizes2NumerOfSize"> {product?.stock_by_size?.[34] ? product?.stock_by_size[34] : 0}</span><br />
+                <span className="sizes2NumerOfSize"> {product?.stock_by_size[34] ? product?.stock_by_size[34] : 0}</span><br />
+              
+              </div>
+
+              <div className="detail-sizes2">
+              <span className="sizes2Size">
+              35 </span>
+                
+                <span className="sizes2NumerOfSize"> {product?.stock_by_size[35] ? product?.stock_by_size[34] : 0}</span><br />
               
               </div>
               <div className="detail-sizes2">
@@ -287,8 +308,58 @@ export default function ProductDetail (props) {
           </div>
         </div>
         </div>
-      <div className="detail-three"></div>
-      <div className="detail-four"></div>
+      <div >
+        <h1 className="detail-three-titleh1">VALORACIONES Y RESEÑAS</h1>
+      </div>
+            <p>Valoración general</p>
+            <div className="detail-three-comments">
+             <p className="detail-three-valoracion">★ ★ ★ ★ ✩ 4.0 </p>
+             <Link to="/home" style={{ textDecoration: 'none' }}>
+              <button className="detailThreeButton">HACÉ TU RESEÑA</button>
+             </Link>
+            </div>
+            {
+              reviews &&  reviews.length >= 0 ?
+              <>
+              <h2 className="comentariosTitulo">Comentarios</h2>
+             
+              {
+                
+
+                reviesWithName?.map(review => (
+                  <div>
+                    
+                    <strong> {review?.User?.name} </strong>
+                    <strong> {review?.User?.lastName} </strong>
+                    {
+                    review?.rating == 1 ? <p>★ ✩ ✩ ✩ ✩</p> 
+                    : 
+                    review?.rating == 2 ? <p>★ ★ ✩ ✩ ✩</p> 
+                    :
+                    review?.rating == 3 ? <p>★ ★ ★ ✩ ✩</p> 
+                    :
+                    review?.rating == 4 ? <p>★ ★ ★ ★ ✩</p> 
+                    :
+                    review?.rating == 5 ? <p>★ ★ ★ ★ ★</p> 
+                    :
+                    null
+                    
+                    }
+                    <span>  </span>
+                    <p> {review?.comment} </p>
+                    
+                  </div>
+                ))
+              }
+             
+             
+              </>
+              :
+              <p>¡Sé el primero en hacer una reseña!</p>
+            }
+      <div className="detail-four">
+
+      </div>
     </div>
   </div>
   

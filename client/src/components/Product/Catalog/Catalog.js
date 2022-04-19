@@ -3,10 +3,8 @@ import ProductCard from "../ProductCard/ProductCard";
 import './Catalog.css'
 function Catalog(props){
     let productos = props.productos
-    let status = useSelector(state => state.productReducer.status)
     let prods = useSelector(state => state.productReducer.productos)
     console.log(prods, 'prods')
-    console.log(status, 'status')
     return (
         <>
             <div className="catalog-container">
