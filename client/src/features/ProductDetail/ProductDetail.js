@@ -72,6 +72,8 @@ export default function ProductDetail (props) {
     console.log(reviews, 'reviews useSelector')
     const reviesWithName = reviews?.filter(r => r.UserId) 
     console.log(reviesWithName, 'reviews with name')
+    const reviewsOfTheProduct = reviesWithName?.filter(r => r.ProductId === Number(id))
+    console.log(reviewsOfTheProduct, 'reviews of the product')
     
     return (<>
         {product ? 
@@ -326,7 +328,7 @@ export default function ProductDetail (props) {
               {
                 
 
-                reviesWithName?.map(review => (
+                reviewsOfTheProduct?.map(review => (
                   <div>
                     
                     <strong> {review?.User?.name} </strong>
