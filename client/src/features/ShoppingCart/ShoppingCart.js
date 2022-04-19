@@ -162,7 +162,7 @@ export default function ShoppingCart ( ) {
                     size= { product?.size }
                     color= { product?.color }
                     stock= { product?.stock }
-                    discount= { 0 }
+                    discount= { Number(product?.discount) || 0 }
                     price= { product?.price }
                     id= { product?.id }
                     />

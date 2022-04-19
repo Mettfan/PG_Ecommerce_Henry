@@ -21,7 +21,7 @@ function NavBar(props) {
   let cookie = new Cookies ()
   const { loginWithRedirect,  isAuthenticated } = useAuth0()
   // let status = useSelector( state => state.userReducer.status )
-  let user = cookie.get('user').user
+  let user = cookie.get('user')?.user
   let isUserAuthenticated = isAuthenticated || user
   const dispatch = useDispatch();
   

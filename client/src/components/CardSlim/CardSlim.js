@@ -7,7 +7,7 @@ import axios from 'axios';
 import { deleteProductFromCart, DeleteProductFromShopping } from '../../redux/actions/shoppingCartActions';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
-
+import Cookies from 'universal-cookie';
 
 
 //ver si no tiene descuento
@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 function CardSlim({ image, name, size, color, stock, price, index, discount, id }) {
 //   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
+  let cookie = new Cookies()
 
   const subtotal = Number((((1-(discount/100))*price)*count).toFixed(2));
   console.log('subtotal', subtotal)
@@ -100,6 +101,7 @@ let dispatch = useDispatch()
             : 
             null
           } 
+          {console.log(count)}
         </div>
           <div className="price-slim">
             <div>

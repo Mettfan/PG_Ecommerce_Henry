@@ -49,14 +49,20 @@ export default function OrderFinder()  {
     return ( <>
 
         <div className="orderfinder">           
-            <form onSubmit={ ( e ) => handleOnSubmit(e)}>
-                <input type={'text'} placeholder='Copie y pegue su numero de seguimiento...' value= {state.searchId }  onChange = {( e ) => handleOnChange(e)} ></input>
-                <button type="submit">BUSCAR ORDEN</button>
+            <form className="formFinder" onSubmit={ ( e ) => handleOnSubmit(e)}>
+                <input className="formInputFinder" type={'text'} placeholder='Copie y pegue su numero de seguimiento...' value= {state.searchId || cookie.get('searchId') }  onChange = {( e ) => handleOnChange(e)} ></input>
+                <button className="formButtonFinder" type="submit">BUSCAR ORDEN</button>
             </form>
             {payment_id && <div>
                 El numero de seguimiento de tu ultima orden es: <b>{' '+payment_id}</b>
 
             </div>}
+            <div>
+                /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+            </div>
+            <div>
+                ----------------------------------------------------------
+            </div>
             <div className="status_pad">
                 {/* La siguiente parte es la imagen que se renderizara de acuerdo al estado de la transaccion */}
                 {state.orderFound && <img className="orderImgState" src={state.orderFound.status === 'pending'?
@@ -95,15 +101,22 @@ export default function OrderFinder()  {
             })}:
    </div>
     {/* El boton que te redirige al ticket */}
+                {state.orderFound.status === 'pending' && <button onClick={( ) =>  goToOrder() }> Ver Orden</button>  }
     <div>
-                {state.orderFound.status === 'pending' && <button onClick={( ) => window.location.href = state.orderFound.transaction_details?.external_resource_url }> Ticket</button>  }
-
+                {/* {state.orderFound.status === 'pending' && <button onClick={( ) => window.location.href = state.orderFound.transaction_details?.external_resource_url }> Ticket</button>  } */}
+                {<a  target={'_blank'} href={state.orderFound.transaction_details?.external_resource_url} download= 'Ticket'>Ticket</a>}
                 </div>
     <div>
-                {state.orderFound.status === 'pending' && <button onClick={( ) =>  goToOrder() }> Ver Orden</button>  }
 
                 </div>
   </div>
+  <div>
+                ----------------------------------------------------------
+            </div>
+  <div>
+                /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+            </div>
+           
     
     </>)
 }

@@ -107,3 +107,25 @@
       cursor: pointer;
       margin: 5px;
   }
+  .formFinder{
+      margin: 10px 10px 10px 10px;
+
+  }
+  .formInputFinder{
+      background-color: rgb(255, 255, 255);
+      margin: 10px 10px 10px 10px;
+      padding: 5px 5px 5px 5px;
+      border-color: black;
+  }
+  .formButtonFinder{
+      padding: 5px;
+      color: white;
+      font-weight: 150;
+      background-color: black;
+  }
+  .formButtonFinder:hover{
+      padding: 5px;
+      color: black;
+      font-weight: 300;
+      background-color: white;
+  }
