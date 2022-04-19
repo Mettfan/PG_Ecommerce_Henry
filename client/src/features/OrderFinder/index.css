@@ -1,0 +1,97 @@
+.card-admin-container {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  border: 1px solid rgb(223, 216, 216);
+}
+
+.card-admin-1 {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  height: 4em;
+  width:100%;
+}
+
+.img-admin-card {
+  width: 10%;
+}
+
+.card-admin-information {
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  width: 85%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-left:30px ;
+ 
+  border-bottom: 1px solid rgb(223, 216, 216);
+}
+
+.buttons-admin-container {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: row;
+  width: 15%;
+  justify-content: space-around;
+  align-items: center;
+}
+.card-admin-image{
+  width: 50%;
+  height: 50%;
+  
+}
+
+
+.card-admin-name {
+  width: 60%;
+  margin-left: 30px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card-admin-coment{
+  width: 60%;
+  margin-left: 40px;
+  
+}
+
+.card-admin-size {
+  width: 25%;
+}
+
+.card-admin-color {
+  width: 35%;
+}
+
+.card-admin-available {
+  width: 30%;
+  margin-top: 3px;
+  font-size: 10px;
+  color: grey;
+}
+
+.price-slim-card {
+  width: 30%;
+}
+
+.button-card-admin {
+  /* display: inline-none; */
+  /* color: transparent; */
+  height: 20px;
+  width: 10px;
+  border: none;
+  background-color: transparent;
+}
+.card-admin-coments{
+  border-radius: 5px;
+    border: none;
+    width: 120px;
+    background-color:  rgb(223, 216, 216);
+    padding: 3px 3px 3px 3px;
+    cursor: pointer;
+    margin: 5px;
+}

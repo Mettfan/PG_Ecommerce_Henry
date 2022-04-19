@@ -33,16 +33,20 @@ const userForgotPass = async (req, res, next) => {
         }
       );
       var transporter = nodemailer.createTransport({
-        host: "smtp.ethereal.email",
-        port: 587,
-        secure: false,
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
         auth: {
-          user: "malcolm.kihn33@ethereal.email",
-          pass: "SB3McwyksjF35GeQ9C",
+          user: "boomaropadeportiva@gmail.com",
+          pass: "xspwwcubqhuvkcjv",
         },
       });
 
-      var mensaje = `<b>Ingrese a su cuenta con la siguiente contraseña: ${newPass}, una vez que ingrese a su cuenta recuerde de cambiar la contraseña</b>`;
+      var mensaje = `
+      
+      <b><h3>Ingrese a su cuenta con la siguiente contraseña: </h3></br>
+      <h2>${newPass}</h2></br>
+      <h3>Una vez que ingrese a su cuenta recuerde de cambiar la contraseña</h3></b>`;
       var mailOptions = {
         from: '"Envio de email"<malcolm.kihn33@ethereal.email>',
         to: email,
@@ -50,14 +54,14 @@ const userForgotPass = async (req, res, next) => {
         //text: mensaje
         html: mensaje,
       };
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email enviado: " + info.response);
+        }
+      });
     }
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Email enviado: " + info.response);
-      }
-    });
     res.status(200).json({ msg: "email enviado con su nueva contraseña" });
   } catch (error) {
     next(error);

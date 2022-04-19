@@ -3,7 +3,10 @@ import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import Cookies from "universal-cookie"
 import './OrderFinder.css'
+import { useNavigate } from "react-router-dom"
+import { deleteProductFavorite } from "../../redux/actions/favoriteActions"
 export default function OrderFinder()  {
+    let nav = useNavigate()
     let cookie = new Cookies()
     let [searchParams, setSearchParams] = useSearchParams()
     let payment_id = searchParams.get('payment_id') || cookie.get('searchId')
@@ -16,6 +19,11 @@ export default function OrderFinder()  {
    useEffect(()=> { 
        if (payment_id){
            cookie.set('searchId', payment_id )
+        //    cookie.get('shopping')?.msg?.forEach(product => {
+
+        //        deleteProductFavorite({productId: product?.id, userEmail: cookie.get('user')?.user?.email } )
+        //    })
+           
            handleOnSubmit()
        } 
    }, [])
@@ -39,18 +47,27 @@ export default function OrderFinder()  {
         })  
         console.log(state, "submited!")
     }
+    let goToOrder = async ( ) => {
+        nav('/order')
+    }
     let datas = state.orderFound.additional_info?.items
     return ( <>
 
         <div className="orderfinder">           
-            <form onSubmit={ ( e ) => handleOnSubmit(e)}>
-                <input type={'text'} placeholder='Copie y pegue su numero de seguimiento...' value= {state.searchId }  onChange = {( e ) => handleOnChange(e)} ></input>
-                <button type="submit">BUSCAR ORDEN</button>
+            <form className="formFinder" onSubmit={ ( e ) => handleOnSubmit(e)}>
+                <input className="formInputFinder" type={'text'} placeholder='Copie y pegue su numero de seguimiento...' value= {state.searchId || cookie.get('searchId') }  onChange = {( e ) => handleOnChange(e)} ></input>
+                <button className="formButtonFinder" type="submit">BUSCAR ORDEN</button>
             </form>
             {payment_id && <div>
                 El numero de seguimiento de tu ultima orden es: <b>{' '+payment_id}</b>
 
             </div>}
+            <div>
+                /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+            </div>
+            <div>
+                ----------------------------------------------------------
+            </div>
             <div className="status_pad">
                 {/* La siguiente parte es la imagen que se renderizara de acuerdo al estado de la transaccion */}
                 {state.orderFound && <img className="orderImgState" src={state.orderFound.status === 'pending'?
@@ -89,11 +106,22 @@ export default function OrderFinder()  {
             })}:
    </div>
     {/* El boton que te redirige al ticket */}
+                {state.orderFound.status === 'pending' && <button className="goOrder"  onClick={( ) =>  goToOrder() }> Ver Orden</button>  }
     <div>
-                {state.orderFound.status === 'pending' && <button onClick={( ) => window.location.href = state.orderFound.transaction_details?.external_resource_url }> Ticket</button>  }
+                {/* {state.orderFound.status === 'pending' && <button onClick={( ) => window.location.href = state.orderFound.transaction_details?.external_resource_url }> Ticket</button>  } */}
+                {<a  target={'_blank'} href={state.orderFound.transaction_details?.external_resource_url} download= 'Ticket'>Ticket</a>}
+                </div>
+    <div>
 
                 </div>
   </div>
+  <div>
+                ----------------------------------------------------------
+            </div>
+  <div>
+                /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+            </div>
+           
     
     </>)
 }
