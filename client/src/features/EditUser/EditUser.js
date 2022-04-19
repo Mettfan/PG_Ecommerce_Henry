@@ -52,7 +52,7 @@
 //     gender: Yup.string(),
 // });
 
-// const formOptions = { resolver: yupResolver(formSchema) };
+// const formOptions = { resolver: yupResolver(formSchema), defaultValues:userValue };
 
 // export default function EditUser  () {
 //     const dispatch = useDispatch();
@@ -76,6 +76,7 @@
 //         // phone: user?.phone || userValidated?.phone,
 //         // address: user?.address || userValidated?.address,
 //         // province: user?.province || userValidated?.province,
+//         // postal: user?.postal || userValidated?.postal,
 //         name:'',
 //         lastName: '',
 //         email: '',
@@ -218,6 +219,10 @@
 //     );
 // };
 
+
+
+//----------------------------------------------------------------
+
 import React from 'react'
 import { useEffect, useState }  from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -310,7 +315,7 @@ function handlerOnChange (e){
 
             function onSubmit(e){
                 e.preventDefault();
-                if(!input.name || !input.lastName || !input.email || !input.address || !input.province || !input.phone || !input.dni){
+                if(!input.name || !input.lastName || !input.email || !input.address || !input.province || !input.phone || !input.dni || !input.postal){
                 alert("no completo todo el formulario!")}
                 else{
                 dispatch(updateUser(input))
