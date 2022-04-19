@@ -8,7 +8,7 @@ import Catalog from '../Product/Catalog/Catalog'
 import { useAuth0 } from '@auth0/auth0-react'
 import {MdOutlineArrowDropUp, MdOutlineArrowDropDown} from 'react-icons/md'
 
-import { FilterByCategory, filterByGenreMen, filterByGenreNiña, filterByGenreNiño, filterByGenreUnisex, filterByGenreWomen, FilterByPrice } from '../../redux/actions/productActions';
+import { FilterByBrand, FilterByCategory, filterByGenreMen, filterByGenreNiña, filterByGenreNiño, filterByGenreUnisex, filterByGenreWomen, FilterByPrice } from '../../redux/actions/productActions';
 
 
 import Cookies from 'universal-cookie';
@@ -39,6 +39,9 @@ function Home(props) {
   }
   function handlePriceFilter(event) {
       dispatch(FilterByPrice(event.target.value))
+  }
+  function handleBrandFilter(event) {
+      dispatch(FilterByBrand(event.target.value))
   }
 
   
@@ -92,6 +95,7 @@ function Home(props) {
   const [showNiño, setShowNiño] = useState(false);
   const [showNiña, setShowNiña] = useState(false);
   const [showCats, setShowCats] = useState(false);
+  const [showMarcas, setShowMarcas] = useState(false);
   const [showPri, setShowPri] = useState(false);
 
   return (
@@ -182,6 +186,17 @@ function Home(props) {
               <button className="contenido botongenero" value={'Calzas'} onClick={(event) => handleGenreNiña(event)}  >Calzas</button>
               <button className="contenido botongenero" value={'Remeras'} onClick={(event) => handleGenreNiña(event)}  >Remeras</button>
               <button className="contenido botongenero" value={'Botines'} onClick={(event) => handleGenreNiña(event)}  >Botines</button>
+            </div>
+
+            <div className={showMarcas ? 'bloqueacordeon activo' : 'bloqueacordeon'} onClick={() => setShowMarcas(!showMarcas)}>
+              <h2 className="h2acordeon">Marcas</h2>
+              <button className="contenido botongenero" value={'todos'} onClick={(event) => handleBrandFilter(event)}  >Todos</button>
+              <button className="contenido botongenero" value={'Nike'} onClick={(event) => handleBrandFilter(event)} >Nike</button>
+              <button className="contenido botongenero" value={'Adidas'} onClick={(event) => handleBrandFilter(event)} >Adidas</button>
+              <button className="contenido botongenero" value={'Jordan'} onClick={(event) => handleBrandFilter(event)}  >Jordan</button>
+              <button className="contenido botongenero" value={'Fila'} onClick={(event) => handleBrandFilter(event)}  >Fila</button>
+              <button className="contenido botongenero" value={'Puma'} onClick={(event) => handleBrandFilter(event)}  >Puma</button>
+              <button className="contenido botongenero" value={'Reebok'} onClick={(event) => handleBrandFilter(event)}  >Reebok</button>
             </div>
 
 

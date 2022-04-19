@@ -1,5 +1,22 @@
 
-import  { GET_PRODUCTS, GET_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, ERROR, FILTER_BY_MEN, FILTER_BY_WOMEN, FILTER_BY_UNISEX, FILTER_BY_NINO, FILTER_BY_NINA, FILTER_BY_NAME, FILTER_BY_CATEGORY, ADD_SUBTOTAL, DELETE_SUBTOTAL, FILTER_BY_PRICE } from '../actions/productActions'
+import {
+    GET_PRODUCTS,
+    GET_PRODUCT,
+    CREATE_PRODUCT,
+    DELETE_PRODUCT,
+    ERROR,
+    FILTER_BY_MEN,
+    FILTER_BY_WOMEN,
+    FILTER_BY_UNISEX,
+    FILTER_BY_NINO,
+    FILTER_BY_NINA,
+    FILTER_BY_NAME,
+    FILTER_BY_CATEGORY,
+    ADD_SUBTOTAL,
+    DELETE_SUBTOTAL,
+    FILTER_BY_PRICE,
+    FILTER_BY_BRAND
+} from '../actions/productActions'
 const initialState = {
     productos: [],
     allProductos: [],
@@ -86,6 +103,16 @@ function productReducer( state = initialState, action ){
             return {
                 ...state,
                 productos: prodsFilteredByCat
+            }
+
+            case FILTER_BY_BRAND:
+            const TodoslosProdBrand = state.allProductos
+            const filterProdBrand = TodoslosProdBrand.filter(el => el.brand === action.payload) 
+            console.log(filterProdBrand)
+            const prodsFilteredByBrand = action.payload === 'todos' ? TodoslosProdBrand : filterProdBrand
+            return {
+                ...state,
+                productos: prodsFilteredByBrand
             }
 
         case FILTER_BY_PRICE:

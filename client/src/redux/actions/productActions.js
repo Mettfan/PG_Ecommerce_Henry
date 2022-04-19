@@ -15,6 +15,7 @@ export const FILTER_BY_UNISEX = 'FILTER_BY_UNISEX'
 export const FILTER_BY_NINO = 'FILTER_BY_NINO'
 export const FILTER_BY_NINA = 'FILTER_BY_NINA'
 export const FILTER_BY_PRICE = 'FILTER_BY_PRICE'
+export const FILTER_BY_BRAND = 'FILTER_BY_BRAND'
 
 
 
@@ -203,6 +204,20 @@ export function FilterByPrice(payload) {
         try {
             dispatch ({
                 type: FILTER_BY_PRICE,
+                payload,
+            });
+        }
+        catch (error) {
+            console.log(error)
+        }    
+    }
+}
+
+export function FilterByBrand(payload) {
+    return async function (dispatch) {
+        try {
+            dispatch ({
+                type: FILTER_BY_BRAND,
                 payload,
             });
         }
