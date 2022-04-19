@@ -33,7 +33,27 @@ html {
 }
 
 
+.envioGratisDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+}
 
+.envioGratisImg {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.envioGratisImg:hover {
+  cursor: pointer;
+}
 
 
 .carrousel {

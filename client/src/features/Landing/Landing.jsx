@@ -122,6 +122,12 @@ function Landing() {
   return (
     <>
 
+    <div className="envioGratisDiv">
+      <Link className="envioGratisImg" to="/home">
+        <img className="envioGratisImg" src="https://www.moovbydexter.com.ar/dw/image/v2/BDTF_PRD/on/demandware.static/-/Sites-Moov-Library/default/dw538b66bc/02mar/headerexpressycuotas.gif?sw=1440&sfrm=gif" alt="" />
+      </Link>
+    </div>
+
       <div class="carrousel">
           <Link to="/home" style={{ textDecoration: 'none' }}>
         <div class="grande">
