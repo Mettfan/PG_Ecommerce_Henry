@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom"
 import Cookies from "universal-cookie"
 import './OrderFinder.css'
 import { useNavigate } from "react-router-dom"
+import { deleteProductFavorite } from "../../redux/actions/favoriteActions"
 export default function OrderFinder()  {
     let nav = useNavigate()
     let cookie = new Cookies()
@@ -18,6 +19,10 @@ export default function OrderFinder()  {
    useEffect(()=> { 
        if (payment_id){
            cookie.set('searchId', payment_id )
+        //    cookie.get('shopping')?.msg?.forEach(product => {
+
+        //        deleteProductFavorite({productId: product?.id, userEmail: cookie.get('user')?.user?.email } )
+        //    })
            
            handleOnSubmit()
        } 
@@ -101,7 +106,7 @@ export default function OrderFinder()  {
             })}:
    </div>
     {/* El boton que te redirige al ticket */}
-                {state.orderFound.status === 'pending' && <button onClick={( ) =>  goToOrder() }> Ver Orden</button>  }
+                {state.orderFound.status === 'pending' && <button className="goOrder"  onClick={( ) =>  goToOrder() }> Ver Orden</button>  }
     <div>
                 {/* {state.orderFound.status === 'pending' && <button onClick={( ) => window.location.href = state.orderFound.transaction_details?.external_resource_url }> Ticket</button>  } */}
                 {<a  target={'_blank'} href={state.orderFound.transaction_details?.external_resource_url} download= 'Ticket'>Ticket</a>}
