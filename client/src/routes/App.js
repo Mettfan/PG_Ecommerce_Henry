@@ -21,18 +21,14 @@ import Footer from '../components/Footer';
 import UserOrderView from '../features/UserOrderView/UserOrderView';
 import OrdersView from '../features/Admin/OrdersView/OrdersView';
 import { CartPay } from '../features/CartPay/index';
-
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-
 import CreateUser from '../features/Admin/UserActions/CreateUser/CreateUser';
-
 import HomeAdmin from '../features/Admin/HomeAdmin';
-import EditCard from '../features/Admin/component/EditCard';
-
 import OrderFinder from '../features/OrderFinder/OrderFinder';
 import { CreateProduct } from '../features/Admin/ProductActions/CreateProduct/CreateProduct';
+import { DrawerEdit } from '../features/Admin/component/DrawerEdit';
 
 
 function App() {
@@ -54,11 +50,7 @@ function App() {
 
     
     <div className="App">
-
       {/* <NavBar/> */}
-
-
-      <NavBar/>
 
       <Routes>
         {/* <Route exact path="/"  element={<RedirectRouteToHome />} /> */}
@@ -83,26 +75,19 @@ function App() {
         
         <Route path="/map" element={<Map></Map> } />
 
-
         <Route path="/admin/products" element={<GetProducts></GetProducts>} />
-
         <Route path="/admin/orders" element={<OrdersView></OrdersView>} />
-
         <Route path="/admin" element={<HomeAdmin />}/>
-        <Route path="/editcard" element={<EditCard />}/>
+        <Route path="/createproducts" element={<CreateProduct />}/>
+        <Route path="/drawerEdit" element={<DrawerEdit />}/>
 
         <Route path="/order" element={<UserOrderView></UserOrderView> } />
-
-
-        <Route path="/admin/product/create" element={<CreateProduct></CreateProduct> } />
-        {/* <Route path="/admin/product/delete" element={<DeleteProduct></DeleteProduct> } /> */}
-
 
         <Route path="/admin/user/create" element={<CreateUser></CreateUser> } />
         <Route path="/order/finder/" element={<OrderFinder></OrderFinder> } />
         
       </Routes>
-      {/* <Footer />       */}
+      <Footer />      
     </div>
 
   );

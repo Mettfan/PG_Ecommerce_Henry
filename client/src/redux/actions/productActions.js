@@ -3,6 +3,7 @@ export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_PRODUCT = 'GET_PRODUCT'
 export const CREATE_PRODUCT = 'CREATE_PRODUCT'
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'
+export const EDIT_PRODUCT = 'EDIT_PRODUCT'
 export const ERROR = 'ERROR'
 //export const FILTER_BY_GENRE = 'FILTER_BY_GENRE'
 export const FILTER_BY_NAME = 'FILTER_BY_NAME'
@@ -48,18 +49,25 @@ export const getProduct = ( id ) => async ( dispatch ) => {
 }
 
 
-export const createProduct = ( { gender, name, description, size, color, stock, price, image, category} ) => async ( dispatch ) => {
+export const createProduct = ( { name, description, size, color, gender, stock, stock_by_size, price, discount, warranty, brand, suitable_for, composition, origin, important_data, extras, image, category} ) => async ( dispatch ) => {
 
     axios.post('http://localhost:3001/productos', { 
-        
-        gender,
-        name,
+        name, 
         description,
         size,
         color,
+        gender,
         stock,
+        stock_by_size,
         price,
-        
+        discount,
+        warranty,
+        brand,
+        suitable_for,
+        composition,
+        origin,
+        important_data,
+        extras,
         image,
         category
      }).then( response => {
@@ -74,6 +82,24 @@ export const deleteProduct = ( id ) => async ( dispatch ) => {
     axios.delete(`http://localhost:3001/productos/${id}`).then( response => {
         dispatch({
             type: DELETE_PRODUCT,
+            payload: response.data
+        })
+    },
+    (error) => {
+        dispatch({
+            type: ERROR,
+            payload: error.error
+        })
+    })
+}
+
+export const editProduct = ( producto ) => async ( dispatch ) => {
+    console.log('producto action edit', producto)
+    await axios.put("http://localhost:3001/productos/putproduct", producto)
+    .then(response => {
+        console.log('response.data action edit', response.data)
+        dispatch({
+            type: EDIT_PRODUCT,
             payload: response.data
         })
     },

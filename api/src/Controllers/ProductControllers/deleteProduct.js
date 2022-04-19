@@ -1,6 +1,5 @@
 const { Product } = require('../../db.js')
 const deleteProduct = async(req,res)=>{
-    // const { id } = req.body
     const {id} = req.params
     console.log('id', id)
     const product = Product.findOne({where: { id: id }})
@@ -10,7 +9,6 @@ const deleteProduct = async(req,res)=>{
         Product.destroy({
             where: {
                 id: id
-
             }
         }).then( rowDeleted => {
             if(rowDeleted === 1){
