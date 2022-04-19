@@ -105,7 +105,9 @@ html {
     margin: 5% auto;
 }
 
-
+.encontraMarcas img:hover {
+    cursor: pointer;
+}
 
 
 .encontraContainer {
