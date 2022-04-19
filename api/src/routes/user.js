@@ -10,7 +10,7 @@ const postLogin = require('../Controllers/UserControllers/loginUser');
 const checkAuth = require('../middlewares/auth');
 const checkRoleAdmin = require('../middlewares/roleAuth');
 const putUserRole = require('../Controllers/UserControllers/putUserRol');
-// const postUserEmail = require('../Controllers/UserControllers/postUserEmail');
+
 
 const addProductToShoppingCart = require('../Controllers/ShoppingCartControllers/addProductToShoppingCart')
 const getProductsFromShoppingCart = require('../Controllers/ShoppingCartControllers/getProductsFromShoppingCart')
