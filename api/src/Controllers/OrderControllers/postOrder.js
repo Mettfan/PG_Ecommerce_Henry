@@ -5,7 +5,9 @@ const {nanoid} = require('nanoid')
 let token = 'APP_USR-4206952764594865-041216-86c66dae1de7c07e9a7a855ed313ba08-355601564'
 const postOrder = async (req, res, next) => {
     const {email, payment_id} = req.body;
-    console.log(req.query)
+    console.log(req.body)
+    res.send({email: email, payment_id: payment_id})
+    
     
     // res.redirect(`http://localhost:3000/order/finder/?collection_id=${collection_id}&collection_status=${collection_status}&payment_id=${payment_id}&status=${status}&preference_id=${preference_id}`)
     // try{
