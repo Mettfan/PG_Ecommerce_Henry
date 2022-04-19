@@ -52,7 +52,7 @@ const formSchema = Yup.object().shape({
     postal: Yup.string()
         .required("Este campo es requerido")
         .max(20, "Máximo 8 carácteres")
-        .min(8, "Mínimo 4 carácteres"),
+        .min(4, "Mínimo 4 carácteres"),
     phone: Yup.string()
         .required("Este campo es requerido")
         .max(20, "Máximo 20 carácteres")
@@ -68,7 +68,7 @@ const LoginForm = () => {
     const nav = useNavigate()
 
     const onSubmit = (data) => {
-        console.log('data', data);
+        alert('Al registrarte aceptas nuestros términos y condiciones')
         dispatch(createUser(data));
         reset();
         nav('/home')
