@@ -15,6 +15,7 @@ import {
     ADD_SUBTOTAL,
     DELETE_SUBTOTAL,
     FILTER_BY_PRICE,
+    CLEAN_PRODUCT,
     FILTER_BY_BRAND
 } from '../actions/productActions'
 const initialState = {
@@ -28,9 +29,11 @@ function productReducer( state = initialState, action ){
     switch (action.type){
 
         case GET_PRODUCTS: 
-            return { ...state, productos: action.payload, allProductos: action.payload, }
+            return { ...state, productos: action.payload, allProductos: action.payload, producto: [] }
+        case CLEAN_PRODUCT:
+            return { ...state, producto: [] }
         case GET_PRODUCT:
-            return { ...state, producto: action.payload  }
+            return { ...state, producto: action.payload }
         case CREATE_PRODUCT: 
             return { ...state, status: action.payload }
         case DELETE_PRODUCT:

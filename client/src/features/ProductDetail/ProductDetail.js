@@ -33,12 +33,15 @@ export default function ProductDetail (props) {
     let dispatch = useDispatch()
     useEffect(() => {
 
-      
-      if(id) {
+      setTimeout(() => {
         
-        dispatch(getProduct(id))
-      }
-    }, [])
+        
+        if(id) {
+          
+          dispatch(getProduct(id))
+        }
+      }, 1000);
+    }, [dispatch, id])
 
     let product = useSelector( (state) => state.productReducer.producto)
     
@@ -75,8 +78,18 @@ export default function ProductDetail (props) {
     const reviewsOfTheProduct = reviesWithName?.filter(r => r.ProductId === Number(id))
     console.log(reviewsOfTheProduct, 'reviews of the product')
     
-    return (<>
-        {product ? 
+    return (
+
+      <>
+      
+      { 
+        product.id
+        ? 
+        <div>
+      
+      {
+        
+        product ? 
     
       
     <div className="main-container">
@@ -370,9 +383,24 @@ export default function ProductDetail (props) {
   <h2>Loading</h2>
   
 }
+      
+      
+        </div>
+      
+        :
+        <div className="loading">
+            
+            <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
+        </div>
+      }
+      </>
+
     
     
-    </>)
+    
+    
+    )
 
 
 }

@@ -8,7 +8,7 @@ import Catalog from '../Product/Catalog/Catalog'
 import { useAuth0 } from '@auth0/auth0-react'
 import {MdOutlineArrowDropUp, MdOutlineArrowDropDown} from 'react-icons/md'
 
-import { FilterByBrand, FilterByCategory, filterByGenreMen, filterByGenreNiña, filterByGenreNiño, filterByGenreUnisex, filterByGenreWomen, FilterByPrice } from '../../redux/actions/productActions';
+import { cleanProduct, FilterByBrand, FilterByCategory, filterByGenreMen, filterByGenreNiña, filterByGenreNiño, filterByGenreUnisex, filterByGenreWomen, FilterByPrice, getProducts } from '../../redux/actions/productActions';
 
 
 import Cookies from 'universal-cookie';
@@ -21,12 +21,18 @@ function Home(props) {
 
 
 
+
   let status = useSelector( state => state.userReducer.status)
   const { isAuthenticated } = useAuth0()
   let cookie = new Cookies()
 
   const dispatch = useDispatch();
   
+    useEffect(() => {
+      dispatch(cleanProduct())
+    }, [dispatch])
+
+
   function handleGenreMen(event) {
       dispatch(filterByGenreMen(event.target.value))
   }

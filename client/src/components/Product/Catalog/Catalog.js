@@ -5,12 +5,13 @@ function Catalog(props){
     let productos = props.productos
     let prods = useSelector(state => state.productReducer.productos)
     console.log(prods, 'prods')
+    const prodsAvaliable = productos.filter(product => product.disabled == false)
     return (
         <>
             <div className="catalog-container">
             {
             prods.length !== 0 ?
-            productos.map(producto => {
+            prodsAvaliable?.map(producto => {
                 return <ProductCard 
                 id={producto.id}
                 name = {producto.name}
