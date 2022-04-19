@@ -116,175 +116,19 @@ export default function ProductDetail (props) {
           <div className="detail-one-cards">Medios de pago</div>
           <div className="detail-one-size">
             <p className="detail-size">Talles</p>
-
+              <div className="sizesMap">
             {
-              product.CategoryName === 'Remeras' ||
-              product.CategoryName === 'Buzos' ||
-              product.CategoryName === 'Pantalones' ||
-              product.CategoryName === 'Calzas' ||
-              product.CategoryName === 'Camperas'     
-              
-              ?
-
-<>
-              <div className="detail-sizes2">
-            <span className="sizes2Size">
-                S  </span>
-                
-                <span className="sizes2NumerOfSize">{product?.stock_by_size?.S ? product?.stock_by_size?.S : 0} </span><br />
-            
-            </div>
-
-            <div className="detail-sizes2">
-            <span className="sizes2Size">
-              M  </span>
-              
-              <span className="sizes2NumerOfSize">{product?.stock_by_size?.M ?product?.stock_by_size?.M : 0}</span><br />
-            
-            </div>
-
-            <div className="detail-sizes2">
-            <strong>
-              L  </strong>
-              
-              <span className="sizes2NumerOfSize">{product?.stock_by_size?.L ?product?.stock_by_size?.L : 0}</span><br />
-            
-            
-            </div>
-
-            <div className="detail-sizes2">
-            <span className="sizes2Size">
-              XS  </span>
-              
-              <span className="sizes2NumerOfSize">{product?.stock_by_size?.XS ?product?.stock_by_size?.XS : 0}</span><br />
-            
-            </div>
-
-            <div className="detail-sizes2">
-            <span className="sizes2Size">
-              XL  </span>
-              
-              <span className="sizes2NumerOfSize">{product?.stock_by_size?.XL ?product?.stock_by_size?.XL : 0}</span><br />
-            
-            </div>
-
-            <div className="detail-sizes2">
-            <span className="sizes2Size">
-              XXL </span>
-              
-              <span className="sizes2NumerOfSize"> {product?.stock_by_size?.XXL ? product?.stock_by_size?.XXL : 0}</span><br />
-            
-            </div>
-
-
-            <div className="detail-sizes2">
-            <span className="sizes2Size">
-            XXXXL </span>
-              
-              <span className="sizes2NumerOfSize"> {product?.stock_by_size?.XXXXL ? product?.stock_by_size?.XXXXL : 0}</span><br />
-            
-            </div>
-              </>
-
-              : product?.CategoryName === 'Zapatillas' || 
-                product?.CategoryName === 'Botines' 
-              
-              ? 
-              
-              <>
-              <div className="detail-sizes2">
-              <span className="sizes2Size">
-              34 </span>
-                
-                <span className="sizes2NumerOfSize"> {product?.stock_by_size[34] ? product?.stock_by_size[34] : 0}</span><br />
-              
-              </div>
-
-              <div className="detail-sizes2">
-              <span className="sizes2Size">
-              35 </span>
-                
-                <span className="sizes2NumerOfSize"> {product?.stock_by_size[35] ? product?.stock_by_size[34] : 0}</span><br />
-              
-              </div>
-              <div className="detail-sizes2">
-              <span className="sizes2Size">
-              36 </span>
-                
-                <span className="sizes2NumerOfSize"> {product?.stock_by_size[36] ? product?.stock_by_size[36] : 0}</span><br />
-              
-              </div>
-              
-              <div className="detail-sizes2">
-              <span className="sizes2Size">
-              37 </span>
-                
-                <span className="sizes2NumerOfSize"> {product?.stock_by_size[37] ? product?.stock_by_size[37] : 0}</span><br />
-              
-              </div>
-
-              <div className="detail-sizes2">
-              <span className="sizes2Size">
-              38 </span>
-                
-                <span className="sizes2NumerOfSize"> {product?.stock_by_size[38] ? product?.stock_by_size[38] : 0}</span><br />
-              
-              </div>
-
-              <div className="detail-sizes2">
-              <span className="sizes2Size">
-              39 </span>
-                
-                <span className="sizes2NumerOfSize"> {product?.stock_by_size[39] ? product?.stock_by_size[39] : 0}</span><br />
-              
-              </div>
-
-              <div className="detail-sizes2">
-              <span className="sizes2Size">
-              40 </span>
-                
-                <span className="sizes2NumerOfSize"> {product?.stock_by_size[40] ? product?.stock_by_size[40] : 0}</span><br />
-              
-              </div>
-
-              <div className="detail-sizes2">
-              <span className="sizes2Size">
-              41 </span>
-                
-                <span className="sizes2NumerOfSize"> {product?.stock_by_size[41] ? product?.stock_by_size[41] : 0}</span><br />
-              
-              </div>
-
-              <div className="detail-sizes2">
-              <span className="sizes2Size">
-              42 </span>
-                
-                <span className="sizes2NumerOfSize"> {product?.stock_by_size[42] ? product?.stock_by_size[42] : 0}</span><br />
-              
-              </div>
-
-              </>
-              : 
-                product?.CategoryName === 'Bolsos' || 
-                product?.CategoryName === 'Mochilas' || 
-                product?.CategoryName === 'Gorras' 
-                
-                ?
-                <>
-                <div className="detail-sizes2">
-                <span className="sizes2Size">
-                Único </span>
-                  
-                  <span className="sizes2NumerOfSize"> {product?.stock_by_size.Único ? product?.stock_by_size.Único : 0}</span><br />
-                
-                </div>
-              </>
-
-              : null
+              product.stock_by_size.map(size => {
+                return <div>
+                            <span className="detail-sizes2">
+                              <span className="sizes2Size"> {size.size}  </span>
+                                <span className="sizes2NumerOfSize">{size.stock} </span><br />
+                             </span>
+                        </div>
+              })
             }
-
             
-            
+              </div>
             </div>
           <p className={show ? 'producto_agregado' : 'producto_sinagregar'}> 🟢 El producto fue agregado al carrito</p>
           <div className="detail-one-buttons">

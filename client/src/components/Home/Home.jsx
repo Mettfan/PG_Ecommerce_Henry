@@ -39,9 +39,9 @@ function Home(props) {
   function handleGenreWomen(event) {
       dispatch(filterByGenreWomen(event.target.value))
   }
-  function handleGenreUnisex(event) {
-      dispatch(filterByGenreUnisex(event.target.value))
-  }
+  //function handleGenreUnisex(event) {
+  //    dispatch(filterByGenreUnisex(event.target.value))
+  //}
   function handleGenreNiño(event) {
       dispatch(filterByGenreNiño(event.target.value))
   }
@@ -96,7 +96,7 @@ function Home(props) {
 
   const [show, setShow] = useState(false);
   const [showWo, setShowWo] = useState(false);
-  const [showUni, setShowUni] = useState(false);
+ // const [showUni, setShowUni] = useState(false);
   const [showNiño, setShowNiño] = useState(false);
   const [showNiña, setShowNiña] = useState(false);
   const [showCats, setShowCats] = useState(false);
@@ -144,20 +144,6 @@ function Home(props) {
               <button className="contenido botongenero" value={'Botines'} onClick={(event) => handleGenreWomen(event)}  >Botines </button>
             </div>
 
-            <div className={showUni ? 'bloqueacordeon activo' : 'bloqueacordeon'} onClick={() => setShowUni(!showUni)}>
-              <h2 className="h2acordeon">Unisex</h2>
-              <button className="contenido botongenero" value={'All'} onClick={(event) => handleGenreUnisex(event)}  >Todos</button>
-              <button className="contenido botongenero" value={'Camperas'} onClick={(event) => handleGenreUnisex(event)} >Camperas</button>
-              <button className="contenido botongenero" value={'Pantalones'} onClick={(event) => handleGenreUnisex(event)} >Pantalones</button>
-              <button className="contenido botongenero" value={'Zapatillas'} onClick={(event) => handleGenreUnisex(event)}  >Zapatillas </button>
-              <button className="contenido botongenero" value={'Mochilas'} onClick={(event) => handleGenreUnisex(event)}  >Mochilas </button>
-              <button className="contenido botongenero" value={'Gorras'} onClick={(event) => handleGenreUnisex(event)}  >Gorras </button>
-              <button className="contenido botongenero" value={'Bolsos'} onClick={(event) => handleGenreUnisex(event)}  >Bolsos </button>
-              <button className="contenido botongenero" value={'Buzos'} onClick={(event) => handleGenreUnisex(event)}  >Buzos </button>
-              <button className="contenido botongenero" value={'Calzas'} onClick={(event) => handleGenreUnisex(event)}  >Calzas </button>
-              <button className="contenido botongenero" value={'Remeras'} onClick={(event) => handleGenreUnisex(event)}  >Remeras </button>
-              <button className="contenido botongenero" value={'Botines'} onClick={(event) => handleGenreUnisex(event)}  >Botines </button>
-            </div>
 
 
 

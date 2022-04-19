@@ -38,20 +38,6 @@
 .detail-size {
   font-size: 12px;
 }
-.detail-sizes2 {
-  border: 1px solid rgb(46, 45, 45);
-  border-radius: 50px;
-  margin: 10px;
-  padding: 5px 20px;
-  font-size: 12px;
-  display: inline-block;
-  transition: all 0.5s;
-}
-.detail-sizes2:hover {
-  background-color: rgb(46, 45, 45);
-  color: white;
-  cursor: pointer;
-}
 
 
 .detail-one-right {
@@ -360,6 +346,35 @@
   margin: 15% auto;
 }
 
+
+.sizesMap {
+  display: flex !important;
+  flex-direction: row;
+  width: 100%;
+}
+
+.detail-size {
+  display: inline-block;
+
+  margin: 0 auto;
+}
+
+.detail-sizes2 {
+  border: 1px solid rgb(46, 45, 45);
+  border-radius: 50px;
+  margin: 10px;
+  padding: 5px 20px;
+  font-size: 12px;
+  display: inline-block;
+  transition: all 0.5s;
+}
+.detail-sizes2:hover {
+  background-color: rgb(46, 45, 45);
+  color: white;
+  cursor: pointer;
+}
+
+
 /* RESPONSIVE
    ========================================================================= /
  
@@ -469,6 +484,10 @@
     display: inline-block !important;
   }
 
+  .sizesMap {
+    display: flex !important;
+
+  }
 
 
   .detail-two {
