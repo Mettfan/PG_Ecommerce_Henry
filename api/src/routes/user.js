@@ -30,7 +30,7 @@ router.put('/actualizarpassword', putUserPassword);
 router.delete('/eliminarusuario', deleteUser);
 router.post('/login', postLogin);
 router.put('/userrol', checkAuth, checkRoleAdmin(['superadmin']), putUserRole);
-// router.post('/subscribe', postUserEmail);
+
 router.get('/logout', logoutUser);
 router.get('/info', userInformation);
 
