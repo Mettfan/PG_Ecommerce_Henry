@@ -5,8 +5,11 @@ import Cookies from "universal-cookie"
 import './OrderFinder.css'
 import { useNavigate } from "react-router-dom"
 import { deleteProductFavorite } from "../../redux/actions/favoriteActions"
+import { useDispatch } from "react-redux"
+import { addOrder } from "../../redux/actions/orderActions"
 export default function OrderFinder()  {
     let nav = useNavigate()
+    let dispatch = useDispatch()
     let cookie = new Cookies()
     let [searchParams, setSearchParams] = useSearchParams()
     let payment_id = searchParams.get('payment_id') || cookie.get('searchId')
@@ -19,6 +22,10 @@ export default function OrderFinder()  {
    useEffect(()=> { 
        if (payment_id){
            cookie.set('searchId', payment_id )
+            axios.post('http://localhost:3001/usuario/order', {email: cookie.get('user')?.user?.email, payment_id: payment_id}).then( response => {
+                console.log(response.data);
+            })
+
         //    cookie.get('shopping')?.msg?.forEach(product => {
 
         //        deleteProductFavorite({productId: product?.id, userEmail: cookie.get('user')?.user?.email } )
