@@ -33,6 +33,7 @@ import EditCard from '../features/Admin/component/EditCard';
 
 import OrderFinder from '../features/OrderFinder/OrderFinder';
 import { CreateProduct } from '../features/Admin/ProductActions/CreateProduct/CreateProduct';
+import Terminos from '../components/Terminos/Terminos';
 
 
 function App() {
@@ -100,9 +101,11 @@ function App() {
 
         <Route path="/admin/user/create" element={<CreateUser></CreateUser> } />
         <Route path="/order/finder/" element={<OrderFinder></OrderFinder> } />
+
+        <Route path='/terminos' element={<Terminos></Terminos>} />
         
       </Routes>
-      {/* <Footer />       */}
+      <Footer />      
     </div>
 
   );
