@@ -10,7 +10,7 @@ const postLogin = require('../Controllers/UserControllers/loginUser');
 const checkAuth = require('../middlewares/auth');
 const checkRoleAdmin = require('../middlewares/roleAuth');
 const putUserRole = require('../Controllers/UserControllers/putUserRol');
-// const postUserEmail = require('../Controllers/UserControllers/postUserEmail');
+
 
 const addProductToShoppingCart = require('../Controllers/ShoppingCartControllers/addProductToShoppingCart')
 const getProductsFromShoppingCart = require('../Controllers/ShoppingCartControllers/getProductsFromShoppingCart')
@@ -30,7 +30,7 @@ router.put('/actualizarpassword', putUserPassword);
 router.delete('/eliminarusuario', deleteUser);
 router.post('/login', postLogin);
 router.put('/userrol', checkAuth, checkRoleAdmin(['superadmin']), putUserRole);
-// router.post('/subscribe', postUserEmail);
+
 router.get('/logout', logoutUser);
 router.get('/info', userInformation);
 

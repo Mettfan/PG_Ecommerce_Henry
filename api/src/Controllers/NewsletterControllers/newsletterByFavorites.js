@@ -53,7 +53,7 @@ const addTag = async (email) => {
     if(!user) {
         res.status(404).json({msg: 'Usuario no encontrado'});
     }
-    const products = await user.getProducts();
+    const products = await user.getFavorites();
     // console.log(products, '<--')
     const name = products.map(product => product.name); 
     let emailHash = md5(email.toLowerCase());
