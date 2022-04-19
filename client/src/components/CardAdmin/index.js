@@ -1,26 +1,29 @@
 import React from 'react'
 import './index.css';
-import { useState } from 'react';
 import { BsPencilSquare } from 'react-icons/bs';
 import { VscTrash } from 'react-icons/vsc';
 import { VscEye } from 'react-icons/vsc';
 import { VscEyeClosed } from 'react-icons/vsc';
 import { useDispatch } from 'react-redux';
-import { deleteProduct, getProducts } from '../../redux/actions/productActions';
-// import EditCard from '../../features/Admin/component/EditCard';
+import { deleteProduct, editProduct } from '../../redux/actions/productActions';
 
-function CardAdmin( { image, name, stock, size, color, price, disabled, drawer, id },  ) {
+function CardAdmin( { image, name, stock, size, color, price, disabled, drawer, id, producto , receiveProduct },  ) {
   const dispatch = useDispatch();
 
   const handleEdit = (e) => {
     e.preventDefault();
     drawer();
+    receiveProduct(producto)
   }
 
   const handleDelete = (e) => {
     e.preventDefault();
     dispatch(deleteProduct(id));
-    dispatch(getProducts())
+  }
+
+  const handleDisabled = (e) => {
+    e.preventDefault();
+    dispatch(editProduct({id, "disabled": !disabled}));
   }
 
   return (
@@ -29,7 +32,7 @@ function CardAdmin( { image, name, stock, size, color, price, disabled, drawer, 
           <div className="img-admin-card">
             <img className="admin-panel-product-img" src={ image } alt="imagen rota"></img>
           </div>
-          <div className="card-admin-information">
+          <div className="card-admin-information-slim">
               <p className="card-admin-name">{ name }</p>
               <p className="card-admin-size">Talle: { size }</p>
               <p className="card-admin-color">Color: { color }</p>
@@ -43,9 +46,10 @@ function CardAdmin( { image, name, stock, size, color, price, disabled, drawer, 
             <button className="button-card-admin" onClick={(e) => {handleDelete(e)}}>
               <VscTrash size={25} />
             </button >
-            <button className="button-card-admin">
-              {/* <VscEye size={25}/> */}
-              <VscEyeClosed size={25}/>
+            <button className="button-card-admin" onClick={(e) => {handleDisabled(e)}}>
+              {
+                disabled ? <VscEyeClosed size={25}/> :  <VscEye size={25}/>
+              }
             </button>
           </div>
         </div>

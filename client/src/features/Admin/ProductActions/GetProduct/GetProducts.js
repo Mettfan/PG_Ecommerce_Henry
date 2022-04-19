@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { getProducts } from "../../../../redux/actions/productActions"
 import CardAdmin from "../../../../components/CardAdmin"
 
-export default function GetProduct ({activeDrawer}) {
+export default function GetProduct ({activeDrawer, receiveProduct}) {
     const productos = useSelector( (state) => state.productReducer.productos )
+    const status = useSelector( (state) => state.productReducer.status )
     const dispatch = useDispatch()
     const [search, setSearch] = useState('')
     const [selectCategory, setSelectCategory] = useState('')
@@ -24,7 +25,7 @@ export default function GetProduct ({activeDrawer}) {
 
     useEffect(()=>{
         dispatch(getProducts())
-    },[])
+    },[status])
 
     const handleInputChange = (e) => {
         e.preventDefault();
@@ -83,7 +84,9 @@ export default function GetProduct ({activeDrawer}) {
                                                 price= {producto.price}
                                                 drawer= {activeDrawer}
                                                 id= {producto.id}
-                                            //   disabled 
+                                                producto= {producto}
+                                                receiveProduct= {receiveProduct}
+                                                disabled= {producto.disabled} 
                                             />
                                         )}
                                     </div>
