@@ -1,11 +1,12 @@
 
-import  { GET_PRODUCTS, GET_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, ERROR, FILTER_BY_MEN, FILTER_BY_WOMEN, FILTER_BY_CHILDREN, FILTER_BY_NAME, FILTER_BY_CATEGORY, ADD_SUBTOTAL, DELETE_SUBTOTAL, EDIT_PRODUCT } from '../actions/productActions'
+import  { GET_PRODUCTS, GET_PRODUCT, CREATE_PRODUCT, DELETE_PRODUCT, ERROR, FILTER_BY_MEN, FILTER_BY_WOMEN, FILTER_BY_CHILDREN, FILTER_BY_NAME, FILTER_BY_CATEGORY, ADD_SUBTOTAL, DELETE_SUBTOTAL, EDIT_PRODUCT, GET_PRODUCT_BY_DISCOUNT } from '../actions/productActions'
 const initialState = {
     productos: [],
     allProductos: [],
     producto: [],
     status: '',
     totalCart: [0],
+    
 }
 function productReducer( state = initialState, action ){
     switch (action.type){
@@ -13,7 +14,7 @@ function productReducer( state = initialState, action ){
         case GET_PRODUCTS: 
             return { ...state, productos: action.payload, allProductos: action.payload, }
         case GET_PRODUCT:
-            return { ...state, producto: action.payload  }
+            return { ...state, producto: action.payload  }    
         case CREATE_PRODUCT: 
             return { ...state, status: action.payload }
         case DELETE_PRODUCT:
@@ -22,8 +23,7 @@ function productReducer( state = initialState, action ){
             return { ...state, status: action.payload }
         case ERROR: 
             return { ...state, status: action.payload}
-
-
+ 
         case FILTER_BY_MEN:
             let allProdsMen = state.allProductos.filter(el =>  el.gender === 'Caballero')
             let filterProdsMen =allProdsMen.filter(el =>  el.gender === 'Caballero' && el.CategoryName === action.payload) 

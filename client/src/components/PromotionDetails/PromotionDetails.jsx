@@ -4,42 +4,47 @@ import { BsHeart } from 'react-icons/bs';
 import './PromotionDetails.css'
 import { useDispatch } from 'react-redux';
 import { getProduct } from '../../redux/actions/productActions';
+import { useSelector } from 'react-redux';
 
-function PromotionDetails(props) {
+function PromotionDetails() {
 
     const {id} = useParams();
     const dispatch = useDispatch();
 
+    const details= useSelector( (state) => state.productReducer.producto)
+console.log('detalles',details)
 
     useEffect(() => {
         dispatch(getProduct(id))
     }, [dispatch, id])
 
-    console.log(getProduct(id))
-    console.log(props)
+    
 
   return (
-<div className="main-container">
+    <div>
+      { details?
+     <div className="main-container">
+       
       <div className="detailProduct-container">
         <div className="gender-category">
-          <p>Hombre / Zapatillas</p>
+          <p>{details.gender}</p>
         </div>
         <div className="detail-one">
           <div className="detail-one-left">
             {/* <div className="detail-img"> */}
-              <img className="detail-img" src={props.image} alt="zapatilla" />
+              <img className="detail-img" src={details.image} alt="zapatilla" />
             {/* </div> */}
           </div>
           {/* <div></div> */}
           {/* <div className="detail-arrow"></div> */}
           <div className="detail-one-right">
-            <div className="detail-one-name-price"> {props.name} </div>
+            <div className="detail-one-name-price"> {details.name} </div>
             <div className="detail-one-sku">SKU: Item No. NI_DC9402-001</div>
-            <div className="detail-one-name-price">$28.499</div>
+            <div className="detail-one-name-price">${details.price}</div>
             <div className="detail-one-cards">Medios de pago</div>
             <div className="detail-one-size">
-              <p className="detail-size">Talle</p>
-              36 - 37 - 38 - 39 - 41 - 42 - 36 - 37 - 38 - 39 - 41 - 42
+              <p className="detail-size">Talle {details.size}</p>
+              
             </div>
             <div className="detail-one-buttons">
               <button className="detail-button-buy">Agregar al carrito</button>
@@ -79,6 +84,9 @@ function PromotionDetails(props) {
         <div className="detail-three"></div>
         <div className="detail-four"></div>
       </div>
+      
+      
+    </div>:<h2> loading... </h2>}
     </div>
   )
 }

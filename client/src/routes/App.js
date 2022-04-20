@@ -6,7 +6,6 @@ import { Register } from '../features/Register';
 import { Login } from '../features/Login';
 //import { DetailProduct } from '../features/DetailProduct';
 import Promotions from '../components/Promotions/Promotions';
-import PromotionDetails from '../components/PromotionDetails/PromotionDetails';
 import GetProducts from '../features/Admin/ProductActions/GetProduct/GetProducts'
 import ProductDetail from '../features/ProductDetail/ProductDetail';
 import UserDetail from '../features/UserDetail/UserDetail';
@@ -63,8 +62,8 @@ function App() {
         <Route path="/home" element={<Home/>} />
         <Route path="/productos/:id" element={<ProductDetail/>} />
 
-        <Route path="/promotions" element={<Promotions/>} />
-        <Route path="/promotions/:id" element={<PromotionDetails/>} />
+        <Route path="/promotions" element={<Promotions></Promotions>} />
+       
                 
         <Route path="/user/profile" element={<UserDetail></UserDetail>} />
         <Route path="/user/favorites" element={<UserFavorites></UserFavorites>} />
