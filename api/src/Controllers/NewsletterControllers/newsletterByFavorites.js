@@ -21,7 +21,7 @@ const newsProductFavorite = (req, res, data) => {
             return res.status(404).json({msg: `No puede suscribirse, perdida del parametro ${!email ? 'email': 'API Key or List ID'}`});
         }
         mailchimp.post(`lists/${ID_LIST_MAILCHIMP}`, {
-       
+            "update_existing":true,
             members: [{
                 email_address: email.toLowerCase(),
                 status : data.status || 'subscribed',
