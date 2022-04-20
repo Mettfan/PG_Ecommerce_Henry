@@ -29,18 +29,19 @@ import OrderFinder from '../features/OrderFinder/OrderFinder';
 import { CreateProduct } from '../features/Admin/ProductActions/CreateProduct/CreateProduct';
 import Terminos from '../components/Terminos/Terminos';
 import { DrawerEdit } from '../features/Admin/component/DrawerEdit';
+import Cookies from 'universal-cookie';
 
 
 function App() {
 
-  let userValidated = useSelector(state => state.userReducer.status.user);
+  const cookie = new Cookies();
+  const user = cookie.get('user')
   const dispatch = useDispatch();
-  const email = userValidated?.email;
+
 
   useEffect(() => {
-    if (userValidated) {
-      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(60), userEmail: email }).then(response => {
-        console.log(response.data);
+    if (user) {
+      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(60), userEmail: user.email }).then(response => {
         dispatch({ type: 'ADD_PRODUCT', payload: response.data });
       });
     }

@@ -18,7 +18,6 @@ export default function DetailsAuth0() {
 
     const { logout, user } = useAuth0();
     const userAuth0 = user;
-    cookie.get('user');
 
     // Me aseguro de que no haya usuarios repetidos en la DB
     const allUsers = useSelector((state) => state.userReducer.usuarios);
