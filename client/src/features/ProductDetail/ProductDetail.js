@@ -133,7 +133,7 @@ export default function ProductDetail (props) {
             <p className="detail-size">Talles</p>
               <div className="sizesMap">
             {
-              product.stock_by_size.map(size => {
+              product.stock_by_size?.map(size => {
                 return <div>
                             <span className="detail-sizes2">
                               <span className="sizes2Size"> {size.size}  </span>

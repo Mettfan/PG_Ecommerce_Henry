@@ -73,7 +73,7 @@ export default function OrderFinder()  {
        { datas && datas?.map((product) => {
             return (
                 <div className= 'card-admin-information'>
-      <div><img src={ product.picture_url } alt="imagen rota" width="70px"></img></div>
+      <div><img src={ product.picture_url } alt="" width="70px"></img></div>
       <div><h5> {product.title}</h5></div>
       <div  className="card-admin-name">Categoria: {product.category_id}  </div>
       {/* <div>Description: {product.description}</div> */}
@@ -107,7 +107,11 @@ export default function OrderFinder()  {
                 {/* {state.orderFound.status === 'pending' && <button onClick={( ) => window.location.href = state.orderFound.transaction_details?.external_resource_url }> Ticket</button>  } */}
                 {<a  target={'_blank'} href={state.orderFound.transaction_details?.external_resource_url} download= 'Ticket'>Ticket</a>}
                 </div>
-   
+                <div className="myOrders">
+                    {/* Aqui adentro va mis modulos para checar las ordenes del usuario */ }
+                    
+
+                </div>
     {/* <div>
                 {state.orderFound.status === 'pending' && <button onClick={( ) =>  goToOrder() }> Ver Orden</button>  }
 

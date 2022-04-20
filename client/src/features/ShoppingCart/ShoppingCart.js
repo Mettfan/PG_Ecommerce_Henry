@@ -153,7 +153,7 @@ export default function ShoppingCart ( ) {
                       
                     }
                 </div>
-                    { ProductosParaMostrar?.map((product, i) => {
+                    { ProductosParaMostrar.map && ProductosParaMostrar?.map((product, i) => {
                     return <CardSlim 
                     key= { i }
                     index= { i }
