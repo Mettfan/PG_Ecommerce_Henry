@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 // import './OrderFinder.css'
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
+import './index.css'
 export default function OrderFinder()  {
     let dispatch = useDispatch()
     let nav = useNavigate()
@@ -125,8 +126,11 @@ export default function OrderFinder()  {
                     {/* Filtra y mapea las ordenes del usuario */}
                     {orders?.filter( order => order?.email === cookie.get('user')?.user?.email)?.map( order => {
                         return (<>
-                        <div >
-                            <button onClick={ () => cookie.set('searchId', order?.id)}>VER ORDEN</button>
+                        <div className="order-card">
+                            <button onClick={ () => {
+                                cookie.set('searchId', order?.id)
+                                document.location.reload()
+                                }}>VER ORDEN</button>
                             <div>
                             {order?.id}
                             </div>
@@ -154,7 +158,7 @@ export default function OrderFinder()  {
 // import { useParams } from "react-router-dom"
 // import { useAuth0 } from '@auth0/auth0-react';
 // import { Link } from 'react-router-dom';
-// import './index.css'
+
 // import data from './fake'
 // import Cookies from 'universal-cookie';
 // import axios from 'axios';
