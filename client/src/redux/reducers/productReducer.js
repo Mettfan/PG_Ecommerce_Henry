@@ -1,4 +1,5 @@
 
+
 import {
     GET_PRODUCTS,
     GET_PRODUCT,
@@ -18,6 +19,7 @@ import {
     CLEAN_PRODUCT,
     FILTER_BY_BRAND
 } from '../actions/productActions'
+
 const initialState = {
     productos: [],
     allProductos: [],
@@ -37,6 +39,8 @@ function productReducer( state = initialState, action ){
         case CREATE_PRODUCT: 
             return { ...state, status: action.payload }
         case DELETE_PRODUCT:
+            return { ...state, status: action.payload }
+        case EDIT_PRODUCT:
             return { ...state, status: action.payload }
         case ERROR: 
             return { ...state, status: action.payload}

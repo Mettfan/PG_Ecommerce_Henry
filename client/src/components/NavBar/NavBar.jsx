@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { RiLoginCircleFill } from 'react-icons/ri';
 import { AiFillHeart } from 'react-icons/ai';
 import { BsFillCartFill } from 'react-icons/bs';
@@ -7,10 +7,10 @@ import logo from '../../assets/Booma_logo_backless_white.png'
 import './NavBar.css'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { createProduct, FilterByName, getProducts } from '../../redux/actions/productActions';
-import SearchDialog from './SearchDialog/SearchDialog';
-import Catalog from '../Product/Catalog/Catalog';
+//import SearchDialog from './SearchDialog/SearchDialog';
+//import Catalog from '../Product/Catalog/Catalog';
 import { useAuth0 } from '@auth0/auth0-react';
-import maxiLoginImg from '../../assets/LOGO_BOOMA_simple.jpg'
+//import maxiLoginImg from '../../assets/LOGO_BOOMA_simple.jpg'
 import { createUser } from '../../redux/actions/userActions';
 import data from '../../fakeData'
 import AdminView from './AdminView/AdminView';
@@ -19,26 +19,22 @@ import Cookies from 'universal-cookie';
 function NavBar(props) {
   let productos = props.productos
   let cookie = new Cookies ()
-  const { loginWithRedirect, user, isAuthenticated } = useAuth0()
+  const { loginWithRedirect,  isAuthenticated } = useAuth0()
   // let status = useSelector( state => state.userReducer.status )
-  let status = cookie.get('user')
-  let isUserAuthenticated = isAuthenticated || status
+  let user = cookie.get('user')?.user
+  let isUserAuthenticated = isAuthenticated || user
   const dispatch = useDispatch();
   
 
   const statusCart = useSelector( state => state )
   const ProductosParaMostrar = statusCart.shoppingCartReducer.productos?.msg
 
-  console.log(ProductosParaMostrar, 'shopping length eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+  //console.log(ProductosParaMostrar)
 
-
-
-
-  
 
   let nav = useNavigate()
   useEffect(()=>{
-    console.log('gettingProducts')
+
     props.getProducts()
     
   },[])
@@ -67,24 +63,24 @@ function NavBar(props) {
   function handleInputChange(event) {
       event.preventDefault();
       setName(event.target.value.toLowerCase());
-      console.log(name, 'HandleChange')
+      //console.log(name, 'HandleChange')
   }
 
   function handleSubmit(event) {
       event.preventDefault();
       dispatch(FilterByName(name))
       setName('');
-      console.log(name, 'HandleSubmit')
+      //console.log(name, 'HandleSubmit')
   }
 
 
   function onDisplayLoginChange(){
     setState({...state, myButtonLoginIsDisplayed: !state.myButtonLoginIsDisplayed})
-    console.log('LoginShown: '+state.myButtonLoginIsDisplayed)
+    //console.log('LoginShown: '+state.myButtonLoginIsDisplayed)
   }
 
   function addUser(){
-    console.log( ' Adduser' )
+    //console.log( ' Adduser' )
     dispatch(createUser(  {
       name: "Yomero", 
       lastName : "asdAA", 
@@ -101,8 +97,8 @@ function NavBar(props) {
   }
 
   function addProducts(){
-    console.log( ' AddProducts' )
-    console.log(data)
+    //console.log( ' AddProducts' )
+    //console.log(data)
     data?.map( producto => {
       return dispatch(createProduct(  {
         name: producto.name,
@@ -172,7 +168,7 @@ function NavBar(props) {
                   </button>:
                   <button className='btnUser' onClick={()=> nav('../user/profile') }>
                     <img className='userImg' src={user?.picture || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU'}></img>
-                    <div className='userName'> Hola {user?.name.split(' ')[0] || status.user.name}! </div>
+                    <div className='userName'> Hola {user?.name?.split(' ')[0] }! </div>
                   </button>}
                 {/* </Link> */}
 

@@ -4,7 +4,7 @@ import './index.css';
 
 export const LoginAuth0 = () => {
 
-    const { loginWithRedirect, isAuthenticated, user } = useAuth0();
+    const { loginWithRedirect } = useAuth0();
 
     return (
 

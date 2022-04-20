@@ -49,6 +49,10 @@ const formSchema = Yup.object().shape({
         .max(30, "Máximo 30 carácteres")
         .min(2, "Mínimo 2 carácteres")
         .matches(RegExp(/[A-Za-z0-9]+/g), "Incluir el nombre y número"),
+    postal: Yup.string()
+        .required("Este campo es requerido")
+        .max(20, "Máximo 8 carácteres")
+        .min(4, "Mínimo 4 carácteres"),
     phone: Yup.string()
         .required("Este campo es requerido")
         .max(20, "Máximo 20 carácteres")
@@ -64,7 +68,7 @@ const LoginForm = () => {
     const nav = useNavigate()
 
     const onSubmit = (data) => {
-        console.log('data', data);
+        alert('Al registrarte aceptas nuestros términos y condiciones')
         dispatch(createUser(data));
         reset();
         nav('/home')
@@ -177,6 +181,16 @@ const LoginForm = () => {
                                     {...register('address')}
                                 />
                                 {<div className="form-register-errors">{errors.address?.message}</div>}
+                            </div>
+                            <div className="labelAndInput">
+                                <label className="input-label">*Código Postal: </label>
+                                <input
+                                    className="input-register"
+                                    type="number"
+                                    name="postal"
+                                    {...register('postal')}
+                                />
+                                {<div className="form-register-errors">{errors.postal?.message}</div>}
                             </div>
                             <div className="labelAndInput">
                                 <label className="input-label">*Celular: </label>

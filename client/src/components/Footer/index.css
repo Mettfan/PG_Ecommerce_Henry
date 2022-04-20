@@ -24,6 +24,12 @@
   
 }
 
+.link-footer{
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 @media (max-width: 584px) {
   .footer-container {
     font-size: 10px;
@@ -31,8 +37,4 @@
   .footer-container div{
     padding: 1px;
   }
-}
-
-.link-footer{
-  text-decoration: none;
 }

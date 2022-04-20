@@ -33,15 +33,15 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     stock_by_size: {
-      type: DataTypes.JSONB
+      type: DataTypes.ARRAY(DataTypes.JSONB),
     },
     price: {
       type: DataTypes.FLOAT,
       allowNull: false
     },
-
     discount: {
       type: DataTypes.INTEGER,
+      defaultValue: 0,
     },
     warranty: {
       type: DataTypes.STRING,
@@ -65,6 +65,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
 
     },
+
     image: { // pienso que deberíamos colocar una imagen por defecto por si acaso...
       type: DataTypes.TEXT,
       defaultValue: 'https://pixabay.com/es/vectors/camiseta-de-manga-corta-camisa-cima-34481'

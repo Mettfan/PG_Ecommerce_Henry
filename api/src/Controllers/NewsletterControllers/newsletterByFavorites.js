@@ -21,7 +21,7 @@ const newsProductFavorite = (req, res, data) => {
             return res.status(404).json({msg: `No puede suscribirse, perdida del parametro ${!email ? 'email': 'API Key or List ID'}`});
         }
         mailchimp.post(`lists/${ID_LIST_MAILCHIMP}`, {
-       
+            "update_existing":true,
             members: [{
                 email_address: email.toLowerCase(),
                 status : data.status || 'subscribed',
@@ -53,7 +53,7 @@ const addTag = async (email) => {
     if(!user) {
         res.status(404).json({msg: 'Usuario no encontrado'});
     }
-    const products = await user.getProducts();
+    const products = await user.getFavorites();
     // console.log(products, '<--')
     const name = products.map(product => product.name); 
     let emailHash = md5(email.toLowerCase());

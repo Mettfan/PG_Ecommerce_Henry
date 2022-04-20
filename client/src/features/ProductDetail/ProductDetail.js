@@ -1,14 +1,13 @@
-
 import {MdOutlineArrowBack} from 'react-icons/md'
 import { BsSuitHeartFill } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { getProduct } from "../../redux/actions/productActions"
+import { getProduct, deleteProductAction } from "../../redux/actions/productActions"
 import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
 import './index.css'
+
 import Cookies from 'universal-cookie';
 import { getReviews } from '../../redux/actions/reviewsActions';
 
@@ -18,20 +17,30 @@ export default function ProductDetail (props) {
   let cookie = new Cookies()
 
 
-  const [show, setShow] = useState(false)
+import { addProductFavorite } from '../../redux/actions/favoriteActions';
+import { addProduct } from '../../redux/actions/shoppingCartActions';
 
-  let userValidatedSelector = useSelector( state => state.userReducer.status.user )
+import Cookies from 'universal-cookie';
 
-  // let userValidated = useSelector( state => state.userReducer.status.user )
-  let userValidated = cookie.get('user').user
 
+export default function ProductDetail (props) {
+  let { id } = useParams()
+  let cookie = new Cookies()
+  let dispatch = useDispatch()
+  let nav = useNavigate()
+  let product = useSelector( (state) => state.productReducer.producto)
+  let userValidated = useSelector( state => state.userReducer.status.user ) || cookie.get('user').user 
+  // let statusFav = useSelector( state => state.favoriteReducer.status )
+  const {  isAuthenticated, user  } = useAuth0()
+
+  // let userValidated = 
   let isUserAuthenticated = isAuthenticated || userValidated
-  
+  let usuario = userValidated || user
 
-    
-    let { id } = useParams()
-    let dispatch = useDispatch()
+  // console.log('userValidated', userValidated)
+
     useEffect(() => {
+
 
       setTimeout(() => {
         
@@ -49,24 +58,24 @@ export default function ProductDetail (props) {
     let nav = useNavigate()
     async function addShoppingCart  (){ 
 
-      if (!isUserAuthenticated) {
-        nav('/login')
-      } else {
 
-        let usuario = userValidatedSelector || user
-        console.log("ASOCIANDO: "+usuario?.email)
-        console.log('CON '+id)
-        await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(id), userEmail: usuario?.email}).then( response => {
-          console.log(response.data)
-          dispatch({ type: 'ADD_PRODUCT', payload: response.data })
-        },
-        (error) => console.log(error))
-        setShow(true)
+      return function deleteProduct(){
+        dispatch(deleteProductAction())
       }
+    }, [])
 
+    
+    product = product ? product : props.producto
 
-
+    const addShoppingCart = () => { 
+      dispatch(addProduct({ productId: Number(id), userEmail: usuario?.email}))
     }
+
+    const addFavorites = () => { 
+      dispatch(addProductFavorite({ productId: Number(id), email: usuario?.email}))
+      // nav(!isUserAuthenticated?'../login':'../user/favorite')
+    }
+
 
 
     let reviews = useSelector( (state) => state.reviewsReducer.reviews.review)
