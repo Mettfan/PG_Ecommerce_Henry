@@ -14,13 +14,13 @@ function Card(
             <img alt="" src={image} className="card-image"/>
             <div className="card-container">
 
-                <div className="top-left"> {discount} </div>
+                <div className="top-left"> %{discount} </div>
             
             </div>
             <div className="info">
                 <h1>{name}</h1>
                 <fieldset>
-                    <legend> {discount} </legend>
+                    <legend> %{discount} </legend>
                     <h3 className="cardGenreTitle">Discount</h3>
                     <small>Precio final:</small>
                     <p>${price} </p>
