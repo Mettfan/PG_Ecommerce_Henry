@@ -1,29 +1,21 @@
 import {MdOutlineArrowBack} from 'react-icons/md'
 import { BsSuitHeartFill } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getProduct, deleteProductAction } from "../../redux/actions/productActions"
 import { useAuth0 } from '@auth0/auth0-react';
 import './index.css'
+import { addProductFavorite } from '../../redux/actions/favoriteActions';
+import { addProduct } from '../../redux/actions/shoppingCartActions';
 
 import Cookies from 'universal-cookie';
 import { getReviews } from '../../redux/actions/reviewsActions';
 
 export default function ProductDetail (props) {
 
-  const {  isAuthenticated, user  } = useAuth0()
-  let cookie = new Cookies()
 
-
-import { addProductFavorite } from '../../redux/actions/favoriteActions';
-import { addProduct } from '../../redux/actions/shoppingCartActions';
-
-import Cookies from 'universal-cookie';
-
-
-export default function ProductDetail (props) {
   let { id } = useParams()
   let cookie = new Cookies()
   let dispatch = useDispatch()
@@ -52,23 +44,16 @@ export default function ProductDetail (props) {
       }, 1000);
     }, [dispatch, id])
 
-    let product = useSelector( (state) => state.productReducer.producto)
     
     product = product ? product : props.producto
-    let nav = useNavigate()
-    async function addShoppingCart  (){ 
 
-
-      return function deleteProduct(){
-        dispatch(deleteProductAction())
-      }
-    }, [])
-
+    const [show, setShow] = useState(false)
     
     product = product ? product : props.producto
 
     const addShoppingCart = () => { 
       dispatch(addProduct({ productId: Number(id), userEmail: usuario?.email}))
+      setShow(true)
     }
 
     const addFavorites = () => { 
