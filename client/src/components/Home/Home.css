@@ -78,7 +78,7 @@
 
 .home-newsletter {
     background: #e26e6c;
-    width: 45%;
+    width: 65%;
     margin: 15px auto;
     border-radius: 5px;
     padding: 40px 175px
@@ -514,6 +514,11 @@ blockquote:before, blockquote:after, q:before, q:after {
   -webkit-box-shadow: 0.4rem 0.4rem 0.8rem var(--sombra-ppal), -0.4rem -0.4rem 0.8rem var(--sombra-sec), inset 0 0 0 transparent, inset 0 0 0 transparent;
           box-shadow: 0.4rem 0.4rem 0.8rem var(--sombra-ppal), -0.4rem -0.4rem 0.8rem var(--sombra-sec), inset 0 0 0 transparent, inset 0 0 0 transparent;
   cursor: pointer;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
 }
 .acordeon .h2acordeon:hover {
   color: var(--negro);

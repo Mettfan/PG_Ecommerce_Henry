@@ -33,7 +33,27 @@ html {
 }
 
 
+.envioGratisDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+}
 
+.envioGratisImg {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.envioGratisImg:hover {
+  cursor: pointer;
+}
 
 
 .carrousel {
@@ -92,7 +112,14 @@ html {
   background-color: rgba(49, 52, 53, 0.809);
 }
 
-
+.fotosofertas {
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+.fotosofertas:hover {
+  cursor: pointer;
+}
 
 
 
@@ -105,7 +132,9 @@ html {
     margin: 5% auto;
 }
 
-
+.encontraMarcas img:hover {
+    cursor: pointer;
+}
 
 
 .encontraContainer {
