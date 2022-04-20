@@ -5,10 +5,13 @@ import Cookies from "universal-cookie"
 import { Link } from "react-router-dom"
 // import './OrderFinder.css'
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
 export default function OrderFinder()  {
+    let dispatch = useDispatch()
     let nav = useNavigate()
     let cookie = new Cookies()
     let [searchParams, setSearchParams] = useSearchParams()
+    let [orders, setOrders] = useState([])
     let payment_id = searchParams.get('payment_id') || cookie.get('searchId')
     let [state, setState] = useState({
         searchId: payment_id || cookie.get('searchId'),
@@ -21,8 +24,17 @@ export default function OrderFinder()  {
            cookie.set('searchId', payment_id )
            
            handleOnSubmit()
-       } 
+       }
+        // Se traen los objetos de la tabla Orders
+        getOrders()
    }, [])
+    let getOrders = async () => {
+        await axios.get('http://localhost:3001/usuario/orders').then( response => {
+            console.log(response.data)
+            setOrders([...response.data])
+            console.log(orders);
+        })
+    }
     let handleOnChange = ( e ) => {
         setState({...state, searchId: e.target.value })
     } 
@@ -109,7 +121,23 @@ export default function OrderFinder()  {
                 </div>
                 <div className="myOrders">
                     {/* Aqui adentro va mis modulos para checar las ordenes del usuario */ }
-                    
+
+                    {/* Filtra y mapea las ordenes del usuario */}
+                    {orders?.filter( order => order?.email === cookie.get('user')?.user?.email)?.map( order => {
+                        return (<>
+                        <div >
+                            <button onClick={ () => cookie.set('searchId', order?.id)}>VER ORDEN</button>
+                            <div>
+                            {order?.id}
+                            </div>
+                            <div>
+                            {order?.email}
+                            </div>
+
+                        </div>
+                            
+                        </>)
+                    })}
 
                 </div>
     {/* <div>
