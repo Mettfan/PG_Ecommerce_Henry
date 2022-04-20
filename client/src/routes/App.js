@@ -4,9 +4,11 @@ import Home from '../components/Home/Home';
 import { Routes, Route } from 'react-router-dom';
 import { Register } from '../features/Register';
 import { Login } from '../features/Login';
-import Promotions from '../components/Promotions/Promotions';
-import PromotionDetails from '../components/PromotionDetails/PromotionDetails';
+
 import GetProducts from '../features/Admin/ProductActions/GetProduct/GetProducts';
+import PromotionDetails from '../components/PromotionDetails/PromotionDetails';
+import Promotions from '../components/Promotions/Promotions';
+
 import ProductDetail from '../features/ProductDetail/ProductDetail';
 import UserDetail from '../features/UserDetail/UserDetail';
 import UserFavorites from '../features/UserFavorites/UserFavorites';
@@ -35,7 +37,7 @@ import Cookies from 'universal-cookie';
 function App() {
 
   const cookie = new Cookies();
-  const user = cookie.get('user')
+  const user = cookie.get('user');
   const dispatch = useDispatch();
 
 
@@ -65,6 +67,11 @@ function App() {
 
         <Route path="/promotions" element={<Promotions />} />
         <Route path="/promotions/:id" element={<PromotionDetails />} />
+
+
+        <Route path="/promotions" element={<Promotions></Promotions>} />
+
+
 
         <Route path="/user/profile" element={<UserDetail></UserDetail>} />
         <Route path="/user/favorites" element={<UserFavorites></UserFavorites>} />

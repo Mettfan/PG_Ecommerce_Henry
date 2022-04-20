@@ -1,7 +1,7 @@
 const { Product } = require('../../db.js')
 const deleteProduct = async(req,res)=>{
     const {id} = req.params
-    console.log('id', id)
+    //console.log('id', id)
     const product = Product.findOne({where: { id: id }})
 
     if(!product.length){
@@ -12,11 +12,11 @@ const deleteProduct = async(req,res)=>{
             }
         }).then( rowDeleted => {
             if(rowDeleted === 1){
-                console.log('DELETE SUCCES!!')
+                //console.log('DELETE SUCCES!!')
                 res.status(201).json({msg: 'Product deleted correctly '})
             }
             else{
-                console.log('NOTHING HAPPENDED')
+                //console.log('NOTHING HAPPENDED')
                 res.status(201).json({msg: 'NOTHING HAPPENED'})
             }
         }, err => {

@@ -1,11 +1,17 @@
+import { useSelector } from "react-redux";
 import ProductCard from "../ProductCard/ProductCard";
 import './Catalog.css'
 function Catalog(props){
     let productos = props.productos
+    let prods = useSelector(state => state.productReducer.productos)
+    console.log(prods, 'prods')
+    const prodsAvaliable = productos.filter(product => product.disabled == false)
     return (
         <>
             <div className="catalog-container">
-            {productos.map(producto => {
+            {
+            prodsAvaliable.length !== 0 ?
+            prodsAvaliable?.map(producto => {
                 return <ProductCard 
                 id={producto.id}
                 name = {producto.name}
@@ -20,7 +26,11 @@ function Catalog(props){
                 key={producto.id}
                 ></ProductCard>
       
-    })}
+    })
+
+            :
+            <h1> No hay productos en esta sección </h1>
+}
         
         </div>
         </>

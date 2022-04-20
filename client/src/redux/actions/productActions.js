@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Cookies from 'universal-cookie'
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_PRODUCT = 'GET_PRODUCT'
 export const CREATE_PRODUCT = 'CREATE_PRODUCT'
@@ -16,14 +17,22 @@ export const ADD_SUBTOTAL = 'ADD_SUBTOTAL'
 export const DELETE_SUBTOTAL = 'DELETE_SUBTOTAL'
 export const FILTER_BY_MEN = 'FILTER_BY_MEN'
 export const FILTER_BY_WOMEN = 'FILTER_BY_WOMEN'
-export const FILTER_BY_CHILDREN = 'FILTER_BY_CHILDREN'
+export const FILTER_BY_UNISEX = 'FILTER_BY_UNISEX'
+export const FILTER_BY_NINO = 'FILTER_BY_NINO'
+export const FILTER_BY_NINA = 'FILTER_BY_NINA'
+export const FILTER_BY_PRICE = 'FILTER_BY_PRICE'
+export const FILTER_BY_BRAND = 'FILTER_BY_BRAND'
+export const CLEAN_PRODUCT = 'CLEAN_PRODUCT'
+
 
 
 
 
 
 export const getProducts = ( ) => async dispatch  => {
+    let cookie = new Cookies()
     axios.get('http://localhost:3001/productos').then( response => {
+        cookie.set('product', response.data)
         dispatch({
             type: GET_PRODUCTS,
             payload: response.data
@@ -36,6 +45,24 @@ export const getProducts = ( ) => async dispatch  => {
         })
     })
 }
+
+
+export function cleanProduct (payload) {
+    
+    return async function (dispatch) {
+        try {
+            dispatch ({
+                type: CLEAN_PRODUCT,
+                payload
+            });
+        }
+        catch (error) {
+            console.log(error)
+        }    
+      
+    }
+}
+
 
 export const getProduct = ( id ) => async ( dispatch ) => {
     axios.get('http://localhost:3001/productos/' + id).then( response => {
@@ -159,12 +186,43 @@ export function filterByGenreWomen (payload) {
       
     }
 }
-export function filterByGenreChildren (payload) {
+
+export function filterByGenreUnisex (payload) {
     
     return async function (dispatch) {
         try {
             dispatch ({
-                type: FILTER_BY_CHILDREN,
+                type: FILTER_BY_UNISEX,
+                payload
+            });
+        }
+        catch (error) {
+            console.log(error)
+        }    
+      
+    }
+}
+export function filterByGenreNiña (payload) {
+    
+    return async function (dispatch) {
+        try {
+            dispatch ({
+                type: FILTER_BY_NINA,
+                payload
+            });
+        }
+        catch (error) {
+            console.log(error)
+        }    
+      
+    }
+}
+export function filterByGenreNiño (payload) {
+    
+    return async function (dispatch) {
+        try {
+            dispatch ({
+                type: FILTER_BY_NINO,
                 payload
             });
         }
@@ -195,6 +253,34 @@ export function FilterByCategory(payload) {
         try {
             dispatch ({
                 type: FILTER_BY_CATEGORY,
+                payload,
+            });
+        }
+        catch (error) {
+            console.log(error)
+        }    
+    }
+}
+
+export function FilterByPrice(payload) {
+    return async function (dispatch) {
+        try {
+            dispatch ({
+                type: FILTER_BY_PRICE,
+                payload,
+            });
+        }
+        catch (error) {
+            console.log(error)
+        }    
+    }
+}
+
+export function FilterByBrand(payload) {
+    return async function (dispatch) {
+        try {
+            dispatch ({
+                type: FILTER_BY_BRAND,
                 payload,
             });
         }

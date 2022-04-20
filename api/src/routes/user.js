@@ -53,6 +53,8 @@ router.post('/newsfavorites', newsProductFavorite);
 
 const addOrder = require ('../Controllers/OrderControllers/addOrder');
 router.get('/order', addOrder);
+const changeOrder = require ('../Controllers/OrderControllers/changeOrder');
+router.put('/order/:id', changeOrder);
 
 const postOrder = require ('../Controllers/OrderControllers/postOrder');
 router.post('/order', postOrder);
