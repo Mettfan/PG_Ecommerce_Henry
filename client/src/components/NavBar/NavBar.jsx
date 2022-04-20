@@ -12,7 +12,7 @@ import Cookies from 'universal-cookie';
 function NavBar(props) {
   
   const cookie = new Cookies();
-  const user = cookie.get('user');
+  const user = cookie.get('user').user;
   const nav = useNavigate()
 
   const dispatch = useDispatch();
@@ -108,7 +108,7 @@ function NavBar(props) {
               </button>
 
               <button onClick={() => user ? nav('/user/products') : nav('/login')} className="btnHome">
-                <BsFillCartFill /> <div className="numeroCantidadCart"> {user ? ProductosParaMostrar?.length : ''} </div>
+                <BsFillCartFill /> {user ? <div className="numeroCantidadCart"> {user ? ProductosParaMostrar?.length : ''} </div> : null}
               </button>
               </ul>
           </div>
