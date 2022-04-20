@@ -1,5 +1,8 @@
 
 
+import  { FILTER_BY_CHILDREN, GET_PRODUCT_BY_DISCOUNT } from '../actions/productActions'
+
+
 import {
     GET_PRODUCTS,
     GET_PRODUCT,
@@ -27,6 +30,7 @@ const initialState = {
     producto: [],
     status: '',
     totalCart: [0],
+    
 }
 function productReducer( state = initialState, action ){
     switch (action.type){
@@ -36,7 +40,9 @@ function productReducer( state = initialState, action ){
         case CLEAN_PRODUCT:
             return { ...state, producto: [] }
         case GET_PRODUCT:
+
             return { ...state, producto: action.payload }
+
         case CREATE_PRODUCT: 
             return { ...state, status: action.payload }
         case DELETE_PRODUCT:
@@ -45,8 +51,7 @@ function productReducer( state = initialState, action ){
             return { ...state, status: action.payload }
         case ERROR: 
             return { ...state, status: action.payload}
-
-
+ 
         case FILTER_BY_MEN:
             let allProdsMen = state.allProductos.filter(el =>  el.gender === 'Hombre')
             let filterProdsMen =allProdsMen.filter(el =>  el.gender === 'Hombre' && el.CategoryName === action.payload) 

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Cookies from 'universal-cookie'
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_PRODUCT = 'GET_PRODUCT'
 export const CREATE_PRODUCT = 'CREATE_PRODUCT'
@@ -29,7 +30,9 @@ export const CLEAN_PRODUCT = 'CLEAN_PRODUCT'
 
 
 export const getProducts = ( ) => async dispatch  => {
+    let cookie = new Cookies()
     axios.get('http://localhost:3001/productos').then( response => {
+        cookie.set('product', response.data)
         dispatch({
             type: GET_PRODUCTS,
             payload: response.data
@@ -42,6 +45,7 @@ export const getProducts = ( ) => async dispatch  => {
         })
     })
 }
+
 
 export function cleanProduct (payload) {
     
@@ -58,6 +62,7 @@ export function cleanProduct (payload) {
       
     }
 }
+
 
 export const getProduct = ( id ) => async ( dispatch ) => {
     axios.get('http://localhost:3001/productos/' + id).then( response => {
