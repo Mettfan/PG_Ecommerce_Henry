@@ -38,6 +38,7 @@ export default function OrderFinder()  {
         setState({...state, searchId: e.target.value })
     } 
     let handleOnSubmit = async ( e ) =>  {
+        cookie.set('searchId', state.searchId)
         e?.preventDefault()
         await axios({
             method: 'get', //you can set what request you want to be
@@ -101,7 +102,7 @@ export default function OrderFinder()  {
        { datas && datas?.map((product) => {
             return (
                 <div >
-      <div><img src={ product.picture_url } alt="imagen rota" width="70px"></img></div>
+      <div><img src={ product.picture_url } alt="" width="70px"></img></div>
       <div><h5> {product.title}</h5></div>
       <div>Categoria: {product.category_id}  </div>
       {/* <div>Description: {product.description}</div> */}
