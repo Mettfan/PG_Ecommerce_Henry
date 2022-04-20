@@ -1,11 +1,10 @@
 import {MdOutlineArrowBack} from 'react-icons/md'
 import { BsSuitHeartFill } from 'react-icons/bs';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-import { getProduct, deleteProductAction } from "../../redux/actions/productActions"
-import { useAuth0 } from '@auth0/auth0-react';
+import { getProduct, deleteProductAction } from "../../redux/actions/productActions";
 import './index.css'
 
 import { addProductFavorite } from '../../redux/actions/favoriteActions';
@@ -18,17 +17,9 @@ export default function ProductDetail (props) {
   let { id } = useParams()
   let cookie = new Cookies()
   let dispatch = useDispatch()
-  let nav = useNavigate()
+
   let product = useSelector( (state) => state.productReducer.producto)
-  let userValidated = useSelector( state => state.userReducer.status.user ) || cookie.get('user').user 
-  // let statusFav = useSelector( state => state.favoriteReducer.status )
-  const {  isAuthenticated, user  } = useAuth0()
-
-  // let userValidated = 
-  let isUserAuthenticated = isAuthenticated || userValidated
-  let usuario = userValidated || user
-
-  // console.log('userValidated', userValidated)
+  const user = cookie.get('user')
 
     useEffect(() => {
       if(id) {
@@ -44,12 +35,11 @@ export default function ProductDetail (props) {
     product = product ? product : props.producto
 
     const addShoppingCart = () => { 
-      dispatch(addProduct({ productId: Number(id), userEmail: usuario?.email}))
+      dispatch(addProduct({ productId: Number(id), userEmail: user?.email }))
     }
 
     const addFavorites = () => { 
-      dispatch(addProductFavorite({ productId: Number(id), email: usuario?.email}))
-      // nav(!isUserAuthenticated?'../login':'../user/favorite')
+      dispatch(addProductFavorite({ productId: Number(id), email: user?.email }))
     }
 
     return (<>

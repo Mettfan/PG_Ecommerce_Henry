@@ -4,7 +4,6 @@ import Home from '../components/Home/Home';
 import { Routes, Route } from 'react-router-dom';
 import { Register } from '../features/Register';
 import { Login } from '../features/Login';
-//import { DetailProduct } from '../features/DetailProduct';
 import Promotions from '../components/Promotions/Promotions';
 import PromotionDetails from '../components/PromotionDetails/PromotionDetails';
 import GetProducts from '../features/Admin/ProductActions/GetProduct/GetProducts';
@@ -49,12 +48,11 @@ function App() {
 
   return (
 
-
     <div className="App">
       <NavBar />
 
       <Routes>
-        {/* <Route exact path="/"  element={<RedirectRouteToHome />} /> */}
+
         <Route path="/sesionexpirada" element={<SesionExpirada />} />
         <Route path="/register" element={<Register />} />
         <Route exact path="/" element={<Landing />} />

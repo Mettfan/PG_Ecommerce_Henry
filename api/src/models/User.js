@@ -13,9 +13,10 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
         },
 
-        // picture: {
-        //     type: DataTypes.STRING
-        // },
+        picture: {
+            type: DataTypes.STRING,
+            defaultValue: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU'
+        },
 
         gender: {
             type: DataTypes.STRING,
