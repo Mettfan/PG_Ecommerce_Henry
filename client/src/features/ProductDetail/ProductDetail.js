@@ -68,9 +68,7 @@ export default function ProductDetail (props) {
 
     }
 
-    useEffect(() => {
-      dispatch(getReviews())
-    }, [])
+
     let reviews = useSelector( (state) => state.reviewsReducer.reviews.review)
     console.log(reviews, 'reviews useSelector')
     const reviesWithName = reviews?.filter(r => r.UserId) 
@@ -78,6 +76,29 @@ export default function ProductDetail (props) {
     const reviewsOfTheProduct = reviesWithName?.filter(r => r.ProductId === Number(id))
     console.log(reviewsOfTheProduct, 'reviews of the product')
     
+
+
+  //  const statusCart = useSelector( state => state )
+  //  const ProductosParaMostrar = statusCart.shoppingCartReducer.productos?.msg
+  //  console.log(ProductosParaMostrar, 'shopping cart ')
+
+  //  function verifyIfIsInCart () {
+  //  
+  //  if (ProductosParaMostrar.find(productos => productos.id === Number(id))) {
+  //        console.log('EL ID NUMERO ' + id + ' SI ESTA EN EL CARRITO');
+  //    } else {
+  //        console.log('EL ID NUMERO' + id + ' NO EXISTE EN EL CARRITO');
+  //    }
+  //}
+
+  useEffect(() => {
+    dispatch(getReviews())
+   // if(isUserAuthenticated && ProductosParaMostrar && ProductosParaMostrar.length > 0) {
+   //   verifyIfIsInCart()
+   // }
+  }, [])
+
+
     return (
 
       <>
@@ -122,7 +143,7 @@ export default function ProductDetail (props) {
                 return <div>
                             <span className="detail-sizes2">
                               <span className="sizes2Size"> {size.size}  </span>
-                                <span className="sizes2NumerOfSize">{size.stock} </span><br />
+                                <span className="sizes2NumerOfSize">({size.stock}) </span><br />
                              </span>
                         </div>
               })

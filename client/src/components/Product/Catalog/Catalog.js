@@ -10,7 +10,7 @@ function Catalog(props){
         <>
             <div className="catalog-container">
             {
-            prods.length !== 0 ?
+            prodsAvaliable.length !== 0 ?
             prodsAvaliable?.map(producto => {
                 return <ProductCard 
                 id={producto.id}

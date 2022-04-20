@@ -33,6 +33,9 @@ function Home(props) {
     }, [dispatch])
 
 
+
+    
+
   function handleGenreMen(event) {
       dispatch(filterByGenreMen(event.target.value))
   }
