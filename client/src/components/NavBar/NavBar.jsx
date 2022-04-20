@@ -12,7 +12,7 @@ import Cookies from 'universal-cookie';
 function NavBar(props) {
   
   const cookie = new Cookies();
-  const user = cookie.get('user').user;
+  const user = cookie.get('user');
   const nav = useNavigate()
 
   const dispatch = useDispatch();

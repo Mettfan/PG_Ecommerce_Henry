@@ -61,7 +61,7 @@ export const login  = ({ email, password}) => async (dispatch) => {
         email,
         password,
     }).then( response => {
-        cookie.set('user', response.data)
+        cookie.set('user', response.data.user)
         dispatch({
             type: LOGIN,
             payload: response.data
