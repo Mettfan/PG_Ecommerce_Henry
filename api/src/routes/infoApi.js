@@ -15,7 +15,7 @@ const getInfo= ()=>{
             size:el.size,
             color:el.color,
             stock:el.stock,
-            stock_by_size: el.stock_by_size,
+            // stock_by_size: el.stock_by_size,
             price:el.price,
             discount:el.discount,
             warranty:el.warranty,

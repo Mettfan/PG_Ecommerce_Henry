@@ -16,9 +16,18 @@ const addProductToFavorites = async (req, res, next) => {
                 color: product.color,
                 gender: product.gender,
                 stock: product.stock,
+                stock_by_size: product.stock_by_size,
                 price: product.price,
-                descount: product.descount,
-                image: product.image
+                discount: product.descount,
+                warranty: product.warranty, 
+                brand: product.brand, 
+                suitable_for: product.suitable_for, 
+                composition: product.composition, 
+                origin: product.origin, 
+                important_data: product.important_data,
+                extras: product.extras,
+                image: product.image,
+                
             });
             
             const user = await User.findOne({where: {email: email}});

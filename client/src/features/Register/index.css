@@ -170,6 +170,7 @@ form .form-submit input {
   font-weight: 1000;
   border: none;
   font-size: 12px;
+  cursor: pointer;
 }
 
 .form-register-errors {
