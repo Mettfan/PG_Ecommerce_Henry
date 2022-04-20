@@ -5,7 +5,6 @@ import userReducer  from '../reducers/userReducer'
 import shoppingCartReducer from '../reducers/shoppingCartReducers'
 
 import reviewsReducer from '../reducers/reviewsReducer'
-=======
 import favoriteReducer from '../reducers/favoriteReducer'
 import orderReducer from '../reducers/orderReducer'
 
@@ -14,7 +13,7 @@ const rootReducer = combineReducers({
     userReducer,
     shoppingCartReducer,
 
-    reviewsReducer
+    reviewsReducer,
 
     favoriteReducer,
     orderReducer
