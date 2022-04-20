@@ -33,9 +33,15 @@ const Login = (props) => {
   const onSubmit = async (data) => {
 
     let cookies = new Cookies()
-    cookies.set('data', data)
-    dispatch(login(data));
-    nav('/home');
+    dispatch(login(data))
+    console.log('cookies.get', cookies.get('user')?.user)
+    // console.log('cookies.get', cookies.get('user'))
+    // if(cookies.get('user').user) { 
+      cookies.set('data', data)
+      nav('/home')
+    // };
+    console.log('status', status)
+    //ruta login hacer la verificacion, ver respuesta si existe
   };
 
 

@@ -39,7 +39,7 @@ function App() {
 
   useEffect(()=> {
     if(userValidated) {
-      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(60), userEmail: email}).then( response => {
+      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email}).then( response => {
         console.log(response.data)
         dispatch({ type: 'ADD_PRODUCT', payload: response.data })
       })

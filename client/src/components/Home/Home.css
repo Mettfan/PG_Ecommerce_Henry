@@ -4,6 +4,10 @@
     font-family: "Poppins", sans-serif;
 }
 
+.loading {
+    font-size: 18px;
+    font-weight: bold;
+}
 
 .category-container {
     display: flex;

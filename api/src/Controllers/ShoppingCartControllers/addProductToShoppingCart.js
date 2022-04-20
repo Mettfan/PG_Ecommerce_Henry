@@ -1,6 +1,7 @@
 const { Product, User, UserProduct } = require('../../db.js')
 const addProductToShoppingCart = async(req,res, next )=>{
     const { productId, userEmail } = req.body
+    console.log('productId', productId)
     
    
     await Product.findOne( {where: {id: productId}}).then( async producto => {

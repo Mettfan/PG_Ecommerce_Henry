@@ -38,19 +38,19 @@ export const createUser = ({ name, lastName, picture, gender, born, dni, email, 
         phone,
         password,
         permission
-     }).then( response => {
+    }).then( response => {
         cookie.set('user', response.data)
-         dispatch({
-             type: CREATE_USER,
-             payload: response.data
-         })
-     },
-     (error) => {
-         dispatch({
-             type: ERROR,
-             payload: error.error
-         })
-     } ) 
+        dispatch({
+            type: CREATE_USER,
+            payload: response.data
+        })
+    },
+    (error) => {
+        dispatch({
+            type: ERROR,
+            payload: error.error
+        })
+    } ) 
 }
 
 export const login  = ({ email, password}) => async (dispatch) => {
@@ -60,7 +60,10 @@ export const login  = ({ email, password}) => async (dispatch) => {
         email,
         password,
     }).then( response => {
-        cookie.set('user', response.data)
+        console.log('response action', response)
+        console.log('response.data.email', response.data.email)
+        response.data.permission && cookie.set('user', response.data)
+        console.log('cookie.get', cookie.get('user')?.user)
         dispatch({
             type: LOGIN,
             payload: response.data

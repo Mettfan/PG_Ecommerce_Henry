@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Landing.css'
+import axios from 'axios';
 
 function Landing() {
-
+  const [input, setInput] = useState("")
   
   useEffect(() => {
 
@@ -59,8 +60,60 @@ function Landing() {
     });
   }, [])
   
+  // const addProductFavorite = ( {email} ) => async dispatch  => {
+  //     await axios.post('http://localhost:3001/usuario/newsletter', {
+  //         email
+  //     }).then( response => {
+  //       console.log('response.data action fav', response.data)
+  //         dispatch({
+  //             type: ADD_PRODUCT_FAVORITE,
+  //             payload: response.data
+  //         })
+  //     },
+  //     (error) => {
+  //         dispatch({
+  //             type: ERROR,
+  //             payload: error.error
+  //         })
+  //     })
+  // }
+  const validate = () => {
+        const error = {};
+    if(!input){
+      error.input = "Ingrese su email"
+    }else if(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(input)){
+      error.input = "Ingrese un mail válido"
+    }
+  }
+
+  const handleOnChangeSusbribe = (e) => {
+    e.preventDefault();
+    setInput(e.target.value)
+  }
+  const handleSusbribe = (e) => {
+    e.preventDefault();
 
 
+
+      axios.post('http://localhost:3001/usuario/newsletter', {
+          // email
+           "email": input
+      }).then( response => {
+        console.log('response.data newsletter fav', response.data)
+          // dispatch({
+          //     type: ADD_PRODUCT_FAVORITE,
+          //     payload: response.data
+          // })
+      },
+      (error) => {
+        console.log('error', error)
+          // dispatch({
+          //     type: ERROR,
+          //     payload: error.error
+          // })
+      })
+      setInput("")
+  }
   
 
   return (
@@ -230,10 +283,10 @@ function Landing() {
 
       <div className="home-newsletter">
           <div className="home-newsletter-container">
-          <h2 className="home-newsletter-title">¡SUSCRIBITE Y OBTENÉ $600 PARA TU PRIMERA COMPRA!</h2>
-          <p className="home-newsletter-p">Además recibí novedades y promociones exclusivas en tu mail.</p>
-          <input className="home-newsletter-input" type="text" placeholder="Ingresá tu mail" />
-          <button className="home-newsletter-button">Suscribirme</button>
+          <h2 className="home-newsletter-title">¡SUSCRIBITE! RECIBÍ NOVEDADES Y PROMOCIONES EXCLUSIVAS EN TU MAIL!</h2>
+          {/* <p className="home-newsletter-p">Además recibí novedades y promociones exclusivas en tu mail.</p> */}
+          <input className="home-newsletter-input" type="text" placeholder="Ingresá tu mail" value={input} onChange={(e)=>handleOnChangeSusbribe(e)} />
+          <button className="home-newsletter-button" onClick={(e) => handleSusbribe(e)} >Suscribirme</button>
         </div>
       </div>
     </>

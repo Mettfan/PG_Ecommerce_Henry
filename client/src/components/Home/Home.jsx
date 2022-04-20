@@ -11,14 +11,14 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { FilterByCategory, filterByGenre, filterByGenreChildren, filterByGenreMen, filterByGenreWomen } from '../../redux/actions/productActions';
 
 
-import Cookies from 'universal-cookie';
+// import Cookies from 'universal-cookie';
 
 
 
 function Home(props) {
-  let status = useSelector( state => state.userReducer.status)
+  // let status = useSelector( state => state.userReducer.status)
   const { isAuthenticated } = useAuth0()
-  let cookie = new Cookies()
+  // let cookie = new Cookies()
 
   const dispatch = useDispatch();
   
@@ -46,14 +46,14 @@ function Home(props) {
   let nav = useNavigate()
 
   let [state, setState] = useState({
-    productsRendered: 8,
+    productsRendered: 12,
   })
   
   var productos = props.productos
   function loadMoreProducts() {
     if (state.productsRendered !== productos.length) {
       setState({
-        productsRendered: state.productsRendered + 4 
+        productsRendered: state.productsRendered + 6
       })
 
     }
@@ -61,7 +61,8 @@ function Home(props) {
 
   useEffect (()=>{
     window.onscroll = function(ev) {
-      if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+      console.log('window.innerHeight, window.pageYOffset, document.body.offsetHeight', window.innerHeight, window.pageYOffset, document.body.offsetHeight)
+      if ((window.innerHeight + (window.pageYOffset + 500)) >= document.body.offsetHeight) {
           loadMoreProducts()
       }
 
@@ -97,6 +98,8 @@ function Home(props) {
     })
 
   })
+
+  const productRendered = productos.slice(0, state.productsRendered)
 
   return (
     <>
@@ -159,8 +162,13 @@ function Home(props) {
        {/* {JSON.stringify(cookie.get('user'))} */}
         <div className="home-cards">
           <Catalog
-            productos={productos.slice(0, state.productsRendered)}
-          ></Catalog>
+            productos={productRendered}
+            ></Catalog>
+            <div>
+              {productos.length !== productRendered.length &&
+                <p className="loading">Cargando...</p>
+              }
+            </div>
         </div>
       </div>
       <div className="scroll-top-button-bottom">

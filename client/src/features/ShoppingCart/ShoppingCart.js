@@ -81,7 +81,7 @@ export default function ShoppingCart ( ) {
     
      const ProductosParaMostrar = status.shoppingCartReducer.productos?.msg || cookie.get('shopping')?.msg
     // let state = useSelector( state => state.shoppingCartReducer  )
-    console.log(ProductosParaMostrar)
+    // console.log(ProductosParaMostrar)
     
    
         // useEffect(() => {
