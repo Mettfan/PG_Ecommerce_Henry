@@ -53,7 +53,7 @@ let dispatch = useDispatch()
   
   const {  isAuthenticated, user  } = useAuth0()
   let userValidated = useSelector( state => state.userReducer.status.user ) || cookie.get('user').user
-  console.log(String(userValidated?.email), 'userValidated')
+  console.log(userValidated, 'userValidated')
 
 
   const email = userValidated?.email

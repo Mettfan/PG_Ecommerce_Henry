@@ -75,13 +75,14 @@
 }
 
 .card .info h1 {
-    margin: 0px auto;
+    margin: 1% auto;
 }
 
 .card .info p {
     letter-spacing: 1px;
-    font-size: 15px;
-    margin-top: 8px;
+    font-size: 20px;
+    font-weight: 900;
+    margin: 5% auto;
 }
 
 .card .info button {
