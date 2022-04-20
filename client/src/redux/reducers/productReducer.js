@@ -17,6 +17,7 @@ import {
     DELETE_SUBTOTAL,
     FILTER_BY_PRICE,
     CLEAN_PRODUCT,
+    EDIT_PRODUCT,
     FILTER_BY_BRAND
 } from '../actions/productActions'
 
