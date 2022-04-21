@@ -52,26 +52,32 @@ let dispatch = useDispatch()
 
   
   const {  isAuthenticated, user  } = useAuth0()
-  let userValidated = useSelector( state => state.userReducer.status.user ) || cookie.get('user').user
+  let userValidated = cookie.get('user').user
   console.log(userValidated, 'userValidated')
 
 
-  const email = userValidated?.email
+  const email = cookie.get('user').user.email
   const productId = id
+
+  
+  
+
+cookie.getAll()
 
   async function DeleteProductShoppingCart  (){
 
     await axios.delete(`http://localhost:3001/usuario/shopping?email=${email}&productId=${productId}`).then( response => {
      console.log(response.data)
-     cookie?.set('shopping', response.data, { path: '/' });
+     cookie.set('shopping', response.data, { path: '/' });
    },
    (error) => console.log(error))
 
 
    axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email}).then( response => {
      console.log(response.data)
+     cookie.set('shopping', response.data, { path: '/' });
      dispatch({ type: 'ADD_PRODUCT', payload: response.data })
-     cookie?.set('shopping', response.data, { path: '/' });
+    
    })
 
  }

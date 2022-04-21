@@ -68,7 +68,6 @@ router.use('/productos', putProduct);
 router.use('/usuario', addProductToShoppingCart);
 router.use('/usuario', getProductsFromShoppingCart);
 router.use('/usuario', deleteProductFromShoppingCart);
-router.use('/usuario', deleteAllProductsShoppingCart);
 
 router.use('/usuario', addProductToFavorites);
 router.use('/usuario', getProductFromFavorites);

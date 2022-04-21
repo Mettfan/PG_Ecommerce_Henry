@@ -20,7 +20,7 @@ import Footer from '../components/Footer';
 import UserOrderView from '../features/UserOrderView/UserOrderView';
 import OrdersView from '../features/Admin/OrdersView/OrdersView';
 import { CartPay } from '../features/CartPay/index';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import CreateUser from '../features/Admin/UserActions/CreateUser/CreateUser';
@@ -30,7 +30,12 @@ import { CreateProduct } from '../features/Admin/ProductActions/CreateProduct/Cr
 import Terminos from '../components/Terminos/Terminos';
 import { DrawerEdit } from '../features/Admin/component/DrawerEdit';
 import Cookies from 'universal-cookie';
+
+import NewPassword from '../features/NewPassword/NewPassword';
+import UpdateRol from '../features/UpdateRol/UpdateRol';
+
 import CardSlim from '../components/CardSlim/CardSlim';
+
 
 
 
@@ -43,24 +48,13 @@ function App() {
 
   const email = cookie?.get('user').user?.email;
   
+  const products = useSelector(state => state.shoppingCartReducer.productos.msg);
   console.log('email', email)
+  console.log('products', products)
   
-  
-  
-  useEffect(() => {
-    if (user) {
-      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(60), userEmail: user.email }).then(response => {
-        dispatch({ type: 'ADD_PRODUCT', payload: response.data });
-        console.log('cookie cart', cookie?.get('shopping').msg)
-        cookie?.set('shopping', response.data, { path: '/' });
-      });
-    }
+  cookie.set('shopping', products, { path: '/' });
+  console.log('cookie', cookie.get('shopping'))
 
-    cookie.getAll()
-
-
-
-  });
 
   return (
 
@@ -90,6 +84,7 @@ function App() {
         <Route path="/user/products" element={<ShoppingCart></ShoppingCart>} />
         <Route path="/user/products/pay" element={<CartPay></CartPay>} />
         <Route path="/user/products/send" element={<EditSend></EditSend>} />
+        <Route path='/user/newpassword' element={<NewPassword></NewPassword>} />
         <Route path="/editar" element={<EditUser></EditUser>} />
 
         <Route path="/map" element={<Map></Map>} />
@@ -97,6 +92,7 @@ function App() {
         <Route path="/admin/products" element={<GetProducts></GetProducts>} />
         <Route path="/admin/orders" element={<OrdersView></OrdersView>} />
         <Route path="/admin" element={<HomeAdmin />} />
+        <Route path="/admin/updaterol" element={<UpdateRol />} />
         <Route path="/createproducts" element={<CreateProduct />} />
         <Route path="/drawerEdit" element={<DrawerEdit />} />
 

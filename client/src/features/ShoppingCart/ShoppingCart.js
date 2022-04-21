@@ -12,11 +12,9 @@ import Cookies from "universal-cookie"
 export default function ShoppingCart ( ) {
 
     let cookie = new Cookies()
-    const user = cookie.get('user')
+    const user = cookie.get('user').user
     let nav = useNavigate()
     const status = useSelector( state => state )
-    const userRed  = status.userReducer
-    const shopping = status.shoppingCartReducer
     const dispatch = useDispatch()
 
 
@@ -26,45 +24,21 @@ export default function ShoppingCart ( ) {
     const subtotal = useSelector((state) => state.productReducer.totalCart );
 
 
-    const subtotalCards = subtotal?.map((card) => card.subtotal)
-    const total = subtotalCards?.reduce((a,b) => a + b) || cookie.get('total');
 
-    const handleSelect = (e) => {
-        setSelect(e.target.value);
-     }
- 
-    const handleContinue = () => {
-         setCount(0);
-     }
+    const prods = useSelector( state => state.shoppingCartReducer.productos?.msg )
+  
+    const ProductosParaMostrar = prods || cookie.get('shopping').msg
 
-    
-    useEffect(() => {
-
-        async function addShoppingCart  (){ 
-            await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(3000), userEmail: user?.email }).then(response => {
-              cookie.set('shopping', response.data)
-              dispatch({ type: 'ADD_PRODUCT', payload: response.data })
-            },
-            (error) => console.log(error))
-      
-        }
-
-        const productosCarrito = axios.get('http://localhost:3001/usuario/shopping', { email: user?.email }).then(response => {
-            return status.shoppingCartReducer.productos?.msg
-        })
-
-
-        addShoppingCart()
-     }, [])
-    
-    const ProductosParaMostrar = status.shoppingCartReducer.productos?.msg || cookie.get('shopping')?.msg
-
-    let setShoppingTotal = () => {
-        cookie.set('total', subtotalCards?.reduce((a,b) => a + b))
-        nav("/user/products/pay")
-    }
+  
     return (<>
+
             {
+                ProductosParaMostrar.length !== 0 
+                ?
+
+                <>
+
+{
                 ProductosParaMostrar &&
                 
             <div className="shopping-cart-container">
@@ -72,7 +46,7 @@ export default function ShoppingCart ( ) {
             <div className="cart-container-1">
                 <div className="title-container">
                     <h2>¿Cómo querés recibir o retirar tu compra?</h2>
-                    <select className="select-cart" onClick={(e) => handleSelect(e)}>
+                    <select className="select-cart">
                         <option>Seleccionar opción</option>
                         <option>Retiro por la tienda</option>
                         <option>Enviar a mi domicilio</option>
@@ -107,7 +81,7 @@ export default function ShoppingCart ( ) {
                       
                     }
                 </div>
-                    { ProductosParaMostrar.map && ProductosParaMostrar?.map((product, i) => {
+                    { ProductosParaMostrar? ProductosParaMostrar?.map((product, i) => {
                     return <CardSlim 
                     key= { i }
                     index= { i }
@@ -120,7 +94,9 @@ export default function ShoppingCart ( ) {
                     price= { product?.price }
                     id= { product?.id }
                     />
-                })}
+                })
+                :null
+            }
                 </div>
                 <div className="resume-count">
                     <div className="cart-container-2">
@@ -133,7 +109,6 @@ export default function ShoppingCart ( ) {
                         <hr/>        
                         <div className="cart-total-products">
                             <h4>TOTAL:</h4>
-                            <p>${ (Number(cookie.get('total')) || total) }</p>
                         </div>
                     </div>
                         <form className="form-mp" action='http://localhost:3001/productos/checkout' method='POST'>
@@ -144,6 +119,17 @@ export default function ShoppingCart ( ) {
                         </form>
                 </div>
         </div>
-            </div>}
+            </div>
+            
+            }
+
+                </>
+                :
+                <>
+                    No hay
+                </>
+            }
+
+            
     </>)
 }

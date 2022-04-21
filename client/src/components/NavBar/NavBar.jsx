@@ -9,6 +9,7 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import { FilterByName, getProducts } from '../../redux/actions/productActions';
 import { useAuth0 } from '@auth0/auth0-react';
 import Cookies from 'universal-cookie';
+import axios from 'axios';
 
 function NavBar(props) {
   let cookie = new Cookies ()
@@ -19,6 +20,7 @@ function NavBar(props) {
   const dispatch = useDispatch();
 
   
+
   let userValidated = cookie.get('user')?.user
   
   const {pathname} = window.location;
@@ -26,9 +28,6 @@ function NavBar(props) {
 
 
   const statusCart = useSelector( state => state )
-  const ProductosParaMostrar = statusCart.shoppingCartReducer.productos?.msg
-  
-  console.log(ProductosParaMostrar)
 
 
   useEffect(()=>{
@@ -63,6 +62,24 @@ function NavBar(props) {
     nav( state.interruptor  ? "/" : "/home")
     setState({...state, interruptor: !state.interruptor})
   }
+
+  
+  useEffect(() => {
+    if (user) {
+      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: user.email }).then(response => {
+        dispatch({ type: 'ADD_PRODUCT', payload: response.data });
+        console.log('cookie cart', cookie?.get('shopping').msg)
+        cookie.set('shopping', response.data);
+      });
+    }
+
+
+  }, []);
+  
+  const ProductosParaMostrar =statusCart.shoppingCartReducer.productos.msg
+  
+  console.log(ProductosParaMostrar, 'ProductosParaMostrar')
+
   return ((!pathname.includes("admin") && pathname !=="/createproducts")  &&
     <>
       <div className="header">

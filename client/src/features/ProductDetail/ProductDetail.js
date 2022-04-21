@@ -52,10 +52,9 @@ export default function ProductDetail (props) {
     const addShoppingCart = () => { 
       
       axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(id), userEmail: email}).then( response => {
-        console.log(response.data)
+        console.log(response.data, 'data')
+        cookie.set('shopping', response.data)
         dispatch({ type: 'ADD_PRODUCT', payload: response.data })
-        cookie?.set('shopping', response.data, { path: '/' });
-        
       })
       setShow(true)
     }
@@ -66,16 +65,7 @@ export default function ProductDetail (props) {
 
 
     console.log('cookie cart', cookie?.get('shopping'))
-    useEffect(() => {
-      if (email) {
-        axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email }).then(response => {
-          console.log(response.data);
-          dispatch({ type: 'ADD_PRODUCT', payload: response.data });
-          cookie?.set('shopping', response.data, { path: '/' });
-      });
-      }
-  
-    });
+
 
 
     let reviews = useSelector( (state) => state.reviewsReducer.reviews.review)
