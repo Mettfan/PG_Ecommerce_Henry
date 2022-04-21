@@ -120,7 +120,7 @@ function handlerOnChange (e){
                                     name="name"
                                     value={input.name}
                                     placeholder= {user?.name || userValidated?.name} 
-                                    />  {errors.name && <p >{errors.name}</p>}
+                                    />  {errors.name && <p className="form-register-errors">{errors.name}</p>}
                                 </div>
                                 <div className="labelAndInput">
                                 <label className="input-label">*Apellido: </label>
@@ -131,7 +131,7 @@ function handlerOnChange (e){
                                     value={input.lastName}
                                     placeholder= {user?.lastName || userValidated?.lastName} 
                                     /> 
-                                {errors.lastName && <p >{errors.lastName}</p>}
+                                {errors.lastName && <p className="form-register-errors">{errors.lastName}</p>}
                                 </div>
                                 <div className="labelAndInput">
                                 <label className="input-label">*Email: </label>
@@ -142,7 +142,7 @@ function handlerOnChange (e){
                                     value={input.email}
                                     placeholder= {user?.email || userValidated?.email}
                                    />
-                                {errors.email && <p >{errors.email}</p>}
+                                {errors.email && <p className="form-register-errors">{errors.email}</p>}
                                 </div>
                                 <div className="labelAndInput">
                                 <label className="input-label">*DNI: </label>
@@ -153,7 +153,7 @@ function handlerOnChange (e){
                                     value={input.dni}
                                     placeholder= {user?.dni || userValidated?.dni} 
                                 />
-                                {errors.dni && <p >{errors.dni}</p>}
+                                {errors.dni && <p className="form-register-errors">{errors.dni}</p>}
                                 </div>
                                 <div className="labelAndInput">
                                 <label className="input-label">*Dirección: </label>
@@ -175,7 +175,7 @@ function handlerOnChange (e){
                                     value={input.province}
                                     placeholder= {user?.province || userValidated?.province} 
                                 />
-                                {errors.province && <p >{errors.province}</p>}
+                                {errors.province && <p className="form-register-errors">{errors.province}</p>}
                                 </div>
                                 <div className="labelAndInput">
                                 <label className="input-label">*Código postal: </label>
@@ -186,7 +186,7 @@ function handlerOnChange (e){
                                     value={input.postal}
                                     placeholder= {user?.postal || userValidated?.postal} 
                                 />
-                                {errors.postal && <p >{errors.postal}</p>}
+                                {errors.postal && <p className="form-register-errors">{errors.postal}</p>}
                                 </div>
                                 <div className="labelAndInput">
                                 <label className="input-label">*Celular: </label>
@@ -197,7 +197,7 @@ function handlerOnChange (e){
                                     value={input.phone}
                                     placeholder= {user?.phone || userValidated?.phone} 
                                 />
-                                {errors.phone && <p >{errors.phone}</p>}
+                                {errors.phone && <p className="form-register-errors">{errors.phone}</p>}
                                 </div>
                                 </div>
                                 <div className="form-submit">
