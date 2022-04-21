@@ -41,13 +41,10 @@ export const createUser = ({ name, lastName, picture, gender, born, dni, email, 
         permission
      }).then( response => {
         cookie.set('user', response.data)
-    }).then(response => {
-        if (response.data.msg === 'usuario creado con éxito') {
-            cookie.set('user', response.data.user);
             dispatch({
                 type: CREATE_USER,
                 payload: response.data
-            })}
+            })
      },
      (error) => {
          dispatch({

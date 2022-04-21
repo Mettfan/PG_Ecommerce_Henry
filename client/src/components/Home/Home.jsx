@@ -72,6 +72,10 @@ function Home(props) {
 
     }
   }
+   
+   
+   
+
 
   useEffect (()=>{
     window.onscroll = function(ev) {
