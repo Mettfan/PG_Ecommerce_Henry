@@ -111,22 +111,22 @@ export const deleteProductFromCart = ( {productId, email} ) => async ( dispatch 
     })
 }
 
-export const deleteAllProductsFromCart = ( {email} ) => async ( dispatch ) => {
-    const cookie = new Cookie()
-    await axios.delete(`http://localhost:3001/usuario/shoppingall?email=${email}`).then( response => {
-        cookie.set('shopping', response.data, { path: '/' })
-        dispatch({
-            type: DELETE_ALL_PRODUCTS_SHOPPING_CART,
-            payload: response.data
-        })
-    },
-    (error) => {
-        dispatch({
-            type: ERROR,
-            payload: error.error
-        })
-    })
-}
+//export const deleteAllProductsFromCart = ( {email} ) => async ( dispatch ) => {
+//    const cookie = new Cookie()
+//    await axios.delete(`http://localhost:3001/usuario/shoppingall?email=${email}`).then( response => {
+//        cookie.set('shopping', response.data, { path: '/' })
+//        dispatch({
+//            type: DELETE_ALL_PRODUCTS_SHOPPING_CART,
+//            payload: response.data
+//        })
+//    },
+//    (error) => {
+//        dispatch({
+//            type: ERROR,
+//            payload: error.error
+//        })
+//    })
+//}
 
 //export function DeleteProductFromShopping(id) {
 //    return async function (dispatch) {

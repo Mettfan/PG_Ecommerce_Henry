@@ -68,7 +68,6 @@ const LoginForm = () => {
     const nav = useNavigate()
 
     const onSubmit = (data) => {
-        alert('Al registrarte aceptas nuestros términos y condiciones')
         dispatch(createUser(data));
         console.log(data, 'data')
         reset();

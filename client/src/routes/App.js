@@ -20,7 +20,7 @@ import Footer from '../components/Footer';
 import UserOrderView from '../features/UserOrderView/UserOrderView';
 import OrdersView from '../features/Admin/OrdersView/OrdersView';
 import { CartPay } from '../features/CartPay/index';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import CreateUser from '../features/Admin/UserActions/CreateUser/CreateUser';
@@ -48,24 +48,13 @@ function App() {
 
   const email = cookie?.get('user').user?.email;
   
+  const products = useSelector(state => state.shoppingCartReducer.productos.msg);
   console.log('email', email)
+  console.log('products', products)
   
-  
-  
-  useEffect(() => {
-    if (user) {
-      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(60), userEmail: user.email }).then(response => {
-        dispatch({ type: 'ADD_PRODUCT', payload: response.data });
-        console.log('cookie cart', cookie?.get('shopping').msg)
-        cookie?.set('shopping', response.data, { path: '/' });
-      });
-    }
+  cookie.set('shopping', products, { path: '/' });
+  console.log('cookie', cookie.get('shopping'))
 
-    cookie.getAll()
-
-
-
-  });
 
   return (
 
