@@ -48,7 +48,7 @@ export default function DetailsAuth0() {
                         <img className="userImgOnprofile" alt='img user' src={userAuth0?.picture || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU"}></img>
                         <div>{userAuth0?.name} {userAuth0?.lastName} </div>
                         <div>{userAuth0?.email} </div>
-                        <Link to="/order/finder">
+                        <Link to="/order">
                             <button className="loginbtn">Mi compra</button>
                         </Link>
                         <Link to="/editar">

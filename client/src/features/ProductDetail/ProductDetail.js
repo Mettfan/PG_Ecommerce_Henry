@@ -54,34 +54,15 @@ export default function ProductDetail(props) {
 
 
   let reviews = useSelector((state) => state.reviewsReducer.reviews.review);
-  console.log(reviews, 'reviews useSelector');
+  //console.log(reviews, 'reviews useSelector');
   const reviesWithName = reviews?.filter(r => r.UserId);
-  console.log(reviesWithName, 'reviews with name');
+  //console.log(reviesWithName, 'reviews with name');
   const reviewsOfTheProduct = reviesWithName?.filter(r => r.ProductId === Number(id));
-  console.log(reviewsOfTheProduct, 'reviews of the product');
-
-
-
-  //  const statusCart = useSelector( state => state )
-  //  const ProductosParaMostrar = statusCart.shoppingCartReducer.productos?.msg
-  //  console.log(ProductosParaMostrar, 'shopping cart ')
-
-  //  function verifyIfIsInCart () {
-  //  
-  //  if (ProductosParaMostrar.find(productos => productos.id === Number(id))) {
-  //        console.log('EL ID NUMERO ' + id + ' SI ESTA EN EL CARRITO');
-  //    } else {
-  //        console.log('EL ID NUMERO' + id + ' NO EXISTE EN EL CARRITO');
-  //    }
-  //}
+  //console.log(reviewsOfTheProduct, 'reviews of the product');
 
   useEffect(() => {
     dispatch(getReviews());
-    // if(isUserAuthenticated && ProductosParaMostrar && ProductosParaMostrar.length > 0) {
-    //   verifyIfIsInCart()
-    // }
   }, []);
-
 
   return (
 
@@ -123,7 +104,7 @@ export default function ProductDetail(props) {
                           <p className="detail-size">Talles</p>
                           <div className="sizesMap">
                             {
-                              product.stock_by_size.map(size => {
+                              product.stock_by_size?.map(size => {
                                 return <div>
                                   <span className="detail-sizes2">
                                     <span className="sizes2Size"> {size.size}  </span>
@@ -250,6 +231,4 @@ export default function ProductDetail(props) {
 
 
   );
-
-
 }
