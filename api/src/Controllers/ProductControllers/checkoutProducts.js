@@ -7,7 +7,7 @@ mercadopago.configure({
 const checkoutProducts = async(req,res, next )=>{
    
    const { productList, userEmail, total } = req.body
-   console.log(  JSON.parse(productList), userEmail, total)
+   //console.log(  JSON.parse(productList), userEmail, total)
    let productOrder = JSON.parse(productList)?.map( item => {
     //    return item
        return {
@@ -19,7 +19,7 @@ const checkoutProducts = async(req,res, next )=>{
         // description: item.description
        }
    })
-   console.log(productOrder);
+   //console.log(productOrder);
    let preference = {
        items: productOrder,
        back_urls:{

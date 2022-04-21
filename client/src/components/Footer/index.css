@@ -24,6 +24,10 @@
   
 }
 
+.email {
+  border-radius: 100%;
+}
+
 .link-footer{
   color: black;
   text-decoration: none;
