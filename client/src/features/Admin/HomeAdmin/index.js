@@ -28,19 +28,20 @@ function HomeAdmin() {
       </div>
   );
 
-  // const handleView = (select) => {
-  //   setState(select)
-  // }
-
+  const handleView = (select) => {
+    setState(select)
+  }
   return (
     <div className="HomeAdmin-container">
         <Drawer drawerActive={drawerActive} />
       <div className="admin-drawer">
         <img src={logo} className="logo" alt="a " />
         <Link to= '/createproducts' className="link-home"><p>Crear producto</p></Link>
-        <Link to= '/admin/orders' className="link-home"><p>Órdenes</p></Link>
-        <Link to= '/home' className="link-home"><p>Home cliente</p></Link>
-        <Link to= '/admin/updaterol' className="link-home"><p>Manejo de usuario</p></Link>
+        <button className="link-home" onClick={() => handleView("")}><p>Home</p></button>
+        <button className="link-home" onClick={() => handleView("")}><p>Órdenes</p></button>
+        <button className="link-home" onClick={() => handleView("")}><p>Manejo de usuario</p></button>
+        <button className="link-home" onClick={() => handleView("")}><p>Mi cuenta</p></button>
+        {/* <p>Cerrar sesión</p> */}
       </div>
       <div className="admin-info">
         {

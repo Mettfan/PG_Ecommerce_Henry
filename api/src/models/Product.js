@@ -33,9 +33,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     stock_by_size: {
-      type: DataTypes.JSON,
-            // get: function() {
-            // return JSON.parse(this.getDataValue('myArrayField'));
+      type: DataTypes.ARRAY(DataTypes.JSONB),
     },
     price: {
       type: DataTypes.FLOAT,

@@ -1,8 +1,6 @@
 const { Product, Category } = require('../../db.js');
 
 const crearProduct = async (producto) => {
-    console.log('producto', producto)
-    console.log('typeof(producto.stock_by_size)', typeof(producto.stock_by_size))
     try {
         const productCreated = await Product.create(producto);
         try {

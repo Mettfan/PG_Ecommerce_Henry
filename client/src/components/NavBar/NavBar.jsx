@@ -20,8 +20,10 @@ function NavBar(props) {
   const dispatch = useDispatch();
 
   
+  let userValidated =  cookie.get('user')?.user
 
-  let userValidated = cookie.get('user')?.user
+
+  
   
   const {pathname} = window.location;
   const nav = useNavigate()
@@ -123,7 +125,7 @@ function NavBar(props) {
                   </button>:
                   <button className='btnUser' onClick={()=> nav('../user/profile') }>
                     <img className='userImg' src={user?.picture || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU'}></img>
-                    <div className='userName'> Hola {user?.name?.split(' ')[0] }! </div>
+                    <div className='userName'> Hola {user.name?.split(' ')[0] }! </div>
                   </button>}
 
 
