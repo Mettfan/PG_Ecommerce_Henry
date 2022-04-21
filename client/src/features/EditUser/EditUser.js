@@ -13,29 +13,29 @@ import '../Register/index.css';
 function validate(input){
     let errors = {};
     console.log(errors)
-    if(!input.name){
-        errors.name = "Complete el nombre";
+    if(!/^[a-z A-Z]+$/.test(input.name)){
+        errors.name = "*Campo requerido";
     }
-    if(!input.lastName){
-        errors.lastName = " Complete el apellido";
+    if(!/^[a-z A-Z]+$/.test(input.lastName)){
+        errors.lastName = "*Campo requerido";
     }
-    if(!input.email){
-        errors.email = " Complete el email";
+    if(!/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(input.email)){
+        errors.email = "*Campo requerido";
     }
-    if(!input.dni){
-        errors.dni = " Complete el dni";
+    if(!/^[0-9]{8}$/.test(input.dni)){
+        errors.dni = "*Campo requerido";
     }
-    if(!input.address){
-        errors.address = " Complete la dirección";
+    if(!/^[a-z A-Z]+$/.test(input.address)){
+        errors.address ="*Campo requerido";
     }
-    if(!input.province){
-        errors.province = " Complete la provincia";
+    if(!/^[a-z A-Z]+$/.test(input.province)){
+        errors.province ="*Campo requerido";
     }
-    if(!input.postal){
-        errors.postal = " Complete el código postal";
+    if(!/^[0-9]{4}$/.test(input.postal)){
+        errors.postal = "*Campo requerido";
     }
     if(!input.phone){
-        errors.phone = " Complete el celular";
+        errors.phone = "*Campo requerido";
     }
     
     return errors;
@@ -62,10 +62,10 @@ export default function EditUser  () {
         lastName: user?.lastName || userValidated?.lastName,
         email: user?.email || userValidated?.email,
         dni: user?.dni || userValidated?.dni,
-        phone: user?.phone || userValidated?.phone,
         address: user?.address || userValidated?.address,
         province: user?.province || userValidated?.province,
         postal: user?.postal || userValidated?.postal,
+        phone: user?.phone || userValidated?.phone,
         
     })
 
@@ -83,36 +83,11 @@ function handlerOnChange (e){
                 }) )
             }
 
-            // function onSubmit(e){
-            //     e.preventDefault();
-            //     if(!input.name || !input.lastName || !input.email || !input.address || !input.province || !input.phone || !input.dni){
-            //     alert("no completo todo el formulario!")}
-            //     else{
-            //     dispatch(updateUser(input))
-            //     alert('Datos actualizados')
-            //     setInput({
-            //         name:'',
-            //         lastName: '',
-            //         email: '',
-            //         dni: '',
-            //         phone: '',
-            //         address: '',
-            //         province: '',
-            //         postal: '',
-            //     })
-            //  nav('/user/profile')
-            // }}
-
-            function  onSubmit(e) {
-                e.preventDefault()
-                if (!/^[a-z A-Z]+$/.test(input.name)) {return alert("El nombre debe tener solo letras")}
-                if (!/^[a-z A-Z]+$/.test(input.lastName)) {return alert("El apellido debe tener solo letras")}
-                if (!/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(input.email)) {return alert("El email no es válido")}
-                if (!/^[0-9]{8}$/.test(input.dni)) {return alert("Este campo es requerido")}
-                if (!/^[0-9]{9}$/.test(input.phone)) {return alert("Este campo es requerido")}
-                if (!/^[a-z A-Z]+$/.test(input.address)) {return alert("Este campo es requerido")}
-                if (!/^[a-z A-Z]+$/.test(input.province)) {return alert("Este campo es requerido")}
-                if (!/^[0-9]{4}$/.test(input.postal)) {return alert("Este campo es requerido")}
+            function onSubmit(e){
+                e.preventDefault();
+                if(!input.name || !input.lastName || !input.email || !input.dni|| !input.address|| !input.province  || !input.postal|| !input.phone  ){
+                alert("no completo todo el formulario!")}
+                else{
                 dispatch(updateUser(input))
                 alert('Datos actualizados')
                 setInput({
@@ -125,10 +100,10 @@ function handlerOnChange (e){
                     province: '',
                     postal: '',
                 })
-                nav('/user/profile')
-}
-                
+             nav('/user/profile')
+            }}
 
+            
     return (
         <div className="container-register-form">
             <form onSubmit={onSubmit} >
