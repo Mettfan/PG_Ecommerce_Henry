@@ -70,7 +70,19 @@ export default function OrderFinder()  {
                 El número de seguimiento de tu orden es: <b>{' '+payment_id}</b>
 
             </div>}
+
             
+
+            <div className="progressBar2">
+            <div className='progressBar'>
+              <span className='stepNumber1'>1</span>
+              <span className='stepNumber2active'>2</span>
+              <span className='stepNumber3'>3</span>
+            </div>
+              <div className='labelBar'>
+                <b>Esperando Pago</b>
+              </div>
+            </div>
             <div>
                 ----------------------------------------------------------
             </div>
@@ -100,6 +112,7 @@ export default function OrderFinder()  {
        { datas && datas?.map((product) => {
             return (
                 <div >
+
                         <div><img src={ product.picture_url } alt="" width="200px"></img></div>
                         <div>
                             <h3> {product.title}</h3> <br />
@@ -109,6 +122,15 @@ export default function OrderFinder()  {
                             <strong>Precio:</strong>  $ {product.unit_price} <br />
                         </div>
                         <div>-----------------------------------------------</div>
+
+      <div><img src={ product.picture_url } alt="" width="70px"></img></div>
+      <div><h5> {product.title}</h5></div>
+      <div>Categoria: {product.category_id}  </div>
+      {/* <div>Description: {product.description}</div> */}
+      <div>Cantidad: {product.quantity}</div>
+      <div>Precio: $ {Number(product.unit_price).toFixed(2)} </div>
+      <div>-----------------------------------------------</div>
+
                 </div>
              )
             })}:
