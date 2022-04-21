@@ -67,12 +67,10 @@ export default function OrderFinder()  {
                 <button className="formButtonFinder" type="submit">BUSCAR ORDEN</button>
             </form>
             {payment_id && <div>
-                El numero de seguimiento de tu ultima orden es: <b>{' '+payment_id}</b>
+                El número de seguimiento de tu orden es: <b>{' '+payment_id}</b>
 
             </div>}
-            <div>
-                /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-            </div>
+            
             <div>
                 ----------------------------------------------------------
             </div>
@@ -102,13 +100,15 @@ export default function OrderFinder()  {
        { datas && datas?.map((product) => {
             return (
                 <div >
-      <div><img src={ product.picture_url } alt="" width="70px"></img></div>
-      <div><h5> {product.title}</h5></div>
-      <div>Categoria: {product.category_id}  </div>
-      {/* <div>Description: {product.description}</div> */}
-      <div>Cantidad: {product.quantity}</div>
-      <div>Precio: $ {product.unit_price} </div>
-      <div>-----------------------------------------------</div>
+                        <div><img src={ product.picture_url } alt="" width="200px"></img></div>
+                        <div>
+                            <h3> {product.title}</h3> <br />
+                            <strong>Categoria:</strong>  {product.category_id} <br />
+                            {/* <div>Description: {product.description}</div> */}
+                            <strong>Cantidad:</strong>  {product.quantity} <br />
+                            <strong>Precio:</strong>  $ {product.unit_price} <br />
+                        </div>
+                        <div>-----------------------------------------------</div>
                 </div>
              )
             })}:
@@ -126,9 +126,7 @@ export default function OrderFinder()  {
   <div>
                 ----------------------------------------------------------
             </div>
-  <div>
-                /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-            </div>
+
            
     
     </>)
