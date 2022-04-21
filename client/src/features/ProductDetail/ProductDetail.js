@@ -59,9 +59,6 @@ export default function ProductDetail (props) {
       setShow(true)
     }
 
-    const addFavorites = () => { 
-      dispatch(addProductFavorite({ productId: Number(id), email: email}))
-    }
 
 
     console.log('cookie cart', cookie?.get('shopping'))
@@ -156,11 +153,7 @@ export default function ProductDetail (props) {
           <button onClick={ () => addShoppingCart()} className="detail-button-buy">Agregar al carrito</button>
             {/* </Link> */}
             
-            <Link to="/home" style={{ textDecoration: 'none'}} className="detail-button-like">
-            <button style={{border: 'none', background: 'none', textDecoration: 'none' }}>
-              <BsSuitHeartFill className="detail-button-like"/>
-            </button>
-            </Link>
+
           </div>
         </div>
       </div>
