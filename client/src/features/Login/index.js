@@ -63,9 +63,9 @@ const Login = (props) => {
               </div>
             </div>
             <div className="recover-pwd">
-              <p>
-                ¿Olvidaste tu contraseña?
-              </p>
+              <Link to='/user/newpassword'>
+                <p>¿Olvidaste tu contraseña?</p>
+              </Link>
             </div>
             <div className="form-submit-login">
               <input
