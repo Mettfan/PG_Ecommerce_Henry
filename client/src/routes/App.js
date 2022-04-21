@@ -31,8 +31,6 @@ import Terminos from '../components/Terminos/Terminos';
 import { DrawerEdit } from '../features/Admin/component/DrawerEdit';
 import Cookies from 'universal-cookie';
 
-import Cookies from 'universal-cookie';
-
 function App() {
 
   const cookie = new Cookies();

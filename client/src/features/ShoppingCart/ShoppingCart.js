@@ -1,4 +1,3 @@
-//import { useAuth0 } from "@auth0/auth0-react"
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,7 +34,6 @@ export default function ShoppingCart() {
         setCount(0);
     };
 
-    const email = cookie?.get('user').user?.email;
     const statusCart = useSelector(state => state);
 
     useEffect(() => {
@@ -68,15 +66,13 @@ export default function ShoppingCart() {
 
     useEffect(() => {
 
-        if (email) {
-            axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email }).then(response => {
-                console.log(response.data);
+        if (user.email) {
+            axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: user.email }).then(response => {
                 dispatch({ type: 'ADD_PRODUCT', payload: response.data });
             });
 
 
-            axios.get(`http://localhost:3001/usuario/shopping/${email}`).then(response => {
-                console.log(response.data);
+            axios.get(`http://localhost:3001/usuario/shopping/${user.email}`).then(response => {
                 dispatch({ type: 'GET_SHOPPING', payload: response.data });
             });
 
