@@ -30,7 +30,12 @@ import { CreateProduct } from '../features/Admin/ProductActions/CreateProduct/Cr
 import Terminos from '../components/Terminos/Terminos';
 import { DrawerEdit } from '../features/Admin/component/DrawerEdit';
 import Cookies from 'universal-cookie';
+
+import NewPassword from '../features/NewPassword/NewPassword';
+import UpdateRol from '../features/UpdateRol/UpdateRol';
+
 import CardSlim from '../components/CardSlim/CardSlim';
+
 
 
 
@@ -90,6 +95,7 @@ function App() {
         <Route path="/user/products" element={<ShoppingCart></ShoppingCart>} />
         <Route path="/user/products/pay" element={<CartPay></CartPay>} />
         <Route path="/user/products/send" element={<EditSend></EditSend>} />
+        <Route path='/user/newpassword' element={<NewPassword></NewPassword>} />
         <Route path="/editar" element={<EditUser></EditUser>} />
 
         <Route path="/map" element={<Map></Map>} />
@@ -97,6 +103,7 @@ function App() {
         <Route path="/admin/products" element={<GetProducts></GetProducts>} />
         <Route path="/admin/orders" element={<OrdersView></OrdersView>} />
         <Route path="/admin" element={<HomeAdmin />} />
+        <Route path="/admin/updaterol" element={<UpdateRol />} />
         <Route path="/createproducts" element={<CreateProduct />} />
         <Route path="/drawerEdit" element={<DrawerEdit />} />
 
