@@ -25,8 +25,8 @@ const formSchema = Yup.object().shape({
         .matches(RegExp(/[A-Za-z0-9]+/g), "Incluir el nombre y número"),
     postal : Yup.string()
         .required("Este campo es requerido")
-        .max(20, "Máximo 8 carácteres")
-        .min(8, "Mínimo 4 carácteres"),
+        .max(5, "Máximo 8 carácteres")
+        .min(4, "Mínimo 4 carácteres"),
     phone: Yup.string()
         .required("Este campo es requerido")
         .max(20, "Máximo 20 carácteres")

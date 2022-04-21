@@ -22,20 +22,25 @@ const formSchema = Yup.object().shape({
 const formOptions = { resolver: yupResolver(formSchema) };
 
 const Login = (props) => {
+  let cookies = new Cookies()
   let nav = useNavigate();
   let dispatch = useDispatch();
-  let status = useSelector(state => state.userReducer.status);
+  let status = useSelector(state => state.userReducer.status) || cookies.get('user')
   //let token = status.token;
   const { register, formState: { errors }, handleSubmit } = useForm(formOptions);
 
   const { loginWithRedirect } = useAuth0()
 
   const onSubmit = async (data) => {
-
-    let cookies = new Cookies()
     cookies.set('data', data)
-    dispatch(login(data));
-    nav('/home');
+    if(data===status){
+      dispatch(login(data))
+      nav('/home')
+    }
+    else{
+      alert('Usuario o contraseña incorrectos')
+    }
+    
   };
 
 
