@@ -1,9 +1,9 @@
 const {User, Product} = require('../../db');
 
 const addReview = async (req, res, next) => {
-    const {email, productId} = req.body;
+    const {email, productTitle} = req.body;
     try {
-        const product = await Product.findOne({where: {id: productId}});
+        const product = await Product.findOne({where: {name: productTitle}});
         
         if(!product) {
             res.status(404).json({msg: 'Producto no encontrado'});

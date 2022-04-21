@@ -12,6 +12,7 @@ import { addProduct } from '../../redux/actions/shoppingCartActions';
 
 import Cookies from 'universal-cookie';
 import { getReviews } from '../../redux/actions/reviewsActions';
+import axios from 'axios';
 
 export default function ProductDetail (props) {
 
@@ -21,13 +22,9 @@ export default function ProductDetail (props) {
   let dispatch = useDispatch()
   let nav = useNavigate()
   let product = useSelector( (state) => state.productReducer.producto)
-  let userValidated = useSelector( state => state.userReducer.status.user ) || cookie.get('user').user 
   // let statusFav = useSelector( state => state.favoriteReducer.status )
-  const {  isAuthenticated, user  } = useAuth0()
 
   // let userValidated = 
-  let isUserAuthenticated = isAuthenticated || userValidated
-  let usuario = userValidated || user
 
   // console.log('userValidated', userValidated)
 
@@ -45,22 +42,40 @@ export default function ProductDetail (props) {
     }, [dispatch, id])
 
     
-    product = product ? product : props.producto
 
     const [show, setShow] = useState(false)
     
-    product = product ? product : props.producto
-
+    
+    
+    const email = cookie.get('user').user?.email
+  
     const addShoppingCart = () => { 
-      dispatch(addProduct({ productId: Number(id), userEmail: usuario?.email}))
+      
+      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(id), userEmail: email}).then( response => {
+        console.log(response.data)
+        dispatch({ type: 'ADD_PRODUCT', payload: response.data })
+        cookie?.set('shopping', response.data, { path: '/' });
+        window.location.reload();
+      })
       setShow(true)
     }
 
     const addFavorites = () => { 
-      dispatch(addProductFavorite({ productId: Number(id), email: usuario?.email}))
-      // nav(!isUserAuthenticated?'../login':'../user/favorite')
+      dispatch(addProductFavorite({ productId: Number(id), email: email}))
     }
 
+
+    console.log('cookie cart', cookie?.get('shopping'))
+    useEffect(() => {
+      if (email) {
+        axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email }).then(response => {
+          console.log(response.data);
+          dispatch({ type: 'ADD_PRODUCT', payload: response.data });
+          cookie?.set('shopping', response.data, { path: '/' });
+      });
+      }
+  
+    });
 
 
     let reviews = useSelector( (state) => state.reviewsReducer.reviews.review)
@@ -133,8 +148,8 @@ export default function ProductDetail (props) {
             <p className="detail-size">Talles</p>
               <div className="sizesMap">
             {
-              product.stock_by_size.map(size => {
-                return <div>
+              product.stock_by_size.map((size, i) => {
+                return <div key={i}>
                             <span className="detail-sizes2">
                               <span className="sizes2Size"> {size.size}  </span>
                                 <span className="sizes2NumerOfSize">({size.stock}) </span><br />
@@ -188,9 +203,7 @@ export default function ProductDetail (props) {
             <p>Valoración general</p>
             <div className="detail-three-comments">
              <p className="detail-three-valoracion">★ ★ ★ ★ ✩ 4.0 </p>
-             <Link to="/home" style={{ textDecoration: 'none' }}>
-              <button className="detailThreeButton">HACÉ TU RESEÑA</button>
-             </Link>
+
             </div>
             {
               reviewsOfTheProduct && reviewsOfTheProduct.length != 0 ?
@@ -229,7 +242,7 @@ export default function ProductDetail (props) {
              
               </>
               :
-              <p>¡Sé el primero en hacer una reseña!</p>
+              <h3  style={{ margin: '5% auto'}}>¡Sé el primero en hacer una reseña!</h3>
             }
       <div className="detail-four">
 

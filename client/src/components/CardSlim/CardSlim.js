@@ -63,6 +63,7 @@ let dispatch = useDispatch()
 
     await axios.delete(`http://localhost:3001/usuario/shopping?email=${email}&productId=${productId}`).then( response => {
      console.log(response.data)
+     cookie?.set('shopping', response.data, { path: '/' });
    },
    (error) => console.log(error))
 
@@ -70,6 +71,7 @@ let dispatch = useDispatch()
    axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email}).then( response => {
      console.log(response.data)
      dispatch({ type: 'ADD_PRODUCT', payload: response.data })
+     cookie?.set('shopping', response.data, { path: '/' });
    })
 
  }

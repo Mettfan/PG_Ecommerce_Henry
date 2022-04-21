@@ -1,5 +1,5 @@
 
-import  { ADD_PRODUCT, GET_SHOPPING, ERROR,DELETE_PRODUCT } from '../actions/shoppingCartActions'
+import  { ADD_PRODUCT, GET_SHOPPING, ERROR,DELETE_PRODUCT,DELETE_ALL_PRODUCTS_SHOPPING_CART } from '../actions/shoppingCartActions'
 const initialState = {
     shoppingList: [],
     productos: [],
@@ -15,6 +15,8 @@ function shoppingCartReducer( state = initialState, action ){
         // case CREATE_PRODUCT: 
         //     return { ...state, status: action.payload }
          case DELETE_PRODUCT:
+            return { ...state, productos: action.payload, shoppingList: action.payload, status: 'delete success' }
+         case DELETE_ALL_PRODUCTS_SHOPPING_CART:
             return { ...state, productos: action.payload, shoppingList: action.payload, status: 'delete success' }
         case ERROR: 
             return { ...state, status: action.payload}

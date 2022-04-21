@@ -8,19 +8,21 @@ const checkoutProducts = async(req,res, next )=>{
    
    const { productList, userEmail, total } = req.body
    //console.log(  JSON.parse(productList), userEmail, total)
-   let productOrder = JSON.parse(productList)?.map( item => {
-    //    return item
-       return {
-        title: item.name,
-        unit_price: item.price,
-        quantity: item.quantity || 1,
-        picture_url: item.image,
-        category_id: item.CategoryName,
-        // description: item.description
-       }
-   })
-   //console.log(productOrder);
-   let preference = {
+   
+   if (productList) {
+       let productOrder = JSON.parse(productList)?.map( item => {
+        //    return item
+           return {
+            title: item?.name,
+            unit_price: item?.price,
+            quantity: item?.quantity || 1,
+            picture_url: item?.image,
+            category_id: item?.CategoryName,
+            // description: item.description
+           }
+       })
+       //console.log(productOrder);
+       let preference = {
        items: productOrder,
        back_urls:{
             'success': "http://localhost:3001/usuario/order",
@@ -33,12 +35,15 @@ const checkoutProducts = async(req,res, next )=>{
    mercadopago.preferences.create(preference).then( response => {
        //respuesta mp
        res.redirect(response.body.init_point)
-    //    res.send({msg: 'checkout', productList, userEmail, total})
-   }, error => {
-       //error de mp
-       console.log(error)
-   })
-  
+       //    res.send({msg: 'checkout', productList, userEmail, total})
+    }, error => {
+        //error de mp
+        console.log(error)
+    })
+} else {
+    res.send({msg: 'error'})
+}
+    
    
 
 }

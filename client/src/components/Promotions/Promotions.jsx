@@ -317,7 +317,7 @@ function Promotions() {
 }, [dispatch]);
 
   
-  const productos= useSelector( (state) => state.productReducer.productos) ||cookie.get('product')
+  const productos= useSelector( (state) => state.productReducer.productos)
   console.log('productos', productos)
   const discount=productos.filter(el=>el.discount!==0)
   console.log('discount', discount)

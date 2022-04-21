@@ -46,33 +46,21 @@ function App() {
   
   console.log('email', email)
   
-  useEffect( ( )=> {
-     console.log( 'GETTING SHOPPING LIST')
-
-     if (email) {
-         axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email }).then(response => {
-             console.log(response.data);
-             dispatch({ type: 'ADD_PRODUCT', payload: response.data });
-         });
-        
-        
-         axios.get(`http://localhost:3001/usuario/shopping/${email}`).then(response => {
-           console.log(response.data);
-           dispatch({ type: 'GET_SHOPPING', payload: response.data });
-         });
-
-     }
-  }, [])
-
-
-
+  
+  
   useEffect(() => {
-    if (email) {
+    if (userValidated) {
       axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email }).then(response => {
         console.log(response.data);
         dispatch({ type: 'ADD_PRODUCT', payload: response.data });
+        console.log('cookie cart', cookie?.get('shopping').msg)
+        cookie?.set('shopping', response.data, { path: '/' });
       });
     }
+
+    cookie.getAll()
+
+
 
   });
 

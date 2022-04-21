@@ -74,23 +74,6 @@ export default function ShoppingCart ( ) {
     }
 
 
-    useEffect( ( )=> {
-        console.log( 'GETTING SHOPPING LIST')
-
-        if (email) {
-            axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email }).then(response => {
-                console.log(response.data);
-                dispatch({ type: 'ADD_PRODUCT', payload: response.data });
-            });
-           
-           
-            axios.get(`http://localhost:3001/usuario/shopping/${email}`).then(response => {
-              console.log(response.data);
-              dispatch({ type: 'GET_SHOPPING', payload: response.data });
-            });
-
-        }
-     }, [])
     return (<>
     
         {/* <b>HERE IS YOUR SHOPPING CART!</b>
@@ -102,15 +85,12 @@ export default function ShoppingCart ( ) {
                 <img src={producto.image} alt="producto" width="50px" height="50px" />
             </div>)
         } */}
+        {
+           ProductosParaMostrar && ProductosParaMostrar.length !== 0 ?
 
+              <>
 
-
-{/* Carrito Maxi */}
-        
-            {
-                ProductosParaMostrar &&
-                
-                    <div className="shopping-cart-container">
+<div className="shopping-cart-container">
         <div className="into-container">
             <div className="cart-container-1">
                 <div className="title-container">
@@ -185,10 +165,18 @@ export default function ShoppingCart ( ) {
                 </div>
         </div>
     </div>
-    
-                
-            }
-       
+              </>
+            :
+
+            <h2>
+                No hay productos en el carrito
+            </h2>
+        }
+
+
+{/* Carrito Maxi */}
+        
+         
 
         {/* {JSON.stringify(state)}
         {console.log(state)} */}
