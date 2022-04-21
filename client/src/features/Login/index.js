@@ -68,9 +68,11 @@ const Login = (props) => {
             </div>
             <div className="recover-pwd">
               {/* <p> */}
+              <Link to='/user/newpassword'>
                 <button className="button-password-recovery" onClick={handleRecovery}>
                   ¿Olvidaste tu contraseña?
                 </button>
+              </Link>
               {/* </p> */}
             </div>
             <div className="form-submit-login">

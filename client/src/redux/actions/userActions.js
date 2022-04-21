@@ -5,6 +5,7 @@ export const CREATE_USER = 'CREATE_USER'
 export const UPDATE_USER = 'UPDATE_USER'
 export const LOGIN = 'LOGIN'
 export const ERROR = 'ERROR'
+export const RESET_PASSWORD = 'RESET_PASSWORD'
 
 
 export const getUsers = ( ) => async dispatch  => {
@@ -100,6 +101,21 @@ export const updateUser=({email,address,phone,province,postal,name,lastName})=>a
         })
     }
     )
+}
+
+export const resetPassword = ( email ) => async dispatch  => {
+    axios.post('http://localhost:3001/usuario/forgot', {email : email}).then( response => {
+        dispatch({
+            type: RESET_PASSWORD,
+            payload: response.data
+        })
+    },
+    (error) => {
+        dispatch({
+            type: ERROR,
+            payload: error.error
+        })
+    })
 }
 
 
