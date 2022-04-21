@@ -17,9 +17,17 @@ function CardSlim({ image, name, size, color, stock, price, index, discount, id 
 //   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   let cookie = new Cookies()
+    // const email = user?.email === undefined && user.user?.email
 
+      const {  isAuthenticated, user  } = useAuth0()
+  let userValidated = useSelector( state => state.userReducer.status?.user ) || cookie.get('user').user
+  console.log(userValidated, 'userValidated')
+
+  const prueba = userValidated?.email
+  const email = prueba === undefined && (user?.email === undefined && user.user?.email) ? user?.email === undefined && user.user?.email : user
+  console.log('email card slim delete', email)
   const subtotal = Number((((1-(discount/100))*price)*count).toFixed(2));
-  console.log('subtotal', subtotal)
+  // console.log('subtotal', subtotal)
   const producto = {
     image,
     size,
@@ -42,6 +50,7 @@ let dispatch = useDispatch()
 
   const handleDelete = (e) => {
     //eliminar de la db también
+    dispatch(deleteProductFromCart({productId : id, userEmail : email}))
     dispatch(deleteSubtotal(subtotal))
   }
 
@@ -51,30 +60,23 @@ let dispatch = useDispatch()
 
 
   
-  const {  isAuthenticated, user  } = useAuth0()
-  let userValidated = useSelector( state => state.userReducer.status.user ) || cookie.get('user').user
-  console.log(userValidated, 'userValidated')
+
+//   async function DeleteProductShoppingCart  (){
+
+//     await axios.delete(`http://localhost:3001/usuario/shopping?email=${email}&productId=${productId}`).then( response => {
+//      console.log(response.data)
+//      cookie?.set('shopping', response.data, { path: '/' });
+//    },
+//    (error) => console.log(error))
 
 
-  const email = userValidated?.email
-  const productId = id
+//    axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email}).then( response => {
+//      console.log(response.data)
+//      dispatch({ type: 'ADD_PRODUCT', payload: response.data })
+//      cookie?.set('shopping', response.data, { path: '/' });
+//    })
 
-  async function DeleteProductShoppingCart  (){
-
-    await axios.delete(`http://localhost:3001/usuario/shopping?email=${email}&productId=${productId}`).then( response => {
-     console.log(response.data)
-     cookie?.set('shopping', response.data, { path: '/' });
-   },
-   (error) => console.log(error))
-
-
-   axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email}).then( response => {
-     console.log(response.data)
-     dispatch({ type: 'ADD_PRODUCT', payload: response.data })
-     cookie?.set('shopping', response.data, { path: '/' });
-   })
-
- }
+//  }
   
 
   return (
@@ -123,7 +125,7 @@ let dispatch = useDispatch()
           </div>
       </div>
       <div className="card-slim-2">
-        <button onClick={(e) => DeleteProductShoppingCart(e)} className="btn-delete-cart"  >{!stock ? "Eliminar de Favoritos" : "Eliminar del carrito"}</button>
+        <button onClick={(e) => handleDelete(e)} className="btn-delete-cart"  >{!stock ? "Eliminar de Favoritos" : "Eliminar del carrito"}</button>
       </div>
       <hr/>
     </div>

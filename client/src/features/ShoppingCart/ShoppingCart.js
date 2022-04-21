@@ -10,59 +10,75 @@ import Cookies from "universal-cookie"
 
 
 export default function ShoppingCart ( ) {
+    const dispatch = useDispatch()
 
     let cookie = new Cookies()
     const user = cookie.get('user')
-    let nav = useNavigate()
-    const status = useSelector( state => state )
-    const userRed  = status.userReducer
-    const shopping = status.shoppingCartReducer
-    const dispatch = useDispatch()
+    // const email = user?.email === undefined && user.user?.email
+        const email = (user?.email === undefined && user.user?.email) ? user?.email === undefined && user.user?.email : user
 
+    // console.log('user carrito', user && user?.user.email)
 
+    console.log('email', email)
 
-    const [select, setSelect] = useState("Retiro por la tienda");
-    const [count, setCount] = useState(3);
+    // let nav = useNavigate()
+    const productos = useSelector( state => state.shoppingCartReducer.shoppingList )
     const subtotal = useSelector((state) => state.productReducer.totalCart );
-
-
+    const [select, setSelect] = useState("Retiro por la tienda");
     const subtotalCards = subtotal?.map((card) => card.subtotal)
-    const total = subtotalCards?.reduce((a,b) => a + b) || cookie.get('total');
+    const total = subtotalCards?.reduce((a,b) => a + b );
+    // const [count, setCount] = useState(3);
+    // const userRed  = status.userReducer
+    // const shopping = status.shoppingCartReducer
+
+    // console.log('status', shopping.shoppingList)
+    // console.log('shopping', shopping)
+
+   useEffect(() => {
+        dispatch(getShoppingList(email))
+     },[])
+
+    // const total = subtotalCards?.reduce((a,b) => a + b) || cookie.get('total');
 
     const handleSelect = (e) => {
         setSelect(e.target.value);
      }
  
-    const handleContinue = () => {
-         setCount(0);
-     }
+     const ProductosParaMostrar = productos ;
+    //  const ProductosParaMostrar = productos.shoppingCartReducer.productos?.msg ;
+    // const handleContinue = () => {
+    //      setCount(0);
+    //  }
 
     
-    useEffect(() => {
+    // useEffect(() => {
 
-        async function addShoppingCart  (){ 
-            await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(3000), userEmail: user?.email }).then(response => {
-              cookie.set('shopping', response.data)
-              dispatch({ type: 'ADD_PRODUCT', payload: response.data })
-            },
-            (error) => console.log(error))
+    //     async function addShoppingCart  (){ 
+    //         await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(3000), userEmail: user?.email }).then(response => {
+    //           cookie.set('shopping', response.data)
+    //           dispatch({ type: 'ADD_PRODUCT', payload: response.data })
+    //         },
+    //         (error) => console.log(error))
       
-        }
+    //     }
 
-        const productosCarrito = axios.get('http://localhost:3001/usuario/shopping', { email: user?.email }).then(response => {
-            return status.shoppingCartReducer.productos?.msg
-        })
+    //     const productosCarrito = axios.get('http://localhost:3001/usuario/shopping', { email: user?.email }).then(response => {
+    //         return status.shoppingCartReducer.productos?.msg
+    //     })
 
 
-        addShoppingCart()
-     }, [])
+    //     addShoppingCart()
+    //  }, [])
+
+  
     
-    const ProductosParaMostrar = status.shoppingCartReducer.productos?.msg || cookie.get('shopping')?.msg
+    // const ProductosParaMostrar = status.shoppingCartReducer.productos?.msg || cookie.get('shopping')?.msg
 
-    let setShoppingTotal = () => {
-        cookie.set('total', subtotalCards?.reduce((a,b) => a + b))
-        nav("/user/products/pay")
-    }
+    // let setShoppingTotal = () => {
+    //     cookie.set('total', subtotalCards?.reduce((a,b) => a + b))
+    //     nav("/user/products/pay")
+    // }
+
     return (<>
             {
                 ProductosParaMostrar &&
