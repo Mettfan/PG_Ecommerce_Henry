@@ -8,7 +8,7 @@ import DetailsAuth0 from "./DetailsAuth0";
 export default function UserDetail(props) {
 
     let cookie = new Cookies();
-    const userDB = cookie.get('user');
+    const userDB = cookie.get('user')
     const nav = useNavigate();
 
     function singOut() {
@@ -22,7 +22,7 @@ export default function UserDetail(props) {
             {userDB
                 ? <div>
                     <div className="profile-container">
-                        <img className="userImgOnprofile" alt='img user' src={userDB?.picture || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU"}></img>
+                        <img className="userImgOnprofile" alt='img user' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU"}></img>
                         <div>{userDB?.name} {userDB?.lastName} </div>
                         <div>{userDB?.email} </div>
                         <Link to="/order/finder">

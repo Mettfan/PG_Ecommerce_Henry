@@ -24,16 +24,11 @@ const formOptions = { resolver: yupResolver(formSchema) };
 const Login = (props) => {
   let nav = useNavigate();
   let dispatch = useDispatch();
-  let status = useSelector(state => state.userReducer.status);
-  //let token = status.token;
   const { register, formState: { errors }, handleSubmit } = useForm(formOptions);
 
   const { loginWithRedirect } = useAuth0()
 
   const onSubmit = async (data) => {
-
-    let cookies = new Cookies()
-    cookies.set('data', data)
     dispatch(login(data));
     nav('/home');
   };
@@ -77,7 +72,7 @@ const Login = (props) => {
                 type="submit"
                 value="INGRESAR"
               />
-              <button className="register-btn" onClick={loginWithRedirect}>Google/Facebook</button>
+              <button className="register-btn" onClick={loginWithRedirect}>Google o Facebook</button>
             </div>
             <div className="title-register" >
               Si no tienes una cuenta puedes registrarte ahora

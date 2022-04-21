@@ -18,10 +18,11 @@ export default function DetailsAuth0() {
 
     const { logout, user } = useAuth0();
     const userAuth0 = user;
+    cookie.set('user', userAuth0)
 
     // Me aseguro de que no haya usuarios repetidos en la DB
     const allUsers = useSelector((state) => state.userReducer.usuarios);
-    const userExist = allUsers.filter((user) => user.email === userAuth0.email);
+    const userExist = allUsers?.filter((user) => user.email === userAuth0.email);
 
     function crearUsuario() {
         alert('Al registrarte aceptas nuestros Terminos y condiciones')
