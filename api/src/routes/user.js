@@ -32,12 +32,12 @@ router.delete('/eliminarusuario', checkAuth, deleteUser);
 router.post('/login', postLogin);
 router.put('/userrol', checkAuth, checkRoleAdmin(['admin']), putUserRole);
 
-router.get('/logout', checkAuth, logoutUser);
+router.get('/logout', logoutUser);
 router.get('/info', checkAuth, userInformation);
 
-router.post('/shopping', checkAuth, addProductToShoppingCart);
-router.get('/shopping', checkAuth, getProductsFromShoppingCart);
-router.delete('/shopping', checkAuth, deleteProductFromShoppingCart);
+router.post('/shopping', addProductToShoppingCart);
+router.get('/shopping', getProductsFromShoppingCart);
+router.delete('/shopping', deleteProductFromShoppingCart);
 
 router.post('/favorites', addProductToFavorites);
 // router.get('/favorites', getProductFromFavorites);
@@ -53,7 +53,7 @@ router.post('/newsfavorites', newsProductFavorite);
 const addOrder = require ('../Controllers/OrderControllers/addOrder');
 router.get('/order', addOrder);
 const changeOrder = require ('../Controllers/OrderControllers/changeOrder');
-router.put('/order/:id',  changeOrder);
+router.put('/order/:id', changeOrder);
 
 const postOrder = require ('../Controllers/OrderControllers/postOrder');
 router.post('/order', postOrder);
@@ -73,3 +73,7 @@ const deleteReviewById = require('../Controllers/ReviewsControllers/deleteReview
 router.delete('/review/:id', deleteReviewById);
 const forgotPassword = require('../Controllers/UserControllers/userForgotPassword');
 router.post('/forgot', forgotPassword);
+
+
+
+module.exports = router;

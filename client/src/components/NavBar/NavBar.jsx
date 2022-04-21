@@ -128,7 +128,9 @@ function NavBar(props) {
                     <div className='userName'> Hola {user.name?.split(' ')[0] }! </div>
                   </button>}
 
-
+                  <button onClick={ () => isUserAuthenticated ? nav('/user/favorites') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login') )} className="btnHome" >
+                    <AiFillHeart />
+                  </button>
 
                   <button onClick={ () => isUserAuthenticated ? nav('/user/products') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login'))} className="btnHome">
                     <BsFillCartFill /> 

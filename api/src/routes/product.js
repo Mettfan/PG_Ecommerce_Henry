@@ -8,17 +8,18 @@ const deleteProduct = require('../Controllers/ProductControllers/deleteProduct')
 const postProduct = require('../Controllers/ProductControllers/postProduct');
 
 const checkoutProducts = require('../Controllers/ProductControllers/checkoutProducts');
-const checkAuth = require('../middlewares/auth');
-const checkRoleAdmin = require('../middlewares/roleAuth');
+
 
 const putProduct = require('../Controllers/ProductControllers/putProduct');
 
 router.get('/', getProduct);
 router.get('/:id', productById);
 router.get('/gender/:gender', productByGender)
-router.post('/',checkAuth, checkRoleAdmin(['admin']), postProduct)
-router.post('/checkout',checkAuth, checkoutProducts)
-router.delete('/:id', checkAuth, checkRoleAdmin(['admin']),deleteProduct);
-router.put('/putproduct', checkAuth, checkRoleAdmin(['admin']),putProduct);
+router.post('/', postProduct)
+router.post('/checkout', checkoutProducts)
+router.delete('/:id', deleteProduct);
+router.put('/putproduct', putProduct);
 
 module.exports = router;
+
+
