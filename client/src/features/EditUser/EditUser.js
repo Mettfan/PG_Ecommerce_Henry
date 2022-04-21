@@ -164,7 +164,7 @@ function handlerOnChange (e){
                                     value={input.address}
                                     placeholder= {user?.address || userValidated?.address} 
                                 />
-                                {errors.address && <p >{errors.address}</p>}
+                                {errors.address && <p className="form-register-errors">{errors.address}</p>}
                                 </div>
                                 <div className="labelAndInput">
                                 <label className="input-label">*Provincia: </label>
