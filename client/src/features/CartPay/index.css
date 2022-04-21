@@ -1,6 +1,7 @@
 .form-pay-container {
   display: flex;
   align-items: center;
+  flex-direction: column;
   height: 100%;
   min-height: 75vh;
   justify-content: center;
@@ -102,4 +103,49 @@
   width: 100px;
   padding: 5px;
   filter: drop-shadow(1px 1px 0.5px black);
+}
+
+.stepNumber1{
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 30px;
+  border-radius: 100px;
+}
+.stepNumber2{
+  background-color: gray;
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 30px;
+  border-radius: 100px;
+  margin-left: 20px;
+}
+.stepNumber3{
+  background-color: gray;
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 30px;
+  border-radius: 100px;
+  margin-left: 20px;
+}
+.stepNumber2active{
+  margin-left: 20px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 30px;
+  border-radius: 100px;
+}
+.progressBar{
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.labelBar{
+  margin-bottom: 10px;
 }
