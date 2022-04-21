@@ -66,14 +66,14 @@ function Home(props) {
   let nav = useNavigate()
 
   let [state, setState] = useState({
-    productsRendered: 8,
+    productsRendered: 12,
   })
   
   var productos = props.productos
   function loadMoreProducts() {
     if (state.productsRendered !== productos.length) {
       setState({
-        productsRendered: state.productsRendered + 4 
+        productsRendered: state.productsRendered + 8 
       })
 
     }
@@ -81,7 +81,7 @@ function Home(props) {
 
   useEffect (()=>{
     window.onscroll = function(ev) {
-      if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+      if ((window.innerHeight + (window.pageYOffset + 500)) >= document.body.offsetHeight) {
           loadMoreProducts()
       }
 

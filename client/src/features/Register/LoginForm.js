@@ -232,7 +232,6 @@ const LoginForm = () => {
                                 value="CREAR MI CUENTA"
                             />
                         </div>
-                        <Link to='/login' className='login-button'> <b>Log In</b> </Link>
                     </div>
                 </div>
             </form>
