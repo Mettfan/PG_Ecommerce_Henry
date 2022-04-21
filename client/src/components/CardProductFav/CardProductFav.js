@@ -1,10 +1,11 @@
-import { React } from 'react'
+import { React, useState, useEffect } from 'react'
 import '../CardSlim/CardSlim.css';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProductFavorite } from '../../redux/actions/favoriteActions.js';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import Cookies from 'universal-cookie';
+import axios from 'axios';
 
 
 //agregar descuento en productos
@@ -15,6 +16,7 @@ function CardSlim({ image, name, size, color, stock, price, index, discount, id 
   const userValidated =  cookie.get('user')?.user
   const {  isAuthenticated, user  } = useAuth0()
   const usuario = userValidated || user
+  const [msg, setMsg] = useState("")
 
   // const data = [index, subtotal];  
 
@@ -23,6 +25,25 @@ function CardSlim({ image, name, size, color, stock, price, index, discount, id 
     e.preventDefault();
     dispatch(deleteProductFavorite({ productId: Number(id), email: usuario?.email}))
   }
+
+  const handleNewsletter = async () =>{
+    await axios.post('http://localhost:3001/usuario/newsfavorites', {
+          // email
+          "email": usuario?.email
+      }).then( response => {
+        setMsg("Agregado para newsletter!");
+      },
+      (error) => {
+        console.log(error);
+      })
+  }
+
+    useEffect(() => {
+    const timer = setTimeout(() => {
+      setMsg("");
+    }, 5000)
+    return () => clearTimeout(timer);
+  }, [msg])
 
   return (
     <div className="card-slim-container">
@@ -42,21 +63,21 @@ function CardSlim({ image, name, size, color, stock, price, index, discount, id 
         </div>
           <div className="price-slim">
             <div>
-              {/* {
-                discount 
-                ? */}
                 <div className="price-discount-slim">
                 <p>{ discount }%</p>
+                <strike>${ price }</strike>
                 <strike>${ (price).toFixed(2) }</strike>
               </div>
-                {/* : 
-                null
-              } */}
+
             </div>
             <p className="price-slim-card">${ subtotal }</p>
           </div>
       </div>
       <div className="card-slim-2">
+        <div>
+          <p className={msg ? 'newsletter_agregado_favorito' : 'producto_sinagregar'}>{msg}</p>
+        </div>
+        <button className="btn-delete-cart" onClick={() => handleNewsletter()}>Quiero info a mi mail</button>
         <Link to={`/productos/${id}`} style={{textDecoration: 'none', color: 'black'}}>
           <button className="btn-delete-cart"  >Ver detalle</button>
         </Link>

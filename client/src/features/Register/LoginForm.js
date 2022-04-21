@@ -79,7 +79,7 @@ const LoginForm = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="container-index">
                     <div className="form-container">
-                        <div className="title">Prefiero registrarme con un formulario</div>
+                        <div className="title">Registrarme</div>
                         <p className="register-subtitle">(* campos requeridos)</p>
                         <div className="form-group-one">
                             <div className="labelAndInput">
@@ -232,7 +232,6 @@ const LoginForm = () => {
                                 value="CREAR MI CUENTA"
                             />
                         </div>
-                        <Link to='/login' className='login-button'> <b>Log In</b> </Link>
                     </div>
                 </div>
             </form>
