@@ -71,7 +71,7 @@ const DrawerEdit = ({activeDrawer, product}) => {
         color: product?.color,
         gender: product?.gender,
         price: product?.price,
-        discount: product?.discount === null ? 0 : product?.discount,
+        discount: product?.discount,
         warranty: product?.warranty,
         brand: product?.brand,
         suitable_for: product?.suitable_for,
@@ -80,25 +80,24 @@ const DrawerEdit = ({activeDrawer, product}) => {
         important_data: product?.important_data,
         image: product?.image,
         category: product?.CategoryName,  
-        extras: product?.extras
+        extras: product?.extras,
+        stock_by_size: product?.stock_by_size
     }
-
 const formOptions = { resolver: yupResolver(formSchema), defaultValues: preloadedValues };
 
     const dispatch = useDispatch();
     const { register, formState: { errors }, handleSubmit } = useForm(formOptions);
     const nav = useNavigate()
-    // const addSizesState = {"XS":25,"35":35,"44":58}
-    const [addSizes, setAddSizes] = useState([["XS",25],["35",35],["44",58]])
-    const dataSize = addSizes?.map((e) => e[0])
-    const stock = addSizes?.map((e) => e[1]).reduce((a,b) => a + b )
+    const [addSizes, setAddSizes] = useState(product?.stock_by_size || [])
+    const dataSize = addSizes?.map((e) => e.size)
+    const stock = addSizes.length > 0 && addSizes?.map((e) => e.stock)?.reduce((a,b) => a + b)
     const [size, setSize] = useState(null)
     const [quantity, setQuantity] = useState("")    
     const sizesState = ["Size","XS","S","M","L","XL","XXL","35","36","37","38","39","40","41","42","43","44","45","46"]
     const [sizeShoes, setSizeShoes] = useState(sizesState); 
     const [disabled, setDisabled] = useState(true)
 
-    for(let i = 0; i < addSizes.length ; i++) {
+    for(let i = 0; i < addSizes?.length ; i++) {
         for(let j = 0; j < sizesState.length; j++) {
         if(addSizes[i][0] === sizesState[j]){
             sizesState.splice(j,1)
@@ -109,13 +108,13 @@ const formOptions = { resolver: yupResolver(formSchema), defaultValues: preloade
     const onSubmit = (data) => {
         const sendData = {...data ,
             //cambiar valor por array nuevo
-            "stock_by_size" : {"XS":25,"35":35,"44":58},
+            "stock_by_size" : addSizes,
             "size" : dataSize.toString(),
             "stock" : stock,
+            "discount": Number(data.discount),
             "id": product?.id,
             "price": Number(data.price)
         }
-        console.log('senData', sendData)
         dispatch(editProduct(sendData)); 
         nav("/admin");
         activeDrawer();
@@ -134,9 +133,9 @@ const formOptions = { resolver: yupResolver(formSchema), defaultValues: preloade
         e.preventDefault();
         setAddSizes([
         ...addSizes,
-            [size, Number(quantity)]
+            {"size": size, "stock": Number(quantity)}
         ])
-        const filterSize = sizeShoes.filter(e => e != size)
+        const filterSize = sizeShoes.filter(e => e != size).sort()
         setSizeShoes(filterSize)
         setDisabled(true)
         setQuantity("")
