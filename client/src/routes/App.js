@@ -31,20 +31,42 @@ import Terminos from '../components/Terminos/Terminos';
 import { DrawerEdit } from '../features/Admin/component/DrawerEdit';
 import Cookies from 'universal-cookie';
 
+import Cookies from 'universal-cookie';
 
 function App() {
 
   const cookie = new Cookies();
-  const user = cookie.get('user');
+  const email = cookie.get('user')?.email;
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+
+    if (email) {
+      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email }).then(response => {
+        console.log(response.data);
+        dispatch({ type: 'ADD_PRODUCT', payload: response.data });
+      });
+
+
+      axios.get(`http://localhost:3001/usuario/shopping/${email}`).then(response => {
+        console.log(response.data);
+        dispatch({ type: 'GET_SHOPPING', payload: response.data });
+      });
+
+    }
+  }, []);
+
 
 
   useEffect(() => {
-    if (user) {
-      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(60), userEmail: user.email }).then(response => {
+    if (email) {
+      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email }).then(response => {
+        console.log(response.data);
         dispatch({ type: 'ADD_PRODUCT', payload: response.data });
       });
     }
+
   });
 
   return (
