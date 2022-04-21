@@ -136,9 +136,12 @@ export default function ShoppingCart ( ) {
                             <p>${ (Number(cookie.get('total')) || total) }</p>
                         </div>
                     </div>
-                        <button onClick={() => setShoppingTotal() }>
-                            <button className="btn-continue-cart" onClick={() => handleContinue()} >Continuar</button>
-                        </button>
+                        <form className="form-mp" action='http://localhost:3001/productos/checkout' method='POST'>
+                            <input type='hidden' name='productList' value={JSON.stringify(cookie.get('shopping')?.msg)}></input>
+                            <input type='hidden' name='userEmail' value={cookie.get('user').email}></input>
+                            <input type='hidden' name='total' value={100} ></input>
+                            <button className='mpButton' type='submit' ><b>Pagar</b><img className='mpImage' src='https://www.lentesplus.com/media/wysiwyg/landings/metodos-de-pago/ico_mercadoPago.png' alt= ''></img> </button>
+                        </form>
                 </div>
         </div>
             </div>}
