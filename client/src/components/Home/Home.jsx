@@ -75,7 +75,9 @@ function Home(props) {
 
   useEffect (()=>{
     window.onscroll = function(ev) {
-      if ((window.innerHeight + (window.pageYOffset +500)) >= document.body.offsetHeight) {
+
+      if ((window.innerHeight + (window.pageYOffset + 500)) >= document.body.offsetHeight) {
+
           loadMoreProducts()
       }
 
