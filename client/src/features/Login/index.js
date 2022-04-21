@@ -33,6 +33,10 @@ const Login = (props) => {
     nav('/home');
   };
 
+  const handleRecovery = () => {
+    nav('/user/newpassword');
+  }
+
 
   return (
     <>
@@ -63,14 +67,22 @@ const Login = (props) => {
               </div>
             </div>
             <div className="recover-pwd">
+
               <Link to='/user/newpassword'>
                 <p>¿Olvidaste tu contraseña?</p>
               </Link>
+
+              {/* <p> */}
+                <button className="button-password-recovery" onClick={handleRecovery}>
+                  ¿Olvidaste tu contraseña?
+                </button>
+              {/* </p> */}
+
             </div>
             <div className="form-submit-login">
               <input
                 type="submit"
-                value="INGRESAR"
+                value="Ingresar"
               />
               <button className="register-btn" onClick={loginWithRedirect}>Google o Facebook</button>
             </div>

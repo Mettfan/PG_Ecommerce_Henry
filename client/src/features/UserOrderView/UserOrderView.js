@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom"
 import Cookies from "universal-cookie"
 import { Link } from "react-router-dom"
 // import './OrderFinder.css'
+import './index.css'
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import './index.css'
@@ -85,17 +86,28 @@ export default function OrderFinder()  {
    
        { datas && datas?.map((product) => {
             return (
+                
+                <div> 
+
                 <div className= 'card-admin-information'>
+
+                    
       <div><img src={ product.picture_url } alt="" width="70px"></img></div>
       <div><h5> {product.title}</h5></div>
       <div  className="card-admin-name">Categoria: {product.category_id}  </div>
       {/* <div>Description: {product.description}</div> */}
+
       <div  className="card-admin-name">Cantidad: {product.quantity}</div>
       <div  className="card-admin-name"> Precio: $ {Number(product.unit_price)?.toFixed(2)} </div>
       <Link to='/'>
       <div className="card-admin-coment"><button className="card-admin-coments">Comentarios</button></div>
       </Link>
+
+                
       <div className="status_pad">
+
+          
+               
                 {/* La siguiente parte es la imagen que se renderizara de acuerdo al estado de la transaccion */}
                 {/* {state.orderFound && <img className="orderImgState" src={state.orderFound.status === 'pending'?
                 'https://images.vexels.com/media/users/3/142363/isolated/preview/76cc00e3681f38ed4956be2394cccd38-reloj-de-pared-plano-de-oficina.png':
@@ -107,9 +119,39 @@ export default function OrderFinder()  {
 
                
             </div>
+
+    
       {/* <div>-----------------------------------------------</div> */}
                 </div>
+                <div className='reviewDivOrder'>   
+                     
+                     <div class="txt-center">
+                        <form>
+                     <label for="titleReview">Resumen de tu resena</label>
+                     <input type="text" id="titleReview" name="reviewTitle" />
+                            <div class="rating">
+                     rating
+                                <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+                                <label for="star5">☆</label>
+                                <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+                                <label for="star4">☆</label>
+                                <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                                <label for="star3">☆</label>
+                                <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+                                <label for="star2">☆</label>
+                                <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+                                <label for="star1">☆</label>
+                                <div class="clear"></div>
+                            </div>
+                     <label for="titleDescripcion">Descripcion</label>
+                     <input type="text" id="titleDescripcion" name="reviewDescripcion" />
+                        </form>
+                    </div>
+                     
+             </div>
+             </div>
              )
+
             })}:
    </div>
                 <div>

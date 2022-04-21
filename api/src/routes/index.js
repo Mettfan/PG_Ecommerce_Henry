@@ -32,6 +32,7 @@ const putProduct = require('./product.js');
 const addProductToShoppingCart = require('./user.js');
 const getProductsFromShoppingCart = require('./user.js');
 const deleteProductFromShoppingCart = require('./user.js')
+const deleteAllProductsShoppingCart = require('./user.js')
 const addProductToFavorites = require('./user.js');
 const getProductFromFavorites = require('./user.js');
 const deleteProductFromFavorites = require('./user.js');
@@ -67,6 +68,7 @@ router.use('/productos', putProduct);
 router.use('/usuario', addProductToShoppingCart);
 router.use('/usuario', getProductsFromShoppingCart);
 router.use('/usuario', deleteProductFromShoppingCart);
+router.use('/usuario', deleteAllProductsShoppingCart);
 
 router.use('/usuario', addProductToFavorites);
 router.use('/usuario', getProductFromFavorites);

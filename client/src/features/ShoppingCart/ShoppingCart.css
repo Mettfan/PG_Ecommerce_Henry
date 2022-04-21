@@ -5,6 +5,53 @@
     height: 100%;
     flex: 1;
   }
+
+.mpButton {
+  /* position: relative; */
+  /* border: none; */
+  display: flex;
+  padding: 9px;
+  left: -10px;
+  bottom: 20px;
+  background-color: white(33, 154, 188);
+  filter: drop-shadow(1px 1px 0.5px black);
+  align-items: center;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.btn-container {
+  background-color: transparent;
+  border: none;
+}
+
+.form-mp {
+  display: flex;
+  border:none;
+  background-color: transparent;
+  justify-content: center;
+}
+
+.mpButton:hover {
+  background-color: black;
+  color: white;
+  filter: drop-shadow(1px 1px 0.5px white);
+  ;
+
+}
+
+.mpImage {
+  width: 30px;
+  filter: drop-shadow(1px 1px 0.5px black);
+
+}
+
+.mpImage {
+
+  filter: drop-shadow(1px 1px 0.5px white);
+
+
+}
   
   .into-container {
     background-color: white;

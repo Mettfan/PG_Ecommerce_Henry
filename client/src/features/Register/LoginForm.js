@@ -70,6 +70,7 @@ const LoginForm = () => {
     const onSubmit = (data) => {
         alert('Al registrarte aceptas nuestros términos y condiciones')
         dispatch(createUser(data));
+        console.log(data, 'data')
         reset();
         nav('/home')
     };
@@ -79,7 +80,7 @@ const LoginForm = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="container-index">
                     <div className="form-container">
-                        <div className="title">Prefiero registrarme con un formulario</div>
+                        <div className="title">Registrarme</div>
                         <p className="register-subtitle">(* campos requeridos)</p>
                         <div className="form-group-one">
                             <div className="labelAndInput">
@@ -223,13 +224,15 @@ const LoginForm = () => {
                                 </label>
                             </div>
                         </div>
+                        <div>
+                            Al crear su cuenta se aceptan términos y condiciones.
+                        </div>
                         <div className="form-submit">
                             <input
                                 type="submit"
                                 value="CREAR MI CUENTA"
                             />
                         </div>
-                        <Link to='/login' className='login-button'> <b>Log In</b> </Link>
                     </div>
                 </div>
             </form>

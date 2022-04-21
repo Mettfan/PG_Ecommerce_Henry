@@ -4,6 +4,17 @@
     flex-direction: column;
     font-weight: 600;
   }
+
+  .newsletter_agregado_favorito {
+    background-color: rgb(46, 45, 45);
+    color: white;
+    border-radius: 25px;
+    padding: 1px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    transition: all 0.5s;
+  }
   
   .card-slim-1 {
     display: flex;
