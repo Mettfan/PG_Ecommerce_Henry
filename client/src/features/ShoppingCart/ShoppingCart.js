@@ -14,14 +14,12 @@ export default function ShoppingCart ( ) {
     //let {  isAuthenticated, user  } = useAuth0()
     let cookie = new Cookies()
     // let userValidated = useSelector( state => state.userReducer.status.user )
-    let userValidated = cookie.get('user').user
     //let isUserAuthenticated = isAuthenticated || userValidated
     let nav = useNavigate()
     const status = useSelector( state => state )
     const userRed  = status.userReducer
     const shopping = status.shoppingCartReducer
     console.log(shopping, 'SHOPPINNNGNGNGNGNGNGNGN')
-    const dispatch = useDispatch()
 
 
     // const dispatch = useDispatch();
@@ -49,37 +47,17 @@ export default function ShoppingCart ( ) {
          console.log('CONTINUAR')
          setCount(0);
      }
+     let userValidated = useSelector(state => state.userReducer.status.user);
+     const dispatch = useDispatch();
+     const email = cookie?.get('user').user?.email;
+     console.log('email', email)
+     console.log('email cookie', cookie.get('user').user)
+     console.log('prods cookie', cookie.get('shopping').msg)
+     
 
+     const statusCart = useSelector( state => state )
     
-    useEffect( ( )=> {
-        console.log( 'GETTING SHOPPING LIST')
-
-
-        async function addShoppingCart  (){ 
-            let usuario = userValidated; //|| user
-            console.log("ASOCIANDO: "+usuario?.email)
-            await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(3000), userEmail: usuario?.email}).then( response => {
-              console.log(response.data)
-              cookie.set('shopping', response.data)
-              dispatch({ type: 'ADD_PRODUCT', payload: response.data })
-            },
-            (error) => console.log(error))
-      
-        }
-        
-        // dispatch(getShoppingList({ email: user.status.user.email }))
-
-        const productosCarrito = axios.get('http://localhost:3001/usuario/shopping', { email: userValidated?.email }).then(response => {
-            console.log(response.data)
-            console.log(status.shoppingCartReducer)
-            return status.shoppingCartReducer.productos?.msg
-        })
-
-
-        addShoppingCart()
-     }, [])
-    
-     const ProductosParaMostrar = status.shoppingCartReducer.productos?.msg || cookie.get('shopping')?.msg
+     const ProductosParaMostrar =  useSelector( state => state.shoppingCartReducer.productos?.msg  )
     // let state = useSelector( state => state.shoppingCartReducer  )
     console.log(ProductosParaMostrar)
     
@@ -94,6 +72,25 @@ export default function ShoppingCart ( ) {
         cookie.set('total', subtotalCards?.reduce((a,b) => a + b))
         nav("/user/products/pay")
     }
+
+
+    useEffect( ( )=> {
+        console.log( 'GETTING SHOPPING LIST')
+
+        if (email) {
+            axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email }).then(response => {
+                console.log(response.data);
+                dispatch({ type: 'ADD_PRODUCT', payload: response.data });
+            });
+           
+           
+            axios.get(`http://localhost:3001/usuario/shopping/${email}`).then(response => {
+              console.log(response.data);
+              dispatch({ type: 'GET_SHOPPING', payload: response.data });
+            });
+
+        }
+     }, [])
     return (<>
     
         {/* <b>HERE IS YOUR SHOPPING CART!</b>

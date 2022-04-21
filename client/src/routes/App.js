@@ -34,20 +34,46 @@ import { CreateProduct } from '../features/Admin/ProductActions/CreateProduct/Cr
 import Terminos from '../components/Terminos/Terminos';
 import { DrawerEdit } from '../features/Admin/component/DrawerEdit';
 
+import Cookies from 'universal-cookie';
 
 function App() {
 
   let userValidated = useSelector(state => state.userReducer.status.user);
   const dispatch = useDispatch();
-  const email = userValidated?.email;
+
+  const cookie = new Cookies();
+  const email = cookie?.get('user').user?.email;
+  
+  console.log('email', email)
+  
+  useEffect( ( )=> {
+     console.log( 'GETTING SHOPPING LIST')
+
+     if (email) {
+         axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email }).then(response => {
+             console.log(response.data);
+             dispatch({ type: 'ADD_PRODUCT', payload: response.data });
+         });
+        
+        
+         axios.get(`http://localhost:3001/usuario/shopping/${email}`).then(response => {
+           console.log(response.data);
+           dispatch({ type: 'GET_SHOPPING', payload: response.data });
+         });
+
+     }
+  }, [])
+
+
 
   useEffect(() => {
-    if (userValidated) {
-      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(60), userEmail: email }).then(response => {
+    if (email) {
+      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email }).then(response => {
         console.log(response.data);
         dispatch({ type: 'ADD_PRODUCT', payload: response.data });
       });
     }
+
   });
 
   return (

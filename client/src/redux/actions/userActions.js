@@ -6,6 +6,7 @@ export const UPDATE_USER = 'UPDATE_USER'
 export const LOGIN = 'LOGIN'
 export const ERROR = 'ERROR'
 
+
 export const getUsers = ( ) => async dispatch  => {
     axios.get('http://localhost:3001/usuario').then( response => {
         dispatch({
@@ -24,6 +25,7 @@ export const getUsers = ( ) => async dispatch  => {
 
 export const createUser = ({ name, lastName, picture, gender, born, dni, email, address, province, phone, password, permission = 'user' }) => async (dispatch) => {
     let cookie = new Cookies()
+
     axios.post('http://localhost:3001/usuario/crearusuario', { 
         
         name,
@@ -40,10 +42,10 @@ export const createUser = ({ name, lastName, picture, gender, born, dni, email, 
         permission
      }).then( response => {
         cookie.set('user', response.data)
-         dispatch({
-             type: CREATE_USER,
-             payload: response.data
-         })
+            dispatch({
+                type: CREATE_USER,
+                payload: response.data
+            })
      },
      (error) => {
          dispatch({

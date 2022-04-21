@@ -27,8 +27,8 @@ function NavBar(props) {
   
   let userValidated = useSelector( state => state.userReducer.status.user ) || cookie.get('user').user 
 
-  const statusCart = useSelector( state => state )
-  const ProductosParaMostrar = statusCart.shoppingCartReducer.productos?.msg
+  const ProductosParaMostrar =   useSelector( state => state.shoppingCartReducer.productos?.msg  )
+  console.log(ProductosParaMostrar)
 
   //console.log(ProductosParaMostrar)
 

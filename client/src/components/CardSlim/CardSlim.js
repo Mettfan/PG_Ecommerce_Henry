@@ -59,18 +59,20 @@ let dispatch = useDispatch()
   const email = userValidated?.email
   const productId = id
 
-    async function DeleteProductShoppingCart  (e){
+  async function DeleteProductShoppingCart  (){
 
-      //eliminar de la db también
-      // e.preventDefault();
-      dispatch(deleteProductFavorite({ productId: Number(id), email: userValidated?.email}))
-    axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email}).then( response => {
-      console.log(response.data)
-      dispatch({ type: 'ADD_PRODUCT', payload: response.data })
-    })
-    nav('/user/products')
+    await axios.delete(`http://localhost:3001/usuario/shopping?email=${email}&productId=${productId}`).then( response => {
+     console.log(response.data)
+   },
+   (error) => console.log(error))
 
-  }
+
+   axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email}).then( response => {
+     console.log(response.data)
+     dispatch({ type: 'ADD_PRODUCT', payload: response.data })
+   })
+
+ }
   
 
   return (
