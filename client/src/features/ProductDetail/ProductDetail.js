@@ -59,9 +59,6 @@ export default function ProductDetail (props) {
       setShow(true)
     }
 
-    const addFavorites = () => { 
-      dispatch(addProductFavorite({ productId: Number(id), email: email}))
-    }
 
 
     console.log('cookie cart', cookie?.get('shopping'))
@@ -156,11 +153,7 @@ export default function ProductDetail (props) {
           <button onClick={ () => addShoppingCart()} className="detail-button-buy">Agregar al carrito</button>
             {/* </Link> */}
             
-            <Link to="/home" style={{ textDecoration: 'none'}} className="detail-button-like">
-            <button style={{border: 'none', background: 'none', textDecoration: 'none' }}>
-              <BsSuitHeartFill className="detail-button-like"/>
-            </button>
-            </Link>
+
           </div>
         </div>
       </div>
@@ -188,52 +181,8 @@ export default function ProductDetail (props) {
         </div>
         </div>
       <div >
-        <h1 className="detail-three-titleh1">VALORACIONES Y RESEÑAS</h1>
       </div>
-            <p>Valoración general</p>
-            <div className="detail-three-comments">
-             <p className="detail-three-valoracion">★ ★ ★ ★ ✩ 4.0 </p>
-
-            </div>
-            {
-              reviewsOfTheProduct && reviewsOfTheProduct.length != 0 ?
-              <>
-              <h2 className="comentariosTitulo">Comentarios</h2>
-             
-              {
-                
-                
-                reviewsOfTheProduct?.map(review => (
-                  <div className="divComments">
-                    
-                    <strong> {review?.User?.name} </strong>
-                    <strong> {review?.User?.lastName} </strong>
-                    {
-                    review?.rating == 1 ? <p>★ ✩ ✩ ✩ ✩</p> 
-                    : 
-                    review?.rating == 2 ? <p>★ ★ ✩ ✩ ✩</p> 
-                    :
-                    review?.rating == 3 ? <p>★ ★ ★ ✩ ✩</p> 
-                    :
-                    review?.rating == 4 ? <p>★ ★ ★ ★ ✩</p> 
-                    :
-                    review?.rating == 5 ? <p>★ ★ ★ ★ ★</p> 
-                    :
-                    null
-                    
-                    }
-                    <span>  </span>
-                    <p> {review?.comment} </p>
-                    
-                  </div>
-                ))
-              }
-             
-             
-              </>
-              :
-              <h3  style={{ margin: '5% auto'}}>¡Sé el primero en hacer una reseña!</h3>
-            }
+         
       <div className="detail-four">
 
       </div>
