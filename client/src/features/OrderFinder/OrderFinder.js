@@ -38,6 +38,7 @@ export default function OrderFinder()  {
         setState({...state, searchId: e.target.value })
     } 
     let handleOnSubmit = async ( e ) =>  {
+        cookie.set('searchId', state.searchId)
         e?.preventDefault()
         await axios({
             method: 'get', //you can set what request you want to be
@@ -69,8 +70,15 @@ export default function OrderFinder()  {
                 El numero de seguimiento de tu ultima orden es: <b>{' '+payment_id}</b>
 
             </div>}
-            <div>
-                /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+            <div className="progressBar2">
+            <div className='progressBar'>
+              <span className='stepNumber1'>1</span>
+              <span className='stepNumber2active'>2</span>
+              <span className='stepNumber3'>3</span>
+            </div>
+              <div className='labelBar'>
+                <b>Esperando Pago</b>
+              </div>
             </div>
             <div>
                 ----------------------------------------------------------
@@ -101,12 +109,12 @@ export default function OrderFinder()  {
        { datas && datas?.map((product) => {
             return (
                 <div >
-      <div><img src={ product.picture_url } alt="imagen rota" width="70px"></img></div>
+      <div><img src={ product.picture_url } alt="" width="70px"></img></div>
       <div><h5> {product.title}</h5></div>
       <div>Categoria: {product.category_id}  </div>
       {/* <div>Description: {product.description}</div> */}
       <div>Cantidad: {product.quantity}</div>
-      <div>Precio: $ {product.unit_price} </div>
+      <div>Precio: $ {Number(product.unit_price).toFixed(2)} </div>
       <div>-----------------------------------------------</div>
                 </div>
              )

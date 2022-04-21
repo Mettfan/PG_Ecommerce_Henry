@@ -25,10 +25,17 @@ const CartPay = () => {
   return (
     <div>
         <div className="form-pay-container">
+            <div className='progressBar'>
+              <span className='stepNumber1'>1</span>
+              <span className='stepNumber2'>2</span>
+              <span className='stepNumber3'>3</span>
+            </div>
+              <div className='labelBar'>
+                <b>Método de Pago</b>
+              </div>
           <div className="pay-container">
-
             <div className="title-pay">
-                <p>
+                {/* <p>
                   Pagá con tu Visa Electron
                 </p>
             </div>
@@ -45,7 +52,8 @@ const CartPay = () => {
                     <option>6</option>
                     <option>9</option>
                     <option>12</option>
-                </select>
+                </select> */}
+                <div>Continuar con selección de pago</div>
               </div>  
               <div className="form-submit-pay">
                 <form onSubmit={ (e ) => cancel(e) }> 
@@ -56,13 +64,7 @@ const CartPay = () => {
                 </form>
               {/* En el siguiente form se mandan los parámetros al back de manera rápida */}
               {/* Value es pasado como string :( */}
-              <form action='http://localhost:3001/productos/checkout' method='POST'>
-                  <input type='hidden' name='productList' value={JSON.stringify(cookie.get('shopping')?.msg)}></input>
-                  <input type='hidden' name='userEmail' value={cookie.get('user').email}></input>
-                  <input type='hidden' name='total' value={100} ></input>
-                  <button className='mpButton' type='submit' ><b>Pagar</b><img className='mpImage' src='https://www.lentesplus.com/media/wysiwyg/landings/metodos-de-pago/ico_mercadoPago.png' alt= ''></img> </button>
 
-              </form>
               {/* {JSON.stringify(cookie.get('shopping').msg)} */}
             </div>
               

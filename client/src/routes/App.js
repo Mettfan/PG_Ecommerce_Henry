@@ -29,19 +29,20 @@ import OrderFinder from '../features/OrderFinder/OrderFinder';
 import { CreateProduct } from '../features/Admin/ProductActions/CreateProduct/CreateProduct';
 import Terminos from '../components/Terminos/Terminos';
 import { DrawerEdit } from '../features/Admin/component/DrawerEdit';
-import CardSlim from '../components/CardProductFav/CardProductFav';
+import Cookies from 'universal-cookie';
+
 
 
 function App() {
 
-  let userValidated = useSelector(state => state.userReducer.status.user);
+  const cookie = new Cookies();
+  const user = cookie.get('user');
   const dispatch = useDispatch();
-  const email = userValidated?.email;
+
 
   useEffect(() => {
-    if (userValidated) {
-      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(60), userEmail: email }).then(response => {
-        console.log(response.data);
+    if (user) {
+      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(60), userEmail: user.email }).then(response => {
         dispatch({ type: 'ADD_PRODUCT', payload: response.data });
       });
     }
@@ -49,12 +50,11 @@ function App() {
 
   return (
 
-
     <div className="App">
       <NavBar />
 
       <Routes>
-        {/* <Route exact path="/"  element={<RedirectRouteToHome />} /> */}
+
         <Route path="/sesionexpirada" element={<SesionExpirada />} />
         <Route path="/register" element={<Register />} />
         <Route exact path="/" element={<Landing />} />
@@ -68,8 +68,8 @@ function App() {
         <Route path="/promotions/:id" element={<PromotionDetails />} />
 
         <Route path="/promotions" element={<Promotions></Promotions>} />
-       
-                
+
+
 
         <Route path="/user/profile" element={<UserDetail></UserDetail>} />
         <Route path="/user/favorites" element={<UserFavorites></UserFavorites>} />

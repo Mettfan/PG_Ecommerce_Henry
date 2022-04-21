@@ -11,67 +11,45 @@ import Cookies from "universal-cookie"
 
 export default function ShoppingCart ( ) {
 
-    //let {  isAuthenticated, user  } = useAuth0()
     let cookie = new Cookies()
-    // let userValidated = useSelector( state => state.userReducer.status.user )
-    let userValidated = cookie.get('user').user
-    //let isUserAuthenticated = isAuthenticated || userValidated
+    const user = cookie.get('user')
     let nav = useNavigate()
     const status = useSelector( state => state )
     const userRed  = status.userReducer
     const shopping = status.shoppingCartReducer
-    console.log(shopping, 'SHOPPINNNGNGNGNGNGNGNGN')
     const dispatch = useDispatch()
 
 
-    // const dispatch = useDispatch();
+
     const [select, setSelect] = useState("Retiro por la tienda");
     const [count, setCount] = useState(3);
     const subtotal = useSelector((state) => state.productReducer.totalCart );
-    // const status = useSelector((state) => state.productReducer.status);
-    console.log('subtotal reducer in shoppingCart', subtotal)
+
 
     const subtotalCards = subtotal?.map((card) => card.subtotal)
     const total = subtotalCards?.reduce((a,b) => a + b) || cookie.get('total');
-    // const total = subtotalCards?.reduce((a,b) => a + b).toFixed(2);
-    // useEffect(() => {
-    // console.log('subtotal', subtotal)
-    // console.log('total useEffect', total)
-    //     // dispatch(pruebaAction())
-    // })
-// {quantity:2, price: 69.00, name: "Zapatillas nike", size:"", color:"" img:""}
+
     const handleSelect = (e) => {
-        console.log('e.target.value', e.target.value)
-            setSelect(e.target.value);
+        setSelect(e.target.value);
      }
  
-     const handleContinue = () => {
-         console.log('CONTINUAR')
+    const handleContinue = () => {
          setCount(0);
      }
 
     
-    useEffect( ( )=> {
-        console.log( 'GETTING SHOPPING LIST')
-
+    useEffect(() => {
 
         async function addShoppingCart  (){ 
-            let usuario = userValidated; //|| user
-            console.log("ASOCIANDO: "+usuario?.email)
-            await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(3000), userEmail: usuario?.email}).then( response => {
-              console.log(response.data)
+            await axios.post('http://localhost:3001/usuario/shopping', { productId: Number(3000), userEmail: user?.email }).then(response => {
               cookie.set('shopping', response.data)
               dispatch({ type: 'ADD_PRODUCT', payload: response.data })
             },
             (error) => console.log(error))
       
         }
-        
-        // dispatch(getShoppingList({ email: user.status.user.email }))
 
-        const productosCarrito = axios.get('http://localhost:3001/usuario/shopping', { email: userValidated?.email }).then(response => {
-            console.log(response.data)
-            console.log(status.shoppingCartReducer)
+        const productosCarrito = axios.get('http://localhost:3001/usuario/shopping', { email: user?.email }).then(response => {
             return status.shoppingCartReducer.productos?.msg
         })
 
@@ -79,41 +57,17 @@ export default function ShoppingCart ( ) {
         addShoppingCart()
      }, [])
     
-     const ProductosParaMostrar = status.shoppingCartReducer.productos?.msg || cookie.get('shopping')?.msg
-    // let state = useSelector( state => state.shoppingCartReducer  )
-    console.log(ProductosParaMostrar)
-    
-   
-        // useEffect(() => {
-        // console.log('subtotal', subtotal)
-        // console.log('total useEffect', total)
-        //     // dispatch(pruebaAction())
-        // })
-    let setShoppingTotal = ( ) => {
-        console.log(total)
+    const ProductosParaMostrar = status.shoppingCartReducer.productos?.msg || cookie.get('shopping')?.msg
+
+    let setShoppingTotal = () => {
         cookie.set('total', subtotalCards?.reduce((a,b) => a + b))
         nav("/user/products/pay")
     }
     return (<>
-    
-        {/* <b>HERE IS YOUR SHOPPING CART!</b>
-        {JSON.stringify(userRed.status.user.email)}
-        {ProductosParaMostrar?.map(producto => 
-                <div>
-                <p>{producto.name}</p>
-                <p>${producto.price}</p>
-                <img src={producto.image} alt="producto" width="50px" height="50px" />
-            </div>)
-        } */}
-
-
-
-{/* Carrito Maxi */}
-        
             {
                 ProductosParaMostrar &&
                 
-                    <div className="shopping-cart-container">
+            <div className="shopping-cart-container">
         <div className="into-container">
             <div className="cart-container-1">
                 <div className="title-container">
@@ -136,9 +90,9 @@ export default function ShoppingCart ( ) {
                     </div>
                     <div className="cart-slim-information">
                       <div className="name-size">
-                        <p>Direccion: { userValidated?.address }</p>
-                        <p>CP: { userValidated?.postal } - { userValidated?.province }</p>
-                        <p>{ `${(userValidated?.name) + " " +(userValidated?.lastName)}` } - { userValidated?.phone }</p>
+                                                    <p>Direccion: {user?.address}</p>
+                                                    <p>CP: {user?.postal} - {user?.province}</p>
+                                                    <p>{`${(user?.name) + " " + (user?.lastName)}`} - {user?.phone}</p>
                       </div>
                     </div>
                       <div className="cart-edit">
@@ -153,7 +107,7 @@ export default function ShoppingCart ( ) {
                       
                     }
                 </div>
-                    { ProductosParaMostrar?.map((product, i) => {
+                    { ProductosParaMostrar.map && ProductosParaMostrar?.map((product, i) => {
                     return <CardSlim 
                     key= { i }
                     index= { i }
@@ -182,20 +136,14 @@ export default function ShoppingCart ( ) {
                             <p>${ (Number(cookie.get('total')) || total) }</p>
                         </div>
                     </div>
-                        <button onClick={() => setShoppingTotal() }>
-                            <button className="btn-continue-cart" onClick={() => handleContinue()} >Continuar</button>
-                        </button>
+                        <form className="form-mp" action='http://localhost:3001/productos/checkout' method='POST'>
+                            <input type='hidden' name='productList' value={JSON.stringify(cookie.get('shopping')?.msg)}></input>
+                            <input type='hidden' name='userEmail' value={cookie.get('user').email}></input>
+                            <input type='hidden' name='total' value={100} ></input>
+                            <button className='mpButton' type='submit' ><b>Pagar</b><img className='mpImage' src='https://www.lentesplus.com/media/wysiwyg/landings/metodos-de-pago/ico_mercadoPago.png' alt= ''></img> </button>
+                        </form>
                 </div>
         </div>
-    </div>
-    
-                
-            }
-       
-
-        {/* {JSON.stringify(state)}
-        {console.log(state)} */}
-
-    
+            </div>}
     </>)
 }

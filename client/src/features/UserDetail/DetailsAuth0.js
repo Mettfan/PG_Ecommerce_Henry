@@ -18,13 +18,14 @@ export default function DetailsAuth0() {
 
     const { logout, user } = useAuth0();
     const userAuth0 = user;
-    cookie.get('user');
+    cookie.set('user', userAuth0)
 
     // Me aseguro de que no haya usuarios repetidos en la DB
     const allUsers = useSelector((state) => state.userReducer.usuarios);
-    const userExist = allUsers.filter((user) => user.email === userAuth0.email);
+    const userExist = allUsers?.filter((user) => user.email === userAuth0.email);
 
     function crearUsuario() {
+        alert('Al registrarte aceptas nuestros Terminos y condiciones')
         dispatch(createUser({
             name: user.given_name,
             lastName: user.family_name,
@@ -36,7 +37,6 @@ export default function DetailsAuth0() {
 
     function singOut() {
         cookie.set('user', '');
-        alert('Realmente quieres irte? Te perderás todo lo bueno');
         logout();
     }
 
@@ -48,7 +48,7 @@ export default function DetailsAuth0() {
                         <img className="userImgOnprofile" alt='img user' src={userAuth0?.picture || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU"}></img>
                         <div>{userAuth0?.name} {userAuth0?.lastName} </div>
                         <div>{userAuth0?.email} </div>
-                        <Link to="/order/finder">
+                        <Link to="/order">
                             <button className="loginbtn">Mi compra</button>
                         </Link>
                         <Link to="/editar">

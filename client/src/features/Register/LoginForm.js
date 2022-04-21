@@ -223,6 +223,9 @@ const LoginForm = () => {
                                 </label>
                             </div>
                         </div>
+                        <div>
+                            Al crear su cuenta se aceptan términos y condiciones.
+                        </div>
                         <div className="form-submit">
                             <input
                                 type="submit"

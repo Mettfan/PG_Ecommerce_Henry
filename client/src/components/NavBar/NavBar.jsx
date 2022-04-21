@@ -18,16 +18,16 @@ function NavBar(props) {
   let isUserAuthenticated = isAuthenticated || user
   const dispatch = useDispatch();
   const {pathname} = window.location;
+  const nav = useNavigate()
 
+
+  const dispatch = useDispatch();
   const statusCart = useSelector( state => state )
   const ProductosParaMostrar = statusCart.shoppingCartReducer.productos?.msg
 
 
-  let nav = useNavigate()
   useEffect(()=>{
-
     props.getProducts()
-    
   },[])
 
   let [state, setState] = useState({
@@ -51,7 +51,7 @@ function NavBar(props) {
   function handleSubmit(event) {
       event.preventDefault();
       dispatch(FilterByName(name))
-      setName('');
+    setName('');
   }
   
   function switchLanding(){
@@ -61,7 +61,6 @@ function NavBar(props) {
   return ((!pathname.includes("admin") && pathname !=="/createproducts")  &&
     <>
       <div className="header">
-        
         <div className="home-container">
 
               <img src={logo} onClick={ ( ) => switchLanding()} className="logo" alt="a " />
@@ -101,7 +100,7 @@ function NavBar(props) {
                   </button>:
                   <button className='btnUser' onClick={()=> nav('../user/profile') }>
                     <img className='userImg' src={user?.picture || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU'}></img>
-                    <div className='userName'> Hola {user?.name?.split(' ')[0] }! </div>
+                    <div className='userName'> Hola {user.name?.split(' ')[0] }! </div>
                   </button>}
 
                   <button onClick={ () => isUserAuthenticated ? nav('/user/favorites') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login') )} className="btnHome" >
@@ -117,25 +116,10 @@ function NavBar(props) {
                       }
                   </button>
               </ul>
-            </div>
-          
+            </div> 
 
-            
         </div>
       </div>
-          <div>
-      
-            {state.searchIsVisible?
-            <div>
-
-            </div>
-
-          : undefined}
-          </div>
-      <div>
-      </div>
-      
-      
     </>
   );
 }

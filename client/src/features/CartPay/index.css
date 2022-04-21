@@ -1,6 +1,7 @@
-.form-pay-container {
+/* .form-pay-container {
   display: flex;
   align-items: center;
+  flex-direction: column;
   height: 100%;
   min-height: 75vh;
   justify-content: center;
@@ -55,38 +56,7 @@
   border: none;
   font-size: 12px;
 }
-.mpButton{
-  position: relative;
-  display: flex;
-  padding: 9px;
-  left: -10px;
-  bottom: 20px;
-  /* position: absolute; */
-  background-color: white(33, 154, 188);
-  /* bottom: 200px; */
-  filter: drop-shadow(1px 1px 0.5px black);
-  align-items: center;
-  border-radius: 20px;
-  
 
-}
-.mpButton:hover{
-    background-color: black;
-    color: white;
-    filter: drop-shadow(1px 1px 0.5px white);;
-
-}
-.mpImage{
-  width: 30px;
-  filter: drop-shadow(1px 1px 0.5px black);
-
-}
-.mpImage{
- 
-  filter: drop-shadow(1px 1px 0.5px white);
-  
-
-}
 .cancelButton{
   background-color: black;
   color: white;
@@ -103,3 +73,48 @@
   padding: 5px;
   filter: drop-shadow(1px 1px 0.5px black);
 }
+
+.stepNumber1{
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 30px;
+  border-radius: 100px;
+}
+.stepNumber2{
+  background-color: gray;
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 30px;
+  border-radius: 100px;
+  margin-left: 20px;
+}
+.stepNumber3{
+  background-color: gray;
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 30px;
+  border-radius: 100px;
+  margin-left: 20px;
+}
+.stepNumber2active{
+  margin-left: 20px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 30px;
+  border-radius: 100px;
+}
+.progressBar{
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.labelBar{
+  margin-bottom: 10px;
+} */
