@@ -122,20 +122,11 @@ function NavBar(props) {
                   {!isUserAuthenticated?
                   <button className="btnHome" onClick={() => ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login')) }>
                     <RiLoginCircleFill />
-
-                </button>
-
-                : <button className='btnUser' onClick={() => nav('../user/profile')}>
-                  <img className='userImg' src={user?.picture || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU'} alt=' ' width={30} />
-                  <div className='userName'> Hola {user?.name?.split(' ')[0]}! </div>
-                </button>}
-
                   </button>:
                   <button className='btnUser' onClick={()=> nav('../user/profile') }>
                     <img className='userImg' src={user?.picture || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU'}></img>
                     <div className='userName'> Hola {user.name?.split(' ')[0] }! </div>
                   </button>}
-
 
                   <button onClick={ () => isUserAuthenticated ? nav('/user/favorites') : ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login') )} className="btnHome" >
                     <AiFillHeart />
