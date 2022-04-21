@@ -8,7 +8,8 @@ const deleteProduct = require('../Controllers/ProductControllers/deleteProduct')
 const postProduct = require('../Controllers/ProductControllers/postProduct');
 
 const checkoutProducts = require('../Controllers/ProductControllers/checkoutProducts');
-
+const checkAuth = require('../middlewares/auth');
+const checkRoleAdmin = require('../middlewares/roleAuth');
 
 const putProduct = require('../Controllers/ProductControllers/putProduct');
 
