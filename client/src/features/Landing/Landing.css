@@ -25,8 +25,29 @@
     que nos estorben y en todos los navegadores se vean correctamente
 */
 
+  .home-newsletter-container-landing {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .home-newsletter-container p {
+    width: 50%;
+  }
 
+  .newsletter_agregado_landing{
+    background-color: rgb(46, 45, 45);
+    color: white;
+    border-radius: 25px;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    transition: all 0.5s;
+    margin: 10px;
+  }
 
 html {
   scroll-behavior: smooth;
