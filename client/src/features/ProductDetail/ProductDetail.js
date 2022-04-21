@@ -18,72 +18,74 @@ export default function ProductDetail (props) {
 
 
   let { id } = useParams()
-  let cookie = new Cookies()
   let dispatch = useDispatch()
   let nav = useNavigate()
   let product = useSelector( (state) => state.productReducer.producto)
   // let statusFav = useSelector( state => state.favoriteReducer.status )
-
+  
   // let userValidated = 
-
+  
   // console.log('userValidated', userValidated)
-
+    let cookie = new Cookies()
+    const user = cookie.get('user')
+    console.log('user', user && user?.email)
+    console.log('user', user && user.user?.email)
+  // const email = cookie.get('user').user?.email
+    const email = (user?.email === undefined && user.user?.email) ? user?.email === undefined && user.user?.email : user
+    console.log('email', email)
     useEffect(() => {
 
+      dispatch(getProduct(id))
 
-      setTimeout(() => {
+      // setTimeout(() => {
         
         
-        if(id) {
+      //   if(id) {
           
-          dispatch(getProduct(id))
-        }
-      }, 1000);
+      //     dispatch(getProduct(id))
+      //   }
+      // }, 1000);
     }, [dispatch, id])
-
-    
 
     const [show, setShow] = useState(false)
     
-    
-    
-    const email = cookie.get('user').user?.email
   
     const addShoppingCart = () => { 
-      
-      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(id), userEmail: email}).then( response => {
-        console.log(response.data)
-        dispatch({ type: 'ADD_PRODUCT', payload: response.data })
-        cookie?.set('shopping', response.data, { path: '/' });
+      // console.log('prod detail id, email', id, user && user?.email)
+      dispatch(addProduct({productId : id, userEmail : email}))
+      // axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(id), userEmail: email}).then( response => {
+      //   console.log(response.data)
+      //   dispatch({ type: 'ADD_PRODUCT', payload: response.data })
+      //   cookie?.set('shopping', response.data, { path: '/' });
         
-      })
+      // })
       setShow(true)
     }
 
-    const addFavorites = () => { 
-      dispatch(addProductFavorite({ productId: Number(id), email: email}))
-    }
+    // const addFavorites = () => { 
+    //   dispatch(addProductFavorite({ productId: Number(id), email: email}))
+    // }
 
 
-    console.log('cookie cart', cookie?.get('shopping'))
-    useEffect(() => {
-      if (email) {
-        axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email }).then(response => {
-          console.log(response.data);
-          dispatch({ type: 'ADD_PRODUCT', payload: response.data });
-          cookie?.set('shopping', response.data, { path: '/' });
-      });
-      }
+    // console.log('cookie cart', cookie?.get('shopping'))
+    // useEffect(() => {
+    //   if (email) {
+    //     axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: email }).then(response => {
+    //       console.log(response.data);
+    //       dispatch({ type: 'ADD_PRODUCT', payload: response.data });
+    //       cookie?.set('shopping', response.data, { path: '/' });
+    //   });
+    //   }
   
-    });
+    // });
 
 
     let reviews = useSelector( (state) => state.reviewsReducer.reviews.review)
-    console.log(reviews, 'reviews useSelector')
+    // console.log(reviews, 'reviews useSelector')
     const reviesWithName = reviews?.filter(r => r.UserId) 
-    console.log(reviesWithName, 'reviews with name')
+    // console.log(reviesWithName, 'reviews with name')
     const reviewsOfTheProduct = reviesWithName?.filter(r => r.ProductId === Number(id))
-    console.log(reviewsOfTheProduct, 'reviews of the product')
+    // console.log(reviewsOfTheProduct, 'reviews of the product')
     
 
 
@@ -126,7 +128,7 @@ export default function ProductDetail (props) {
     <div className="detailProduct-container">
       <div className="gender-category">
         <p> {product.gender +'/'+product?.CategoryName}  </p>
-        {console.log(product)}
+        {/* {console.log(product)} */}
       <Link to="/home" >
           <MdOutlineArrowBack />
         </Link>

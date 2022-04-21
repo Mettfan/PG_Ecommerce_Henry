@@ -14,12 +14,14 @@ export const ERROR = 'ERROR'
 
 
 export const addProduct = ( {productId, userEmail} ) => async dispatch  => {
-    const cookie = new Cookie()
+    // const cookie = new Cookie()
+    console.log('pruductIp, userEmail action add ', productId, userEmail)
     await axios.post('http://localhost:3001/usuario/shopping', {
         productId,
         userEmail
     }).then( response => {
-        cookie.set('shopping', response.data, { path: '/' })
+        console.log('response.data action add cart', response.data)
+        // cookie.set('shopping', response.data, { path: '/' })
         dispatch({
             type: ADD_PRODUCT,
             payload: response.data
@@ -33,15 +35,15 @@ export const addProduct = ( {productId, userEmail} ) => async dispatch  => {
     })
 }
 
-export const getShoppingList = ( { email } ) => async dispatch => {
-    const cookie = new Cookie()
+export const getShoppingList = ( email ) => async dispatch => {
+    // const cookie = new Cookie()
     console.log(email, 'emaillll ')
     await axios.get(`http://localhost:3001/usuario/shopping/${email}`).then( response => {
-        console.log(response.data, 'dataaaaaaaaaaaaaaaaa ')
-        cookie.set('shopping', response.data, { path: '/' })
+        console.log('data get carrito action ',response.data.msg )
+        // cookie.set('shopping', response.data, { path: '/' })
         dispatch({
             type: GET_SHOPPING,
-            payload: response.data
+            payload: response.data.msg
         })
     },
     (error) => {

@@ -43,26 +43,26 @@ function App() {
   const dispatch = useDispatch();
 
 
-  const email = cookie?.get('user').user?.email;
+  // const email = cookie?.get('user').user?.email;
   
-  console.log('email', email)
+  // console.log('email', email)
   
   
   
-  useEffect(() => {
-    if (user) {
-      axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(60), userEmail: user.email }).then(response => {
-        dispatch({ type: 'ADD_PRODUCT', payload: response.data });
-        console.log('cookie cart', cookie?.get('shopping').msg)
-        cookie?.set('shopping', response.data, { path: '/' });
-      });
-    }
+  // useEffect(() => {
+  //   if (user) {
+  //     axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(1000), userEmail: user.email }).then(response => {
+  //       dispatch({ type: 'ADD_PRODUCT', payload: response.data });
+  //       console.log('cookie cart', cookie?.get('shopping').msg)
+  //       cookie?.set('shopping', response.data, { path: '/' });
+  //     });
+  //   }
 
-    cookie.getAll()
+  //   cookie.getAll()
 
 
 
-  });
+  // });
 
   return (
 
