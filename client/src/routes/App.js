@@ -31,6 +31,7 @@ import Terminos from '../components/Terminos/Terminos';
 import { DrawerEdit } from '../features/Admin/component/DrawerEdit';
 import Cookies from 'universal-cookie';
 import CardSlim from '../components/CardSlim/CardSlim';
+import NewPassword from '../features/NewPassword/NewPassword';
 
 
 
@@ -86,6 +87,7 @@ function App() {
 
 
         <Route path="/user/profile" element={<UserDetail></UserDetail>} />
+        <Route path='/user/newpassword' element={<NewPassword />} />
         <Route path="/user/favorites" element={<UserFavorites></UserFavorites>} />
         <Route path="/user/products" element={<ShoppingCart></ShoppingCart>} />
         <Route path="/user/products/pay" element={<CartPay></CartPay>} />
