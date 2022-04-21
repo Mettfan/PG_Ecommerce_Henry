@@ -91,7 +91,7 @@ export default function OrderFinder()  {
       <div  className="card-admin-name">Categoria: {product.category_id}  </div>
       {/* <div>Description: {product.description}</div> */}
       <div  className="card-admin-name">Cantidad: {product.quantity}</div>
-      <div  className="card-admin-name"> Precio: $ {product.unit_price} </div>
+      <div  className="card-admin-name"> Precio: $ {Number(product.unit_price)?.toFixed(2)} </div>
       <Link to='/'>
       <div className="card-admin-coment"><button className="card-admin-coments">Comentarios</button></div>
       </Link>
@@ -127,7 +127,7 @@ export default function OrderFinder()  {
                     {orders?.filter( order => order?.email === cookie.get('user')?.user?.email)?.map( order => {
                         return (<>
                         <div className="order-card">
-                            <button onClick={ () => {
+                            <button className="botonSwitchOrder" onClick={ () => {
                                 cookie.set('searchId', order?.id)
                                 document.location.reload()
                                 }}>VER ORDEN</button>

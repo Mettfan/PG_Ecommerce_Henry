@@ -56,7 +56,7 @@ export default function UserDetail(props) {
                         <img className="userImgOnprofile" alt='img user' src={userDB?.picture || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-fxYXhHbPLtDz72SAnRopI8b22xxS-SHCNTp8VpPP8GuOD4Ix3kxB3OokobuqGctVE&usqp=CAU"}></img>
                         <div>{userDB?.name} {userDB?.lastName} </div>
                         <div>{userDB?.email} </div>
-                        <Link to="/order/finder">
+                        <Link to="/order">
                             <button className="loginbtn">Mi compra</button>
                         </Link>
                         <Link to="/editar">

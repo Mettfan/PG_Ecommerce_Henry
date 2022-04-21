@@ -131,10 +131,20 @@
   border-radius: 100px;
   margin-left: 20px;
 }
+.stepNumber2active{
+  margin-left: 20px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 30px;
+  border-radius: 100px;
+}
 .progressBar{
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
 }
 .labelBar{
   margin-bottom: 10px;
