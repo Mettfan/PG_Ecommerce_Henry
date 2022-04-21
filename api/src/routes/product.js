@@ -15,11 +15,9 @@ const putProduct = require('../Controllers/ProductControllers/putProduct');
 router.get('/', getProduct);
 router.get('/:id', productById);
 router.get('/gender/:gender', productByGender)
-router.post('/', postProduct)
-router.post('/checkout', checkoutProducts)
-router.delete('/:id', deleteProduct);
-router.put('/putproduct', putProduct);
+router.post('/',checkAuth, checkRoleAdmin(['admin']), postProduct)
+router.post('/checkout',checkAuth, checkoutProducts)
+router.delete('/:id', checkAuth, checkRoleAdmin(['admin']),deleteProduct);
+router.put('/putproduct', checkAuth, checkRoleAdmin(['admin']),putProduct);
 
 module.exports = router;
-
-
