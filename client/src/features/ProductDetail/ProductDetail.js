@@ -20,7 +20,7 @@ export default function ProductDetail (props) {
   let dispatch = useDispatch()
   let nav = useNavigate()
   let product = useSelector( (state) => state.productReducer.producto)
-  let userValidated = useSelector( state => state.userReducer.status.user ) || cookie.get('user').user 
+  let userValidated = useSelector( state => state.userReducer.status.user ) || cookie.get('user').user
   // let statusFav = useSelector( state => state.favoriteReducer.status )
   const {  isAuthenticated, user  } = useAuth0()
 

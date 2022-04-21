@@ -25,16 +25,16 @@ const deleteProductFromFavorites = require('../Controllers/FavoritesControllers/
 
 // const postOrder = require('../Controllers/OrderControllers/postOrder')
 
-router.get('/',   getUsers);
+router.get('/', checkAuth, checkRoleAdmin(['superadmin', 'admin']), getUsers);
 router.post('/crearusuario', postUser);
-router.put('/actualizarusuario', putUser);
-router.put('/actualizarpassword', putUserPassword);
-router.delete('/eliminarusuario', deleteUser);
+router.put('/actualizarusuario',  checkAuth, putUser);
+router.put('/actualizarpassword', checkAuth, putUserPassword);
+router.delete('/eliminarusuario', checkAuth, deleteUser);
 router.post('/login', postLogin);
 router.put('/userrol', checkAuth, checkRoleAdmin(['superadmin']), putUserRole);
 
 router.get('/logout', logoutUser);
-router.get('/info', userInformation);
+router.get('/info', checkAuth, userInformation);
 
 router.post('/shopping', addProductToShoppingCart);
 router.get('/shopping', getProductsFromShoppingCart);
