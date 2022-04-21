@@ -15,7 +15,7 @@ const putUserRole = require('../Controllers/UserControllers/putUserRol');
 const addProductToShoppingCart = require('../Controllers/ShoppingCartControllers/addProductToShoppingCart')
 const getProductsFromShoppingCart = require('../Controllers/ShoppingCartControllers/getProductsFromShoppingCart')
 const deleteProductFromShoppingCart = require('../Controllers/ShoppingCartControllers/deleteProductFromShoppingCart');
-
+const deleteAllProductsShoppingCart = require('../Controllers/ShoppingCartControllers/deleteAllProductsShoppingCart')
 const logoutUser = require('../Controllers/UserControllers/logoutUser');
 const userInformation = require('../Controllers/UserControllers/getUserInformation');
 
@@ -25,13 +25,13 @@ const deleteProductFromFavorites = require('../Controllers/FavoritesControllers/
 
 // const postOrder = require('../Controllers/OrderControllers/postOrder')
 
-router.get('/', checkAuth, checkRoleAdmin(['superadmin', 'admin']), getUsers);
+router.get('/', checkAuth, checkRoleAdmin(['admin']), getUsers);
 router.post('/crearusuario', postUser);
 router.put('/actualizarusuario',  checkAuth, putUser);
 router.put('/actualizarpassword', checkAuth, putUserPassword);
 router.delete('/eliminarusuario', checkAuth, deleteUser);
 router.post('/login', postLogin);
-router.put('/userrol', checkAuth, checkRoleAdmin(['superadmin']), putUserRole);
+router.put('/userrol', checkAuth, checkRoleAdmin(['admin']), putUserRole);
 
 router.get('/logout', logoutUser);
 router.get('/info', checkAuth, userInformation);
@@ -39,6 +39,7 @@ router.get('/info', checkAuth, userInformation);
 router.post('/shopping', addProductToShoppingCart);
 router.get('/shopping', getProductsFromShoppingCart);
 router.delete('/shopping', deleteProductFromShoppingCart);
+router.delete('/shoppingall',deleteAllProductsShoppingCart);
 
 router.post('/favorites', addProductToFavorites);
 // router.get('/favorites', getProductFromFavorites);
