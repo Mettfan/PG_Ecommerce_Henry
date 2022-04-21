@@ -72,14 +72,12 @@ const CreateProduct = () => {
     const dispatch = useDispatch();
     const { register, formState: { errors }, handleSubmit, reset } = useForm(formOptions);
     const nav = useNavigate()
-    const [addSizes, setAddSizes] = useState([["XS",25],["35",35],["44",58]])
-    const dataSize = addSizes?.map((e) => e[0])
-    console.log('dataSize', dataSize)
-    const stock = addSizes?.map((e) => e[1]).reduce((a,b) => a + b )
-    console.log('stock', stock)
+    const [addSizes, setAddSizes] = useState([])
+    const dataSize = addSizes?.map((e) => e.size)
+    const stock = addSizes.length > 0 && addSizes?.map((e) => e.stock)?.reduce((a,b) => a + b)
     const [size, setSize] = useState(null)
     const [quantity, setQuantity] = useState("")    
-    const sizesState = ["Size","XS","S","M","L","XL","XXL","35","36","37","38","39","40","41","42","43","44","45","46"]
+    const sizesState = ['35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', 'L', 'M', 'S', 'XL', 'XS', 'XXL']
     const [sizeShoes, setSizeShoes] = useState(sizesState); 
     const [disabled, setDisabled] = useState(true)
 
@@ -88,7 +86,7 @@ const CreateProduct = () => {
         // nav('/admin')
         const sendData = {...data ,
             //cambiar valor por array nuevo
-            "stock_by_size" : {"XS":25,"35":35,"44":58},
+            "stock_by_size" : addSizes,
             "size" : dataSize.toString(),
             "stock" : stock,
             "discount": Number(data.discount),
@@ -102,9 +100,9 @@ const CreateProduct = () => {
         e.preventDefault();
         setAddSizes([
         ...addSizes,
-            [size, Number(quantity)]
+            {"size": size, "stock": Number(quantity)}
         ])
-        const filterSize = sizeShoes.filter(e => e != size)
+        const filterSize = sizeShoes.filter(e => e != size).sort()
         setSizeShoes(filterSize)
         setDisabled(true)
         setQuantity("")
@@ -330,10 +328,10 @@ const CreateProduct = () => {
                             {
                                 addSizes?.map((e,i) => {
                                     return(
-                                        <button onClick={(e) => handleDeleteSize(e)} name={i} value={e[0]} key={i}>{e[0]} : {e[1]}u</button>
+                                        <button onClick={(e) => handleDeleteSize(e)} name={i} value={e.size} key={i}>{e.size} : {e.stock}u</button>
                                         )
                                 })
-                                }
+                            }
                         </div>
                         <div className="form-submit">
                             <input
