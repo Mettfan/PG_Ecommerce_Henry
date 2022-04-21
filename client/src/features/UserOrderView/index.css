@@ -147,4 +147,13 @@
   display: block;
   width: 20%;
   margin: 15px auto;
+.order-card{
+  margin-top: 30px;
+}
+
+
+.botonSwitchOrder{
+  background-color: black;
+  color: white;
+  padding: 5px;
 }

@@ -6,10 +6,14 @@ import { Link } from "react-router-dom"
 // import './OrderFinder.css'
 import './index.css'
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import './index.css'
 export default function OrderFinder()  {
+    let dispatch = useDispatch()
     let nav = useNavigate()
     let cookie = new Cookies()
     let [searchParams, setSearchParams] = useSearchParams()
+    let [orders, setOrders] = useState([])
     let payment_id = searchParams.get('payment_id') || cookie.get('searchId')
     let [state, setState] = useState({
         searchId: payment_id || cookie.get('searchId'),
@@ -22,8 +26,17 @@ export default function OrderFinder()  {
            cookie.set('searchId', payment_id )
            
            handleOnSubmit()
-       } 
+       }
+        // Se traen los objetos de la tabla Orders
+        getOrders()
    }, [])
+    let getOrders = async () => {
+        await axios.get('http://localhost:3001/usuario/orders').then( response => {
+            console.log(response.data)
+            setOrders([...response.data])
+            console.log(orders);
+        })
+    }
     let handleOnChange = ( e ) => {
         setState({...state, searchId: e.target.value })
     } 
@@ -79,13 +92,13 @@ export default function OrderFinder()  {
                 <div className= 'card-admin-information'>
 
                     
-      <div><img src={ product.picture_url } alt="imagen rota" width="70px"></img></div>
+      <div><img src={ product.picture_url } alt="" width="70px"></img></div>
       <div><h5> {product.title}</h5></div>
       <div  className="card-admin-name">Categoria: {product.category_id}  </div>
       {/* <div>Description: {product.description}</div> */}
 
       <div  className="card-admin-name">Cantidad: {product.quantity}</div>
-      <div  className="card-admin-name"> Precio: $ {product.unit_price} </div>
+      <div  className="card-admin-name"> Precio: $ {Number(product.unit_price)?.toFixed(2)} </div>
       <Link to='/'>
       <div className="card-admin-coment"><button className="card-admin-coments">Comentarios</button></div>
       </Link>
@@ -149,7 +162,30 @@ export default function OrderFinder()  {
                 {/* {state.orderFound.status === 'pending' && <button onClick={( ) => window.location.href = state.orderFound.transaction_details?.external_resource_url }> Ticket</button>  } */}
                 {<a  target={'_blank'} href={state.orderFound.transaction_details?.external_resource_url} download= 'Ticket'>Ticket</a>}
                 </div>
-   
+                <div className="myOrders">
+                    {/* Aqui adentro va mis modulos para checar las ordenes del usuario */ }
+
+                    {/* Filtra y mapea las ordenes del usuario */}
+                    {orders?.filter( order => order?.email === cookie.get('user')?.user?.email)?.map( order => {
+                        return (<>
+                        <div className="order-card">
+                            <button className="botonSwitchOrder" onClick={ () => {
+                                cookie.set('searchId', order?.id)
+                                document.location.reload()
+                                }}>VER ORDEN</button>
+                            <div>
+                            {order?.id}
+                            </div>
+                            <div>
+                            {order?.email}
+                            </div>
+
+                        </div>
+                            
+                        </>)
+                    })}
+
+                </div>
     {/* <div>
                 {state.orderFound.status === 'pending' && <button onClick={( ) =>  goToOrder() }> Ver Orden</button>  }
 
@@ -164,7 +200,7 @@ export default function OrderFinder()  {
 // import { useParams } from "react-router-dom"
 // import { useAuth0 } from '@auth0/auth0-react';
 // import { Link } from 'react-router-dom';
-// import './index.css'
+
 // import data from './fake'
 // import Cookies from 'universal-cookie';
 // import axios from 'axios';

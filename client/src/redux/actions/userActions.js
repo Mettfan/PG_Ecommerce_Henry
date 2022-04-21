@@ -27,7 +27,6 @@ export const createUser = ({ name, lastName, picture, gender, born, dni, email, 
     let cookie = new Cookies()
 
     axios.post('http://localhost:3001/usuario/crearusuario', { 
-        
         name,
         lastName,
         picture,
@@ -42,6 +41,9 @@ export const createUser = ({ name, lastName, picture, gender, born, dni, email, 
         permission
      }).then( response => {
         cookie.set('user', response.data)
+    }).then(response => {
+        if (response.data.msg === 'usuario creado con éxito') {
+            cookie.set('user', response.data.user);
             dispatch({
                 type: CREATE_USER,
                 payload: response.data
@@ -62,7 +64,7 @@ export const login  = ({ email, password}) => async (dispatch) => {
         email,
         password,
     }).then( response => {
-        cookie.set('user', response.data)
+        cookie.set('user', response.data.user)
         dispatch({
             type: LOGIN,
             payload: response.data

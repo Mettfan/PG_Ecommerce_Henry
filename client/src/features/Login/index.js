@@ -24,19 +24,18 @@ const formOptions = { resolver: yupResolver(formSchema) };
 const Login = (props) => {
   let nav = useNavigate();
   let dispatch = useDispatch();
-  let status = useSelector(state => state.userReducer.status);
-  //let token = status.token;
   const { register, formState: { errors }, handleSubmit } = useForm(formOptions);
 
   const { loginWithRedirect } = useAuth0()
 
   const onSubmit = async (data) => {
-
-    let cookies = new Cookies()
-    cookies.set('data', data)
     dispatch(login(data));
     nav('/home');
   };
+
+  const handleRecovery = () => {
+    nav('/user/newpassword');
+  }
 
 
   return (
@@ -68,16 +67,18 @@ const Login = (props) => {
               </div>
             </div>
             <div className="recover-pwd">
-              <p>
-                ¿Olvidaste tu contraseña?
-              </p>
+              {/* <p> */}
+                <button className="button-password-recovery" onClick={handleRecovery}>
+                  ¿Olvidaste tu contraseña?
+                </button>
+              {/* </p> */}
             </div>
             <div className="form-submit-login">
               <input
                 type="submit"
-                value="INGRESAR"
+                value="Ingresar"
               />
-              <button className="register-btn" onClick={loginWithRedirect}>Google/Facebook</button>
+              <button className="register-btn" onClick={loginWithRedirect}>Google o Facebook</button>
             </div>
             <div className="title-register" >
               Si no tienes una cuenta puedes registrarte ahora

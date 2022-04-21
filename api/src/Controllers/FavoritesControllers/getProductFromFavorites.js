@@ -3,7 +3,6 @@ const {User} = require('../../db.js');
 
 const getProductFromFavorites = async (req, res, next) => {
     try {
-        // const {email} = req.body;
         const { email } = req.params;
         const user = await User.findOne({where: {email}});
         if(!user) {

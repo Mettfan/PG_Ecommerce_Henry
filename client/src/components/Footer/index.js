@@ -8,7 +8,9 @@ import localizacion from '../../assets/localizacion.png';
 import email from '../../assets/email.png'
 
 function Footer() {
-  return (
+  const {pathname} = window.location;
+
+  return (!pathname.includes("admin")  &&
     <div className="footer">
       <div className="footer-container">
         <h1>Booma </h1>
