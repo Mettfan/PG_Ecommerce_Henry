@@ -132,7 +132,9 @@ const CreateProduct = () => {
 
     return (
         <div className="container-register-form-admin">
-            <Link to= '/admin' className=""><p>Regresar</p></Link>
+            <div className="Btn-back-admin">
+                <Link className="link-button" to='/admin'><p>Panel admin</p></Link>
+            </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
 

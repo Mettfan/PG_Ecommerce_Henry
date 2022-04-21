@@ -8,6 +8,7 @@
 
 .container-register-form-admin {
     background-color: grey;
+    height:119vh;
 }
 .container-stock {
     display: flex;
@@ -58,6 +59,24 @@
     margin-left: 2px;
     font-weight: bold;
     height: 25px;
+}
+
+.link-button {
+    text-decoration: none;
+} 
+
+.Btn-back-admin {
+
+    width: 150px;
+    border-radius: 4px;
+    padding: 10px 10px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}
+
+.Btn-back-admin p {
+    color: white;
 }
 
 .gender-details-create-admin {

@@ -79,7 +79,7 @@ const LoginForm = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="container-index">
                     <div className="form-container">
-                        <div className="title">Prefiero registrarme con un formulario</div>
+                        <div className="title">Registrarme</div>
                         <p className="register-subtitle">(* campos requeridos)</p>
                         <div className="form-group-one">
                             <div className="labelAndInput">

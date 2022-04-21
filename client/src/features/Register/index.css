@@ -11,7 +11,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 80.7vh;
+  min-height: 88.7vh;
+  /* min-height: 80.7vh; */
   background-color: grey;
 }
 

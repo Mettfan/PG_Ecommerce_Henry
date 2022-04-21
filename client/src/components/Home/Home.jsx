@@ -1,12 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
-//import NavBar from '../NavBar/NavBar';
 import './Home.css'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import Catalog from '../Product/Catalog/Catalog'
-// import SearchDialog from '../NavBar/SearchDialog/SearchDialog';
 import { useAuth0 } from '@auth0/auth0-react'
-//import {MdOutlineArrowDropUp, MdOutlineArrowDropDown} from 'react-icons/md'
 
 import { cleanProduct, FilterByBrand, FilterByCategory, filterByGenreMen, filterByGenreNiña, filterByGenreNiño, filterByGenreUnisex, filterByGenreWomen, FilterByPrice, getProducts } from '../../redux/actions/productActions';
 
@@ -42,9 +39,6 @@ function Home(props) {
   function handleGenreWomen(event) {
       dispatch(filterByGenreWomen(event.target.value))
   }
-  //function handleGenreUnisex(event) {
-  //    dispatch(filterByGenreUnisex(event.target.value))
-  //}
   function handleGenreNiño(event) {
       dispatch(filterByGenreNiño(event.target.value))
   }
@@ -81,7 +75,9 @@ function Home(props) {
 
   useEffect (()=>{
     window.onscroll = function(ev) {
+
       if ((window.innerHeight + (window.pageYOffset + 500)) >= document.body.offsetHeight) {
+
           loadMoreProducts()
       }
 
@@ -94,11 +90,10 @@ function Home(props) {
     document.documentElement.scrollTop = 0
 
   }
-
+  const productRendered = productos.slice(0, state.productsRendered)
 
   const [show, setShow] = useState(false);
   const [showWo, setShowWo] = useState(false);
- // const [showUni, setShowUni] = useState(false);
   const [showNiño, setShowNiño] = useState(false);
   const [showNiña, setShowNiña] = useState(false);
   const [showCats, setShowCats] = useState(false);
@@ -107,9 +102,6 @@ function Home(props) {
 
   return (
     <>
-      {/* {console.log(productos)} */}
-      {/* <NavBar/> */}
-      {/* <SearchDialog content = {productos}></SearchDialog> */}
       <div className="home-filtersandcard">
         <div className="home-filter">
           <div className="acordeon">
@@ -222,11 +214,15 @@ function Home(props) {
 
           </div>
         </div>
-       {/* {JSON.stringify(cookie.get('user'))} */}
         <div className="home-cards">
           <Catalog
-            productos={productos.slice(0, state.productsRendered)}
-          ></Catalog>
+            productos={productRendered}
+            ></Catalog>
+            <div>
+              {productos.length !== productRendered.length &&
+                <p className="loading">Cargando...</p>
+              }
+            </div>
         </div>
       </div>
       <div className="scroll-top-button-bottom">
