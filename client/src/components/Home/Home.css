@@ -4,6 +4,10 @@
     font-family: "Poppins", sans-serif;
 }
 
+.loading {
+    font-size: 18px;
+    font-weight: bold;
+}
 
 .category-container {
     display: flex;
@@ -78,7 +82,7 @@
 
 .home-newsletter {
     background: #e26e6c;
-    width: 65%;
+    width: 45%;
     margin: 15px auto;
     border-radius: 5px;
     padding: 40px 175px
@@ -94,11 +98,12 @@
 }
 
 .home-newsletter-input {
-    width: 60%;
+    width: 100%;
     height: 40px;
     border-radius: 15px;
     border: none;
     padding: 5px 15px;
+    margin: 10px;
 }
 
 .home-newsletter-button {
@@ -238,13 +243,7 @@
         padding: 20px 0px
     }
 
-    .home-newsletter-container {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+ 
 
     .home-newsletter-title {
         margin-left: 5px;

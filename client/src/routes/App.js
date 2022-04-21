@@ -4,13 +4,9 @@ import Home from '../components/Home/Home';
 import { Routes, Route } from 'react-router-dom';
 import { Register } from '../features/Register';
 import { Login } from '../features/Login';
-//import { DetailProduct } from '../features/DetailProduct';
-
-
 import GetProducts from '../features/Admin/ProductActions/GetProduct/GetProducts'
 import PromotionDetails from '../components/PromotionDetails/PromotionDetails';
 import Promotions from '../components/Promotions/Promotions';
-
 import ProductDetail from '../features/ProductDetail/ProductDetail';
 import UserDetail from '../features/UserDetail/UserDetail';
 import UserFavorites from '../features/UserFavorites/UserFavorites';
@@ -33,6 +29,7 @@ import OrderFinder from '../features/OrderFinder/OrderFinder';
 import { CreateProduct } from '../features/Admin/ProductActions/CreateProduct/CreateProduct';
 import Terminos from '../components/Terminos/Terminos';
 import { DrawerEdit } from '../features/Admin/component/DrawerEdit';
+import CardSlim from '../components/CardProductFav/CardProductFav';
 
 
 function App() {
@@ -70,7 +67,6 @@ function App() {
         <Route path="/promotions" element={<Promotions />} />
         <Route path="/promotions/:id" element={<PromotionDetails />} />
 
-
         <Route path="/promotions" element={<Promotions></Promotions>} />
        
                 
@@ -96,6 +92,7 @@ function App() {
         <Route path="/order/finder/" element={<OrderFinder></OrderFinder>} />
 
         <Route path='/terminos' element={<Terminos></Terminos>} />
+        <Route path='/cardslim' element={<CardSlim/>} />
 
       </Routes>
       <Footer />

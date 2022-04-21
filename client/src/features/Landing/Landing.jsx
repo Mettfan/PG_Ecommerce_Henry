@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react'
+import './Landing.css'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
 import { FilterByBrand, getProducts } from '../../redux/actions/productActions';
 import fotoLandingPromotions from '../../assets/salesLanding.png'
-import './Landing.css'
+import axios from 'axios';
 
 function Landing() {
-
+  const [input, setInput] = useState("")
   const dispatch = useDispatch();
   const nav = useNavigate();
-
+  const [msg, setMsg] = useState("")
 
   const handleRedirectWithFilterNike = () => {
     nav('/home')
@@ -55,7 +56,31 @@ function Landing() {
   }
 
 
-  
+  const handleOnChangeSusbribe = (e) => {
+    setInput(e.target.value)
+  }
+
+  const handleSusbribe = async () => {
+    await axios.post('http://localhost:3001/usuario/newsletter', {
+          // email
+          "email": input
+      }).then( response => {
+        const msg = response.data.msg;
+        setMsg(msg);
+      },
+      (error) => {
+        setMsg("Email no válido");
+      })
+      setInput("")
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMsg("");
+    }, 5000)
+    return () => clearTimeout(timer);
+  }, [msg])
+
   useEffect(() => {
     
     const grande    = document.querySelector('.grande')
@@ -187,14 +212,6 @@ function Landing() {
 
       </div>
           </div>
-      
-      
-      
-   
-
-
-
-
 
         <Link to="/promotions">
         <img
@@ -204,14 +221,13 @@ function Landing() {
         />
         </Link>
 
-      
-
       <div className="home-newsletter">
-          <div className="home-newsletter-container">
-          <h2 className="home-newsletter-title">¡SUSCRIBITE Y OBTENÉ $600 PARA TU PRIMERA COMPRA!</h2>
+          <div className="home-newsletter-container-landing">
+          <h2 className="home-newsletter-title">¡! RECIBÍ NOVEDADES Y PROMOCIONES EXCLUSIVAS EN TU MAIL!</h2>
           <p className="home-newsletter-p">Además recibí novedades y promociones exclusivas en tu mail.</p>
-          <input className="home-newsletter-input" type="text" placeholder="Ingresá tu mail" />
-          <button className="home-newsletter-button">Suscribirme</button>
+          <input className="home-newsletter-input" type="text" placeholder="Ingresá tu mail" value={input} onChange={(e)=>handleOnChangeSusbribe(e)} />
+          <p className={msg ? 'newsletter_agregado_landing' : 'producto_sinagregar'}>{msg}</p>
+          <button className="home-newsletter-button" onClick={(e) => handleSusbribe(e)}>Suscribirme</button>
         </div>
       </div>
 
