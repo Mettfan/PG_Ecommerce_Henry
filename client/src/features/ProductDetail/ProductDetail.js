@@ -14,6 +14,16 @@ import { getReviews } from '../../redux/actions/reviewsActions';
 
 export default function ProductDetail(props) {
 
+export default function ProductDetail (props) {
+  let { id } = useParams()
+  let cookie = new Cookies()
+  let dispatch = useDispatch()
+  let nav = useNavigate()
+  let product = useSelector( (state) => state.productReducer.producto)
+  let userValidated = useSelector( state => state.userReducer.status.user ) || cookie.get('user').user
+  // let statusFav = useSelector( state => state.favoriteReducer.status )
+  const {  isAuthenticated, user  } = useAuth0()
+
 
   let { id } = useParams();
   let cookie = new Cookies();
