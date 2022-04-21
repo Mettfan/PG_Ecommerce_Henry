@@ -47,7 +47,7 @@ export const createUser = ({ name, lastName, picture, gender, born, dni, email, 
             dispatch({
                 type: CREATE_USER,
                 payload: response.data
-            })
+            })}
      },
      (error) => {
          dispatch({

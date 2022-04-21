@@ -21,17 +21,15 @@ function NavBar(props) {
   
   let userValidated = useSelector( state => state.userReducer.status.user ) || cookie.get('user').user 
 
-  const ProductosParaMostrar =   useSelector( state => state.shoppingCartReducer.productos?.msg  )
-  console.log(ProductosParaMostrar)
-
+  
   const {pathname} = window.location;
   const nav = useNavigate()
 
 
-  const dispatch = useDispatch();
   const statusCart = useSelector( state => state )
   const ProductosParaMostrar = statusCart.shoppingCartReducer.productos?.msg
-
+  
+  console.log(ProductosParaMostrar)
 
 
   useEffect(()=>{

@@ -30,9 +30,9 @@ import { CreateProduct } from '../features/Admin/ProductActions/CreateProduct/Cr
 import Terminos from '../components/Terminos/Terminos';
 import { DrawerEdit } from '../features/Admin/component/DrawerEdit';
 import Cookies from 'universal-cookie';
+import CardSlim from '../components/CardSlim/CardSlim';
 
 
-import Cookies from 'universal-cookie';
 
 function App() {
 
@@ -41,7 +41,6 @@ function App() {
   const dispatch = useDispatch();
 
 
-  const cookie = new Cookies();
   const email = cookie?.get('user').user?.email;
   
   console.log('email', email)
