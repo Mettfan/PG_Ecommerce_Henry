@@ -12,12 +12,16 @@ import Cookies from "universal-cookie"
 export default function ShoppingCart ( ) {
 
     let cookie = new Cookies()
+
     const user = cookie.get('user')
+
     let nav = useNavigate()
     const status = useSelector( state => state )
     const userRed  = status.userReducer
     const shopping = status.shoppingCartReducer
+
     const dispatch = useDispatch()
+
 
 
 
@@ -36,8 +40,30 @@ export default function ShoppingCart ( ) {
     const handleContinue = () => {
          setCount(0);
      }
+     let userValidated = useSelector(state => state.userReducer.status.user);
+     const dispatch = useDispatch();
+     const email = cookie?.get('user').user?.email;
+     console.log('email', email)
+     console.log('email cookie', cookie.get('user').user)
+     console.log('prods cookie', cookie.get('shopping').msg)
+     
 
+     const statusCart = useSelector( state => state )
     
+
+     const ProductosParaMostrar =  useSelector( state => state.shoppingCartReducer.productos?.msg  )
+    // let state = useSelector( state => state.shoppingCartReducer  )
+    console.log(ProductosParaMostrar)
+    
+   
+        // useEffect(() => {
+        // console.log('subtotal', subtotal)
+        // console.log('total useEffect', total)
+        //     // dispatch(pruebaAction())
+        // })
+    let setShoppingTotal = ( ) => {
+        console.log(total)
+
     useEffect(() => {
 
         async function addShoppingCart  (){ 
@@ -60,14 +86,27 @@ export default function ShoppingCart ( ) {
     const ProductosParaMostrar = status.shoppingCartReducer.productos?.msg || cookie.get('shopping')?.msg
 
     let setShoppingTotal = () => {
+
         cookie.set('total', subtotalCards?.reduce((a,b) => a + b))
         nav("/user/products/pay")
     }
+
+
     return (<>
+    
+
+        {
+           ProductosParaMostrar && ProductosParaMostrar.length !== 0 ?
+
+              <>
+
+<div className="shopping-cart-container">
+
             {
                 ProductosParaMostrar &&
                 
             <div className="shopping-cart-container">
+
         <div className="into-container">
             <div className="cart-container-1">
                 <div className="title-container">
@@ -144,6 +183,25 @@ export default function ShoppingCart ( ) {
                         </form>
                 </div>
         </div>
+
+    </div>
+              </>
+            :
+
+            <h2>
+                No hay productos en el carrito
+            </h2>
+        }
+
+
+{/* Carrito Maxi */}
+        
+         
+
+        {/* {JSON.stringify(state)}
+        {console.log(state)} */}
+
+    
             </div>}
     </>)
 }

@@ -431,19 +431,18 @@
 .home-filter {
     /* width: 10%; */
     width: 20em;
-    margin: 2% auto;
+    margin: 0 auto;
     height: 10%;
     /* position: absolute; */
 
 }
 .home-filter div {
-    margin: 15% auto;
+    margin: 0 auto;
 }
 .home-filter div span {
     display: flex;
     justify-content: flex-start;
     text-align: center;
-    margin-left: 5%;
 }
 
 /*********************************************************************************************************

@@ -32,6 +32,7 @@ import { DrawerEdit } from '../features/Admin/component/DrawerEdit';
 import Cookies from 'universal-cookie';
 
 
+import Cookies from 'universal-cookie';
 
 function App() {
 
@@ -40,12 +41,26 @@ function App() {
   const dispatch = useDispatch();
 
 
+  const cookie = new Cookies();
+  const email = cookie?.get('user').user?.email;
+  
+  console.log('email', email)
+  
+  
+  
   useEffect(() => {
     if (user) {
       axios.post(`http://localhost:3001/usuario/shopping`, { productId: Number(60), userEmail: user.email }).then(response => {
         dispatch({ type: 'ADD_PRODUCT', payload: response.data });
+        console.log('cookie cart', cookie?.get('shopping').msg)
+        cookie?.set('shopping', response.data, { path: '/' });
       });
     }
+
+    cookie.getAll()
+
+
+
   });
 
   return (

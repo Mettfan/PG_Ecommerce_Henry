@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RiLoginCircleFill } from 'react-icons/ri';
 import { AiFillHeart } from 'react-icons/ai';
 import { BsFillCartFill } from 'react-icons/bs';
@@ -17,6 +17,13 @@ function NavBar(props) {
   let user = cookie.get('user')?.user
   let isUserAuthenticated = isAuthenticated || user
   const dispatch = useDispatch();
+
+  
+  let userValidated = useSelector( state => state.userReducer.status.user ) || cookie.get('user').user 
+
+  const ProductosParaMostrar =   useSelector( state => state.shoppingCartReducer.productos?.msg  )
+  console.log(ProductosParaMostrar)
+
   const {pathname} = window.location;
   const nav = useNavigate()
 
@@ -24,6 +31,7 @@ function NavBar(props) {
   const dispatch = useDispatch();
   const statusCart = useSelector( state => state )
   const ProductosParaMostrar = statusCart.shoppingCartReducer.productos?.msg
+
 
 
   useEffect(()=>{
@@ -91,8 +99,9 @@ function NavBar(props) {
               </form>
               }
             </div>
-
+               
             <div className="userbuttons-container">
+
               <ul className="main-nav">
                   {!isUserAuthenticated?
                   <button className="btnHome" onClick={() => ( state.myButtonLoginIsDisplayed ? loginWithRedirect() : nav('/login')) }>
@@ -115,6 +124,17 @@ function NavBar(props) {
                         </div>
                       }
                   </button>
+
+
+                  {
+                userValidated?.permission === 'admin' || userValidated?.permission === 'superadmin'  ?
+                 <Link to="/admin" >
+                    <img src="http://www.iconhot.com/icon/png/rrze/720/user-admin-1.png" alt=""  width="40px" height="40px" />
+                 </Link>
+                :
+                null
+              }
+
               </ul>
             </div> 
 

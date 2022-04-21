@@ -1,6 +1,6 @@
 const {  User } = require('../../db.js')
 const getProductsFromShoppingCart = async(req,res, next )=>{
-    const {  email } = req.body
+    const {  email } = req.params
 
     console.log(email, '<-USEREMAILBACK')
     
