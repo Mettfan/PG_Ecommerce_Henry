@@ -32,6 +32,7 @@ import { DrawerEdit } from '../features/Admin/component/DrawerEdit';
 import Cookies from 'universal-cookie';
 import CardSlim from '../components/CardSlim/CardSlim';
 import NewPassword from '../features/NewPassword/NewPassword';
+import UpdateRol from '../features/UpdateRol/UpdateRol'
 
 
 
@@ -99,6 +100,7 @@ function App() {
         <Route path="/admin/products" element={<GetProducts></GetProducts>} />
         <Route path="/admin/orders" element={<OrdersView></OrdersView>} />
         <Route path="/admin" element={<HomeAdmin />} />
+        <Route path='/admin/updaterol' element={<UpdateRol />} />
         <Route path="/createproducts" element={<CreateProduct />} />
         <Route path="/drawerEdit" element={<DrawerEdit />} />
 
